@@ -116,9 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Set default editor to vscode
-export EDITOR="code -w"
-
 # Powerline Shell 
 function _update_ps1() {
     PS1=$(powerline-shell $?)
@@ -133,3 +130,7 @@ neofetch
 
 # ALIASES
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# EXPORTS
+export EDITOR="code -w"
+export TERM=xterm-256color

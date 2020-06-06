@@ -384,7 +384,7 @@ cursor:
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /bin/zsh
+  program: /usr/bin/fish
   args:
     - -l
     - -c

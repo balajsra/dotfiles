@@ -4,3 +4,6 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".themes/Dracula"]
+	path = .themes/Dracula
+	url = git@github.com:dracula/gtk.git

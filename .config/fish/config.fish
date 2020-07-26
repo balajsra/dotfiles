@@ -7,7 +7,10 @@ function fish_prompt
 end
 
 # Run neofetch when opening terminal (w/ empty line above)
-neofetch
+# neofetch
+
+# Color Scripts
+/bin/bash /opt/shell-color-scripts/colorscript.sh -r
 
 # ALIASES
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -15,3 +18,4 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # EXPORTS
 export EDITOR="code -w"
 export TERM=xterm-256color
+export XDG_CONFIG_HOME=$HOME/.config

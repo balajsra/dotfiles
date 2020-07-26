@@ -1,9 +1,6 @@
 [submodule ".vim/pack/themes/start/dracula"]
 	path = .vim/pack/themes/start/dracula
 	url = https://github.com/dracula/vim.git
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule ".themes/Dracula"]
 	path = .themes/Dracula
 	url = git@github.com:dracula/gtk.git

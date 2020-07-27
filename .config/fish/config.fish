@@ -6,9 +6,6 @@ function fish_prompt
     powerline-shell --shell bare $status
 end
 
-# Run neofetch when opening terminal (w/ empty line above)
-# neofetch
-
 # Color Scripts
 /bin/bash /opt/shell-color-scripts/colorscript.sh -r
 

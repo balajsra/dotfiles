@@ -4,3 +4,12 @@
 [submodule ".themes/Dracula"]
 	path = .themes/Dracula
 	url = git@github.com:dracula/gtk.git
+[submodule ".config/dwm"]
+	path = .config/dwm
+	url = https://github.com/balajsra/dwm.git
+[submodule ".config/slstatus"]
+	path = .config/slstatus
+	url = https://github.com/balajsra/slstatus.git
+[submodule ".config/slock"]
+	path = .config/slock
+	url = https://github.com/balajsra/slock.git

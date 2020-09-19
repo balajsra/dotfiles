@@ -3,47 +3,48 @@
  * User: balajsra
  * Copyright: Sravan Balaji
  */
- * {
-    background-color:   #282a36;
-    border-color:       #bd93f9;
-    text-color:         #f8f8f2;
-    spacing:            0;
-    width:              1024px;
+* {
+	background-color: #282a36;
+	border-color: #bd93f9;
+	text-color: #f8f8f2;
+	spacing: 0;
+	width: 1024px;
+	font: "NotoSans Nerd Font 12";
 }
-  
+
 inputbar {
-    border:     0 0 1px 0; /* top right bottom left */
-    children:   [prompt,entry];
+	border: 0 0 1px 0; /* top right bottom left */
+	children: [prompt, entry];
 }
 
 prompt {
-    padding:    16px;
-    border:     2px 1px 0 2px; /* top right bottom left */
+	padding: 16px;
+	border: 2px 1px 0 2px; /* top right bottom left */
 }
 
 textbox {
-    background-color:   #282a36;
-    border:             0 0 1px 0; /* top right bottom left */
-    border-color:       #bd93f9;
-    padding:            8px 16px 8px 16px; /* top right bottom left */
+	background-color: #282a36;
+	border: 0 0 1px 0; /* top right bottom left */
+	border-color: #bd93f9;
+	padding: 8px 16px 8px 16px; /* top right bottom left */
 }
 
 entry {
-    border:     2px 2px 0px 0; /* top right bottom left */
-    padding:    16px;
+	border: 2px 2px 0px 0; /* top right bottom left */
+	padding: 16px;
 }
 
 listview {
-    cycle:      true;
-    margin:     0 0 0px 0; /* top right bottom left */
-    scrollbar:  true;
+	cycle: true;
+	margin: 0 0 0px 0; /* top right bottom left */
+	scrollbar: true;
 }
 
 element {
-    border:     0 2px 1px 2px; /* top right bottom left */
-    padding:    16px;
+	border: 0 2px 1px 2px; /* top right bottom left */
+	padding: 16px;
 }
 
 element selected {
-    background-color: #44475a;
+	background-color: #44475a;
 }

@@ -4,39 +4,39 @@
  * Copyright: Sravan Balaji
  */
 * {
-    background-color:   #282a36;
-    text-color:         #f8f8f2;
-    font:               "monospace 12";
+	background-color: #282a36;
+	text-color: #f8f8f2;
+	font: "NotoSans Nerd Font 12";
 }
 
 #window {
-    anchor:     north;
-    location:   north;
-    width:      100%;
-    padding:    2px 5px 2px 5px; /* top right bottom left */
-    children:   [ horibox ];
+	anchor: north;
+	location: north;
+	width: 100%;
+	padding: 2px 5px 2px 5px; /* top right bottom left */
+	children: [ horibox ];
 }
 
 #horibox {
-    orientation: horizontal;
-    children:   [ prompt, entry, listview ];
+	orientation: horizontal;
+	children: [ prompt, entry, listview ];
 }
 
 #listview {
-    layout:     horizontal;
-    spacing:    10px;
-    lines:      100;
+	layout: horizontal;
+	spacing: 10px;
+	lines: 100;
 }
 
 #entry {
-    expand:     false;
-    width:      10em;
+	expand: false;
+	width: 10em;
 }
 
 #element {
-    padding: 1px 5px 1px 5px; /* top right bottom left */
+	padding: 1px 5px 1px 5px; /* top right bottom left */
 }
 #element selected {
-    background-color:   #bd93f9;
-    text-color:         #282a36;
+	background-color: #bd93f9;
+	text-color: #282a36;
 }

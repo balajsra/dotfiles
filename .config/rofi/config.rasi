@@ -143,4 +143,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-@import "./themes/sidetab-dracula.rasi"
+@import "./themes/dracula-blurry-full.rasi"

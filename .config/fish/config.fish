@@ -56,14 +56,13 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 ###############
 # This was the 'sashimi' prompt from oh-my-fish.
 function fish_prompt
-    source ~/.config/fish/conf.d/dracula.fish
     set -l last_status $status
     set -l cyan (set_color -o $fish_color_command)
     set -l yellow (set_color -o $fish_color_quote)
     set -g red (set_color -o $fish_color_error)
-    set -g blue (set_color -o blue)
+    set -g purple (set_color -o $fish_color_param)
     set -l green (set_color -o $fish_color_operator)
-    set -g normal (set_color $fish_color_escape)
+    set -g normal (set_color -o $fish_color_escape)
 
     set -l ahead (_git_ahead)
     set -g whitespace ' '
@@ -75,15 +74,15 @@ function fish_prompt
         set initial_indicator "$red✖ $last_status"
         set status_indicator "$red❯$red❯$red❯"
     end
-    set -l cwd $cyan(basename (prompt_pwd))
+    set -l cwd $cyan(prompt_pwd)
 
     if [ (_git_branch_name) ]
-        if test (_git_branch_name) = 'master'
+        if test (_git_branch_name) = 'master' || test (_git_branch_name) = 'main'
             set -l git_branch (_git_branch_name)
             set git_info "$normal git:($red$git_branch$normal)"
         else
             set -l git_branch (_git_branch_name)
-            set git_info "$normal git:($blue$git_branch$normal)"
+            set git_info "$normal git:($purple$git_branch$normal)"
         end
         if [ (_is_git_dirty) ]
             set -l dirty "$yellow ✗"
@@ -110,11 +109,11 @@ function _git_ahead
         case '0 0' # equal to upstream
             return
         case '* 0' # ahead of upstream
-            echo "$blue↑$normal_c$ahead$whitespace"
+            echo "$purple↑$normal_c$ahead$whitespace"
         case '0 *' # behind upstream
             echo "$red↓$normal_c$behind$whitespace"
         case '*' # diverged from upstream
-            echo "$blue↑$normal$ahead $red↓$normal_c$behind$whitespace"
+            echo "$purple↑$normal$ahead $red↓$normal_c$behind$whitespace"
     end
 end
 

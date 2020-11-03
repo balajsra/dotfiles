@@ -10,6 +10,3 @@
 [submodule ".config/slstatus"]
 	path = .config/slstatus
 	url = https://github.com/balajsra/slstatus.git
-[submodule ".config/oh-my-fish"]
-	path = .config/oh-my-fish
-	url = git@github.com:oh-my-fish/oh-my-fish.git

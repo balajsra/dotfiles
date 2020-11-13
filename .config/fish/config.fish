@@ -10,13 +10,6 @@ set fish_greeting "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>" # Fish Greeti
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin/
 
 ###########
-# EXPORTS #
-###########
-export TERM=xterm-256color # Sets the terminal type
-export EDITOR="code -w" # $EDITOR use vscode in terminal
-export XDG_CONFIG_HOME=$HOME/.config # Set Config directory
-
-###########
 # ALIASES #
 ###########
 # pacman and yay

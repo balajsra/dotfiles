@@ -1,0 +1,47 @@
+! Defines
+#define FOREGROUND #F8F8F2
+#define BACKGROUND #282A36
+#define BLACK1     #000000
+#define BLACK2     #4D4D4D
+#define WHITE1     #E6E6E6
+#define WHITE2     #BFBFBF
+#define RED1       #FF5555
+#define RED2       #FF6E67
+#define GREEN1     #50FA7B
+#define GREEN2     #5AF78E
+#define YELLOW1    #F1FA8C
+#define YELLOW2    #F4F99D
+#define PURPLE1    #BD93F9
+#define PURPLE2    #CAA9FA
+#define PINK1      #FF79C6
+#define PINK2      #FF92D0
+#define CYAN1      #8BE9FD
+#define CYAN2      #9AEDFE
+
+! Dracula Xresources palette
+*.foreground: FOREGROUND
+*.background: BACKGROUND
+*.color0:     BLACK1
+*.color8:     BLACK2
+*.color1:     RED1
+*.color9:     RED2
+*.color2:     GREEN1
+*.color10:    GREEN2
+*.color3:     YELLOW1
+*.color11:    YELLOW2
+*.color4:     PURPLE1
+*.color12:    PURPLE2
+*.color5:     PINK1
+*.color13:    PINK2
+*.color6:     CYAN1
+*.color14:    CYAN2
+*.color7:     WHITE2
+*.color15:    WHITE1
+
+! DWM Properties
+dwm.normbgcolor:     BACKGROUND
+dwm.normbordercolor: BLACK2
+dwm.normfgcolor:     FOREGROUND
+dwm.selfgcolor:      BACKGROUND
+dwm.selbordercolor:  PURPLE1
+dwm.selbgcolor:      PURPLE1

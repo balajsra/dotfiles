@@ -1,4 +1,4 @@
-! Defines
+! Colors
 #define FOREGROUND #F8F8F2
 #define BACKGROUND #282A36
 #define BLACK1     #000000
@@ -18,27 +18,27 @@
 #define CYAN1      #8BE9FD
 #define CYAN2      #9AEDFE
 
-! ! Regular DPI Defines
-! #define DPI 96
-! #define BAR_HEIGHT 25
-! #define MODULE_MARGIN 2
-! #define TRAY_MAXSIZE 15
-! #define TRAY_SCALE 1
-! #define BORDER_SIZE 2
-! #define INNER_GAPS 20
-! #define OUTER_GAPS 10
-
-! HiDPI Defines
-#define DPI 192
-#define BAR_HEIGHT 50
-#define MODULE_MARGIN 1
-#define TRAY_MAXSIZE 30
+! Regular DPI Parameters
+#define DPI 96
+#define BAR_HEIGHT 25
+#define MODULE_MARGIN 2
+#define TRAY_MAXSIZE 15
 #define TRAY_SCALE 1
-#define BORDER_SIZE 4
-#define INNER_GAPS 40
-#define OUTER_GAPS 20
+#define BORDER_SIZE 2
+#define INNER_GAPS 20
+#define OUTER_GAPS 10
 
-! Dracula Xresources palette
+! ! HiDPI Parameters
+! #define DPI 192
+! #define BAR_HEIGHT 50
+! #define MODULE_MARGIN 1
+! #define TRAY_MAXSIZE 30
+! #define TRAY_SCALE 1
+! #define BORDER_SIZE 4
+! #define INNER_GAPS 40
+! #define OUTER_GAPS 20
+
+! Dracula Xresources Palette
 *.foreground: FOREGROUND
 *.background: BACKGROUND
 *.color0:     BLACK1
@@ -58,7 +58,7 @@
 *.color7:     WHITE2
 *.color15:    WHITE1
 
-! DWM Properties
+! DWM Parameters
 dwm.normbgcolor:     BACKGROUND
 dwm.normbordercolor: BLACK2
 dwm.normfgcolor:     FOREGROUND
@@ -71,11 +71,11 @@ dwm.gappiv:          INNER_GAPS
 dwm.gappoh:          OUTER_GAPS
 dwm.gappov:          OUTER_GAPS
 
+! Polybar
+polybar.bar-height:    BAR_HEIGHT
+polybar.module-margin: MODULE_MARGIN
+polybar.tray-maxsize:  TRAY_MAXSIZE
+polybar.tray-scale:    TRAY_SCALE
+
 ! Display Scaling
 *.dpi: DPI
-
-! Polybar
-polybar.bar-height: BAR_HEIGHT
-polybar.module-margin: MODULE_MARGIN
-polybar.tray-maxsize: TRAY_MAXSIZE
-polybar.tray-scale: TRAY_SCALE

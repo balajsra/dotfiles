@@ -27,6 +27,7 @@
 #define BORDER_SIZE 2
 #define INNER_GAPS 20
 #define OUTER_GAPS 10
+#define MAXLEN 75
 
 ! ! HiDPI Parameters
 ! #define DPI 192
@@ -37,6 +38,7 @@
 ! #define BORDER_SIZE 4
 ! #define INNER_GAPS 40
 ! #define OUTER_GAPS 20
+! #define MAXLEN 45
 
 ! Dracula Xresources Palette
 *.foreground: FOREGROUND
@@ -76,6 +78,7 @@ polybar.bar-height:    BAR_HEIGHT
 polybar.module-margin: MODULE_MARGIN
 polybar.tray-maxsize:  TRAY_MAXSIZE
 polybar.tray-scale:    TRAY_SCALE
+polybar.maxlen:        MAXLEN
 
 ! Display Scaling
 *.dpi: DPI

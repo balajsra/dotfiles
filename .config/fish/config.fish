@@ -42,7 +42,7 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
 # bare git repo alias for dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
 
 ###############
 # FISH PROMPT #

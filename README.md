@@ -7,15 +7,15 @@ Personal dotfiles repository
 See [Acknowledgements](#Acknowledgements) for tutorial source.
 
 * Prior to the installation, create alias for config
-  * `alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
+  * `alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"`
 * Add `.cfg` to `.gitignore`
   * `echo ".cfg" >> .gitignore`
 * Clone dotfiles into a bare repository
   * `git clone --bare <git-repo-url> $HOME/.cfg`
 * Define the alias in the current shell scope
-  * `alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
+  * `alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"`
 * Checkout content from bare repository to `$HOME`
-  * `config checkout`
+  * `config git checkout`
 * Step above might fail with a message like:
   * ```
     error: The following untracked working tree files would be overwritten by checkout:
@@ -27,9 +27,9 @@ See [Acknowledgements](#Acknowledgements) for tutorial source.
 * Delete `.bashrc` and `.gitignore`
   * `rm ~/.bashrc ~/.gitignore`
 * Re-run checkout
-  * `config checkout`
+  * `config git checkout`
 * Set the flag `showUntrackedFiles` to `no` on this specific (local) repo
-  * `config config --local status.showUntrackedFiles no`
+  * `config git config --local status.showUntrackedFiles no`
 
 ## Acknowledgements
 

@@ -18,6 +18,26 @@
 #define CYAN1      #8BE9FD
 #define CYAN2      #9AEDFE
 
+! ! Regular DPI Defines
+! #define DPI 96
+! #define BAR_HEIGHT 25
+! #define MODULE_MARGIN 2
+! #define TRAY_MAXSIZE 15
+! #define TRAY_SCALE 1
+! #define BORDER_SIZE 2
+! #define INNER_GAPS 20
+! #define OUTER_GAPS 10
+
+! HiDPI Defines
+#define DPI 192
+#define BAR_HEIGHT 50
+#define MODULE_MARGIN 1
+#define TRAY_MAXSIZE 30
+#define TRAY_SCALE 1
+#define BORDER_SIZE 4
+#define INNER_GAPS 40
+#define OUTER_GAPS 20
+
 ! Dracula Xresources palette
 *.foreground: FOREGROUND
 *.background: BACKGROUND
@@ -45,3 +65,17 @@ dwm.normfgcolor:     FOREGROUND
 dwm.selfgcolor:      BACKGROUND
 dwm.selbordercolor:  PURPLE1
 dwm.selbgcolor:      PURPLE1
+dwm.borderpx:        BORDER_SIZE
+dwm.gappih:          INNER_GAPS
+dwm.gappiv:          INNER_GAPS
+dwm.gappoh:          OUTER_GAPS
+dwm.gappov:          OUTER_GAPS
+
+! Display Scaling
+*.dpi: DPI
+
+! Polybar
+polybar.bar-height: BAR_HEIGHT
+polybar.module-margin: MODULE_MARGIN
+polybar.tray-maxsize: TRAY_MAXSIZE
+polybar.tray-scale: TRAY_SCALE

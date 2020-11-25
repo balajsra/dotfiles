@@ -7,3 +7,6 @@
 [submodule ".config/dwm"]
 	path = .config/dwm
 	url = https://github.com/balajsra/dwm.git
+[submodule ".config/polybar"]
+	path = .config/polybar
+	url = git@github.com:balajsra/polybar.git

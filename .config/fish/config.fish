@@ -1,8 +1,18 @@
 ############
 # GREETING #
 ############
-/opt/shell-color-scripts/colorscript.sh random # Color Scripts
-set fish_greeting "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>" # Fish Greeting
+function fish_greeting
+    # Indices of colorscripts that don't block prompt
+    set colorscript_indices 2 3 5 6 7 13 14 15 16 17 18 19 20 21 22 23 25 26 27 28 29 30 31 36 37 38 39 40 41 43 44 46 47 48 49 50 51
+    # Get length of array
+    set length (count $colorscript_indices)
+    # Randomly select array index
+    set i (math (random) % $length + 1)
+    # Output randomly selected colorscript from approved list
+    /opt/shell-color-scripts/colorscript.sh -e $colorscript_indices[$i]
+    # Output swimming fish string
+    echo "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>"
+end
 
 #############
 # VARIABLES #
@@ -44,8 +54,8 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 # bare git repo alias for dotfiles
 alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
 
-###############
-# FISH PROMPT #
-###############
+##########
+# PROMPT #
+##########
 # Starship Prompt
 starship init fish | source

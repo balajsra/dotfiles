@@ -8,6 +8,11 @@ export BROWSER=brave                    # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config    # Set Config directory
 export QT_QPA_PLATFORMTHEME=gtk2        # QGtkStyle
 
+###########
+# STARTUP #
+###########
+xrdb ~/.Xresources
+
 ##################
 # WINDOW MANAGER #
 ##################

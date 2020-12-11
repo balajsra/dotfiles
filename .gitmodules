@@ -10,3 +10,6 @@
 [submodule ".config/polybar"]
 	path = .config/polybar
 	url = git@github.com:balajsra/polybar.git
+[submodule ".config/slock"]
+	path = .config/slock
+	url = git@github.com:balajsra/slock.git

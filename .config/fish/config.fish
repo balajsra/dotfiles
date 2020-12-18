@@ -18,7 +18,7 @@ function fish_greeting
     # Randomly select array index
     set i (math (random) % $length + 1)
     # Output randomly selected colorscript from approved list
-    /opt/shell-color-scripts/colorscript.sh -e $colorscript_indices[$i]
+    colorscript -e $colorscript_indices[$i]
     # Output swimming fish string
     echo "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>"
 end

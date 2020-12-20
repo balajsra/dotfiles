@@ -17,6 +17,7 @@
 #define PINK2      #FF92D0
 #define CYAN1      #8BE9FD
 #define CYAN2      #9AEDFE
+#define ORANGE     #FFB86C
 
 ! Regular DPI Parameters
 #define DPI 96
@@ -59,6 +60,7 @@
 *.color14:    CYAN2
 *.color7:     WHITE2
 *.color15:    WHITE1
+*.color16:    ORANGE
 
 ! DWM Parameters
 dwm.normbgcolor:     BACKGROUND

@@ -5,3 +5,7 @@
 # .git
 # *~
 .git
+proc/*
+dev/*
+sys/*
+var/*

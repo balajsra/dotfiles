@@ -21,7 +21,7 @@ turn_on() {
     notify-send "Turning Picom ON"
 
     if [ $(check_running) -eq '0' ]; then
-        picom --experimental-backend --config /home/sravan/.config/picom/picom.conf &
+        picom --config /home/sravan/.config/picom/picom.conf &
     fi
 }
 

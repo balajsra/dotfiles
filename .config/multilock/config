@@ -1,0 +1,45 @@
+# default options
+display_on=0
+span_image=false
+lock_timeout=300
+fx_list=(dim blur dimblur pixel dimpixel color)
+dim_level=40
+blur_level=1
+pixel_scale=10,1000
+solid_color=333333
+
+# # default theme options
+# loginbox=00000066
+# loginshadow=00000000
+# locktext="Type password to unlock..."
+# font="sans-serif"
+# ringcolor=ffffffff
+# insidecolor=00000000
+# separatorcolor=00000000
+# ringvercolor=ffffffff
+# insidevercolor=00000000
+# ringwrongcolor=ffffffff
+# insidewrongcolor=d23c3dff
+# keyhlcolor=d23c3dff
+# bshlcolor=d23c3dff
+# verifcolor=ffffffff
+# timecolor=ffffffff
+# datecolor=ffffffff
+
+# Dracula theme options
+loginbox=282a3666
+loginshadow=282a3600
+locktext="Type password to unlock..."
+font="sans-serif"
+ringcolor=8be9fdff
+insidecolor=00000000
+separatorcolor=00000000
+ringvercolor=50fa7bff
+insidevercolor=50fa7bff
+ringwrongcolor=ff5555ff
+insidewrongcolor=ff5555ff
+keyhlcolor=bd93f9ff
+bshlcolor=bd93f9ff
+verifcolor=ffffffff
+timecolor=f8f8f2ff
+datecolor=f8f8f2ff

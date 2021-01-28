@@ -54,6 +54,9 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 # bare git repo alias for dotfiles
 alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
 
+# ssh fix
+alias ssh="kitty +kitten ssh"
+
 ##########
 # PROMPT #
 ##########

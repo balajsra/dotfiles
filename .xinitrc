@@ -6,7 +6,7 @@ export SHELL=/usr/bin/fish           # Preferred shell
 export EDITOR="code -w"              # Default editor
 export BROWSER=brave                 # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config # Set Config directory
-export QT_QPA_PLATFORMTHEME=gtk2     # QGtkStyle
+export QT_QPA_PLATFORMTHEME=qt5ct    # QGtkStyle
 
 ###########
 # STARTUP #

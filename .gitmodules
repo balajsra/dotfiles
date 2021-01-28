@@ -10,3 +10,6 @@
 [submodule ".config/polybar"]
 	path = .config/polybar
 	url = git@github.com:balajsra/polybar.git
+[submodule "/home/sravan/.local/share/Steam/skins/Dracula"]
+	path = /home/sravan/.local/share/Steam/skins/Dracula
+	url = https://github.com/dracula/steam.git

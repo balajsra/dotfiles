@@ -1,0 +1,7 @@
+[user]
+	email = balajsra@umich.edu
+	name = Sravan Balaji
+[pull]
+	rebase = false
+[alias]
+    tree = log --all --decorate --oneline --graph

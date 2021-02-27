@@ -62,7 +62,7 @@
 *.color15:    WHITE1
 *.color16:    ORANGE
 
-! DWM Parameters
+! DWM
 dwm.normbgcolor:     BACKGROUND
 dwm.normbordercolor: BLACK2
 dwm.normfgcolor:     FOREGROUND
@@ -81,6 +81,24 @@ polybar.module-margin: MODULE_MARGIN
 polybar.tray-maxsize:  TRAY_MAXSIZE
 polybar.tray-scale:    TRAY_SCALE
 polybar.maxlen:        MAXLEN
+
+! Dunst
+dunst.geometry-x:           OUTER_GAPS
+dunst.geometry-y:           BAR_HEIGHT
+dunst.sep-height:           BORDER_SIZE
+dunst.padding:              OUTER_GAPS
+dunst.horiz-padding:        OUTER_GAPS
+dunst.max-icon-size:        DPI
+dunst.frame-width:          BORDER_SIZE
+dunst.low-background:       BACKGROUND
+dunst.low-foreground:       FOREGROUND
+dunst.low-frame:            PURPLE1
+dunst.normal-background:    BACKGROUND
+dunst.normal-foreground:    FOREGROUND
+dunst.normal-frame:         PURPLE1
+dunst.critical-background:  RED1
+dunst.critical-foreground:  FOREGROUND
+dunst.critical-frame:       PURPLE1
 
 ! Display Scaling
 *.dpi: DPI

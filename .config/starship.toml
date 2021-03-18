@@ -62,7 +62,7 @@ symbol = " "
 symbol = " "
 
 [line_break]
-disabled = true
+disabled = false
 
 [memory_usage]
 symbol = " "

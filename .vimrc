@@ -81,9 +81,11 @@ set wildmenu
 set lazyredraw
 set showmatch
 
-" Dracula Theme
+" Add Dracula Themes
 packadd! dracula
 packadd! dracula_pro
+
+" Enable Dracula Pro Theme
+syntax enable
 let g:dracula_colorterm = 0
 colorscheme dracula_pro
-

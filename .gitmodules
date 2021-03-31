@@ -1,9 +1,42 @@
 [submodule ".vim/pack/themes/start/dracula"]
 	path = .vim/pack/themes/start/dracula
 	url = git@github.com:dracula/vim.git 
-[submodule ".themes/Dracula"]
-	path = .themes/Dracula
+[submodule ".themes/dracula-blender"]
+	path = .themes/dracula-blender
+	url = git@github.com:dracula/blender.git
+[submodule ".themes/dracula-freecad"]
+	path = .themes/dracula-freecad
+	url = git@github.com:dracula/freecad.git
+[submodule ".themes/dracula-gnome-terminal"]
+	path = .themes/dracula-gnome-terminal
+	url = git@github.com:dracula/gnome-terminal.git
+[submodule ".themes/dracula-xournalpp"]
+	path = .themes/dracula-xournalpp
+	url = git@github.com:dracula/xournalpp.git
+[submodule ".themes/dracula-steam"]
+	path = .themes/dracula-steam
+	url = git@github.com:dracula/steam.git
+[submodule ".themes/dracula-gtk"]
+	path = .themes/dracula-gtk
 	url = git@github.com:dracula/gtk.git
-[submodule ".steam/steam/skins/Dracula"]
-	path = .steam/steam/skins/Dracula
-	url = git@github.com:dracula/steam.git 
+[submodule ".themes/dracula-fish"]
+	path = .themes/dracula-fish
+	url = git@github.com:dracula/fish.git
+[submodule ".themes/dracula-kitty"]
+	path = .themes/dracula-kitty
+	url = git@github.com:dracula/kitty.git
+[submodule ".themes/dracula-libreoffice"]
+	path = .themes/dracula-libreoffice
+	url = git@github.com:dracula/libreoffice.git
+[submodule ".themes/dracula-tty"]
+	path = .themes/dracula-tty
+	url = git@github.com:dracula/tty.git
+[submodule ".themes/dracula-latex"]
+	path = .themes/dracula-latex
+	url = git@github.com:dracula/latex.git
+[submodule ".themes/dracula-matplotlib"]
+	path = .themes/dracula-matplotlib
+	url = git@github.com:dracula/matplotlib.git
+[submodule ".themes/dracula-matlab"]
+	path = .themes/dracula-matlab
+	url = git@github.com:dracula/matlab.git

@@ -116,8 +116,8 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Run neofetch when opening terminal
-neofetch
+# # Run neofetch when opening terminal
+# neofetch
 
 # ALIASES
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -125,6 +125,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # EXPORTS
 export EDITOR="code -w"
 export TERM=xterm-256color
+export QT_STYLE_OVERRIDE=kvantum
 
-# Starship Prompt
-eval "$(starship init bash)"
+# Set fish as interactive shell only
+exec fish

@@ -1,0 +1,75 @@
+#+title: Personal Dotfiles
+#+author: Sravan Balaji
+
+* Installation
+
+See [[*Acknowledgements]] for tutorial source.
+
+Prior to the installation, create alias for config
+
+#+begin_src shell
+  alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
+#+end_src
+
+Add ~.cfg~ to ~.gitignore~
+
+#+begin_src shell
+  echo ".cfg" >> .gitignore
+#+end_src
+
+Clone dotfiles into a bare repository
+
+#+begin_src shell
+  git clone --bare <git-repo-url> $HOME/.cfg
+#+end_src
+
+Define the alias in the current shell scope
+
+#+begin_src shell
+  alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
+#+end_src
+
+Checkout content from bare repository to ~$HOME~
+
+#+begin_src shell
+  config git checkout
+#+end_src
+
+Step above might fail with a message like:
+
+#+begin_example
+  error: The following untracked working tree files would be overwritten by checkout:
+      .bashrc
+      .gitignore
+  Please move or remove them before you can switch branches.
+  Aborting
+#+end_example
+
+Delete the untracked files so they can be overwritten with the version from dotfiles
+
+#+begin_src shell
+  rm ~/.bashrc ~/.gitignore
+#+end_src
+
+Re-run checkout
+
+#+begin_src shell
+  config git checkout
+#+end_src
+
+Set the flag ~showUntrackedFiles~ to ~no~ on this specific (local) repo
+
+#+begin_src shell
+  config git config --local status.showUntrackedFiles no
+#+end_src
+
+Pull and update submodules
+
+#+begin_src shell
+  config git submodule update --init --recursive
+#+end_src
+
+* Acknowledgements
+
+I followed [[https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]'s process for setting up a git bare repository as shown in [[https://youtu.be/tBoLDpTWVOM][Git Bare Repository - A Better Way To Manage Dotfiles]].
+He references [[https://www.atlassian.com/git/tutorials/dotfiles][The best way to store your dotfiles: A bare Git repository]] by [[https://www.durdn.com/][Nicola Paolucci]].

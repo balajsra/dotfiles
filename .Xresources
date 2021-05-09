@@ -39,3 +39,35 @@
 *.color7:     WHITE2
 *.color15:    WHITE1
 *.color16:    ORANGE
+
+! Regular DPI Parameters
+#define DPI 96
+#define BAR_HEIGHT 25
+#define MODULE_MARGIN 2
+#define TRAY_MAXSIZE 15
+#define TRAY_SCALE 1
+#define BORDER_SIZE 2
+#define INNER_GAPS 20
+#define OUTER_GAPS 10
+#define MAXLEN 75
+
+! Dunst
+dunst.geometry-x:           OUTER_GAPS
+dunst.geometry-y:           BAR_HEIGHT
+dunst.sep-height:           BORDER_SIZE
+dunst.padding:              OUTER_GAPS
+dunst.horiz-padding:        OUTER_GAPS
+dunst.max-icon-size:        DPI
+dunst.frame-width:          BORDER_SIZE
+dunst.low-background:       BACKGROUND
+dunst.low-foreground:       FOREGROUND
+dunst.low-frame:            PURPLE1
+dunst.normal-background:    BACKGROUND
+dunst.normal-foreground:    FOREGROUND
+dunst.normal-frame:         PURPLE1
+dunst.critical-background:  RED1
+dunst.critical-foreground:  FOREGROUND
+dunst.critical-frame:       PURPLE1
+
+! Display Scaling
+*.dpi: DPI

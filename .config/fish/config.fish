@@ -1,20 +1,11 @@
-############
-# GREETING #
-############
 function fish_greeting
     clear
     neofetch
     echo "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>"
 end
 
-#############
-# VARIABLES #
-#############
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin/
 
-###########
-# ALIASES #
-###########
 # pacman and paru
 alias pacsyu='sudo pacman -Syyu' # update only standard pkgs
 alias parusua='paru -Sua --noconfirm' # update only AUR pkgs
@@ -50,9 +41,6 @@ alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
 # ssh fix for kitty terminal
 alias ssh="kitty +kitten ssh"
 
-#######
-# TTY #
-#######
 if [ "$TERM" = "linux" ]
     then
     printf %b '\e[40m' '\e[8]' # set default background to color 0 'dracula-bg'
@@ -76,8 +64,5 @@ if [ "$TERM" = "linux" ]
     clear
 end
 
-##########
-# PROMPT #
-##########
 # Starship Prompt
 starship init fish | source

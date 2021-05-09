@@ -1,13 +1,13 @@
 # Sravan Balaji's Git Configuration
 # Based on: https://gist.github.com/tdd/470582
 [user]
-	email = balajsra@umich.edu
-	name = Sravan Balaji
+    email = balajsra@umich.edu
+    name = Sravan Balaji
 [color]
     # Enable colors in color-supporting terminals
     ui = auto
 [pull]
-	rebase = true
+        rebase = true
 [alias]
     # List available aliases
     aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'

@@ -1817,6 +1817,7 @@ Pull and update submodules
     # when taking selection screenshot with `main`
     # https://github.com/naelstrof/maim/issues/130
     "class_g = 'slop'",
+    "class_g = 'zoom'",
     "_GTK_FRAME_EXTENTS@:c"
   ];
 #+end_src
@@ -3276,9 +3277,6 @@ Pull and update submodules
   export TERM=xterm-256color
   export QT_STYLE_OVERRIDE=kvantum
   export XDG_CONFIG_HOME=$HOME/.config
-
-  # Set fish as interactive shell only
-  exec fish
 #+end_src
 *** Zsh
 
@@ -5574,17 +5572,35 @@ Pull and update submodules
 
 *** Sizes
 
-#+begin_src conf :tangle .Xresources
+*NOT IN USE*
+#+begin_src conf :tangle no
   ! Regular DPI Parameters
   #define DPI 96
   #define BAR_HEIGHT 25
   #define MODULE_MARGIN 2
+  #define MODULE_PADDING 2
   #define TRAY_MAXSIZE 15
   #define TRAY_SCALE 1
   #define BORDER_SIZE 2
   #define INNER_GAPS 20
   #define OUTER_GAPS 10
   #define MAXLEN 75
+  #define CURSOR_SIZE 16
+#+end_src
+
+#+begin_src conf :tangle .Xresources
+  ! System76 Oryx Pro 7 DPI Parameters
+  #define DPI 96
+  #define BAR_HEIGHT 25
+  #define MODULE_MARGIN 1
+  #define MODULE_PADDING 2
+  #define TRAY_MAXSIZE 15
+  #define TRAY_SCALE 1
+  #define BORDER_SIZE 2
+  #define INNER_GAPS 20
+  #define OUTER_GAPS 10
+  #define MAXLEN 50
+  #define CURSOR_SIZE 16
 #+end_src
 
 *NOT IN USE*
@@ -5593,12 +5609,14 @@ Pull and update submodules
   #define DPI 192
   #define BAR_HEIGHT 50
   #define MODULE_MARGIN 1
+  #define MODULE_PADDING 2
   #define TRAY_MAXSIZE 30
   #define TRAY_SCALE 1
   #define BORDER_SIZE 4
   #define INNER_GAPS 40
   #define OUTER_GAPS 20
   #define MAXLEN 45
+  #define CURSOR_SIZE 32
 #+end_src
 
 *** Application Specific Changes
@@ -5623,8 +5641,7 @@ Pull and update submodules
 
 **** Polybar
 
-*NOT IN USE*
-#+begin_src conf :tangle no
+#+begin_src conf :tangle .Xresources
   ! Polybar
   polybar.bar-height:    BAR_HEIGHT
   polybar.module-margin: MODULE_MARGIN
@@ -5660,6 +5677,7 @@ Pull and update submodules
 #+begin_src conf :tangle .Xresources
   ! Display Scaling
   ,*.dpi: DPI
+  Xcursor.size: CURSOR_SIZE
 #+end_src
 
 * Acknowledgements

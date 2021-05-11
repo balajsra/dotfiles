@@ -40,16 +40,25 @@
 *.color15:    WHITE1
 *.color16:    ORANGE
 
-! Regular DPI Parameters
+! System76 Oryx Pro 7 DPI Parameters
 #define DPI 96
 #define BAR_HEIGHT 25
-#define MODULE_MARGIN 2
+#define MODULE_MARGIN 1
+#define MODULE_PADDING 2
 #define TRAY_MAXSIZE 15
 #define TRAY_SCALE 1
 #define BORDER_SIZE 2
 #define INNER_GAPS 20
 #define OUTER_GAPS 10
-#define MAXLEN 75
+#define MAXLEN 50
+#define CURSOR_SIZE 16
+
+! Polybar
+polybar.bar-height:    BAR_HEIGHT
+polybar.module-margin: MODULE_MARGIN
+polybar.tray-maxsize:  TRAY_MAXSIZE
+polybar.tray-scale:    TRAY_SCALE
+polybar.maxlen:        MAXLEN
 
 ! Dunst
 dunst.geometry-x:           OUTER_GAPS
@@ -71,3 +80,4 @@ dunst.critical-frame:       PURPLE1
 
 ! Display Scaling
 *.dpi: DPI
+Xcursor.size: CURSOR_SIZE

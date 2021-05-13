@@ -67,7 +67,7 @@ Set the flag ~showUntrackedFiles~ to ~no~ on this specific (local) repo
 Pull and update submodules
 
 #+begin_src shell
-  config git submodule update --init --recursive
+  config git submodule update --init --recursive --remote
 #+end_src
 
 * Git 

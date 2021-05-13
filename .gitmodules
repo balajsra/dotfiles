@@ -1,48 +1,64 @@
 [submodule ".vim/pack/themes/start/dracula"]
 	path = .vim/pack/themes/start/dracula
 	url = git@github.com:dracula/vim.git 
+    branch = master
 [submodule ".themes/dracula-blender"]
 	path = .themes/dracula-blender
 	url = git@github.com:dracula/blender.git
+    branch = master
 [submodule ".themes/dracula-freecad"]
 	path = .themes/dracula-freecad
 	url = git@github.com:dracula/freecad.git
+    branch = master
 [submodule ".themes/dracula-gnome-terminal"]
 	path = .themes/dracula-gnome-terminal
 	url = git@github.com:dracula/gnome-terminal.git
+    branch = master
 [submodule ".themes/dracula-xournalpp"]
 	path = .themes/dracula-xournalpp
 	url = git@github.com:dracula/xournalpp.git
+    branch = master
 [submodule ".themes/dracula-steam"]
 	path = .themes/dracula-steam
 	url = git@github.com:dracula/steam.git
+    branch = master
 [submodule ".themes/dracula-gtk"]
 	path = .themes/dracula-gtk
 	url = git@github.com:dracula/gtk.git
+    branch = master
 [submodule ".themes/dracula-fish"]
 	path = .themes/dracula-fish
 	url = git@github.com:dracula/fish.git
+    branch = master
 [submodule ".themes/dracula-kitty"]
 	path = .themes/dracula-kitty
 	url = git@github.com:dracula/kitty.git
+    branch = master
 [submodule ".themes/dracula-libreoffice"]
 	path = .themes/dracula-libreoffice
 	url = git@github.com:dracula/libreoffice.git
+    branch = master
 [submodule ".themes/dracula-tty"]
 	path = .themes/dracula-tty
 	url = git@github.com:dracula/tty.git
+    branch = master
 [submodule ".themes/dracula-latex"]
 	path = .themes/dracula-latex
 	url = git@github.com:dracula/latex.git
+    branch = master
 [submodule ".themes/dracula-matplotlib"]
 	path = .themes/dracula-matplotlib
 	url = git@github.com:dracula/matplotlib.git
+    branch = master
 [submodule ".themes/dracula-matlab"]
 	path = .themes/dracula-matlab
 	url = git@github.com:dracula/matlab.git
+    branch = master
 [submodule ".config/emacs"]
 	path = .config/emacs
 	url = git@github.com:balajsra/emacs.git
+    branch = main
 [submodule ".xmonad"]
 	path = .xmonad
 	url = git@github.com:balajsra/xmonad.git
+    branch = master

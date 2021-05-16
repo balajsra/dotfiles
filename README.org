@@ -357,7 +357,7 @@ Pull and update submodules
       ### Misc/Advanced ###
 
       # dmenu path.
-      dmenu = /usr/bin/rofi -dmenu -p dunst:
+      dmenu = /usr/bin/rofi -dmenu -i -p dunst:
 
       # Browser for opening urls in context menu.
       browser = /usr/bin/vivaldi-stable
@@ -631,47 +631,137 @@ Pull and update submodules
   # vim: ft=cfg
 #+end_src
 
-*** Launch Script
+*** Control Script
 
-#+begin_src shell :shebang #!/bin/bash :tangle .config/dunst/launch_dunst.sh
-  #!/bin/bash
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/dunst.sh
+  help_menu() {
+      echo "Script to interact with dunst. Use only one argument at a time."
+      echo "  - Toggle On/Off:         dunst.sh OR dunst.sh --toggle OR dunst.sh -t"
+      echo "  - Turn On:               dunst.sh --on"
+      echo "  - Turn Off:              dunst.sh --off"
+      echo "  - Context Menu:          dunst.sh --context"
+      echo "  - Close Notification:    dunst.sh --close"
+      echo "  - History Pop:           dunst.sh --history"
+      echo "  - Toggle Do Not Disturb: dunst.sh --dnd"
+      echo "  - Rofi Menu:             dunst.sh --rofi"
+      echo "  - Help:                  dunst.sh --help OR dunst.sh -h"
+  }
 
-  # Get values from Xresources
-  config=~/.config/dunst/dunstrc
-  geometry_x=$(xgetres dunst.geometry-x)
-  geometry_y=$(xgetres dunst.geometry-y)
-  separator_height=$(xgetres dunst.sep-height)
-  padding=$(xgetres dunst.padding)
-  horizontal_padding=$(xgetres dunst.horiz-padding)
-  max_icon_size=$(xgetres dunst.max-icon-size)
-  frame_width=$(xgetres dunst.frame-width)
-  lb=$(xgetres dunst.low-background)
-  lf=$(xgetres dunst.low-foreground)
-  lfr=$(xgetres dunst.low-frame)
-  nb=$(xgetres dunst.normal-background)
-  nf=$(xgetres dunst.normal-foreground)
-  nfr=$(xgetres dunst.normal-frame)
-  cb=$(xgetres dunst.critical-background)
-  cf=$(xgetres dunst.critical-foreground)
-  cfr=$(xgetres dunst.critical-frame)
+  is_running() {
+      if pgrep -x dunst >/dev/null; then
+          echo 1
+      else
+          echo 0
+      fi
+  }
 
-  # Kill and running dunst instances and start
-  killall dunst;/usr/bin/dunst -config $config \
-      -geometry "0x0-$geometry_x+$geometry_y" \
-      -separator_height "$separator_height" \
-      -padding "$padding" \
-      -horizontal_padding "$horizontal_padding" \
-      -max_icon_size "$max_icon_size" \
-      -frame_width "$frame_width" \
-      -lb "$lb" \
-      -lf "$lf" \
-      -lfr "$lfr" \
-      -nb "$nb" \
-      -nf "$nf" \
-      -nfr "$nfr" \
-      -cb "$cb" \
-      -cf "$cf" \
-      -cfr "$cfr"
+  rofi_menu() {
+      declare -a options=(
+          "⏼ Toggle - toggle"
+          " Turn On - on"
+          " Turn Off - off"
+          " Open Actions - context"
+          " Close Notification - close"
+          " View History - history"
+          " Toggle Do Not Disturb - dnd"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi"
+      fi
+  }
+
+  main() {
+      if [ $# -eq 0 ]; then
+          # No arguments
+          help_menu
+      else
+          case $1 in
+          --help | -h)
+              help_menu
+              ;;
+          --toggle)
+              if [ $(is_running) -eq '1' ]; then
+                  main --off
+              else
+                  main --on
+              fi
+              ;;
+          --on)
+              # Get values from Xresources
+              config=~/.config/dunst/dunstrc
+              geometry_x=$(xgetres dunst.geometry-x)
+              geometry_y=$(xgetres dunst.geometry-y)
+              separator_height=$(xgetres dunst.sep-height)
+              padding=$(xgetres dunst.padding)
+              horizontal_padding=$(xgetres dunst.horiz-padding)
+              max_icon_size=$(xgetres dunst.max-icon-size)
+              frame_width=$(xgetres dunst.frame-width)
+              lb=$(xgetres dunst.low-background)
+              lf=$(xgetres dunst.low-foreground)
+              lfr=$(xgetres dunst.low-frame)
+              nb=$(xgetres dunst.normal-background)
+              nf=$(xgetres dunst.normal-foreground)
+              nfr=$(xgetres dunst.normal-frame)
+              cb=$(xgetres dunst.critical-background)
+              cf=$(xgetres dunst.critical-foreground)
+              cfr=$(xgetres dunst.critical-frame)
+
+              if [ $(is_running) -eq '1' ]; then
+                  killall dunst
+              fi
+
+              # Start Dunst
+              /usr/bin/dunst -config $config \
+                             -geometry "0x0-$geometry_x+$geometry_y" \
+                             -separator_height "$separator_height" \
+                             -padding "$padding" \
+                             -horizontal_padding "$horizontal_padding" \
+                             -max_icon_size "$max_icon_size" \
+                             -frame_width "$frame_width" \
+                             -lb "$lb" \
+                             -lf "$lf" \
+                             -lfr "$lfr" \
+                             -nb "$nb" \
+                             -nf "$nf" \
+                             -nfr "$nfr" \
+                             -cb "$cb" \
+                             -cf "$cf" \
+                             -cfr "$cfr" &
+
+              notify-send "Turning Dunst ON"
+              ;;
+          --off)
+              notify-send "Turning Dunst OFF"
+
+              if [ $(is_running) -eq '1' ]; then
+                  killall dunst
+              fi
+              ;;
+          --context)
+              dunstctl context
+              ;;
+          --close)
+              dunstctl close
+              ;;
+          --history)
+              dunstctl history-pop
+              ;;
+          --dnd)
+              dunstctl set-paused toggle
+              ;;
+          --rofi)
+              rofi_menu
+              ;;
+          esac
+      fi
+  }
+
+  main $@
 #+end_src
 
 * Application Launcher 
@@ -863,10 +953,10 @@ Pull and update submodules
   ,* {
           background-color: #282a36;
           text-color: #f8f8f2;
-          selbg: #bd93f9;
+          selbg: #8be9fd;
           actbg: #44475a;
           urgbg: #ff5555;
-          winbg: #50fa7b;
+          winbg: #8be9fd;
 
           selected-normal-foreground: @winbg;
           normal-foreground: @text-color;
@@ -879,7 +969,7 @@ Pull and update submodules
           urgent-background: @background-color;
 
           selected-active-foreground: @winbg;
-          active-foreground: @text-color;
+          active-foreground: @background-color;
           selected-active-background: @actbg;
           active-background: @selbg;
 
@@ -898,6 +988,8 @@ Pull and update submodules
           width: 75%;
           orientation: horizontal;
           children: [mainbox];
+          border: 2;
+          border-color: @winbg;
   }
 
   mainbox {
@@ -1566,6 +1658,7 @@ Pull and update submodules
     # "class_g = 'kitty'",
     # "class_g = 'Alacritty'",
     "class_g = 'Polybar'",
+    "class_g = 'Rofi'",
     # "class_g = 'code-oss'",
     #"class_g = 'TelegramDesktop'",
     # "class_g = 'firefox'",
@@ -2052,21 +2145,18 @@ Pull and update submodules
   };
 #+end_src
 
-**** Toggle Script
+**** Control Script
 
-#+begin_src shell :shebang #!/bin/bash :tangle .config/picom/toggle_picom.sh
-  #!/bin/bash
-
-  helpmenu() {
-      echo "Script to toggle picom ON/OFF. Use only one argument at a time."
-      echo "Usage: toggle_picom.sh [--toggle | -t] [--on] [--off] [--help | -h]"
-      echo "  - Toggle:   toggle_picom.sh OR toggle_picom.sh --toggle OR toggle_picom.sh -t"
-      echo "  - Turn On:  toggle_picom.sh --on"
-      echo "  - Turn Off: toggle_picom.sh --off"
-      echo "  - Help:     toggle_picom.sh --help OR toggle_picom.sh -h"
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/picom.sh
+  help_menu() {
+      echo "Script to interact with picom. Use only one argument at a time."
+      echo "  - Toggle On/Off:   picom.sh OR picom.sh --toggle OR picom.sh -t"
+      echo "  - Turn On:  picom.sh --on"
+      echo "  - Turn Off: picom.sh --off"
+      echo "  - Help:     picom.sh --help OR picom.sh -h"
   }
 
-  check_running() {
+  is_running() {
       if pgrep -x picom >/dev/null; then
           echo 1
       else
@@ -2074,47 +2164,56 @@ Pull and update submodules
       fi
   }
 
-  turn_on() {
-      notify-send "Turning Picom ON"
+  rofi_menu() {
+      declare -a options=(
+          "⏼ Toggle - toggle"
+          " Turn On - on"
+          " Turn Off - off"
+          " Quit - quit"
+      )
 
-      if [ $(check_running) -eq '0' ]; then
-          picom --config /home/sravan/.config/picom/picom.conf &
-      fi
-  }
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-  turn_off() {
-      notify-send "Turning Picom OFF"
-
-      if [ $(check_running) -eq '1' ]; then
-          killall picom
-      fi
-  }
-
-  toggle() {
-      if [ $(check_running) -eq '1' ]; then
-          turn_off
-      else
-          turn_on
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi"
       fi
   }
 
   main() {
       if [ $# -eq 0 ]; then
           # No arguments
-          toggle
+          help_menu
       else
           case $1 in
           --help | -h)
-              helpmenu
+              help_menu
               ;;
-          --toggle | -t)
-              toggle
+          --toggle)
+              if [ $(is_running) -eq '1' ]; then
+                  main --off
+              else
+                  main --on
+              fi
               ;;
           --on)
-              turn_on
+              if [ $(is_running) -eq '1' ]; then
+                  killall picom
+              fi
+
+              picom --config /home/sravan/.config/picom/picom.conf &
+
+              notify-send "Turning Picom ON"
               ;;
           --off)
-              turn_off
+              if [ $(is_running) -eq '1' ]; then
+                  killall picom
+              fi
+
+              notify-send "Turning Picom OFF"
+              ;;
+          --rofi)
+              rofi_menu
               ;;
           esac
       fi
@@ -5663,13 +5762,13 @@ Pull and update submodules
   dunst.frame-width:          BORDER_SIZE
   dunst.low-background:       BACKGROUND
   dunst.low-foreground:       FOREGROUND
-  dunst.low-frame:            PURPLE1
+  dunst.low-frame:            GREEN1
   dunst.normal-background:    BACKGROUND
   dunst.normal-foreground:    FOREGROUND
-  dunst.normal-frame:         PURPLE1
+  dunst.normal-frame:         GREEN1
   dunst.critical-background:  RED1
   dunst.critical-foreground:  FOREGROUND
-  dunst.critical-frame:       PURPLE1
+  dunst.critical-frame:       GREEN1
 #+end_src
 
 **** Display Scaling
@@ -5680,6 +5779,335 @@ Pull and update submodules
   Xcursor.size: CURSOR_SIZE
 #+end_src
 
+* Miscellaneous Scripts
+
+** Media Control
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/playerctl.sh
+  help_menu() {
+      echo "Script to interact with playerctl. Use only one argument at a time."
+      echo "  - Play / Pause:  playerctl.sh --play-pause"
+      echo "  - Next:          playerctl.sh --next"
+      echo "  - Previous:      playerctl.sh --prev"
+      echo "  - Change Player: playerctl.sh --change"
+      echo "  - Rofi Menu:     playerctl.sh --rofi"
+      echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+  }
+
+  rofi_menu() {
+      declare -a options=(
+          "懶 Play / Pause - play-pause"
+          "怜 Next - next"
+          "玲 Previous - prev"
+          "﴾ Change Source - change"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi"
+      fi
+  }
+
+  main() {
+      if [ $# -eq 0 ]; then
+          # No arguments
+          help_menu
+      else
+          case $1 in
+          --help | -h)
+              help_menu
+              ;;
+          --play-pause)
+              playerctl --player=playerctld play-pause
+              ;;
+          --next)
+              playerctl --player=playerctld next
+              ;;
+          --prev)
+              playerctl --player=playerctld previous
+              ;;
+          --change)
+              playerctld shift
+              ;;
+          --rofi)
+              rofi_menu
+              ;;
+          esac
+      fi
+  }
+
+  main $@
+#+end_src
+
+** System76 Power Control
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/system76-power.sh
+  help_menu() {
+      echo "Script to interact with system76-power. Use only one argument at a time."
+      # echo "  - Play / Pause:  playerctl.sh --play-pause"
+      # echo "  - Next:          playerctl.sh --next"
+      # echo "  - Previous:      playerctl.sh --prev"
+      # echo "  - Change Player: playerctl.sh --change"
+      # echo "  - Rofi Menu:     playerctl.sh --rofi"
+      # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+  }
+
+  rofi_menu() {
+      declare -a options=(
+          " Switchable Graphics - rofi-graphics"
+          " Performance Profile - rofi-profile"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi"
+      fi
+  }
+
+  rofi_graphics_menu() {
+      declare -a options=(
+          "Query Current Graphics - graphics-query"
+          "Switch to Compute Mode - graphics-compute"
+          "Switch to Hybrid Mode - graphics-hybrid"
+          "Switch to Integrated Mode - graphics-integrated"
+          "Switch to Nvidia Mode - graphics-nvidia"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi-graphics"
+      fi
+  }
+
+  rofi_profile_menu() {
+      declare -a options=(
+          "Query Current Profile - profile-query"
+          "Switch to Battery Mode - profile-battery"
+          "Switch to Balanced Mode - profile-balanced"
+          "Switch to Performance Mode - profile-performance"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi-profile"
+      fi
+  }
+
+  main() {
+      if [ $# -eq 0 ]; then
+          # No arguments
+          help_menu
+      else
+          case $1 in
+          --help | -h)
+              help_menu
+              ;;
+          --rofi-graphics)
+              rofi_graphics_menu
+              ;;
+          --graphics-query)
+              current_graphics=$(pkexec system76-power graphics)
+              notify-send "System76-Power Graphics" "$current_graphics"
+              ;;
+          --graphics-compute)
+              notify-send "System76-Power Graphics" "Switching to Compute Graphics..."
+              pkexec system76-power graphics compute
+              notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+              ;;
+          --graphics-hybrid)
+              notify-send "System76-Power Graphics" "Switching to Hybrid Graphics..."
+              pkexec system76-power graphics hybrid
+              notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+              ;;
+          --graphics-integrated)
+              notify-send "System76-Power Graphics" "Switching to Integrated Graphics..."
+              pkexec system76-power graphics integrated
+              notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+              ;;
+          --graphics-nvidia)
+              notify-send "System76-Power Graphics" "Switching to Nvidia Graphics..."
+              pkexec system76-power graphics nvidia
+              notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+              ;;
+          --rofi-profile)
+              rofi_profile_menu
+              ;;
+          --profile-query)
+              current_profile=$(pkexec system76-power profile)
+              notify-send "System76-Power Profile" "$current_profile"
+              ;;
+          --profile-battery)
+              pkexec system76-power profile battery
+              notify-send "System76-Power Profile" "Switched to Battery Profile"
+              ;;
+          --profile-balanced)
+              pkexec system76-power profile balanced
+              notify-send "System76-Power Profile" "Switched to Balanced Profile"
+              ;;
+          --profile-performance)
+              pkexec system76-power profile performance
+              notify-send "System76-Power Profile" "Switched to Performance Profile"
+              ;;
+          --rofi)
+              rofi_menu
+              ;;
+          esac
+      fi
+  }
+
+  main $@
+#+end_src
+
+** Session Control
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/session.sh
+  help_menu() {
+      echo "Script to interact with desktop session. Use only one argument at a time."
+      # echo "  - Play / Pause:  playerctl.sh --play-pause"
+      # echo "  - Next:          playerctl.sh --next"
+      # echo "  - Previous:      playerctl.sh --prev"
+      # echo "  - Change Player: playerctl.sh --change"
+      # echo "  - Rofi Menu:     playerctl.sh --rofi"
+      # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+  }
+
+  rofi_menu() {
+      declare -a options=(
+          " Recompile & Restart Xmonad - restart"
+          " Logout - logout"
+          " Lock - lock"
+          "⏾ Sleep - sleep"
+          " Reboot - reboot"
+          " Shutdown - shutdown"
+          "鈴 Hibernate - hibernate"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi"
+      fi
+  }
+
+  main() {
+      if [ $# -eq 0 ]; then
+          # No arguments
+          help_menu
+      else
+          case $1 in
+          --help | -h)
+              help_menu
+              ;;
+          --logout)
+              pkill xmonad
+              ;;
+          --lock)
+              light-locker-command --lock
+              ;;
+          --sleep)
+              pkexec systemctl suspend
+              ;;
+          --reboot)
+              pkexec reboot
+              ;;
+          --shutdown)
+              pkexec poweroff
+              ;;
+          --hibernate)
+              pkexec systemctl hibernate
+              ;;
+          --restart)
+              xmonad --recompile
+              xmonad --restart
+              ;;
+          --rofi)
+              rofi_menu
+              ;;
+          esac
+      fi
+  }
+
+  main $@
+#+end_src
+
+** Control Center
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/control-center.sh
+  help_menu() {
+      echo "Main script to launch sub-menu scripts. Use only one argument at a time."
+      # echo "  - Play / Pause:  playerctl.sh --play-pause"
+      # echo "  - Next:          playerctl.sh --next"
+      # echo "  - Previous:      playerctl.sh --prev"
+      # echo "  - Change Player: playerctl.sh --change"
+      # echo "  - Rofi Menu:     playerctl.sh --rofi"
+      # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+  }
+
+  rofi_menu() {
+      declare -a options=(
+          " Compositor - picom"
+          " Notifications - dunst"
+          " Media - playerctl"
+          " Hardware - system76-power"
+          " Power Menu - session"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi"
+      fi
+  }
+
+  main() {
+      if [ $# -eq 0 ]; then
+          # No arguments
+          help_menu
+      else
+          case $1 in
+          --help | -h)
+              help_menu
+              ;;
+          --picom)
+              /home/sravan/.scripts/picom.sh --rofi
+              ;;
+          --dunst)
+              /home/sravan/.scripts/dunst.sh --rofi
+              ;;
+          --playerctl)
+              /home/sravan/.scripts/playerctl.sh --rofi
+              ;;
+          --system76-power)
+              /home/sravan/.scripts/system76-power.sh --rofi
+              ;;
+          --session)
+              /home/sravan/.scripts/session.sh --rofi
+              ;;
+          --rofi)
+              rofi_menu
+              ;;
+          esac
+      fi
+  }
+
+  main $@
+#+end_src
 * Acknowledgements
 
 I followed [[https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]'s process for setting up a git bare repository as shown in [[https://youtu.be/tBoLDpTWVOM][Git Bare Repository - A Better Way To Manage Dotfiles]].

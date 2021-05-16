@@ -70,13 +70,13 @@ dunst.max-icon-size:        DPI
 dunst.frame-width:          BORDER_SIZE
 dunst.low-background:       BACKGROUND
 dunst.low-foreground:       FOREGROUND
-dunst.low-frame:            PURPLE1
+dunst.low-frame:            GREEN1
 dunst.normal-background:    BACKGROUND
 dunst.normal-foreground:    FOREGROUND
-dunst.normal-frame:         PURPLE1
+dunst.normal-frame:         GREEN1
 dunst.critical-background:  RED1
 dunst.critical-foreground:  FOREGROUND
-dunst.critical-frame:       PURPLE1
+dunst.critical-frame:       GREEN1
 
 ! Display Scaling
 *.dpi: DPI

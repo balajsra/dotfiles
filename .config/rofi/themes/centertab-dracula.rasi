@@ -17,10 +17,10 @@ configuration {
 * {
         background-color: #282a36;
         text-color: #f8f8f2;
-        selbg: #bd93f9;
+        selbg: #8be9fd;
         actbg: #44475a;
         urgbg: #ff5555;
-        winbg: #50fa7b;
+        winbg: #8be9fd;
 
         selected-normal-foreground: @winbg;
         normal-foreground: @text-color;
@@ -33,7 +33,7 @@ configuration {
         urgent-background: @background-color;
 
         selected-active-foreground: @winbg;
-        active-foreground: @text-color;
+        active-foreground: @background-color;
         selected-active-background: @actbg;
         active-background: @selbg;
 
@@ -52,6 +52,8 @@ window {
         width: 75%;
         orientation: horizontal;
         children: [mainbox];
+        border: 2;
+        border-color: @winbg;
 }
 
 mainbox {

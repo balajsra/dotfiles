@@ -39,7 +39,7 @@ main() {
             help_menu
             ;;
         --logout)
-            pkill xmonad
+            notify-send -t 0 "Session Control" "Press M-S-q to exit xmonad"
             ;;
         --lock)
             light-locker-command --lock

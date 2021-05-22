@@ -8,4 +8,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct    # QGtkStyle
 
 xrdb ~/.Xresources
 
+/home/sravan/.scripts/startup.sh --start
+
 exec xmonad

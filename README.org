@@ -112,8 +112,8 @@ Pull and update submodules
       # Remove file(s) from Git but not from disk
       untrack = rm --cache --
   [core]
-      # VSCode
-      editor = code --wait
+      # Emacs
+      editor = "emacs -nw"
       # Don't consider trailing space change as a cause for merge conflicts
       whitespace = -trailing-space
   [diff]
@@ -125,10 +125,6 @@ Pull and update submodules
       wordRegex = .
       # Display submodule-related information (commit listings)
       submodule = log
-      # Use VSCode as default diff tool when running `git diff-tool`
-      tool = vscode
-  [difftool "vscode"]
-      cmd = code --wait --diff $LOCAL $REMOTE
   [fetch]
       # Auto-fetch submodule changes (sadly, won't auto-update)
       recurseSubmodules = on-demand
@@ -6407,6 +6403,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   export TERM=xterm-256color           # Sets the terminal type
   export SHELL=/usr/bin/fish           # Preferred shell
   export EDITOR="emacs -nw"            # Default editor
+  export GIT_EDITOR="emacs -nw"        # Default git editor
   export BROWSER=vivaldi-stable        # Web Browser
   export XDG_CONFIG_HOME=$HOME/.config # Set Config directory
   export QT_QPA_PLATFORMTHEME=qt5ct    # QGtkStyle
@@ -6421,7 +6418,15 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 *** Startup Applications & Processes
 
 #+begin_src shell :shebang #!/bin/sh :tangle .xinitrc
-  /home/sravan/.scripts/startup.sh --start
+  # Background Processes & Daemons
+  /home/sravan/.scripts/startup.sh --kill-system &&
+      /home/sravan/.scripts/startup.sh --system
+
+  # System Tray Applications
+  # start with a delay so window manager can load first
+  (sleep 5 &&
+      /home/sravan/.scripts/startup.sh --kill-apps &&
+      /home/sravan/.scripts/startup.sh --apps) &
 #+end_src
 
 *** Launch Environment
@@ -6562,7 +6567,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 #+begin_src conf :tangle .Xresources
   ! Dunst
-  dunst.geometry-x:           OUTER_GAPS
+  dunst.geometry-x:           0
   dunst.geometry-y:           BAR_HEIGHT
   dunst.sep-height:           BORDER_SIZE
   dunst.padding:              OUTER_GAPS
@@ -6828,16 +6833,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
               light-locker-command --lock
               ;;
           --sleep)
-              pkexec systemctl suspend
+              systemctl suspend
               ;;
           --reboot)
-              pkexec reboot
+              reboot
               ;;
           --shutdown)
-              pkexec poweroff
+              shutdown now
               ;;
           --hibernate)
-              pkexec systemctl hibernate
+              systemctl hibernate
               ;;
           --restart)
               xmonad --recompile
@@ -6856,44 +6861,56 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 ** Startup
 
 #+begin_src shell :shebang #!/bin/bash :tangle .scripts/startup.sh
-  declare -a start_array=(\
+  declare -a system_array=(\
+      # Background Processes
+      "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
+      "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
+      "greenclip daemon" \                                           # Greenclip Clipboard Manager
+      "redshift -x" \                                                # Reset redshift display gamma
+      "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
+      "light-locker --lock-on-suspend --lock-on-lid" \               # Screen lock for lightdm
+      "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
       # System Restore Processes
       "bash /home/sravan/.screenlayout/default.sh" \                 # Restore default screen layout
       "nitrogen --restore" \                                         # Restore wallpaper
       "numlockx on" \                                                # Enable numlock
-      # System Tray Applications
-      "nyrna" \                                                      # Nyrna Application Suspend
-      "blueman-tray" \                                               # Blueman Bluetooth Manager
-      "nm-applet" \                                                  # Network Manager Applet
-      "kdeconnect-indicator" \                                       # KDE Connect
-      "flameshot" \                                                  # Flameshot Screenshot Tool
-      "xfce4-power-manager" \                                        # XFCE4 Power Manager
-      # Background Processes
-      "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
-      "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
-      "greenclip daemon" \                                           # Greenclip Clipboard Manager
-      "redshift -x" \                                                # Reset redshift display gamma
-      "redshift-gtk" \                                               # Redshift Blue Light Filter
-      "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-      "light-locker --lock-on-suspend --lock-on-lid" \               # screen lock for lightdm
   )
 
-  declare -a kill_array=(\
-      # System Tray Applications
-      "pkill nyrna" \                                # Nyrna Application Suspend
-      "pkill blueman-tray" \                         # Blueman Bluetooth Manager
-      "pkill nm-applet" \                            # Network Manager Applet
-      "pkill kdeconnect-indicator" \                 # KDE Connect
-      "pkill flameshot" \                            # Flameshot Screenshot Tool
-      "pkill xfce4-power-manager" \                  # XFCE4 Power Manager
+  declare -a kill_system_array=(\
       # Background Processes
-      "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
-      "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
-      "pkill greenclip" \                            # Greenclip Clipboard Manager
-      "pkill redshift" \                             # Redshift Blue Light Filter
-      "pkill polkit" \                               # GNOME Polkit Authentication Agent
-      "pkill light-locker" \                         # screen lock for lightdm
+      "killall dunst" \         # Dunst Notification Daemon
+      "killall picom" \         # Picom Compositor
+      "killall greenclip" \     # Greenclip Clipboard Manager
+      "killall redshift" \      # Redshift Blue Light Filter
+      "killall polkit" \        # GNOME Polkit Authentication Agent
+      "killall light-locker" \  # Screen lock for lightdm
+      "killall kdeconnectd" \   # KDE Connect Daemon
   )
+
+  declare -a apps_array=(\
+      # System Tray Applications
+      "redshift-gtk" \          # Redshift Blue Light Filter
+      "nyrna" \                 # Nyrna Application Suspend
+      "blueman-tray" \          # Blueman Bluetooth Manager
+      "nm-applet" \             # Network Manager Applet
+      "kdeconnect-indicator" \  # KDE Connect Indicator
+      "flameshot" \             # Flameshot Screenshot Tool
+      "xfce4-power-manager" \   # XFCE4 Power Manager
+      "volctl" \                # PulseAudio Volume Control
+  )
+
+  declare -a kill_apps_array=(\
+      # System Tray Applications
+      "killall redshift" \              # Redshift Blue Light Filter
+      "killall nyrna" \                 # Nyrna Application Suspend
+      "killall blueman-tray" \          # Blueman Bluetooth Manager
+      "killall nm-applet" \             # Network Manager Applet
+      "killall kdeconnect-indicator" \  # KDE Connect Indicator
+      "killall flameshot" \             # Flameshot Screenshot Tool
+      "killall xfce4-power-manager" \   # XFCE4 Power Manager
+      "killall volctl" \                # PulseAudio Volume Control
+  )
+
 
   help_menu() {
       echo "Main script to launch and kill autostart processes & applications. Use only one argument at a time."
@@ -6907,8 +6924,10 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
   rofi_menu() {
       declare -a options=(
-          " Launch Autostart Processes - start"
-          "ﮊ Kill Autostart Processes - kill"
+          " Launch System Processes - system"
+          " Launch Tray Applications - apps"
+          "ﮊ Kill System Processes - kill-system"
+          "ﮊ Kill Tray Applications - kill-apps"
           " Quit - quit"
       )
 
@@ -6929,11 +6948,8 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
           --help | -h)
               help_menu
               ;;
-          --start)
-              main "--kill"
-
-              # Run applications (ignore if they don't exist)
-              for i in "${start_array[@]}"
+          --system)
+              for i in "${system_array[@]}"
               do
                   if ! command -v $i > /dev/null
                   then
@@ -6943,9 +6959,30 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
                   fi
               done
               ;;
-          --kill)
-              # Kill applications (ignore if they don't exist)
-              for i in "${kill_array[@]}"
+          --apps)
+              for i in "${apps_array[@]}"
+              do
+                  if ! command -v $i > /dev/null
+                  then
+                      do_nothing() { :; }
+                  else
+                      $i &
+                  fi
+              done
+              ;;
+          --kill-system)
+              for i in "${kill_system_array[@]}"
+              do
+                  if ! command -v $i > /dev/null
+                  then
+                      do_nothing() { :; }
+                  else
+                      $i &
+                  fi
+              done
+              ;;
+          --kill-apps)
+              for i in "${kill_apps_array[@]}"
               do
                   if ! command -v $i > /dev/null
                   then
@@ -6964,6 +7001,28 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
   main $@
 #+end_src
+
+** Gaming
+
+These are scripts that should be run from Lutris when launching or exiting a game.
+
+*** Pre-Launch Script
+
+*Preferences > System options > Pre-launch script*
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
+  /home/sravan/.scripts/picom.sh --off
+  /home/sravan/.scripts/dunst.sh --dnd
+#+end_src
+
+*** Post-Exit Script
+
+*Preferences > System options > Post-exit script*
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
+  /home/sravan/.scripts/dunst.sh --dnd
+#+end_src
+
 ** Control Center
 
 #+begin_src shell :shebang #!/bin/bash :tangle .scripts/control-center.sh

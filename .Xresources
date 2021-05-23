@@ -61,7 +61,7 @@ polybar.tray-scale:    TRAY_SCALE
 polybar.maxlen:        MAXLEN
 
 ! Dunst
-dunst.geometry-x:           OUTER_GAPS
+dunst.geometry-x:           0
 dunst.geometry-y:           BAR_HEIGHT
 dunst.sep-height:           BORDER_SIZE
 dunst.padding:              OUTER_GAPS

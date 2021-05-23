@@ -1,42 +1,54 @@
 #!/bin/bash
-declare -a start_array=(\
+declare -a system_array=(\
+    # Background Processes
+    "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
+    "greenclip daemon" \                                           # Greenclip Clipboard Manager
+    "redshift -x" \                                                # Reset redshift display gamma
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
+    "light-locker --lock-on-suspend --lock-on-lid" \               # Screen lock for lightdm
+    "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
     # System Restore Processes
     "bash /home/sravan/.screenlayout/default.sh" \                 # Restore default screen layout
     "nitrogen --restore" \                                         # Restore wallpaper
     "numlockx on" \                                                # Enable numlock
-    # System Tray Applications
-    "nyrna" \                                                      # Nyrna Application Suspend
-    "blueman-tray" \                                               # Blueman Bluetooth Manager
-    "nm-applet" \                                                  # Network Manager Applet
-    "kdeconnect-indicator" \                                       # KDE Connect
-    "flameshot" \                                                  # Flameshot Screenshot Tool
-    "xfce4-power-manager" \                                        # XFCE4 Power Manager
-    # Background Processes
-    "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
-    "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
-    "greenclip daemon" \                                           # Greenclip Clipboard Manager
-    "redshift -x" \                                                # Reset redshift display gamma
-    "redshift-gtk" \                                               # Redshift Blue Light Filter
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-    "light-locker --lock-on-suspend --lock-on-lid" \               # screen lock for lightdm
 )
 
-declare -a kill_array=(\
-    # System Tray Applications
-    "pkill nyrna" \                                # Nyrna Application Suspend
-    "pkill blueman-tray" \                         # Blueman Bluetooth Manager
-    "pkill nm-applet" \                            # Network Manager Applet
-    "pkill kdeconnect-indicator" \                 # KDE Connect
-    "pkill flameshot" \                            # Flameshot Screenshot Tool
-    "pkill xfce4-power-manager" \                  # XFCE4 Power Manager
+declare -a kill_system_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
-    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
-    "pkill greenclip" \                            # Greenclip Clipboard Manager
-    "pkill redshift" \                             # Redshift Blue Light Filter
-    "pkill polkit" \                               # GNOME Polkit Authentication Agent
-    "pkill light-locker" \                         # screen lock for lightdm
+    "killall dunst" \         # Dunst Notification Daemon
+    "killall picom" \         # Picom Compositor
+    "killall greenclip" \     # Greenclip Clipboard Manager
+    "killall redshift" \      # Redshift Blue Light Filter
+    "killall polkit" \        # GNOME Polkit Authentication Agent
+    "killall light-locker" \  # Screen lock for lightdm
+    "killall kdeconnectd" \   # KDE Connect Daemon
 )
+
+declare -a apps_array=(\
+    # System Tray Applications
+    "redshift-gtk" \          # Redshift Blue Light Filter
+    "nyrna" \                 # Nyrna Application Suspend
+    "blueman-tray" \          # Blueman Bluetooth Manager
+    "nm-applet" \             # Network Manager Applet
+    "kdeconnect-indicator" \  # KDE Connect Indicator
+    "flameshot" \             # Flameshot Screenshot Tool
+    "xfce4-power-manager" \   # XFCE4 Power Manager
+    "volctl" \                # PulseAudio Volume Control
+)
+
+declare -a kill_apps_array=(\
+    # System Tray Applications
+    "killall redshift" \              # Redshift Blue Light Filter
+    "killall nyrna" \                 # Nyrna Application Suspend
+    "killall blueman-tray" \          # Blueman Bluetooth Manager
+    "killall nm-applet" \             # Network Manager Applet
+    "killall kdeconnect-indicator" \  # KDE Connect Indicator
+    "killall flameshot" \             # Flameshot Screenshot Tool
+    "killall xfce4-power-manager" \   # XFCE4 Power Manager
+    "killall volctl" \                # PulseAudio Volume Control
+)
+
 
 help_menu() {
     echo "Main script to launch and kill autostart processes & applications. Use only one argument at a time."
@@ -50,8 +62,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Launch Autostart Processes - start"
-        "ﮊ Kill Autostart Processes - kill"
+        " Launch System Processes - system"
+        " Launch Tray Applications - apps"
+        "ﮊ Kill System Processes - kill-system"
+        "ﮊ Kill Tray Applications - kill-apps"
         " Quit - quit"
     )
 
@@ -72,11 +86,8 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --start)
-            main "--kill"
-
-            # Run applications (ignore if they don't exist)
-            for i in "${start_array[@]}"
+        --system)
+            for i in "${system_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then
@@ -86,9 +97,30 @@ main() {
                 fi
             done
             ;;
-        --kill)
-            # Kill applications (ignore if they don't exist)
-            for i in "${kill_array[@]}"
+        --apps)
+            for i in "${apps_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --kill-system)
+            for i in "${kill_system_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --kill-apps)
+            for i in "${kill_apps_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then

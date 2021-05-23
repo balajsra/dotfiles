@@ -35,8 +35,8 @@
     # Remove file(s) from Git but not from disk
     untrack = rm --cache --
 [core]
-    # VSCode
-    editor = code --wait
+    # Emacs
+    editor = "emacs -nw"
     # Don't consider trailing space change as a cause for merge conflicts
     whitespace = -trailing-space
 [diff]
@@ -48,10 +48,6 @@
     wordRegex = .
     # Display submodule-related information (commit listings)
     submodule = log
-    # Use VSCode as default diff tool when running `git diff-tool`
-    tool = vscode
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
 [fetch]
     # Auto-fetch submodule changes (sadly, won't auto-update)
     recurseSubmodules = on-demand

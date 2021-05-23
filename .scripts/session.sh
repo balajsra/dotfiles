@@ -45,16 +45,16 @@ main() {
             light-locker-command --lock
             ;;
         --sleep)
-            pkexec systemctl suspend
+            systemctl suspend
             ;;
         --reboot)
-            pkexec reboot
+            reboot
             ;;
         --shutdown)
-            pkexec poweroff
+            shutdown now
             ;;
         --hibernate)
-            pkexec systemctl hibernate
+            systemctl hibernate
             ;;
         --restart)
             xmonad --recompile

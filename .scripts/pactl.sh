@@ -1,6 +1,6 @@
 #!/bin/bash
 help_menu() {
-    echo "Main script to launch sub-menu scripts. Use only one argument at a time."
+    echo "Script to interact with pactl. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
     # echo "  - Next:          playerctl.sh --next"
     # echo "  - Previous:      playerctl.sh --prev"
@@ -11,12 +11,9 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Compositor - picom"
-        " Notifications - dunst"
-        " Media - playerctl"
-        "墳Volume - pactl"
-        " Hardware - system76-power"
-        " Power Menu - session"
+        " Raise Volume - raise"
+        " Lower Volume - lower"
+        " Mute - mute"
         " Quit - quit"
     )
 
@@ -37,23 +34,14 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --picom)
-            /home/sravan/.scripts/picom.sh --rofi
+        --raise)
+            pactl set-sink-volume @DEFAULT_SINK@ +5%
             ;;
-        --dunst)
-            /home/sravan/.scripts/dunst.sh --rofi
+        --lower)
+            pactl set-sink-volume @DEFAULT_SINK@ -5%
             ;;
-        --playerctl)
-            /home/sravan/.scripts/playerctl.sh --rofi
-            ;;
-        --pactl)
-            /home/sravan/.scripts/pactl.sh --rofi
-            ;;
-        --system76-power)
-            /home/sravan/.scripts/system76-power.sh --rofi
-            ;;
-        --session)
-            /home/sravan/.scripts/session.sh --rofi
+        --mute)
+            pactl set-sink-mute @DEFAULT_SINK@ toggle
             ;;
         --rofi)
             rofi_menu

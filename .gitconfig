@@ -36,7 +36,7 @@
     untrack = rm --cache --
 [core]
     # Emacs
-    editor = "emacs -nw"
+    editor = "emacs"
     # Don't consider trailing space change as a cause for merge conflicts
     whitespace = -trailing-space
 [diff]

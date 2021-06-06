@@ -185,5 +185,5 @@ alias tb='nc termbin.com 9999'
 # Set your countries like --country France --country Germany -- or more.
 alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu && sudo updatedb'
 
-## Run neofetch
+# Run neofetch
 neofetch

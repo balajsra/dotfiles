@@ -113,7 +113,7 @@ Pull and update submodules
       untrack = rm --cache --
   [core]
       # Emacs
-      editor = "emacs -nw"
+      editor = "emacs"
       # Don't consider trailing space change as a cause for merge conflicts
       whitespace = -trailing-space
   [diff]
@@ -1979,6 +1979,10 @@ Pull and update submodules
   # when redirecting/unredirecting windows. paint-on-overlay may make the flickering less obvious.
   #
   # unredir-if-possible = false
+  unredir-if-possible = true;
+  # unredir-if-possible-exclude = [
+  #     "class_g = 'looking-glass-client' && !focused"
+  # ]
 
   # Delay before unredirecting the window, in milliseconds. Defaults to 0.
   # unredir-if-possible-delay = 0
@@ -3368,10 +3372,13 @@ Pull and update submodules
   alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
   # ENVIRONMENT VARIABLES
-  export EDITOR="code -w"
+  export EDITOR="emacs"
   export TERM=xterm-256color
   export QT_STYLE_OVERRIDE=kvantum
   export XDG_CONFIG_HOME=$HOME/.config
+
+  # Run neofetch
+  neofetch
 #+end_src
 *** Zsh
 
@@ -3563,7 +3570,7 @@ Pull and update submodules
   # Set your countries like --country France --country Germany -- or more.
   alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu && sudo updatedb'
 
-  ## Run neofetch
+  # Run neofetch
   neofetch
 #+end_src
 
@@ -6402,8 +6409,8 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 #+begin_src shell :shebang #!/bin/sh :tangle .xinitrc
   export TERM=xterm-256color           # Sets the terminal type
   export SHELL=/usr/bin/fish           # Preferred shell
-  export EDITOR="emacs -nw"            # Default editor
-  export GIT_EDITOR="emacs -nw"        # Default git editor
+  export EDITOR="emacs"                # Default editor
+  export GIT_EDITOR="emacs"            # Default git editor
   export BROWSER=vivaldi-stable        # Web Browser
   export XDG_CONFIG_HOME=$HOME/.config # Set Config directory
   export QT_QPA_PLATFORMTHEME=qt5ct    # QGtkStyle

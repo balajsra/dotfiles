@@ -62,3 +62,7 @@
 	path = .xmonad
 	url = git@github.com:balajsra/xmonad.git
     branch = master
+[submodule ".themes/dracula-qbittorrent"]
+	path = .themes/dracula-qbittorrent
+	url = git@github.com:dracula/qbittorrent.git
+    branch = master

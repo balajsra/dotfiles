@@ -1,7 +1,7 @@
 #!/bin/bash
 declare -a system_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "greenclip daemon" \                                           # Greenclip Clipboard Manager
     "redshift -x" \                                                # Reset redshift display gamma
@@ -16,13 +16,13 @@ declare -a system_array=(\
 
 declare -a kill_system_array=(\
     # Background Processes
-    "killall dunst" \         # Dunst Notification Daemon
-    "killall picom" \         # Picom Compositor
-    "killall greenclip" \     # Greenclip Clipboard Manager
-    "killall redshift" \      # Redshift Blue Light Filter
-    "killall polkit" \        # GNOME Polkit Authentication Agent
-    "killall light-locker" \  # Screen lock for lightdm
-    "killall kdeconnectd" \   # KDE Connect Daemon
+    "killall deadd-notificat" \  # Deadd Notification Center
+    "killall picom" \            # Picom Compositor
+    "killall greenclip" \        # Greenclip Clipboard Manager
+    "killall redshift" \         # Redshift Blue Light Filter
+    "killall polkit" \           # GNOME Polkit Authentication Agent
+    "killall light-locker" \     # Screen lock for lightdm
+    "killall kdeconnectd" \      # KDE Connect Daemon
 )
 
 declare -a apps_array=(\

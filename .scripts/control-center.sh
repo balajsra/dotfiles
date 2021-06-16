@@ -12,7 +12,7 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         " Compositor - picom"
-        " Notifications - dunst"
+        " Notifications - deadd"
         " Media - playerctl"
         "墳Volume - pactl"
         " Hardware - system76-power"
@@ -40,8 +40,8 @@ main() {
         --picom)
             /home/sravan/.scripts/picom.sh --rofi
             ;;
-        --dunst)
-            /home/sravan/.scripts/dunst.sh --rofi
+        --deadd)
+            /home/sravan/.scripts/deadd.sh --rofi
             ;;
         --playerctl)
             /home/sravan/.scripts/playerctl.sh --rofi

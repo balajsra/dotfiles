@@ -761,6 +761,474 @@ Pull and update submodules
   main $@
 #+end_src
 
+** Deadd Notification Center
+
+*** Configuration
+
+**** Notification Center
+
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  [notification-center]
+#+end_src
+
+Hide the notification center when the mouse leaves the window
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  hideOnMouseLeave = false
+#+end_src
+
+Margin at the top of the notification center in pixels. This can be used to avoid overlap between the notification center and bars such as polybar or i3blocks.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  marginTop = 25
+#+end_src
+
+Margin at the bottom of the notification center in pixels.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  marginBottom = 0
+#+end_src
+
+Margin to the right of the notification center in pixels.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  marginRight = 0
+#+end_src
+
+Width of the notification center in pixels. 
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  width = 700
+#+end_src
+
+Monitor on which the notification center will be printed.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  monitor = 0
+#+end_src
+
+If true, the notification center will open on the screen, on which the mouse is
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  followMouse = true
+#+end_src
+
+(Optional) Command to run at startup.  This can be used to setup button states.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  # startupCommand = "deadd-notification-center-startup"
+#+end_src
+
+If newFirst is set to true, newest notifications appear on the top of the notification center. Else, notifications stack, from top to bottom.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  newFirst = true
+#+end_src
+
+If useActionIcons is set to true, Action Buttons can show Icon
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  useActionIcons = true
+#+end_src
+
+If true, the transient field in notifications will be ignored and the notification will be persisted in the notification center anyways
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  ignoreTransient = false
+#+end_src
+
+If true, markup (<u>, <i>, <b>, <a>) will be displayed properly
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  useMarkup = true
+#+end_src
+
+If true, html entities (&#38; for &, &#37; for %, etc) will be parsed  properly. This is useful for chromium-based apps, which tend to send  these in notifications. 
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  parseHtmlEntities = true
+#+end_src
+
+If set to true, the parameter noClosedMsg can be set on notifications. If noClosedMsg is set to true on a notification, DBUS NotificationClosed messages will not be send for this notification.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  configSendNotiClosedDbusMessage = false
+#+end_src
+
+If set to true: If no icon is passed by the app_icon parameter  and no application "desktop-entry"-hint is present, the notification center will try to guess the icon from the application name (if present). Default is true.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  guessIconFromAppname = true
+#+end_src
+
+See section [[https://github.com/phuhl/linux_notification_center#notification-based-scripting][Notification based scripting]] for an explanation
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  #match = "title=Abc;body=abc":"app=notify-send"
+  #modify = "transient=false"
+  #run = "":"killall notify-send"
+#+end_src
+
+**** Notification Popup
+
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  [notification-center-notification-popup]
+#+end_src
+
+Default timeout used for notifications in milli-seconds.  This can be overwritten with the "-t" option (or "--expire-time") of the notify-send command.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  notiDefaultTimeout = 10000
+#+end_src
+
+Margin above notifications (in pixels). This can be used to avoid overlap between notifications and a bar such as polybar or i3blocks.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  distanceTop = 25
+#+end_src
+
+Margin on the right of the notification (in pixels).
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  distanceRight = 0
+#+end_src
+
+Vertical distance between 2 notifications (in pixels).
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  distanceBetween = 10
+#+end_src
+
+Width of the notifications.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  width = 400
+#+end_src
+
+Monitor on which the notification will be printed.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  monitor = 0
+#+end_src
+
+If true, the notifications will open on the screen, on which the mouse is
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  followMouse = true
+#+end_src
+
+The display size of the application icons in the notification  pop-ups and in the notification center
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  iconSize = 25
+#+end_src
+
+The maximal display size of images that are part of notifications for notification pop-ups and in the notification center
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  maxImageSize = 100
+#+end_src
+
+The margin around the top, bottom, left, and right of notification images. Applies to popup notifications and in-center notifications.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  imageMarginTop = 10
+  imageMarginBottom = 10
+  imageMarginLeft = 0
+  imageMarginRight = 0
+#+end_src
+
+Truncates notification bodies with '...' at the specified number of  lines. If -1 is specified, the body text will not be truncated. Applies only to popup notifications
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  shortenBody = 5
+#+end_src
+
+The mouse button for closing a popup. Must be either "mouse1",  "mouse2", "mouse3", "mouse4", or "mouse5"
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  dismissButton = mouse1
+#+end_src
+
+The mouse button for opening a popup with the default action. Must be either "mouse1", "mouse2", "mouse3", "mouse4", or "mouse5"
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  defaultActionButton = mouse3
+#+end_src
+
+**** Buttons
+
+This section describes the configurable buttons within the notification center and NOT the buttons that appear in the notifications
+
+Note: If you want your buttons in the notification center to be
+      squares you should verify that the following equality holds:
+      [notification-center]::width
+         == [buttons]::buttonsPerRow * [buttons]::buttonHeight
+            + ([buttons]::buttonsPerRow + 1) * [buttons]::buttonMargin
+
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  [buttons]
+#+end_src
+
+Numbers of buttons that can be drawn on a row of the notification center.
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  buttonsPerRow = 5
+#+end_src
+
+Height of buttons in the notification center (in pixels).
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  buttonHeight = 60
+#+end_src
+
+Horizontal and vertical margin between each button in the  notification center (in pixels).
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  buttonMargin = 2
+#+end_src
+
+Labels written on the buttons in the notification center. Labels should be written between quotes and separated by a colon. For example:
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  # labels = "VPN":"Bluetooth":"Wifi":"Screensaver"
+#+end_src
+
+Each label is represented as a clickable button in the notification center. The commands variable below define the commands that should be launched when the user clicks on the associated button.  There should be the same number of entries in `commands` and in `labels`
+#+begin_src conf :tangle .config/deadd/deadd.conf
+  # commands = "sudo vpnToggle":"bluetoothToggle":"wifiToggle":"screensaverToggle"
+#+end_src
+
+*** Styling
+
+**** Notification Center
+
+#+begin_src conf :tangle .config/deadd/deadd.css
+  .blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
+      background: rgba(40, 42, 54, 0.8);
+      border: 2pt #50fa7b solid;
+      border-radius: 10px;
+  }
+
+  .noti-center.time {
+      font-size: 32px;
+  }
+#+end_src
+
+**** Notifications
+
+#+begin_src conf :tangle .config/deadd/deadd.css
+  .title {
+      font-weight: bold;
+      font-size: 16px;
+  }
+
+  .appname {
+      font-size: 12px;
+  }
+
+  .time {
+      font-size: 12px;
+  }
+
+  .blurredBG.notification {
+      background:  rgba(40, 42, 54, 0.8);
+      border: 2pt #50fa7b solid;
+      border-radius: 10px;
+  }
+
+  .blurredBG.notification.critical {
+      background: rgba(255, 85, 85, 0.8);
+      border: 2pt #50fa7b solid;
+      border-radius: 10px;
+  }
+
+  .notificationInCenter.critical {
+      background: rgba(255, 85, 85, 0.8);
+  }
+#+end_src
+
+**** Labels
+
+#+begin_src conf :tangle .config/deadd/deadd.css
+  label {
+      color: #f8f8f2;
+  }
+
+  label.notification {
+      color: #f8f8f2;
+  }
+
+  label.critical {
+      color: #f8f8f2;
+  }
+  .notificationInCenter label.critical {
+      color: #f8f8f2;
+  }
+#+end_src
+
+**** Buttons
+
+#+begin_src conf :tangle .config/deadd/deadd.css
+  button {
+      background: transparent;
+      color: #f8f8f2;
+      border-radius: 10px;
+      border-width: 2px;
+      background-position: 0px 0px;
+      text-shadow: none;
+  }
+
+  button:hover {
+      border-radius: 10px;
+      background: rgba(68, 71, 90, 0.8);
+      border-width: 2px;
+      border-top: transparent;
+      border-color: #50fa7b;
+      color: #282a36;
+  }
+#+end_src
+
+**** Custom Buttons
+
+#+begin_src conf :tangle .config/deadd/deadd.css
+  .userbutton {
+      background: transparent;
+      border-radius: 10px;
+      border-width: 2px;
+      background-position: 0px 0px;
+      text-shadow: none;
+  }
+
+  .userbutton:hover {
+      border-radius: 10px;
+      background: rgba(68, 71, 90, 0.8);
+      border-width: 2px;
+      border-top: transparent;
+      border-color: #50fa7b;
+  }
+
+  .userbuttonlabel {
+      color: #f8f8f2;
+      font-size: 12px;
+  }
+
+
+  .userbuttonlabel:hover {
+      color: #f8f8f2;
+  }
+
+  button.buttonState1 {
+      background: rgba(20,0,0,0.5);
+  }
+
+  .userbuttonlabel.buttonState1 {
+      color: #fff;
+  }
+
+  button.buttonState1:hover {
+      background: rgba(20,0,0, 0.4);
+  }
+
+  .userbuttonlabel.buttonState1:hover {
+      color: #111;
+  }
+
+  button.buttonState2 {
+      background: rgba(255,255,255,0.3);
+  }
+
+  .userbuttonlabel.buttonState2 {
+      color: #111;
+  }
+
+  button.buttonState2:hover {
+      background: rgba(20,0,0, 0.3);
+  }
+
+  .userbuttonlabel.buttonState2:hover {
+      color: #000;
+  }
+#+end_src
+
+**** Images
+
+#+begin_src conf :tangle .config/deadd/deadd.css
+  image.deadd-noti-center.notification.image {
+      margin-left: 10px;
+  }
+#+end_src
+
+*** Control Script
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/deadd.sh
+  help_menu() {
+      echo "Script to interact with deadd. Use only one argument at a time."
+      echo "  - Toggle On/Off:               deadd.sh OR deadd.sh --toggle OR deadd.sh -t"
+      echo "  - Turn On:                     deadd.sh --on"
+      echo "  - Turn Off:                    deadd.sh --off"
+      echo "  - Toggle Notification Center:  deadd.sh --toggle-center"
+      echo "  - Pause Popup Notifications:   deadd.sh --pause"
+      echo "  - Unpause Popup Notifications: deadd.sh --unpause"
+      echo "  - Rofi Menu:                   deadd.sh --rofi"
+      echo "  - Help:                        deadd.sh --help OR deadd.sh -h"
+  }
+
+  is_running() {
+      if pgrep -x deadd-notificat >/dev/null; then
+          echo 1
+      else
+          echo 0
+      fi
+  }
+
+  rofi_menu() {
+      declare -a options=(
+          "⏼ Toggle - toggle"
+          " Turn On - on"
+          " Turn Off - off"
+          " Toggle Notification Center - toggle-center"
+          " Pause Popup Notifications - pause"
+          " Unpause Popup Notifications - unpause"
+          " Quit - quit"
+      )
+
+      choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+      option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+      if [[ "$option" != "quit" ]]; then
+          main "--$option" && main "--rofi"
+      fi
+  }
+
+  main() {
+      if [ $# -eq 0 ]; then
+          # No arguments
+          help_menu
+      else
+          case $1 in
+          --help | -h)
+              help_menu
+              ;;
+          --toggle)
+              if [ $(is_running) -eq '1' ]; then
+                  main --off
+              else
+                  main --on
+              fi
+              ;;
+          --on)
+              if [ $(is_running) -eq '1' ]; then
+                  killall deadd-notificat
+              fi
+
+              /home/sravan/.local/bin/notify-send.py a --hint \
+                  boolean:deadd-notification-center:true \
+                  string:type:reloadStyle
+
+              notify-send "Turning Deadd ON"
+              ;;
+          --off)
+              notify-send "Turning Deadd OFF"
+
+              if [ $(is_running) -eq '1' ]; then
+                  killall deadd-notificat
+              fi
+              ;;
+          --toggle-center)
+              kill -s USR1 $(pidof deadd-notification-center)
+              ;;
+          --pause)
+              notify-send "Pausing Notifications"
+
+              /home/sravan/.local/bin/notify-send.py a --hint \
+                  boolean:deadd-notification-center:true \
+                  string:type:pausePopups > /dev/null 2>&1
+              ;;
+          --unpause)
+              /home/sravan/.local/bin/notify-send.py a --hint \
+                  boolean:deadd-notification-center:true \
+                  string:type:unpausePopups > /dev/null 2>&1
+
+              notify-send "Unpausing Notifications"
+              ;;
+          --rofi)
+              rofi_menu
+              ;;
+          esac
+      fi
+  }
+
+  main $@
+#+end_src
+
 * Application Launcher 
 
 ** Rofi 
@@ -1656,6 +2124,7 @@ Pull and update submodules
     # "class_g = 'Alacritty'",
     "class_g = 'Polybar'",
     "class_g = 'Rofi'",
+    "class_g = 'deadd-notification-center'",
     # "class_g = 'code-oss'",
     #"class_g = 'TelegramDesktop'",
     # "class_g = 'firefox'",
@@ -6952,7 +7421,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 #+begin_src shell :shebang #!/bin/bash :tangle .scripts/startup.sh
   declare -a system_array=(\
       # Background Processes
-      "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
+      "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
       "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
       "greenclip daemon" \                                           # Greenclip Clipboard Manager
       "redshift -x" \                                                # Reset redshift display gamma
@@ -6967,13 +7436,13 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
   declare -a kill_system_array=(\
       # Background Processes
-      "killall dunst" \         # Dunst Notification Daemon
-      "killall picom" \         # Picom Compositor
-      "killall greenclip" \     # Greenclip Clipboard Manager
-      "killall redshift" \      # Redshift Blue Light Filter
-      "killall polkit" \        # GNOME Polkit Authentication Agent
-      "killall light-locker" \  # Screen lock for lightdm
-      "killall kdeconnectd" \   # KDE Connect Daemon
+      "killall deadd-notificat" \  # Deadd Notification Center
+      "killall picom" \            # Picom Compositor
+      "killall greenclip" \        # Greenclip Clipboard Manager
+      "killall redshift" \         # Redshift Blue Light Filter
+      "killall polkit" \           # GNOME Polkit Authentication Agent
+      "killall light-locker" \     # Screen lock for lightdm
+      "killall kdeconnectd" \      # KDE Connect Daemon
   )
 
   declare -a apps_array=(\
@@ -7100,8 +7569,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Pre-launch script*
 
 #+begin_src shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
-  # /home/sravan/.scripts/picom.sh --off
-  /home/sravan/.scripts/dunst.sh --dnd
+  /home/sravan/.scripts/deadd.sh --pause
 #+end_src
 
 *** Post-Exit Script
@@ -7109,8 +7577,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Post-exit script*
 
 #+begin_src shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
-  /home/sravan/.scripts/dunst.sh --dnd
-  # /home/sravan/.scripts/picom.sh --on
+  /home/sravan/.scripts/deadd.sh --unpause
 #+end_src
 
 ** Control Center
@@ -7129,7 +7596,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
   rofi_menu() {
       declare -a options=(
           " Compositor - picom"
-          " Notifications - dunst"
+          " Notifications - deadd"
           " Media - playerctl"
           "墳Volume - pactl"
           " Hardware - system76-power"
@@ -7157,8 +7624,8 @@ These are scripts that should be run from Lutris when launching or exiting a gam
           --picom)
               /home/sravan/.scripts/picom.sh --rofi
               ;;
-          --dunst)
-              /home/sravan/.scripts/dunst.sh --rofi
+          --deadd)
+              /home/sravan/.scripts/deadd.sh --rofi
               ;;
           --playerctl)
               /home/sravan/.scripts/playerctl.sh --rofi

@@ -28,7 +28,7 @@ declare -a kill_system_array=(\
 declare -a apps_array=(\
     # System Tray Applications
     "redshift-gtk" \          # Redshift Blue Light Filter
-    "nyrna" \                 # Nyrna Application Suspend
+    "bauh-tray" \             # Bauh Package Management GUI
     "blueman-tray" \          # Blueman Bluetooth Manager
     "nm-applet" \             # Network Manager Applet
     "kdeconnect-indicator" \  # KDE Connect Indicator
@@ -40,7 +40,7 @@ declare -a apps_array=(\
 declare -a kill_apps_array=(\
     # System Tray Applications
     "killall redshift" \              # Redshift Blue Light Filter
-    "killall nyrna" \                 # Nyrna Application Suspend
+    "killall bauh-tray" \             # Bauh Package Management GUI
     "killall blueman-tray" \          # Blueman Bluetooth Manager
     "killall nm-applet" \             # Network Manager Applet
     "killall kdeconnect-indicator" \  # KDE Connect Indicator

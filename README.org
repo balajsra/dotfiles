@@ -1,6 +1,7 @@
 #+title: Personal Dotfiles
 #+author: Sravan Balaji
 #+auto_tangle: t
+#+startup: showeverything
 
 * Installation
 
@@ -12,7 +13,7 @@ Prior to the installation, create alias for config
   alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
 #+end_src
 
-Add ~.cfg~ to ~.gitignore~
+Add =.cfg= to ~.gitignore~
 
 #+begin_src shell
   echo ".cfg" >> .gitignore
@@ -58,7 +59,7 @@ Re-run checkout
   config git checkout
 #+end_src
 
-Set the flag ~showUntrackedFiles~ to ~no~ on this specific (local) repo
+Set the flag =showUntrackedFiles= to =no= on this specific (local) repo
 
 #+begin_src shell
   config git config --local status.showUntrackedFiles no
@@ -6354,25 +6355,44 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 ** MangoHUD 
 
 #+begin_src conf :tangle .config/MangoHud/MangoHud.conf
-  cpu_stats
-  cpu_temp
-  cpu_color=2e97cb
-  cpu_text=CPU
+  legacy_layout=false
   gpu_stats
   gpu_temp
   gpu_core_clock
   gpu_mem_clock
-  vulkan_driver
-  gpu_name
-  gpu_color=2e9762
+  gpu_power
+  gpu_load_change
+  gpu_load_value=50,90
+  gpu_load_color=FFFFFF,FF7800,CC0000
   gpu_text=GPU
+  cpu_stats
+  cpu_temp
+  cpu_power
+  cpu_mhz
+  cpu_load_change
+  cpu_load_value=50,90
+  cpu_load_color=FFFFFF,FF7800,CC0000
+  cpu_color=2e97cb
+  cpu_text=CPU
+  io_stats
+  io_read
+  io_write
+  io_color=a491d3
+  swap
   vram
   vram_color=ad64c1
   ram
   ram_color=c26693
-  io_color=a491d3
+  fps
+  engine_color=eb5b5b
+  gpu_name
+  gpu_color=2e9762
+  vulkan_driver
+  wine
+  wine_color=eb5b5b
   frame_timing=1
   frametime_color=00ff00
+  media_player_color=ffffff
   background_alpha=0.4
   font_size=24
   background_color=020202
@@ -6380,7 +6400,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   text_color=ffffff
   toggle_hud=Shift_R+F12
   toggle_logging=Shift_L+F2
-  output_file=/home/sravan/mangohud_log_ 
+  output_folder=/home/sravan
   media_player_name=spotify
 #+end_src
 
@@ -6439,7 +6459,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 *** Launch Environment
 
 #+begin_src shell :shebang #!/bin/sh :tangle .xinitrc
-  exec xmonad
+  exec dwm
 #+end_src
 
 ** Xresources 
@@ -6543,15 +6563,14 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 **** dwm
 
-*NOT IN USE*
-#+begin_src conf :tangle no
+#+begin_src conf :tangle .Xresources
   ! DWM
-  dwm.normbgcolor:     BACKGROUND
   dwm.normbordercolor: BLACK2
+  dwm.normbgcolor:     BACKGROUND
   dwm.normfgcolor:     FOREGROUND
-  dwm.selfgcolor:      BACKGROUND
   dwm.selbordercolor:  PURPLE1
   dwm.selbgcolor:      PURPLE1
+  dwm.selfgcolor:      BACKGROUND
   dwm.borderpx:        BORDER_SIZE
   dwm.gappih:          INNER_GAPS
   dwm.gappiv:          INNER_GAPS
@@ -6863,7 +6882,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
   rofi_menu() {
       declare -a options=(
-          " Recompile & Restart Xmonad - restart"
+          "勒 Restart Dwm - restart"
           " Logout - logout"
           " Lock - lock"
           "⏾ Sleep - sleep"
@@ -6891,26 +6910,32 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
               help_menu
               ;;
           --logout)
-              notify-send -t 0 "Session Control" "Press M-S-q to exit xmonad"
+              notify-send "Session Control" "Logging Out of Dwm"
+              xdotool key Super+Shift_L+q
               ;;
           --lock)
+              notify-send "Session Control" "Locking Session"
               light-locker-command --lock
               ;;
           --sleep)
+              notify-send "Session Control" "Going to Sleep"
               systemctl suspend
               ;;
           --reboot)
+              notify-send "Session Control" "Rebooting System"
               reboot
               ;;
           --shutdown)
+              notify-send "Session Control" "Shutting Down System"
               shutdown now
               ;;
           --hibernate)
+              notify-send "Session Control" "Hibernating System"
               systemctl hibernate
               ;;
           --restart)
-              xmonad --recompile
-              xmonad --restart
+              notify-send "Session Control" "Restarting Dwm"
+              xdotool key Super+Control_L+Shift_L+q
               ;;
           --rofi)
               rofi_menu
@@ -6954,7 +6979,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   declare -a apps_array=(\
       # System Tray Applications
       "redshift-gtk" \          # Redshift Blue Light Filter
-      "nyrna" \                 # Nyrna Application Suspend
+      "bauh-tray" \             # Bauh Package Management GUI
       "blueman-tray" \          # Blueman Bluetooth Manager
       "nm-applet" \             # Network Manager Applet
       "kdeconnect-indicator" \  # KDE Connect Indicator
@@ -6966,7 +6991,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   declare -a kill_apps_array=(\
       # System Tray Applications
       "killall redshift" \              # Redshift Blue Light Filter
-      "killall nyrna" \                 # Nyrna Application Suspend
+      "killall bauh-tray" \             # Bauh Package Management GUI
       "killall blueman-tray" \          # Blueman Bluetooth Manager
       "killall nm-applet" \             # Network Manager Applet
       "killall kdeconnect-indicator" \  # KDE Connect Indicator
@@ -7075,7 +7100,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Pre-launch script*
 
 #+begin_src shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
-  /home/sravan/.scripts/picom.sh --off
+  # /home/sravan/.scripts/picom.sh --off
   /home/sravan/.scripts/dunst.sh --dnd
 #+end_src
 

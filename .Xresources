@@ -53,6 +53,19 @@
 #define MAXLEN 50
 #define CURSOR_SIZE 16
 
+! DWM
+dwm.normbordercolor: BLACK2
+dwm.normbgcolor:     BACKGROUND
+dwm.normfgcolor:     FOREGROUND
+dwm.selbordercolor:  PURPLE1
+dwm.selbgcolor:      PURPLE1
+dwm.selfgcolor:      BACKGROUND
+dwm.borderpx:        BORDER_SIZE
+dwm.gappih:          INNER_GAPS
+dwm.gappiv:          INNER_GAPS
+dwm.gappoh:          OUTER_GAPS
+dwm.gappov:          OUTER_GAPS
+
 ! Polybar
 polybar.bar-height:    BAR_HEIGHT
 polybar.module-margin: MODULE_MARGIN

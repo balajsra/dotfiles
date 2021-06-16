@@ -19,4 +19,4 @@ xrdb ~/.Xresources
     /home/sravan/.scripts/startup.sh --kill-apps &&
     /home/sravan/.scripts/startup.sh --apps) &
 
-exec xmonad
+exec dwm

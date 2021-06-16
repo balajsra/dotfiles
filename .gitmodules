@@ -66,3 +66,9 @@
 	path = .themes/dracula-qbittorrent
 	url = git@github.com:dracula/qbittorrent.git
     branch = master
+[submodule ".config/dwm-flexipatch"]
+	path = .config/dwm-flexipatch
+	url = git@github.com:balajsra/dwm-flexipatch.git
+[submodule ".themes/fallout-grub-theme"]
+	path = .themes/fallout-grub-theme
+	url = git@github.com:shvchk/fallout-grub-theme.git

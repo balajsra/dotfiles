@@ -11,7 +11,7 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Recompile & Restart Xmonad - restart"
+        "勒 Restart Dwm - restart"
         " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
@@ -39,26 +39,32 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send -t 0 "Session Control" "Press M-S-q to exit xmonad"
+            notify-send "Session Control" "Logging Out of Dwm"
+            xdotool key Super+Shift_L+q
             ;;
         --lock)
+            notify-send "Session Control" "Locking Session"
             light-locker-command --lock
             ;;
         --sleep)
+            notify-send "Session Control" "Going to Sleep"
             systemctl suspend
             ;;
         --reboot)
+            notify-send "Session Control" "Rebooting System"
             reboot
             ;;
         --shutdown)
+            notify-send "Session Control" "Shutting Down System"
             shutdown now
             ;;
         --hibernate)
+            notify-send "Session Control" "Hibernating System"
             systemctl hibernate
             ;;
         --restart)
-            xmonad --recompile
-            xmonad --restart
+            notify-send "Session Control" "Restarting Dwm"
+            xdotool key Super+Control_L+Shift_L+q
             ;;
         --rofi)
             rofi_menu

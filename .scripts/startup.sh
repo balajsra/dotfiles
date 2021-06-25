@@ -1,20 +1,16 @@
 #!/bin/bash
-declare -a system_array=(\
+declare -a startup_array=(\
     # Background Processes
     "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
-    "greenclip daemon" \                                           # Greenclip Clipboard Manager
-    "redshift -x" \                                                # Reset redshift display gamma
+    "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
+    "/usr/bin/redshift -x" \                                       # Reset redshift display gamma
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-    "light-locker --lock-on-suspend --lock-on-lid" \               # Screen lock for lightdm
+    "/usr/bin/light-locker --lock-on-suspend --lock-on-lid" \      # Screen lock for lightdm
     "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
-    # System Restore Processes
-    "bash /home/sravan/.screenlayout/default.sh" \                 # Restore default screen layout
-    "nitrogen --restore" \                                         # Restore wallpaper
-    "numlockx on" \                                                # Enable numlock
 )
 
-declare -a kill_system_array=(\
+declare -a kill_startup_array=(\
     # Background Processes
     "killall deadd-notificat" \  # Deadd Notification Center
     "killall picom" \            # Picom Compositor
@@ -25,19 +21,22 @@ declare -a kill_system_array=(\
     "killall kdeconnectd" \      # KDE Connect Daemon
 )
 
-declare -a apps_array=(\
+declare -a delay_array=(\
     # System Tray Applications
-    "redshift-gtk" \          # Redshift Blue Light Filter
-    "bauh-tray" \             # Bauh Package Management GUI
-    "blueman-tray" \          # Blueman Bluetooth Manager
-    "nm-applet" \             # Network Manager Applet
-    "kdeconnect-indicator" \  # KDE Connect Indicator
-    "flameshot" \             # Flameshot Screenshot Tool
-    "xfce4-power-manager" \   # XFCE4 Power Manager
-    "volctl" \                # PulseAudio Volume Control
+    "/usr/bin/redshift-gtk" \                # Redshift Blue Light Filter
+    "/usr/bin/bauh-tray" \                   # Bauh Package Management GUI
+    "/usr/bin/blueman-tray" \                # Blueman Bluetooth Manager
+    "/usr/bin/nm-applet" \                   # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \        # KDE Connect Indicator
+    "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
+    "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
+    "/usr/bin/volctl" \                      # PulseAudio Volume Control
+    # System Restore Processes
+    "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
+    "/usr/bin/numlockx on" \                 # Enable numlock
 )
 
-declare -a kill_apps_array=(\
+declare -a kill_delay_array=(\
     # System Tray Applications
     "killall redshift" \              # Redshift Blue Light Filter
     "killall bauh-tray" \             # Bauh Package Management GUI
@@ -51,7 +50,7 @@ declare -a kill_apps_array=(\
 
 
 help_menu() {
-    echo "Main script to launch and kill autostart processes & applications. Use only one argument at a time."
+    echo "Main script to launch and kill startup processes. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
     # echo "  - Next:          playerctl.sh --next"
     # echo "  - Previous:      playerctl.sh --prev"
@@ -62,10 +61,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Launch System Processes - system"
-        " Launch Tray Applications - apps"
-        "ﮊ Kill System Processes - kill-system"
-        "ﮊ Kill Tray Applications - kill-apps"
+        " Launch Startup Processes - startup"
+        "羽 Launch Delayed Processes - delay"
+        " Kill Startup Processes - kill-startup"
+        " Kill Delayed Processes - kill-delay"
         " Quit - quit"
     )
 
@@ -86,8 +85,8 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --system)
-            for i in "${system_array[@]}"
+        --startup)
+            for i in "${startup_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then
@@ -97,8 +96,8 @@ main() {
                 fi
             done
             ;;
-        --apps)
-            for i in "${apps_array[@]}"
+        --delay)
+            for i in "${delay_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then
@@ -108,8 +107,8 @@ main() {
                 fi
             done
             ;;
-        --kill-system)
-            for i in "${kill_system_array[@]}"
+        --kill-startup)
+            for i in "${kill_startup_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then
@@ -119,8 +118,8 @@ main() {
                 fi
             done
             ;;
-        --kill-apps)
-            for i in "${kill_apps_array[@]}"
+        --kill-delay)
+            for i in "${kill_delay_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then

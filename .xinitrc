@@ -9,14 +9,13 @@ export QT_QPA_PLATFORMTHEME=qt5ct    # QGtkStyle
 
 xrdb ~/.Xresources
 
-# Background Processes & Daemons
-/home/sravan/.scripts/startup.sh --kill-system &&
-    /home/sravan/.scripts/startup.sh --system
+# Startup Applications
+/home/sravan/.scripts/startup.sh --kill-startup &&
+    /home/sravan/.scripts/startup.sh --startup
 
-# System Tray Applications
-# start with a delay so window manager can load first
+# Delayed Startup Applications
 (sleep 5 &&
-    /home/sravan/.scripts/startup.sh --kill-apps &&
-    /home/sravan/.scripts/startup.sh --apps) &
+    /home/sravan/.scripts/startup.sh --kill-delay &&
+    /home/sravan/.scripts/startup.sh --delay) &
 
 exec dwm

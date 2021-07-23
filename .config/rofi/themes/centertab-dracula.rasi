@@ -85,6 +85,10 @@ element {
         padding: 10px;
 }
 
+element-icon {
+        size: 2.00ch;
+}
+
 entry {
         expand: false;
         text-color: @normal-foreground;

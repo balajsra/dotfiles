@@ -14,6 +14,7 @@ rofi_menu() {
         " Raise Volume - raise"
         " Lower Volume - lower"
         " Mute - mute"
+        "﴾ Mixer - mixer"
         " Quit - quit"
     )
 
@@ -42,6 +43,9 @@ main() {
             ;;
         --mute)
             pactl set-sink-mute @DEFAULT_SINK@ toggle
+            ;;
+        --mixer)
+            pavucontrol
             ;;
         --rofi)
             rofi_menu

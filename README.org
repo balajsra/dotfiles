@@ -7014,7 +7014,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   #define BAR_HEIGHT 25
   #define MODULE_MARGIN 2
   #define MODULE_PADDING 2
-  #define TRAY_MAXSIZE 15
+  #define TRAY_MAXSIZE 20
   #define TRAY_SCALE 1
   #define BORDER_SIZE 2
   #define INNER_GAPS 20
@@ -7029,7 +7029,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   #define BAR_HEIGHT 25
   #define MODULE_MARGIN 1
   #define MODULE_PADDING 2
-  #define TRAY_MAXSIZE 15
+  #define TRAY_MAXSIZE 20
   #define TRAY_SCALE 1
   #define BORDER_SIZE 2
   #define INNER_GAPS 20
@@ -7045,7 +7045,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   #define BAR_HEIGHT 50
   #define MODULE_MARGIN 1
   #define MODULE_PADDING 2
-  #define TRAY_MAXSIZE 30
+  #define TRAY_MAXSIZE 40
   #define TRAY_SCALE 1
   #define BORDER_SIZE 4
   #define INNER_GAPS 40
@@ -7236,6 +7236,21 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
   }
 
   main $@
+#+end_src
+
+** Trackpad Control
+
+#+begin_src shell :shebang #!/bin/bash :tangle .scripts/trackpad.sh
+  trackpad_id=13
+
+  if xinput list-props $trackpad_id | grep "Device Enabled (.*):.*1" >/dev/null
+  then
+      xinput disable $trackpad_id
+      notify-send -u low -i mouse "Trackpad disabled"
+  else
+      xinput enable $trackpad_id
+      notify-send -u low -i mouse "Trackpad enabled"
+  fi
 #+end_src
 
 ** System76 Power Control

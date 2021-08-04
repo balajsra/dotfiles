@@ -69,6 +69,8 @@
 [submodule ".config/dwm-flexipatch"]
 	path = .config/dwm-flexipatch
 	url = git@github.com:balajsra/dwm-flexipatch.git
+    branch = master
 [submodule ".themes/fallout-grub-theme"]
 	path = .themes/fallout-grub-theme
 	url = git@github.com:shvchk/fallout-grub-theme.git
+    branch = master

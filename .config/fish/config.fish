@@ -1,6 +1,6 @@
 function fish_greeting
     clear
-    neofetch
+    pokemon-colorscripts -r
     echo "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>"
 end
 

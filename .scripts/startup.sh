@@ -5,7 +5,7 @@ declare -a startup_array=(\
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-    "/usr/bin/light-locker --lock-on-suspend --lock-on-lid" \      # Screen lock for lightdm
+    "/usr/bin/xss-lock -l -- multilockscreen --lock" \             # Session Lock Utility
     "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
     "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
 )
@@ -16,7 +16,7 @@ declare -a kill_startup_array=(\
     "killall picom" \            # Picom Compositor
     "killall greenclip" \        # Greenclip Clipboard Manager
     "killall polkit" \           # GNOME Polkit Authentication Agent
-    "killall light-locker" \     # Screen lock for lightdm
+    "killall xss-lock" \         # Session Lock Utility
     "killall kdeconnectd" \      # KDE Connect Daemon
     "killall redshift" \         # Redshift Blue Light Filter
 )

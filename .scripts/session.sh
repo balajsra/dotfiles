@@ -25,7 +25,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" != "quit" ]]; then
-        main "--$option" && main "--rofi"
+        main "--$option"
     fi
 }
 
@@ -44,7 +44,7 @@ main() {
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"
-            light-locker-command --lock
+            loginctl lock-session
             ;;
         --sleep)
             notify-send "Session Control" "Going to Sleep"

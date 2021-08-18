@@ -125,5 +125,7 @@ export TERM=xterm-256color
 export QT_STYLE_OVERRIDE=kvantum
 export XDG_CONFIG_HOME=$HOME/.config
 
-# Run neofetch
-neofetch
+# Greeting
+clear
+pokemon-colorscripts -r
+echo "bash shell"

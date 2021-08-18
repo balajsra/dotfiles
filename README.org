@@ -2771,6 +2771,43 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
     ; screen=1
 #+end_src
 
+* Lock Screen
+** Multilockscreen
+
+*** Default Options
+
+#+begin_src conf :tangle .config/multilock/config
+  display_on=0
+  span_image=false
+  lock_timeout=0
+  fx_list=(dim blur dimblur pixel dimpixel color)
+  dim_level=40
+  blur_level=1
+  pixel_scale=10,1000
+  solid_color=333333
+#+end_src
+
+*** Theme Options
+
+#+begin_src conf :tangle .config/multilock/config
+  loginbox=282a36ff
+  loginshadow=44475aff
+  locktext="Type password to unlock..."
+  font="sans-serif"
+  ringcolor=44475aff
+  insidecolor=00000000
+  separatorcolor=00000000
+  ringvercolor=44475aff
+  insidevercolor=00000000
+  ringwrongcolor=ff5555ff
+  insidewrongcolor=ff5555ff
+  keyhlcolor=bd93f9ff
+  bshlcolor=8be9fdff
+  verifcolor=50fa7bff
+  timecolor=f8f8f2ff
+  datecolor=f8f8f2ff
+#+end_src
+
 * Terminal & Shell 
 
 ** Prompt
@@ -3862,8 +3899,10 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
   export QT_STYLE_OVERRIDE=kvantum
   export XDG_CONFIG_HOME=$HOME/.config
 
-  # Run neofetch
-  neofetch
+  # Greeting
+  clear
+  pokemon-colorscripts -r
+  echo "bash shell"
 #+end_src
 *** Zsh
 
@@ -4055,8 +4094,10 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
   # Set your countries like --country France --country Germany -- or more.
   alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu && sudo updatedb'
 
-  # Run neofetch
-  neofetch
+  # Greeting
+  clear
+  pokemon-colorscripts -r
+  echo "zsh shell"
 #+end_src
 
 *** Fish
@@ -4066,7 +4107,7 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 #+begin_src fish :tangle .config/fish/config.fish
   function fish_greeting
       clear
-      neofetch
+      pokemon-colorscripts -r
       echo "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>"
   end
 #+end_src
@@ -7410,7 +7451,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
       if [[ "$option" != "quit" ]]; then
-          main "--$option" && main "--rofi"
+          main "--$option"
       fi
   }
 
@@ -7429,7 +7470,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
               ;;
           --lock)
               notify-send "Session Control" "Locking Session"
-              light-locker-command --lock
+              loginctl lock-session
               ;;
           --sleep)
               notify-send "Session Control" "Going to Sleep"
@@ -7470,7 +7511,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
       "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
       "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
       "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-      "/usr/bin/light-locker --lock-on-suspend --lock-on-lid" \      # Screen lock for lightdm
+      "/usr/bin/xss-lock -l -- multilockscreen --lock" \             # Session Lock Utility
       "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
       "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
   )
@@ -7481,7 +7522,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
       "killall picom" \            # Picom Compositor
       "killall greenclip" \        # Greenclip Clipboard Manager
       "killall polkit" \           # GNOME Polkit Authentication Agent
-      "killall light-locker" \     # Screen lock for lightdm
+      "killall xss-lock" \         # Session Lock Utility
       "killall kdeconnectd" \      # KDE Connect Daemon
       "killall redshift" \         # Redshift Blue Light Filter
   )

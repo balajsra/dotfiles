@@ -13,13 +13,16 @@ rofi_menu() {
     declare -a options=(
         " Switchable Graphics - rofi-graphics"
         " Performance Profile - rofi-profile"
+        " Back - back"
         " Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-    if [[ "$option" != "quit" ]]; then
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
 }
@@ -31,13 +34,16 @@ rofi_graphics_menu() {
         "Switch to Hybrid Mode - graphics-hybrid"
         "Switch to Integrated Mode - graphics-integrated"
         "Switch to Nvidia Mode - graphics-nvidia"
+        " Back - back"
         " Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-    if [[ "$option" != "quit" ]]; then
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-graphics"
     fi
 }
@@ -48,13 +54,16 @@ rofi_profile_menu() {
         "Switch to Battery Mode - profile-battery"
         "Switch to Balanced Mode - profile-balanced"
         "Switch to Performance Mode - profile-performance"
+        " Back - back"
         " Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-    if [[ "$option" != "quit" ]]; then
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-profile"
     fi
 }

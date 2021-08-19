@@ -15,15 +15,19 @@ rofi_menu() {
         " Notifications - deadd"
         " Media - playerctl"
         "墳Volume - pactl"
+        " Startup Processes - startup"
         " Hardware - system76-power"
         " Power Menu - session"
+        " Back - back"
         " Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-    if [[ "$option" != "quit" ]]; then
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
 }
@@ -48,6 +52,9 @@ main() {
             ;;
         --pactl)
             /home/sravan/.scripts/pactl.sh --rofi
+            ;;
+        --startup)
+            /home/sravan/.scripts/startup.sh --rofi
             ;;
         --system76-power)
             /home/sravan/.scripts/system76-power.sh --rofi

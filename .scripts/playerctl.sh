@@ -15,13 +15,16 @@ rofi_menu() {
         "怜 Next - next"
         "玲 Previous - prev"
         "﴾ Change Source - change"
+        " Back - back"
         " Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-    if [[ "$option" != "quit" ]]; then
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
 }

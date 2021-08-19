@@ -661,13 +661,16 @@ Pull and update submodules
           " Close Notification - close"
           " View History - history"
           " Toggle Do Not Disturb - dnd"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -1156,13 +1159,16 @@ Each label is represented as a clickable button in the notification center. The 
           " Toggle Notification Center - toggle-center"
           " Pause Popup Notifications - pause"
           " Unpause Popup Notifications - unpause"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -2654,13 +2660,16 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
           "⏼ Toggle - toggle"
           " Turn On - on"
           " Turn Off - off"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -7200,13 +7209,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
           "怜 Next - next"
           "玲 Previous - prev"
           "﴾ Change Source - change"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -7261,13 +7273,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
           " Lower Volume - lower"
           " Mute - mute"
           "﴾ Mixer - mixer"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -7335,13 +7350,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
       declare -a options=(
           " Switchable Graphics - rofi-graphics"
           " Performance Profile - rofi-profile"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -7353,13 +7371,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
           "Switch to Hybrid Mode - graphics-hybrid"
           "Switch to Integrated Mode - graphics-integrated"
           "Switch to Nvidia Mode - graphics-nvidia"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi-graphics"
       fi
   }
@@ -7370,13 +7391,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
           "Switch to Battery Mode - profile-battery"
           "Switch to Balanced Mode - profile-balanced"
           "Switch to Performance Mode - profile-performance"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi-profile"
       fi
   }
@@ -7468,13 +7492,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
           " Reboot - reboot"
           " Shutdown - shutdown"
           "鈴 Hibernate - hibernate"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && killall rofi
       fi
   }
@@ -7595,13 +7622,16 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
           "羽 Launch Delayed Processes - delay"
           " Kill Startup Processes - kill-startup"
           " Kill Delayed Processes - kill-delay"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -7708,15 +7738,19 @@ These are scripts that should be run from Lutris when launching or exiting a gam
           " Notifications - deadd"
           " Media - playerctl"
           "墳Volume - pactl"
+          " Startup Processes - startup"
           " Hardware - system76-power"
           " Power Menu - session"
+          " Back - back"
           " Quit - quit"
       )
 
       choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-      if [[ "$option" != "quit" ]]; then
+      if [[ "$option" == "quit" ]]; then
+          kilall rofi
+      elif [[ "$option" != "back" ]]; then
           main "--$option" && main "--rofi"
       fi
   }
@@ -7741,6 +7775,9 @@ These are scripts that should be run from Lutris when launching or exiting a gam
               ;;
           --pactl)
               /home/sravan/.scripts/pactl.sh --rofi
+              ;;
+          --startup)
+              /home/sravan/.scripts/startup.sh --rofi
               ;;
           --system76-power)
               /home/sravan/.scripts/system76-power.sh --rofi

@@ -27,13 +27,16 @@ rofi_menu() {
         " Toggle Notification Center - toggle-center"
         " Pause Popup Notifications - pause"
         " Unpause Popup Notifications - unpause"
+        " Back - back"
         " Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-    if [[ "$option" != "quit" ]]; then
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
 }

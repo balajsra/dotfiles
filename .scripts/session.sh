@@ -18,13 +18,16 @@ rofi_menu() {
         " Reboot - reboot"
         " Shutdown - shutdown"
         "鈴 Hibernate - hibernate"
+        " Back - back"
         " Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
-    if [[ "$option" != "quit" ]]; then
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
         main "--$option" && killall rofi
     fi
 }

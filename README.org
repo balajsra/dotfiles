@@ -2794,7 +2794,7 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 #+begin_src conf :tangle .config/betterlockscreenrc
   loginbox=282a36ff
   loginshadow=282a36ff
-  locktext="Sravan Balaji's Laptop"
+  locktext="Enter password to unlock..."
   font="sans-serif"
   ringcolor=44475aff
   insidecolor=00000000
@@ -7475,7 +7475,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
       option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
       if [[ "$option" != "quit" ]]; then
-          main "--$option"
+          main "--$option" && killall rofi
       fi
   }
 

@@ -11,7 +11,7 @@ wallpaper_cmd="feh --bg-fill"
 
 loginbox=282a36ff
 loginshadow=282a36ff
-locktext="Sravan Balaji's Laptop"
+locktext="Enter password to unlock..."
 font="sans-serif"
 ringcolor=44475aff
 insidecolor=00000000

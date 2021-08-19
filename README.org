@@ -2772,40 +2772,64 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 #+end_src
 
 * Lock Screen
-** Multilockscreen
+** Betterlockscreen
 
 *** Default Options
 
-#+begin_src conf :tangle .config/multilock/config
+#+begin_src conf :tangle .config/betterlockscreenrc
   display_on=0
   span_image=false
-  lock_timeout=0
+  lock_timeout=300
   fx_list=(dim blur dimblur pixel dimpixel color)
   dim_level=40
   blur_level=1
   pixel_scale=10,1000
   solid_color=333333
+  wallpaper_cmd="feh --bg-fill"
+  # i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
 #+end_src
 
 *** Theme Options
 
-#+begin_src conf :tangle .config/multilock/config
+#+begin_src conf :tangle .config/betterlockscreenrc
   loginbox=282a36ff
-  loginshadow=44475aff
-  locktext="Type password to unlock..."
+  loginshadow=282a36ff
+  locktext="Sravan Balaji's Laptop"
   font="sans-serif"
   ringcolor=44475aff
   insidecolor=00000000
   separatorcolor=00000000
-  ringvercolor=44475aff
-  insidevercolor=00000000
+  ringvercolor=50fa7bff
+  insidevercolor=50fa7bff
   ringwrongcolor=ff5555ff
   insidewrongcolor=ff5555ff
+  timecolor=f8f8f2ff
+  time_format="%X"
+  greetercolor=f8f8f2ff
+  layoutcolor=f8f8f2ff
   keyhlcolor=bd93f9ff
   bshlcolor=8be9fdff
   verifcolor=50fa7bff
-  timecolor=f8f8f2ff
-  datecolor=f8f8f2ff
+  wrongcolor=ff5555ff
+  modifcolor=ff5555ff
+  bgcolor=282a36ff
+#+end_src
+
+*** Pre-Lock
+
+#+begin_src conf :tangle .config/betterlockscreenrc
+  prelock() {
+      /home/sravan/.scripts/deadd.sh --pause
+  }
+#+end_src
+
+*** Post-Lock
+
+#+begin_src conf :tangle .config/betterlockscreenrc
+  # custom postlock
+  postlock() {
+      /home/sravan/.scripts/deadd.sh --unpause
+  }
 #+end_src
 
 * Terminal & Shell 
@@ -7511,7 +7535,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
       "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
       "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
       "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-      "/usr/bin/xss-lock -l -- multilockscreen --lock" \             # Session Lock Utility
+      "/usr/bin/xss-lock -l -- betterlockscreen --lock" \            # Session Lock Utility
       "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
       "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
   )

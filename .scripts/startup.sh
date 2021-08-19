@@ -5,7 +5,7 @@ declare -a startup_array=(\
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-    "/usr/bin/xss-lock -l -- multilockscreen --lock" \             # Session Lock Utility
+    "/usr/bin/xss-lock -l -- betterlockscreen --lock" \            # Session Lock Utility
     "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
     "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
 )

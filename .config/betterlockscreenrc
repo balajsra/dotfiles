@@ -1,0 +1,41 @@
+display_on=0
+span_image=false
+lock_timeout=300
+fx_list=(dim blur dimblur pixel dimpixel color)
+dim_level=40
+blur_level=1
+pixel_scale=10,1000
+solid_color=333333
+wallpaper_cmd="feh --bg-fill"
+# i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
+
+loginbox=282a36ff
+loginshadow=282a36ff
+locktext="Enter password to unlock..."
+font="sans-serif"
+ringcolor=44475aff
+insidecolor=00000000
+separatorcolor=00000000
+ringvercolor=50fa7bff
+insidevercolor=50fa7bff
+ringwrongcolor=ff5555ff
+insidewrongcolor=ff5555ff
+timecolor=f8f8f2ff
+time_format="%X"
+greetercolor=f8f8f2ff
+layoutcolor=f8f8f2ff
+keyhlcolor=bd93f9ff
+bshlcolor=8be9fdff
+verifcolor=50fa7bff
+wrongcolor=ff5555ff
+modifcolor=ff5555ff
+bgcolor=282a36ff
+
+prelock() {
+    /home/sravan/.scripts/deadd.sh --pause
+}
+
+# custom postlock
+postlock() {
+    /home/sravan/.scripts/deadd.sh --unpause
+}

@@ -19,28 +19,6 @@
 #define CYAN2      #9AEDFE
 #define ORANGE     #FFB86C
 
-! Regular DPI Parameters
-#define DPI 96
-#define BAR_HEIGHT 25
-#define MODULE_MARGIN 2
-#define TRAY_MAXSIZE 15
-#define TRAY_SCALE 1
-#define BORDER_SIZE 2
-#define INNER_GAPS 20
-#define OUTER_GAPS 10
-#define MAXLEN 75
-
-! ! HiDPI Parameters
-! #define DPI 192
-! #define BAR_HEIGHT 50
-! #define MODULE_MARGIN 1
-! #define TRAY_MAXSIZE 30
-! #define TRAY_SCALE 1
-! #define BORDER_SIZE 4
-! #define INNER_GAPS 40
-! #define OUTER_GAPS 20
-! #define MAXLEN 45
-
 ! Dracula Xresources Palette
 *.foreground: FOREGROUND
 *.background: BACKGROUND
@@ -62,13 +40,26 @@
 *.color15:    WHITE1
 *.color16:    ORANGE
 
+! System76 Oryx Pro 7 DPI Parameters
+#define DPI 96
+#define BAR_HEIGHT 25
+#define MODULE_MARGIN 1
+#define MODULE_PADDING 2
+#define TRAY_MAXSIZE 20
+#define TRAY_SCALE 1
+#define BORDER_SIZE 2
+#define INNER_GAPS 20
+#define OUTER_GAPS 10
+#define MAXLEN 50
+#define CURSOR_SIZE 16
+
 ! DWM
-dwm.normbgcolor:     BACKGROUND
 dwm.normbordercolor: BLACK2
+dwm.normbgcolor:     BACKGROUND
 dwm.normfgcolor:     FOREGROUND
-dwm.selfgcolor:      BACKGROUND
 dwm.selbordercolor:  PURPLE1
 dwm.selbgcolor:      PURPLE1
+dwm.selfgcolor:      BACKGROUND
 dwm.borderpx:        BORDER_SIZE
 dwm.gappih:          INNER_GAPS
 dwm.gappiv:          INNER_GAPS
@@ -83,7 +74,7 @@ polybar.tray-scale:    TRAY_SCALE
 polybar.maxlen:        MAXLEN
 
 ! Dunst
-dunst.geometry-x:           OUTER_GAPS
+dunst.geometry-x:           0
 dunst.geometry-y:           BAR_HEIGHT
 dunst.sep-height:           BORDER_SIZE
 dunst.padding:              OUTER_GAPS
@@ -92,13 +83,14 @@ dunst.max-icon-size:        DPI
 dunst.frame-width:          BORDER_SIZE
 dunst.low-background:       BACKGROUND
 dunst.low-foreground:       FOREGROUND
-dunst.low-frame:            PURPLE1
+dunst.low-frame:            GREEN1
 dunst.normal-background:    BACKGROUND
 dunst.normal-foreground:    FOREGROUND
-dunst.normal-frame:         PURPLE1
+dunst.normal-frame:         GREEN1
 dunst.critical-background:  RED1
 dunst.critical-foreground:  FOREGROUND
-dunst.critical-frame:       PURPLE1
+dunst.critical-frame:       GREEN1
 
 ! Display Scaling
 *.dpi: DPI
+Xcursor.size: CURSOR_SIZE

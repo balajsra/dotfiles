@@ -1,27 +1,11 @@
-############
-# GREETING #
-############
 function fish_greeting
-    # Indices of colorscripts that don't block prompt
-    set colorscript_indices 2 3 5 6 7 13 14 15 16 17 18 19 20 21 22 23 25 26 27 28 29 30 31 36 37 38 39 40 41 43 44 46 47 48 49 50 51
-    # Get length of array
-    set length (count $colorscript_indices)
-    # Randomly select array index
-    set i (math (random) % $length + 1)
-    # Output randomly selected colorscript from approved list
-    colorscript -e $colorscript_indices[$i]
-    # Output swimming fish string
+    clear
+    pokemon-colorscripts -r
     echo "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>"
 end
 
-#############
-# VARIABLES #
-#############
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin/
 
-###########
-# ALIASES #
-###########
 # pacman and paru
 alias pacsyu='sudo pacman -Syyu' # update only standard pkgs
 alias parusua='paru -Sua --noconfirm' # update only AUR pkgs
@@ -54,12 +38,6 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 # bare git repo alias for dotfiles
 alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
 
-# ssh fix for kitty terminal
-alias ssh="kitty +kitten ssh"
-
-#######
-# TTY #
-#######
 if [ "$TERM" = "linux" ]
     then
     printf %b '\e[40m' '\e[8]' # set default background to color 0 'dracula-bg'
@@ -83,8 +61,5 @@ if [ "$TERM" = "linux" ]
     clear
 end
 
-##########
-# PROMPT #
-##########
 # Starship Prompt
 starship init fish | source

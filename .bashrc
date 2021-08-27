@@ -116,15 +116,16 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Run neofetch when opening terminal
-neofetch
-
 # ALIASES
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# EXPORTS
-export EDITOR="code -w"
+# ENVIRONMENT VARIABLES
+export EDITOR="emacs"
 export TERM=xterm-256color
+export QT_STYLE_OVERRIDE=kvantum
+export XDG_CONFIG_HOME=$HOME/.config
 
-# Starship Prompt
-eval "$(starship init bash)"
+# Greeting
+clear
+pokemon-colorscripts -r
+echo "bash shell"

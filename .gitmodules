@@ -54,10 +54,6 @@
 	path = .themes/dracula-matlab
 	url = git@github.com:dracula/matlab.git
     branch = master
-[submodule ".config/emacs"]
-	path = .config/emacs
-	url = git@github.com:balajsra/emacs.git
-    branch = main
 [submodule ".xmonad"]
 	path = .xmonad
 	url = git@github.com:balajsra/xmonad.git

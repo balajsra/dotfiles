@@ -41,3 +41,12 @@
         background-color: #bd93f9;
         text-color: #282a36;
 }
+
+#element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+#element-icon {
+    background-color: inherit;
+}

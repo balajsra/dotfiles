@@ -49,3 +49,12 @@ element {
 element selected {
         background-color: #44475a;
 }
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element-icon {
+    background-color: inherit;
+}

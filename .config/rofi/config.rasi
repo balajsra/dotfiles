@@ -1,17 +1,17 @@
 configuration {
-        modi: "window,drun,combi,run,clipboard:greenclip print,ssh";
+    modi: "window,drun,combi,run,clipboard:greenclip print,ssh";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/
-        font: "NotoSans Nerd Font 12";
+    font: "NotoSans Nerd Font 12";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
-        show-icons: true;
-        terminal: "kitty";
+    show-icons: true;
+    terminal: "kitty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
@@ -19,7 +19,7 @@ configuration {
 /*	run-shell-command: "{terminal} -e {cmd}";*/
 /*	window-command: "wmctrl -i -R {window}";*/
 /*	window-match-fields: "all";*/
-        icon-theme: "Papirus-Dark";
+    icon-theme: "Papirus-Dark";
 /*	drun-match-fields: "name,generic,exec,categories";*/
 /*	drun-show-actions: false;*/
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
@@ -34,7 +34,7 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-        combi-modi: "window,drun";
+    combi-modi: "window,drun";
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -53,7 +53,7 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-/*	theme: ;*/
+    theme: "centertab-dracula";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -89,8 +89,8 @@ configuration {
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
-    kb-mode-next: "Shift+Right,Control+Tab,Control+l";
-    kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Control+h";
+    kb-mode-next: "Shift+Right,Control+Tab";
+    kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
     kb-row-up: "Up,Control+k,Control+p,ISO_Left_Tab";
@@ -143,10 +143,3 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-
-@import "./themes/centertab-dracula.rasi"
-/* @import "./themes/dmenu-dracula.rasi" */
-/* @import "./themes/dracula-blurry-full.rasi" */
-/* @import "./themes/dracula.rasi" */
-/* @import "./themes/sidetab-dracula.rasi" */
-/* @import "./themes/slate-dracula.rasi" */

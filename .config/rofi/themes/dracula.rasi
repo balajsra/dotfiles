@@ -80,6 +80,13 @@
     background-color: @active-background;
     text-color:       @foreground;
 }
+#element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+#element-icon {
+    background-color: inherit;
+}
 #scrollbar {
     width:        2px ;
     border:       0;

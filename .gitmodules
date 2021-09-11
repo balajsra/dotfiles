@@ -70,3 +70,19 @@
 	path = .themes/fallout-grub-theme
 	url = git@github.com:shvchk/fallout-grub-theme.git
     branch = master
+[submodule ".config/emacs"]
+	path = .config/emacs
+	url = git@github.com:plexus/chemacs2.git
+    branch = master
+[submodule ".config/personal-emacs"]
+	path = .config/personal-emacs
+	url = git@github.com:balajsra/emacs.git
+    branch = main
+[submodule ".config/doom-emacs"]
+	path = .config/doom-emacs
+	url = git@github.com:hlissner/doom-emacs.git
+    branch = develop
+[submodule ".config/doom-emacs-config"]
+	path = .config/doom-emacs-config
+	url = git@github.com:balajsra/doom-emacs-config.git
+    branch = master

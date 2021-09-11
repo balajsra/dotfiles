@@ -48,7 +48,6 @@ declare -a kill_delay_array=(\
     "killall nyrna" \                 # Nyrna
 )
 
-
 help_menu() {
     echo "Main script to launch and kill startup processes. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"

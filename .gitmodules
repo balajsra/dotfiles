@@ -70,7 +70,3 @@
 	path = .themes/fallout-grub-theme
 	url = git@github.com:shvchk/fallout-grub-theme.git
     branch = master
-[submodule ".config/emacs"]
-	path = .config/emacs
-	url = git@github.com:balajsra/emacs.git
-    branch = main

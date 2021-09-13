@@ -86,3 +86,7 @@
 	path = .config/doom-emacs-config
 	url = git@github.com:balajsra/doom-emacs-config.git
     branch = master
+[submodule ".config/zathura"]
+	path = .config/zathura
+	url = git@github.com:dracula/zathura.git
+    branch = master

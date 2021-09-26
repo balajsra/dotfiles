@@ -2573,6 +2573,7 @@ detect-client-opacity = true;
 # try detecting this with X RandR extension.
 #
 # refresh-rate = 60
+refresh-rate = 144
 
 # Limit picom to repaint at most once every 1 / 'refresh_rate' second to
 # boost performance. This should not be used with
@@ -2781,8 +2782,8 @@ is_running() {
 rofi_menu() {
     declare -a options=(
         "⏼ Toggle - toggle"
-        " Turn On - on"
-        " Turn Off - off"
+        " Turn On - on"
+        " Turn Off - off"
         " Back - back"
         " Quit - quit"
     )
@@ -2818,7 +2819,7 @@ main() {
                 killall picom
             fi
 
-            picom --config /home/sravan/.config/picom/picom.conf &
+            picom --config /home/sravan/.config/picom/picom.conf -b
 
             notify-send "Turning Picom ON"
             ;;
@@ -7850,8 +7851,8 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Pre-launch script*
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
-/home/sravan/.scripts/deadd.sh --pause
 /home/sravan/.scripts/picom.sh --off
+/home/sravan/.scripts/deadd.sh --pause
 #+END_SRC
 
 *** Post-Exit Script
@@ -7860,7 +7861,6 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
 /home/sravan/.scripts/deadd.sh --unpause
-/home/sravan/.scripts/picom.sh --on
 #+END_SRC
 
 ** Control Center

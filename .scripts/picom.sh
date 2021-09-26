@@ -18,8 +18,8 @@ is_running() {
 rofi_menu() {
     declare -a options=(
         "⏼ Toggle - toggle"
-        " Turn On - on"
-        " Turn Off - off"
+        " Turn On - on"
+        " Turn Off - off"
         " Back - back"
         " Quit - quit"
     )
@@ -55,7 +55,7 @@ main() {
                 killall picom
             fi
 
-            picom --config /home/sravan/.config/picom/picom.conf &
+            picom --config /home/sravan/.config/picom/picom.conf -b
 
             notify-send "Turning Picom ON"
             ;;

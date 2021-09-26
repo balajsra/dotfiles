@@ -90,3 +90,7 @@
 	path = .config/zathura
 	url = git@github.com:dracula/zathura.git
     branch = master
+[submodule ".themes/matlab-schemes"]
+	path = .themes/matlab-schemes
+	url = git@github.com:scottclowe/matlab-schemes.git
+    branch = master

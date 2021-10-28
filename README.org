@@ -1032,7 +1032,7 @@ Note: If you want your buttons in the notification center to be
 
 Numbers of buttons that can be drawn on a row of the notification center.
 #+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-buttonsPerRow = 5
+buttonsPerRow = 3
 #+END_SRC
 
 Height of buttons in the notification center (in pixels).
@@ -1048,11 +1048,13 @@ buttonMargin = 2
 Labels written on the buttons in the notification center. Labels should be written between quotes and separated by a colon. For example:
 #+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
 # labels = "VPN":"Bluetooth":"Wifi":"Screensaver"
+labels = "Pause Notifications":"Unpause Notifications":"Close Notification Center"
 #+END_SRC
 
 Each label is represented as a clickable button in the notification center. The commands variable below define the commands that should be launched when the user clicks on the associated button.  There should be the same number of entries in `commands` and in `labels`
 #+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
 # commands = "sudo vpnToggle":"bluetoothToggle":"wifiToggle":"screensaverToggle"
+commands = "/home/sravan/.scripts/deadd.sh --pause":"/home/sravan/.scripts/deadd.sh --unpause":"/home/sravan/.scripts/deadd.sh --toggle-center"
 #+END_SRC
 
 *** Styling

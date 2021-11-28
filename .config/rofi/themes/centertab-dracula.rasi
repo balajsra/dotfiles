@@ -4,16 +4,6 @@
  * Copyright: deadguy & Sravan Balaji
  */
 
-configuration {
-    display-drun: "launch";
-    display-run: "execute";
-    display-window: "window";
-    display-combi: "combi";
-    show-icons: true;
-    sidebar-mode: false;
-    font: "NotoSans Nerd Font 12";
-}
-
 * {
     background-color: #282a36ff;
     text-color:       #f8f8f2ff;

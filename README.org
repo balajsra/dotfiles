@@ -1360,7 +1360,7 @@ configuration {
 /*	sorting-method: ;*/
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
-/*	sidebar-mode: false;*/
+    sidebar-mode: false;
 /*	eh: 1;*/
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
@@ -1384,7 +1384,6 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-    theme: "centertab-dracula";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -1394,12 +1393,12 @@ configuration {
 /*	matching-negate-char: '-' /* unsupported */;*/
 /*	cache-dir: ;*/
 /*	pid: "/run/user/1000/rofi.pid";*/
-/*	display-window: ;*/
+    display-window: "window";
 /*	display-windowcd: ;*/
-/*	display-run: ;*/
+    display-run: "execute";
 /*	display-ssh: ;*/
-/*	display-drun: ;*/
-/*	display-combi: ;*/
+    display-drun: "launch";
+    display-combi: "combi";
 /*	display-keys: ;*/
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/
@@ -1474,6 +1473,8 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+
+@theme "centertab-dracula"
 #+END_SRC
 
 *** Themes
@@ -1486,16 +1487,6 @@ configuration {
  ,* User: balajsra
  ,* Copyright: deadguy & Sravan Balaji
  ,*/
-
-configuration {
-    display-drun: "launch";
-    display-run: "execute";
-    display-window: "window";
-    display-combi: "combi";
-    show-icons: true;
-    sidebar-mode: false;
-    font: "NotoSans Nerd Font 12";
-}
 
 ,* {
     background-color: #282a36ff;

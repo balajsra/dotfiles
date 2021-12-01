@@ -877,7 +877,7 @@ marginBottom = 0
 
 Margin to the right of the notification center in pixels.
 #+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-marginRight = 0
+marginRight = 1220
 #+END_SRC
 
 Width of the notification center in pixels. 
@@ -960,7 +960,7 @@ distanceTop = 25
 
 Margin on the right of the notification (in pixels).
 #+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-distanceRight = 0
+distanceRight = 1520
 #+END_SRC
 
 Vertical distance between 2 notifications (in pixels).

@@ -7223,8 +7223,9 @@ exec dwm
 ! Regular DPI Parameters
 #define DPI 96
 #define BAR_HEIGHT 25
-#define MODULE_MARGIN 2
-#define MODULE_PADDING 2
+#define MODULE_MARGIN 1
+#define MODULE_PADDING 1
+#define MODULE_DWM_PADDING 2
 #define TRAY_MAXSIZE 20
 #define TRAY_SCALE 1
 #define BORDER_SIZE 2
@@ -7239,7 +7240,8 @@ exec dwm
 #define DPI 96
 #define BAR_HEIGHT 25
 #define MODULE_MARGIN 1
-#define MODULE_PADDING 2
+#define MODULE_PADDING 1
+#define MODULE_DWM_PADDING 2
 #define TRAY_MAXSIZE 20
 #define TRAY_SCALE 1
 #define BORDER_SIZE 2
@@ -7255,7 +7257,8 @@ exec dwm
 #define DPI 192
 #define BAR_HEIGHT 50
 #define MODULE_MARGIN 1
-#define MODULE_PADDING 2
+#define MODULE_PADDING 1
+#define MODULE_DWM_PADDING 2
 #define TRAY_MAXSIZE 40
 #define TRAY_SCALE 1
 #define BORDER_SIZE 4
@@ -7288,11 +7291,13 @@ dwm.gappov:          OUTER_GAPS
 
 #+BEGIN_SRC conf :tangle .Xresources
 ! Polybar
-polybar.bar-height:    BAR_HEIGHT
-polybar.module-margin: MODULE_MARGIN
-polybar.tray-maxsize:  TRAY_MAXSIZE
-polybar.tray-scale:    TRAY_SCALE
-polybar.maxlen:        MAXLEN
+polybar.bar-height:         BAR_HEIGHT
+polybar.module-margin:      MODULE_MARGIN
+polybar.module-padding:     MODULE_PADDING
+polybar.module-dwm-padding: MODULE_DWM_PADDING
+polybar.tray-maxsize:       TRAY_MAXSIZE
+polybar.tray-scale:         TRAY_SCALE
+polybar.maxlen:             MAXLEN
 #+END_SRC
 
 **** Dunst

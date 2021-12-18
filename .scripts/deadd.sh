@@ -62,7 +62,7 @@ main() {
                 killall deadd-notificat
             fi
 
-            /home/sravan/.local/bin/notify-send.py a --hint \
+            /usr/bin/notify-send.py a --hint \
                 boolean:deadd-notification-center:true \
                 string:type:reloadStyle
 
@@ -81,12 +81,12 @@ main() {
         --pause)
             notify-send "Pausing Notifications"
 
-            /home/sravan/.local/bin/notify-send.py a --hint \
+            /usr/bin/notify-send.py a --hint \
                 boolean:deadd-notification-center:true \
                 string:type:pausePopups > /dev/null 2>&1
             ;;
         --unpause)
-            /home/sravan/.local/bin/notify-send.py a --hint \
+            /usr/bin/notify-send.py a --hint \
                 boolean:deadd-notification-center:true \
                 string:type:unpausePopups > /dev/null 2>&1
 

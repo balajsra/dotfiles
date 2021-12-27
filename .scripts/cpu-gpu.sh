@@ -1,6 +1,6 @@
 #!/bin/bash
 help_menu() {
-    echo "Script to interact with system76-power. Use only one argument at a time."
+    echo "Script to control CPU & GPU modes / performance profiles. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
     # echo "  - Next:          playerctl.sh --next"
     # echo "  - Previous:      playerctl.sh --prev"
@@ -11,8 +11,9 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Switchable Graphics - rofi-graphics"
-        " Performance Profile - rofi-profile"
+        " CPU Performance Profile - rofi-cpu-profile"
+        " GPU Switching - rofi-graphics"
+        " NVIDIA GPU Performance Profile - rofi-gpu-profile"
         " Back - back"
         " Quit - quit"
     )
@@ -24,6 +25,26 @@ rofi_menu() {
         kilall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
+    fi
+}
+
+rofi_cpu_profile_menu() {
+    declare -a options=(
+        "Query Current Profile - cpu-profile-query"
+        "Switch to Battery Mode - cpu-profile-battery"
+        "Switch to Balanced Mode - cpu-profile-balanced"
+        "Switch to Performance Mode - cpu-profile-performance"
+        " Back - back"
+        " Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && main "--rofi-cpu-profile"
     fi
 }
 
@@ -48,12 +69,12 @@ rofi_graphics_menu() {
     fi
 }
 
-rofi_profile_menu() {
+rofi_gpu_profile_menu() {
     declare -a options=(
-        "Query Current Profile - profile-query"
-        "Switch to Battery Mode - profile-battery"
-        "Switch to Balanced Mode - profile-balanced"
-        "Switch to Performance Mode - profile-performance"
+        "Query Current Profile - gpu-profile-query"
+        "Switch to Adaptive Mode - gpu-profile-adaptive"
+        "Switch to Performance Mode - gpu-profile-performance"
+        "Switch to Auto Mode - gpu-profile-auto"
         " Back - back"
         " Quit - quit"
     )
@@ -64,7 +85,7 @@ rofi_profile_menu() {
     if [[ "$option" == "quit" ]]; then
         kilall rofi
     elif [[ "$option" != "back" ]]; then
-        main "--$option" && main "--rofi-profile"
+        main "--$option" && main "--rofi-gpu-profile"
     fi
 }
 
@@ -104,24 +125,43 @@ main() {
             pkexec system76-power graphics nvidia
             notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
             ;;
-        --rofi-profile)
-            rofi_profile_menu
+        --rofi-cpu-profile)
+            rofi_cpu_profile_menu
             ;;
-        --profile-query)
+        --cpu-profile-query)
             current_profile=$(pkexec system76-power profile)
-            notify-send "System76-Power Profile" "$current_profile"
+            notify-send "System76-Power CPU Profile" "$current_profile"
             ;;
-        --profile-battery)
+        --cpu-profile-battery)
             pkexec system76-power profile battery
-            notify-send "System76-Power Profile" "Switched to Battery Profile"
+            notify-send "System76-Power CPU Profile" "Switched to Battery Profile"
             ;;
-        --profile-balanced)
+        --cpu-profile-balanced)
             pkexec system76-power profile balanced
-            notify-send "System76-Power Profile" "Switched to Balanced Profile"
+            notify-send "System76-Power CPU Profile" "Switched to Balanced Profile"
             ;;
-        --profile-performance)
+        --cpu-profile-performance)
             pkexec system76-power profile performance
-            notify-send "System76-Power Profile" "Switched to Performance Profile"
+            notify-send "System76-Power CPU Profile" "Switched to Performance Profile"
+            ;;
+        --rofi-gpu-profile)
+            rofi_gpu_profile_menu
+            ;;
+        --gpu-profile-query)
+            current_profile=$(nvidia-settings -q GpuPowerMizerMode)
+            notify-send "NVIDIA GPU Profile" "$current_profile"
+            ;;
+        --gpu-profile-adaptive)
+            nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=0"
+            notify-send "NVIDIA GPU Profile" "Switched to Adaptive Profile"
+            ;;
+        --gpu-profile-performance)
+            nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=1"
+            notify-send "NVIDIA GPU Profile" "Switched to Performance Profile"
+            ;;
+        --gpu-profile-auto)
+            nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=2"
+            notify-send "NVIDIA GPU Profile" "Switched to Auto Profile"
             ;;
         --rofi)
             rofi_menu

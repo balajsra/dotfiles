@@ -41,8 +41,8 @@
 window {
     location: center;
     anchor: center;
-    height: 75%;
-    width: 75%;
+    height: 50%;
+    width: 50%;
     orientation: horizontal;
     children: [mainbox];
     border: 2;

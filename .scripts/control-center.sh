@@ -16,7 +16,7 @@ rofi_menu() {
         " Media - playerctl"
         "墳Volume - pactl"
         " Startup Processes - startup"
-        " Hardware - system76-power"
+        " Hardware - cpu-gpu"
         " Power Menu - session"
         " Back - back"
         " Quit - quit"
@@ -56,8 +56,8 @@ main() {
         --startup)
             /home/sravan/.scripts/startup.sh --rofi
             ;;
-        --system76-power)
-            /home/sravan/.scripts/system76-power.sh --rofi
+        --cpu-gpu)
+            /home/sravan/.scripts/cpu-gpu.sh --rofi
             ;;
         --session)
             /home/sravan/.scripts/session.sh --rofi

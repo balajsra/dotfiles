@@ -1,6 +1,6 @@
 .blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
-    background: rgba(40, 42, 54, 0.8);
-    border: 2pt #50fa7b solid;
+    background: rgba(40, 42, 54, 1.0);
+    border: 2px #50fa7b solid;
     border-radius: 10px;
 }
 
@@ -22,19 +22,19 @@
 }
 
 .blurredBG.notification {
-    background:  rgba(40, 42, 54, 0.8);
+    background:  rgba(40, 42, 54, 1.0);
     border: 2pt #50fa7b solid;
     border-radius: 10px;
 }
 
 .blurredBG.notification.critical {
-    background: rgba(255, 85, 85, 0.8);
+    background: rgba(255, 85, 85, 1.0);
     border: 2pt #50fa7b solid;
     border-radius: 10px;
 }
 
 .notificationInCenter.critical {
-    background: rgba(255, 85, 85, 0.8);
+    background: rgba(255, 85, 85, 1.0);
 }
 
 label {
@@ -80,7 +80,7 @@ button:hover {
 
 .userbutton:hover {
     border-radius: 10px;
-    background: rgba(68, 71, 90, 0.8);
+    background: rgba(68, 71, 90, 1.0);
     border-width: 2px;
     border-top: transparent;
     border-color: #50fa7b;

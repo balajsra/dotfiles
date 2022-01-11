@@ -31,6 +31,7 @@ declare -a delay_array=(\
     "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
     "/usr/bin/volctl" \                      # PulseAudio Volume Control
     "/usr/bin/nyrna" \                       # Nyrna
+    "/usr/bin/openrgb" \                     # OpenRGB
     # System Restore Processes
     "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
     "/usr/bin/numlockx on" \                 # Enable numlock
@@ -46,6 +47,7 @@ declare -a kill_delay_array=(\
     "killall xfce4-power-manager" \   # XFCE4 Power Manager
     "killall volctl" \                # PulseAudio Volume Control
     "killall nyrna" \                 # Nyrna
+    "killall openrgb" \               # OpenRGB
 )
 
 help_menu() {

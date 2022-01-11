@@ -39,14 +39,18 @@
 }
 
 window {
-    location: center;
-    anchor: center;
-    height: 50%;
-    width: 50%;
+    location: south west;
+    anchor: south west;
+    height: 1035;
+    width: 700;
+    x-offset: 10;
+    y-offset: -10;
     orientation: horizontal;
     children: [mainbox];
     border: 2;
     border-color: @winbg;
+    border-radius: 10;
+    transparency: "real";
 }
 
 mainbox {

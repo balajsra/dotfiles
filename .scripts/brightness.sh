@@ -1,6 +1,6 @@
 #!/bin/bash
 help_menu() {
-    echo "Main script to launch sub-menu scripts. Use only one argument at a time."
+    echo "Script to interact with pactl. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
     # echo "  - Next:          playerctl.sh --next"
     # echo "  - Previous:      playerctl.sh --prev"
@@ -11,14 +11,8 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Compositor - picom"
-        " Display - brightness"
-        " Notifications - deadd"
-        " Media - playerctl"
-        "墳Volume - pactl"
-        " Startup Processes - startup"
-        " Hardware - cpu-gpu"
-        " Power Menu - session"
+        " Raise Brightness - raise"
+        " Lower Brightness - lower"
         " Back - back"
         " Quit - quit"
     )
@@ -42,29 +36,11 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --picom)
-            /home/sravan/.scripts/picom.sh --rofi
+        --raise)
+            xdotool key XF86MonBrightnessUp
             ;;
-        --brightness)
-            /home/sravan/.scripts/brightness.sh --rofi
-            ;;
-        --deadd)
-            /home/sravan/.scripts/deadd.sh --rofi
-            ;;
-        --playerctl)
-            /home/sravan/.scripts/playerctl.sh --rofi
-            ;;
-        --pactl)
-            /home/sravan/.scripts/pactl.sh --rofi
-            ;;
-        --startup)
-            /home/sravan/.scripts/startup.sh --rofi
-            ;;
-        --cpu-gpu)
-            /home/sravan/.scripts/cpu-gpu.sh --rofi
-            ;;
-        --session)
-            /home/sravan/.scripts/session.sh --rofi
+        --lower)
+            xdotool key XF86MonBrightnessDown
             ;;
         --rofi)
             rofi_menu

@@ -79,6 +79,7 @@
 - [[#miscellaneous-scripts][Miscellaneous Scripts]]
   - [[#media-control][Media Control]]
   - [[#volume-control][Volume Control]]
+  - [[#brightness-control][Brightness Control]]
   - [[#trackpad-control][Trackpad Control]]
   - [[#cpu--gpu-control][CPU & GPU Control]]
   - [[#session-control][Session Control]]
@@ -1063,8 +1064,8 @@ commands = "/home/sravan/.scripts/deadd.sh --pause":"/home/sravan/.scripts/deadd
 
 #+BEGIN_SRC conf :tangle .config/deadd/deadd.css
 .blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
-    background: rgba(40, 42, 54, 0.8);
-    border: 2pt #50fa7b solid;
+    background: rgba(40, 42, 54, 1.0);
+    border: 2px #50fa7b solid;
     border-radius: 10px;
 }
 
@@ -1090,19 +1091,19 @@ commands = "/home/sravan/.scripts/deadd.sh --pause":"/home/sravan/.scripts/deadd
 }
 
 .blurredBG.notification {
-    background:  rgba(40, 42, 54, 0.8);
+    background:  rgba(40, 42, 54, 1.0);
     border: 2pt #50fa7b solid;
     border-radius: 10px;
 }
 
 .blurredBG.notification.critical {
-    background: rgba(255, 85, 85, 0.8);
+    background: rgba(255, 85, 85, 1.0);
     border: 2pt #50fa7b solid;
     border-radius: 10px;
 }
 
 .notificationInCenter.critical {
-    background: rgba(255, 85, 85, 0.8);
+    background: rgba(255, 85, 85, 1.0);
 }
 #+END_SRC
 
@@ -1160,7 +1161,7 @@ button:hover {
 
 .userbutton:hover {
     border-radius: 10px;
-    background: rgba(68, 71, 90, 0.8);
+    background: rgba(68, 71, 90, 1.0);
     border-width: 2px;
     border-top: transparent;
     border-color: #50fa7b;
@@ -1523,14 +1524,18 @@ configuration {
 }
 
 window {
-    location: center;
-    anchor: center;
-    height: 50%;
-    width: 50%;
+    location: south west;
+    anchor: south west;
+    height: 1035;
+    width: 700;
+    x-offset: 10;
+    y-offset: -10;
     orientation: horizontal;
     children: [mainbox];
     border: 2;
     border-color: @winbg;
+    border-radius: 10;
+    transparency: "real";
 }
 
 mainbox {
@@ -7460,6 +7465,62 @@ main() {
 main $@
 #+END_SRC
 
+** Brightness Control
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/brightness.sh
+help_menu() {
+    echo "Script to interact with pactl. Use only one argument at a time."
+    # echo "  - Play / Pause:  playerctl.sh --play-pause"
+    # echo "  - Next:          playerctl.sh --next"
+    # echo "  - Previous:      playerctl.sh --prev"
+    # echo "  - Change Player: playerctl.sh --change"
+    # echo "  - Rofi Menu:     playerctl.sh --rofi"
+    # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+}
+
+rofi_menu() {
+    declare -a options=(
+        " Raise Brightness - raise"
+        " Lower Brightness - lower"
+        " Back - back"
+        " Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        kilall rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && main "--rofi"
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --raise)
+            xdotool key XF86MonBrightnessUp
+            ;;
+        --lower)
+            xdotool key XF86MonBrightnessDown
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
+#+END_SRC
+
 ** Trackpad Control
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/trackpad.sh
@@ -7770,6 +7831,7 @@ declare -a delay_array=(\
     "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
     "/usr/bin/volctl" \                      # PulseAudio Volume Control
     "/usr/bin/nyrna" \                       # Nyrna
+    "/usr/bin/openrgb" \                     # OpenRGB
     # System Restore Processes
     "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
     "/usr/bin/numlockx on" \                 # Enable numlock
@@ -7785,6 +7847,7 @@ declare -a kill_delay_array=(\
     "killall xfce4-power-manager" \   # XFCE4 Power Manager
     "killall volctl" \                # PulseAudio Volume Control
     "killall nyrna" \                 # Nyrna
+    "killall openrgb" \               # OpenRGB
 )
 
 help_menu() {
@@ -7919,6 +7982,7 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         " Compositor - picom"
+        " Display - brightness"
         " Notifications - deadd"
         " Media - playerctl"
         "墳Volume - pactl"
@@ -7950,6 +8014,9 @@ main() {
             ;;
         --picom)
             /home/sravan/.scripts/picom.sh --rofi
+            ;;
+        --brightness)
+            /home/sravan/.scripts/brightness.sh --rofi
             ;;
         --deadd)
             /home/sravan/.scripts/deadd.sh --rofi

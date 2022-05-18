@@ -87,6 +87,12 @@
   - [[#gaming-1][Gaming]]
     - [[#pre-launch-script][Pre-Launch Script]]
     - [[#post-exit-script][Post-Exit Script]]
+  - [[#rsync][Rsync]]
+    - [[#rsync-options][Rsync Options]]
+    - [[#laptop-to-cloud][Laptop to Cloud]]
+    - [[#laptop-to-external-hdd][Laptop to External HDD]]
+    - [[#laptop-to-phone][Laptop to Phone]]
+    - [[#rofi-menu][Rofi Menu]]
   - [[#control-center][Control Center]]
 - [[#acknowledgements][Acknowledgements]]
 
@@ -756,7 +762,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -1256,7 +1262,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -2790,7 +2796,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -6978,14 +6984,14 @@ inhibit_screensaver=1
 *** Filter
 
 #+BEGIN_SRC conf :tangle .config/gamemode.ini
-  [filter]
-  ; If "whitelist" entry has a value(s)
-  ; gamemode will reject anything not in the whitelist
-  ;whitelist=RiseOfTheTombRaider
+[filter]
+; If "whitelist" entry has a value(s)
+; gamemode will reject anything not in the whitelist
+;whitelist=RiseOfTheTombRaider
 
-  ; Gamemode will always reject anything in the blacklist
-  ;blacklist=HalfLife3
-  ;    glxgears
+; Gamemode will always reject anything in the blacklist
+;blacklist=HalfLife3
+;    glxgears
 #+END_SRC
 
 *** GPU
@@ -7364,7 +7370,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -7428,7 +7434,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -7490,7 +7496,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -7562,7 +7568,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -7582,7 +7588,7 @@ rofi_cpu_profile_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-cpu-profile"
     fi
@@ -7603,7 +7609,7 @@ rofi_graphics_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-graphics"
     fi
@@ -7623,7 +7629,7 @@ rofi_gpu_profile_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-gpu-profile"
     fi
@@ -7743,7 +7749,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && killall rofi
     fi
@@ -7874,7 +7880,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -7966,6 +7972,179 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
 #+END_SRC
 
+** Rsync
+
+*** Rsync Options
+
+| Option     | Description                                                                   |
+| ------     | -----------                                                                   |
+| -a         | quick way of saying you want recursion and want to perserve almost everything |
+| -v         | increases the amount of information you are given during the transfer         |
+| -L         | transform symlink into referent file/dir                                      |
+| --progress | show progress during transfer                                                 |
+| --delete   | delete extraneous files from dest dirs                                        |
+
+*** Laptop to Cloud
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_cloud.sh
+# Define base paths
+gdrive_path="/mnt/google-drive"
+gdrive_personal_path="$gdrive_path/sr98vn@gmail.com"
+home_path="/home/sravan"
+
+# Define arrays
+declare -a source_dirs=(
+    "$home_path/Calibre_Library/"
+    "$home_path/Pictures/Wallpapers/"
+    "$home_path/Documents/"
+)
+declare -a target_dirs=(
+    "$gdrive_personal_path/Calibre Library/"
+    "$gdrive_personal_path/Customization/Wallpapers/Desktop/"
+    "$gdrive_personal_path/Documents/"
+)
+
+# Loop through arrays
+for i in ${!source_dirs[@]}; do
+    # Create target directories
+    mkdir -p "${target_dirs[$i]}"
+
+    # Copy source dirs to target dirs
+    rsync -a -v -L --progress --delete \
+        "${source_dirs[$i]}" \
+        "${target_dirs[$i]}"
+done
+#+END_SRC
+
+*** Laptop to External HDD
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_external_hdd.sh
+# Define base paths
+external_hdd_path="/mnt/5TB External HDD"
+backup_path="$external_hdd_path/Backups"
+home_path="/home/sravan"
+
+# Define arrays
+declare -a source_dirs=(
+    "$home_path/Calibre_Library/"
+    "$home_path/Documents/"
+    "$home_path/ISOs/"
+    "$home_path/Music/"
+    "$home_path/Videos/"
+    "$home_path/Games/PolyMC/"
+    "$home_path/Games/Retro/"
+    "$home_path/Games/Steam/steamapps/common/"
+)
+declare -a target_dirs=(
+    "$backup_path/Calibre_Library/"
+    "$backup_path/Documents/"
+    "$backup_path/ISOs/"
+    "$backup_path/Music/"
+    "$backup_path/Videos/"
+    "$backup_path/Games/PolyMC/"
+    "$backup_path/Games/Retro/"
+    "$backup_path/Games/Steam/"
+)
+
+# Loop through arrays
+for i in ${!source_dirs[@]}; do
+    # Create target directories
+    mkdir -p "${target_dirs[$i]}"
+
+    # Copy source dirs to target dirs
+    rsync -a -v -L --progress --delete \
+        "${source_dirs[$i]}" \
+        "${target_dirs[$i]}"
+done
+#+END_SRC
+
+*** Laptop to Phone
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_phone.sh
+# Define base paths
+phone_path="/run/user/1000/b2c922a2358570a6"
+home_path="/home/sravan"
+
+# Define arrays
+declare -a source_dirs=(
+    "$home_path/Videos/"
+)
+declare -a target_dirs=(
+    "$phone_path/Videos/"
+)
+
+# Loop through arrays
+for i in ${!source_dirs[@]}; do
+    # Create target directories
+    mkdir -p "${target_dirs[$i]}"
+
+    # Copy source dirs to target dirs
+    rsync -a -v -L --progress --delete \
+        "${source_dirs[$i]}" \
+        "${target_dirs[$i]}"
+done
+#+END_SRC
+
+*** Rofi Menu
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync.sh
+help_menu() {
+    echo "Main menu to launch run rsync scripts. Use only one argument at a time."
+    # echo "  - Play / Pause:  playerctl.sh --play-pause"
+    # echo "  - Next:          playerctl.sh --next"
+    # echo "  - Previous:      playerctl.sh --prev"
+    # echo "  - Change Player: playerctl.sh --change"
+    # echo "  - Rofi Menu:     playerctl.sh --rofi"
+    # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+}
+
+rofi_menu() {
+    declare -a options=(
+        "   - rsync-laptop-to-cloud"
+        "   - rsync-laptop-to-external-hdd"
+        "   - rsync-laptop-to-phone"
+        " Back - back"
+        " Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        killall rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && killall rofi
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --rsync-laptop-to-cloud)
+            kitty --hold /home/sravan/.scripts/rsync_laptop_to_cloud.sh
+            ;;
+        --rsync-laptop-to-external-hdd)
+            kitty --hold /home/sravan/.scripts/rsync_laptop_to_external_hdd.sh
+            ;;
+        --rsync-laptop-to-phone)
+            kitty --hold /home/sravan/.scripts/rsync_laptop_to_phone.sh
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
+#+END_SRC
+
 ** Control Center
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/control-center.sh
@@ -7986,6 +8165,7 @@ rofi_menu() {
         " Notifications - deadd"
         " Media - playerctl"
         "墳Volume - pactl"
+        "痢 Rsync - rsync"
         " Startup Processes - startup"
         " Hardware - cpu-gpu"
         " Power Menu - session"
@@ -7997,7 +8177,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        kilall rofi
+        killall rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -8026,6 +8206,9 @@ main() {
             ;;
         --pactl)
             /home/sravan/.scripts/pactl.sh --rofi
+            ;;
+        --rsync)
+            /home/sravan/.scripts/rsync.sh --rofi
             ;;
         --startup)
             /home/sravan/.scripts/startup.sh --rofi

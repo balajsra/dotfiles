@@ -35,9 +35,6 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
-# bare git repo alias for dotfiles
-alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
-
 if [ "$TERM" = "linux" ]
     then
     printf %b '\e[40m' '\e[8]' # set default background to color 0 'dracula-bg'

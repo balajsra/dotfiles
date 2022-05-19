@@ -1,0 +1,7 @@
+\.git
+\.gitmodules
+\.gitignore
+\.config/fish/fish_variables
+\.config/qt5ct/qt5ct\.conf
+LICENSE
+^/.*\.org

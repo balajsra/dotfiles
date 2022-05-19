@@ -5,9 +5,14 @@
 
 * Table of Contents :TOC_3:noexport:
 - [[#installation][Installation]]
+- [[#dotfiles-configuration][Dotfiles Configuration]]
+  - [[#git-submodules][Git Submodules]]
+  - [[#ignoring-files-and-directories][Ignoring files and directories]]
+    - [[#gnu-stow-ignore][GNU Stow Ignore]]
+    - [[#git-ignore][Git Ignore]]
+  - [[#create-symbolic-links-with-gnu-stow][Create Symbolic Links with GNU Stow]]
+  - [[#remove-symbolic-links-with-gnu-stow][Remove Symbolic Links with GNU Stow]]
 - [[#git][Git]]
-  - [[#config][Config]]
-  - [[#dotfiles-ignore][Dotfiles Ignore]]
 - [[#notifications][Notifications]]
   - [[#dunst-notification-daemon][Dunst Notification Daemon]]
     - [[#global][Global]]
@@ -100,73 +105,159 @@
 
 See [[#acknowledgements][Acknowledgements]] for tutorial source.
 
-Prior to the installation, create alias for config
+Clone dotfiles into a ~.dotfiles~ folder in home directory.
 
 #+BEGIN_SRC shell
-alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
+git clone <git-repo-url> $HOME/.dotfiles
 #+END_SRC
 
-Add =.cfg= to ~.gitignore~
+Pull and update submodules.
 
 #+BEGIN_SRC shell
-echo ".cfg" >> .gitignore
+git submodule update --init --recursive --remote
 #+END_SRC
 
-Clone dotfiles into a bare repository
+Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 
-#+BEGIN_SRC shell
-git clone --bare <git-repo-url> $HOME/.cfg
+* Dotfiles Configuration
+
+** Git Submodules
+
+#+BEGIN_SRC gitconfig :tangle .gitmodules
+[submodule ".vim/pack/themes/start/dracula"]
+	path = .vim/pack/themes/start/dracula
+	url = git@github.com:dracula/vim.git
+	branch = master
+[submodule ".themes/dracula-blender"]
+	path = .themes/dracula-blender
+	url = git@github.com:dracula/blender.git
+	branch = master
+[submodule ".themes/dracula-freecad"]
+	path = .themes/dracula-freecad
+	url = git@github.com:dracula/freecad.git
+	branch = master
+[submodule ".themes/dracula-gnome-terminal"]
+	path = .themes/dracula-gnome-terminal
+	url = git@github.com:dracula/gnome-terminal.git
+	branch = master
+[submodule ".themes/dracula-xournalpp"]
+	path = .themes/dracula-xournalpp
+	url = git@github.com:dracula/xournalpp.git
+	branch = master
+[submodule ".themes/dracula-steam"]
+	path = .themes/dracula-steam
+	url = git@github.com:dracula/steam.git
+	branch = master
+[submodule ".themes/dracula-gtk"]
+	path = .themes/dracula-gtk
+	url = git@github.com:dracula/gtk.git
+	branch = master
+[submodule ".themes/dracula-fish"]
+	path = .themes/dracula-fish
+	url = git@github.com:dracula/fish.git
+	branch = master
+[submodule ".themes/dracula-kitty"]
+	path = .themes/dracula-kitty
+	url = git@github.com:dracula/kitty.git
+	branch = master
+[submodule ".themes/dracula-libreoffice"]
+	path = .themes/dracula-libreoffice
+	url = git@github.com:dracula/libreoffice.git
+	branch = master
+[submodule ".themes/dracula-tty"]
+	path = .themes/dracula-tty
+	url = git@github.com:dracula/tty.git
+	branch = master
+[submodule ".themes/dracula-latex"]
+	path = .themes/dracula-latex
+	url = git@github.com:dracula/latex.git
+	branch = master
+[submodule ".themes/dracula-matplotlib"]
+	path = .themes/dracula-matplotlib
+	url = git@github.com:dracula/matplotlib.git
+	branch = master
+[submodule ".themes/dracula-matlab"]
+	path = .themes/dracula-matlab
+	url = git@github.com:dracula/matlab.git
+	branch = master
+[submodule ".xmonad"]
+	path = .xmonad
+	url = git@github.com:balajsra/xmonad.git
+	branch = master
+[submodule ".themes/dracula-qbittorrent"]
+	path = .themes/dracula-qbittorrent
+	url = git@github.com:dracula/qbittorrent.git
+	branch = master
+[submodule ".config/dwm-flexipatch"]
+	path = .config/dwm-flexipatch
+	url = git@github.com:balajsra/dwm-flexipatch.git
+	branch = master
+[submodule ".themes/fallout-grub-theme"]
+	path = .themes/fallout-grub-theme
+	url = git@github.com:shvchk/fallout-grub-theme.git
+	branch = master
+[submodule ".config/emacs"]
+	path = .config/emacs
+	url = git@github.com:plexus/chemacs2.git
+	branch = main
+[submodule ".config/personal-emacs"]
+	path = .config/personal-emacs
+	url = git@github.com:balajsra/emacs.git
+	branch = main
+[submodule ".config/doom-emacs"]
+	path = .config/doom-emacs
+	url = git@github.com:hlissner/doom-emacs.git
+	branch = master
+[submodule ".config/doom-emacs-config"]
+	path = .config/doom-emacs-config
+	url = git@github.com:balajsra/doom-emacs-config.git
+	branch = master
+[submodule ".config/zathura"]
+	path = .config/zathura
+	url = git@github.com:dracula/zathura.git
+	branch = master
+[submodule ".themes/matlab-schemes"]
+	path = .themes/matlab-schemes
+	url = git@github.com:scottclowe/matlab-schemes.git
+	branch = master
 #+END_SRC
 
-Define the alias in the current shell scope
+** Ignoring files and directories
 
-#+BEGIN_SRC shell
-alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
+*** GNU Stow Ignore
+
+#+BEGIN_SRC text :tangle .stow-local-ignore
+\.git
+\.gitmodules
+\.gitignore
+\.config/fish/fish_variables
+\.config/qt5ct/qt5ct\.conf
+LICENSE
+^/.*\.org
 #+END_SRC
 
-Checkout content from bare repository to ~$HOME~
+*** Git Ignore
 
-#+BEGIN_SRC shell
-config git checkout
+#+BEGIN_SRC gitignore :tangle .gitignore
+.config/fish/fish_variables
+.config/qt5ct/qt5ct.conf
 #+END_SRC
 
-Step above might fail with a message like:
+** Create Symbolic Links with GNU Stow
 
-#+BEGIN_EXAMPLE
-error: The following untracked working tree files would be overwritten by checkout:
-    .bashrc
-    .gitignore
-Please move or remove them before you can switch branches.
-Aborting
-#+END_EXAMPLE
-
-Delete the untracked files so they can be overwritten with the version from dotfiles
-
-#+BEGIN_SRC shell
-rm ~/.bashrc ~/.gitignore
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/stow-create.sh
+cd $HOME/.dotfiles/
+stow -v .
 #+END_SRC
 
-Re-run checkout
+** Remove Symbolic Links with GNU Stow
 
-#+BEGIN_SRC shell
-config git checkout
-#+END_SRC
-
-Set the flag =showUntrackedFiles= to =no= on this specific (local) repo
-
-#+BEGIN_SRC shell
-config git config --local status.showUntrackedFiles no
-#+END_SRC
-
-Pull and update submodules
-
-#+BEGIN_SRC shell
-config git submodule update --init --recursive --remote
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/stow-remove.sh
+cd $HOME/.dotfiles/
+stow -v -D .
 #+END_SRC
 
 * Git 
-
-** Config
 
 #+BEGIN_SRC gitconfig :tangle .gitconfig
 # Sravan Balaji's Git Configuration
@@ -243,14 +334,7 @@ config git submodule update --init --recursive --remote
     showUntrackedFiles = all
 #+END_SRC
 
-** Dotfiles Ignore
-
-#+BEGIN_SRC gitignore :tangle .gitignore
-.cfg
-,*~
-#+END_SRC
-
-* Notifications 
+* Notifications
 ** Dunst Notification Daemon 
 
 *** Global
@@ -4051,9 +4135,6 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# ALIASES
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
 # ENVIRONMENT VARIABLES
 export EDITOR="emacs"
 export TERM=xterm-256color
@@ -4065,6 +4146,7 @@ clear
 pokemon-colorscripts -r
 echo "bash shell"
 #+END_SRC
+
 *** Zsh
 
 #+BEGIN_SRC shell :tangle .zshrc
@@ -4310,9 +4392,6 @@ alias rm='rm -i'
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-
-# bare git repo alias for dotfiles
-alias config="GIT_WORK_TREE=~ GIT_DIR=~/.cfg"
 #+END_SRC
 
 **** TTY
@@ -5850,7 +5929,12 @@ inactive_tab_background #6272a4
 # Marks
 mark1_foreground #282a36
 mark1_background #ff5555
+
+# Splits/Windows
+active_border_color #f8f8f2
+inactive_border_color #6272a4
 #+END_SRC
+
 *** Alacritty
 
 Configuration for Alacritty, the GPU enhanced terminal emulator.
@@ -8231,5 +8315,7 @@ main $@
 
 * Acknowledgements
 
-I followed [[https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]'s process for setting up a git bare repository as shown in [[https://youtu.be/tBoLDpTWVOM][Git Bare Repository - A Better Way To Manage Dotfiles]].
+I previously used [[https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]'s process for setting up a git bare repository as shown in [[https://youtu.be/tBoLDpTWVOM][Git Bare Repository - A Better Way To Manage Dotfiles]].
 He references [[https://www.atlassian.com/git/tutorials/dotfiles][The best way to store your dotfiles: A bare Git repository]] by [[https://www.durdn.com/][Nicola Paolucci]].
+
+I have since switched to using [[https://www.gnu.org/software/stow/][GNU Stow]] as described in [[https://www.youtube.com/c/SystemCrafters][System Crafters]]' video called [[https://youtu.be/CxAT1u8G7is][Give Your Dotfiles a Home with GNU Stow]].

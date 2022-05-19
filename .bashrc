@@ -116,9 +116,6 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# ALIASES
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
 # ENVIRONMENT VARIABLES
 export EDITOR="emacs"
 export TERM=xterm-256color

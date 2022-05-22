@@ -12,10 +12,7 @@ declare -a source_dirs=(
     "$home_path/Music/"
     "$home_path/Pictures/"
     "$home_path/Videos/"
-    "$home_path/Games/PolyMC/"
-    "$home_path/Games/Retro/"
-    "$home_path/Games/Steam/steamapps/common/"
-    "$home_path/Games/Lutris/"
+    "$home_path/Games/"
     "$home_path/.config/lutris/"
     "$home_path/.config/dolphin-emu/"
     "$home_path/.config/PCSX2/"
@@ -29,10 +26,7 @@ declare -a target_dirs=(
     "$backup_path/Music/"
     "$backup_path/Pictures/"
     "$backup_path/Videos/"
-    "$backup_path/Games/PolyMC/"
-    "$backup_path/Games/Retro/"
-    "$backup_path/Games/Steam/"
-    "$backup_path/Games/Lutris/"
+    "$backup_path/Games/"
     "$backup_path/Config/Lutris/"
     "$backup_path/Config/Dolphin-Emu/"
     "$backup_path/Config/PCSX2/"
@@ -47,6 +41,7 @@ for i in ${!source_dirs[@]}; do
 
     # Copy source dirs to target dirs
     rsync -a -v -L --progress --delete \
+        --exclude '*/dosdevices/' \
         "${source_dirs[$i]}" \
         "${target_dirs[$i]}"
 done

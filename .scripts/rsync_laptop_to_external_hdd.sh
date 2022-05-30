@@ -1,6 +1,6 @@
 #!/bin/bash
 # Define base paths
-external_hdd_path="/mnt/Seagate 5TB"
+external_hdd_path="/run/media/sravan/Seagate 5TB"
 backup_path="$external_hdd_path/Backups"
 home_path="/home/sravan"
 

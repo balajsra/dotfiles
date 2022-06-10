@@ -59,6 +59,8 @@
 - [[#text-editor][Text Editor]]
   - [[#vim][Vim]]
   - [[#emacs][Emacs]]
+    - [[#chemacs2][Chemacs2]]
+    - [[#update-script][Update Script]]
 - [[#system-monitor][System Monitor]]
   - [[#conky][Conky]]
 - [[#gaming][Gaming]]
@@ -6840,6 +6842,10 @@ colorscheme dracula_pro
 
 ** Emacs
 
+*** Chemacs2
+
+**** Configurations
+
 Define emacs configurations with chemacs2.
 
 #+BEGIN_SRC emacs-lisp :tangle .emacs-profiles.el
@@ -6850,10 +6856,31 @@ Define emacs configurations with chemacs2.
 )
 #+END_SRC
 
+**** Selected Configuration
+
 Select the emacs configuration to use by default.
 
 #+BEGIN_SRC text :tangle .emacs-profile
 doom
+#+END_SRC
+
+*** Update Script
+
+Script to synchronize and update Doom Emacs configuration.
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/doom_emacs_update.sh
+# Define some local variables
+DOOM_BIN=~/.config/doom-emacs/bin/doom
+DOOM_DIR_PATH=~/.config/doom-emacs-config
+
+# Synchronize personal config
+DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN sync
+
+# Upgrade packages
+DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN upgrade
+
+# Delete orphaned packages & repos, and compacts them
+DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN purge
 #+END_SRC
 
 * System Monitor 

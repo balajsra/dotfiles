@@ -4468,6 +4468,29 @@ set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
 #+END_SRC
 
+**** Notification
+
+#+BEGIN_SRC fish :tangle .config/fish/conf.d/notification.fish
+# This function allows you to switch to a different task
+# when an interactive command takes too long
+# by notifying you when it is finished.
+#
+# It is invoked by the fish shell automatically using its event system.
+function __postexec_notify_on_long_running_commands --on-event fish_postexec
+    set --function interactive_commands 'vim' 'vlc' 'zathura' 'gitk' 'man' 'less'
+    set --function command (string split ' ' $argv[1])
+    if contains $command $interactive_commands
+        # We quit interactive commands manually,
+        # no need for a notification.
+        return
+    end
+
+    if test $CMD_DURATION -gt 5000
+        notify-send 'command finished' "$argv"
+    end
+end
+#+END_SRC
+
 ** Terminal
 *** Kitty
 
@@ -7947,7 +7970,7 @@ declare -a delay_array=(\
     "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
     "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
     "/usr/bin/volctl" \                      # PulseAudio Volume Control
-    "/usr/bin/nyrna" \                       # Nyrna
+    "/usr/bin/udiskie -a -n -s" \            # Udiskie
     "/usr/bin/openrgb" \                     # OpenRGB
     # System Restore Processes
     "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
@@ -7963,7 +7986,7 @@ declare -a kill_delay_array=(\
     "killall flameshot" \             # Flameshot Screenshot Tool
     "killall xfce4-power-manager" \   # XFCE4 Power Manager
     "killall volctl" \                # PulseAudio Volume Control
-    "killall nyrna" \                 # Nyrna
+    "killall udiskie" \               # Udiskie
     "killall openrgb" \               # OpenRGB
 )
 

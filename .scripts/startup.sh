@@ -30,7 +30,7 @@ declare -a delay_array=(\
     "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
     "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
     "/usr/bin/volctl" \                      # PulseAudio Volume Control
-    "/usr/bin/nyrna" \                       # Nyrna
+    "/usr/bin/udiskie -a -n -s" \            # Udiskie
     "/usr/bin/openrgb" \                     # OpenRGB
     # System Restore Processes
     "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
@@ -46,7 +46,7 @@ declare -a kill_delay_array=(\
     "killall flameshot" \             # Flameshot Screenshot Tool
     "killall xfce4-power-manager" \   # XFCE4 Power Manager
     "killall volctl" \                # PulseAudio Volume Control
-    "killall nyrna" \                 # Nyrna
+    "killall udiskie" \               # Udiskie
     "killall openrgb" \               # OpenRGB
 )
 

@@ -62,6 +62,10 @@
 	path = .themes/dracula-qbittorrent
 	url = git@github.com:dracula/qbittorrent.git
 	branch = master
+[submodule ".themes/dracula-vortex"]
+	path = .themes/dracula-vortex
+	url = git@github.com:dracula/vortex-mod-manager.git
+	branch = main
 [submodule ".config/dwm-flexipatch"]
 	path = .config/dwm-flexipatch
 	url = git@github.com:balajsra/dwm-flexipatch.git

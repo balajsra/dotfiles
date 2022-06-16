@@ -232,6 +232,8 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 
 *** GNU Stow Ignore
 
+Things to ignore when stowing dotfiles on system.
+
 #+BEGIN_SRC text :tangle .stow-local-ignore
 \.git
 \.gitmodules
@@ -244,9 +246,19 @@ LICENSE
 
 *** Git Ignore
 
+Things to ignore in dotfiles git repo.
+
 #+BEGIN_SRC gitignore :tangle .gitignore
 .config/fish/fish_variables
 .config/qt5ct/qt5ct.conf
+
+.config/xournalpp/
+!.config/xournalpp/toolbar.ini
+
+.config/autorandr/
+!.config/autorandr/postswitch
+
+.themes/dracula-pro
 #+END_SRC
 
 ** Create Symbolic Links with GNU Stow

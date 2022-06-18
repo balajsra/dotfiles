@@ -3001,7 +3001,7 @@ adjustment-method=randr
 
 ; Merrifield, VA
 lat=38.8743
-lon=77.2269
+lon=-77.2269
 
 ; Configuration of the adjustment-method
 ; type 'redshift -m METHOD:help' to see the settings.
@@ -8181,7 +8181,6 @@ home_path="/home/sravan"
 # Define arrays
 declare -a source_dirs=(
     "$home_path/Calibre_Library/"
-    "$home_path/Documents/"
     "$home_path/ISOs/"
     "$home_path/Music/"
     "$home_path/Pictures/"
@@ -8189,23 +8188,22 @@ declare -a source_dirs=(
     "$home_path/Games/"
     "$home_path/.config/lutris/"
     "$home_path/.config/dolphin-emu/"
-    "$home_path/.config/PCSX2/"
     "$home_path/.config/retroarch/"
     "$home_path/.config/rpcs3/"
+    "$home_path/.cache/lutris/"
 )
 declare -a target_dirs=(
     "$backup_path/Calibre_Library/"
-    "$backup_path/Documents/"
     "$backup_path/ISOs/"
     "$backup_path/Music/"
     "$backup_path/Pictures/"
     "$backup_path/Videos/"
     "$backup_path/Games/"
-    "$backup_path/Config/Lutris/"
-    "$backup_path/Config/Dolphin-Emu/"
-    "$backup_path/Config/PCSX2/"
-    "$backup_path/Config/RetroArch/"
-    "$backup_path/Config/RPCS3/"
+    "$backup_path/.config/lutris/"
+    "$backup_path/.config/dolphin-emu/"
+    "$backup_path/.config/retroarch/"
+    "$backup_path/.config/rpcs3/"
+    "$backup_path/.cache/lutris/"
 )
 
 # Loop through arrays

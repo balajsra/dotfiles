@@ -198,10 +198,6 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = .config/dwm-flexipatch
 	url = git@github.com:balajsra/dwm-flexipatch.git
 	branch = master
-[submodule ".themes/fallout-grub-theme"]
-	path = .themes/fallout-grub-theme
-	url = git@github.com:shvchk/fallout-grub-theme.git
-	branch = master
 [submodule ".config/emacs"]
 	path = .config/emacs
 	url = git@github.com:plexus/chemacs2.git

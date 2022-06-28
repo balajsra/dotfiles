@@ -1,96 +1,158 @@
-# Don't print a new line at the start of the prompt
+format = """
+[](#44475A)\
+$directory\
+[](fg:#44475A bg:#6272a4)\
+$git_branch\
+$git_status\
+[](fg:#6272a4 bg:#BD93F9)\
+$c\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+[](fg:#BD93F9 bg:#FF79C6)\
+$docker_context\
+[](fg:#FF79C6 bg:#FF5555)\
+$cmd_duration\
+[ ](fg:#FF5555)\
+\n$character
+"""
+
+# Enable/disable the blank line at the start of the prompt
 add_newline = false
-
-format = "[◆](bold green) $all"
-
-[aws]
-symbol = " "
-
-[battery]
-full_symbol = ""
-charging_symbol = ""
-discharging_symbol = ""
 
 [character]
 format = "$symbol"
-success_symbol = "[❯](bold purple)[❯](bold cyan)[❯](bold green) "
-error_symbol = "[❯❯❯](bold red) "
+success_symbol = "[  ﬌ ❯❯❯](bold green)  "
+error_symbol = "[  ﬌ ❯❯❯](bold red)  "
 
-[cmd_duration]
-min_time = 10_000
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
+# You can also replace your username with a neat symbol like  to save some space
+[username]
+show_always = true
+style_user = "bg:#44475A"
+style_root = "bg:#44475A"
+format = '[ ]($style)'
 
 [directory]
-format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bg:#44475A"
+format = "[ $path ]($style)"
 truncation_length = 4
-truncate_to_repo = false
+truncate_to_repo = true
 truncation_symbol = "…/"
 read_only = ""
 
+# Here is how you can shorten some long paths by text replacement
+# similar to mapped_locations in Oh My Posh:
+[directory.substitutions]
+"~" = " "
+".config" = "  "
+"config" = "  "
+"Config" = "  "
+"Calibre_Library" = "  "
+"Calibre Library" = "  "
+"Desktop" = "  "
+"Documents" = "  "
+"Finances" = " ﴝ "
+"Downloads" = "  "
+"Games" = "  "
+"PolyMC" = "  "
+"Steam" = "  "
+"ISOs" = " 﫭 "
+"Music" = "  "
+"Spotify" = "  "
+"Pictures" = "  "
+"Projects" = "  "
+"Personal" = "  "
+"System" = "  "
+"Videos" = "  "
+"dropbox" = "  "
+"google-drive" = "  "
+"onedrive" = "  "
+"Attachments" = "  "
+# Keep in mind that the order matters. For example:
+# "Important Documents" = "  "
+# will not be replaced, because "Documents" was already substituted before.
+# So either put "Important Documents" before "Documents" or use the substituted version:
+# "Important  " = "  "
+
+[c]
+symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+
+[cmd_duration]
+min_time = 0
+style = "bg:#FF5555"
+format = '[[ 祥 $duration ](bg:#FF5555)]($style)'
+show_notifications = true
+min_time_to_notify = 5_000
+
 [docker_context]
 symbol = " "
+style = "bg:#FF79C6"
+format = '[[ $symbol $context ](bg:#FF79C6)]($style) $path'
 
 [elixir]
 symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
 [elm]
 symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
 [git_branch]
-symbol = " "
+symbol = ""
+style = "bg:#6272a4"
+format = '[[ $symbol $branch ](bg:#6272a4)]($style)'
+
+[git_status]
+style = "bg:#6272a4"
+format = '[[($all_status$ahead_behind )](bg:#6272a4)]($style)'
 
 [golang]
 symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
-# [haskell]
-# symbol = " "
-
-[hg_branch]
-symbol = " "
+[haskell]
+symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
 [java]
 symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
 [julia]
 symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
-[line_break]
-disabled = false
-
-[memory_usage]
-symbol = " "
+[nodejs]
+symbol = ""
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
 [nim]
 symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-
-[package]
-symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[python]
-symbol = " "
-
-[ruby]
-symbol = " "
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
 [rust]
-symbol = " "
+symbol = ""
+style = "bg:#BD93F9"
+format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 
-[swift]
-symbol = "ﯣ "
+[time]
+disabled = false
+time_format = "%X" # Hour:Minute Format
+style = "bg:#FFB86C"
+format = '[[  $time ](bg:#FFB86C)]($style)'

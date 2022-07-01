@@ -4549,6 +4549,7 @@ set -g fish_pager_color_description $comment
 #+END_SRC
 
 ** Terminal
+
 *** Kitty
 
 **** Fonts
@@ -7425,8 +7426,8 @@ exec dwm
 ! Regular DPI Parameters
 #define DPI 96
 #define BAR_HEIGHT 25
-#define MODULE_MARGIN 1
-#define MODULE_PADDING 1
+#define MODULE_MARGIN 0
+#define MODULE_PADDING 0
 #define MODULE_DWM_PADDING 2
 #define TRAY_MAXSIZE 20
 #define TRAY_SCALE 1
@@ -7441,8 +7442,8 @@ exec dwm
 ! System76 Oryx Pro 7 DPI Parameters
 #define DPI 96
 #define BAR_HEIGHT 25
-#define MODULE_MARGIN 1
-#define MODULE_PADDING 1
+#define MODULE_MARGIN 0
+#define MODULE_PADDING 0
 #define MODULE_DWM_PADDING 2
 #define TRAY_MAXSIZE 20
 #define TRAY_SCALE 1
@@ -7458,8 +7459,8 @@ exec dwm
 ! HiDPI Parameters
 #define DPI 192
 #define BAR_HEIGHT 50
-#define MODULE_MARGIN 1
-#define MODULE_PADDING 1
+#define MODULE_MARGIN 0
+#define MODULE_PADDING 0
 #define MODULE_DWM_PADDING 2
 #define TRAY_MAXSIZE 40
 #define TRAY_SCALE 1

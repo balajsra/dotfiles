@@ -3,10 +3,10 @@
 DOOM_BIN=~/.config/doom-emacs/bin/doom
 DOOM_DIR_PATH=~/.config/doom-emacs-config
 
-# Synchronize personal config
-DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN sync
-
-# Upgrade packages
+# Upgrade Doom to the latest version (then update your packages). This is equivalent to
+# $ git pull
+# $ doom sync
+# $ doom update
 DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN upgrade
 
 # Delete orphaned packages & repos, and compacts them

@@ -1,10 +1,10 @@
 format = """
 [](#44475A)\
 $directory\
-[](fg:#44475A bg:#6272a4)\
+[](fg:#44475A bg:#6272a4)\
 $git_branch\
 $git_status\
-[](fg:#6272a4 bg:#BD93F9)\
+[](fg:#6272a4 bg:#BD93F9)\
 $c\
 $elixir\
 $elm\
@@ -15,11 +15,11 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-[](fg:#BD93F9 bg:#FF79C6)\
+[](fg:#BD93F9 bg:#FF79C6)\
 $docker_context\
-[](fg:#FF79C6 bg:#FF5555)\
+[](fg:#FF79C6 bg:#FF5555)\
 $cmd_duration\
-[ ](fg:#FF5555)\
+[](fg:#FF5555)\
 \n$character
 """
 

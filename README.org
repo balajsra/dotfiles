@@ -60,7 +60,7 @@
   - [[#vim][Vim]]
   - [[#emacs][Emacs]]
     - [[#chemacs2][Chemacs2]]
-    - [[#update-script][Update Script]]
+    - [[#doom-emacs-update-script][DOOM Emacs Update Script]]
 - [[#system-monitor][System Monitor]]
   - [[#conky][Conky]]
 - [[#gaming][Gaming]]
@@ -3012,6 +3012,7 @@ lon=-77.2269
 #+END_SRC
 
 * Lock Screen
+
 ** Betterlockscreen
 
 *** Default Options
@@ -3082,10 +3083,10 @@ postlock() {
 format = """
 [](#44475A)\
 $directory\
-[](fg:#44475A bg:#6272a4)\
+[](fg:#44475A bg:#6272a4)\
 $git_branch\
 $git_status\
-[](fg:#6272a4 bg:#BD93F9)\
+[](fg:#6272a4 bg:#BD93F9)\
 $c\
 $elixir\
 $elm\
@@ -3096,11 +3097,11 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-[](fg:#BD93F9 bg:#FF79C6)\
+[](fg:#BD93F9 bg:#FF79C6)\
 $docker_context\
-[](fg:#FF79C6 bg:#FF5555)\
+[](fg:#FF79C6 bg:#FF5555)\
 $cmd_duration\
-[ ](fg:#FF5555)\
+[](fg:#FF5555)\
 \n$character
 """
 
@@ -4096,6 +4097,7 @@ stdout="off"
 #+END_SRC
 
 ** Shell
+
 *** Bash
 
 #+BEGIN_SRC shell :tangle .bashrc
@@ -7305,6 +7307,7 @@ toggle_logging=Shift_L+F2
 output_folder=/home/sravan
 media_player_name=spotify
 #+END_SRC
+
 ** vkBasalt
 
 #+BEGIN_SRC conf :tangle .config/vkBasalt/vkBasalt.conf

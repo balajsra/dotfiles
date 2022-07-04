@@ -41,7 +41,7 @@
 window {
     location: south west;
     anchor: south west;
-    height: 1035;
+    height: calc(100% - 45px);
     width: 700;
     x-offset: 10;
     y-offset: -10;

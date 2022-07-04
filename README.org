@@ -33,6 +33,7 @@
     - [[#themes][Themes]]
     - [[#greenclip-clipboard-manager][Greenclip Clipboard Manager]]
 - [[#display-configuration--effects][Display Configuration & Effects]]
+  - [[#monitor-setup][Monitor Setup]]
   - [[#autorandr][Autorandr]]
     - [[#post-switch][Post Switch]]
   - [[#compositor][Compositor]]
@@ -1631,7 +1632,7 @@ configuration {
 window {
     location: south west;
     anchor: south west;
-    height: 1035;
+    height: calc(100% - 45px);
     width: 700;
     x-offset: 10;
     y-offset: -10;
@@ -2310,6 +2311,27 @@ Config {
 
 * Display Configuration & Effects 
 
+** Monitor Setup
+
+Below is an example script for setting up displays using ~xrandr~ with desired resolution, position, and refresh rate.
+
+Use ~xrandr~ command to see available displays, resolutions, and refresh rates
+
+| Flag      | Description                                                                                                              |
+|-----------+--------------------------------------------------------------------------------------------------------------------------|
+| ~--output~  | Specify which display to configure                                                                                       |
+| ~--primary~ | Indicate which display is the primary display                                                                            |
+| ~--mode~    | Set display resolution (get available options from ~xrandr~ command)                                                       |
+| ~--pos~     | Set display position (0x0 is top left, so 5120x1440 is an x-offset of 5120px to the right and a y-offset of 1440px down) |
+| ~--rate~    | Set display refresh rate (get available options from ~xrandr~ command)                                                     |
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/monitor_setup.sh
+xrandr \
+    --output DP-0 --primary --mode 2560x1440 --pos 0x0 --rate 164.96 \
+    --output HDMI-0 --mode 2560x1440 --pos 2560x0 --rate 143.93 \
+    --output eDP-1-1 --mode 1920x1080 --pos 5120x1440 --rate 144.00
+#+END_SRC
+
 ** Autorandr
 
 See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook scripts]] for more information.
@@ -2645,7 +2667,7 @@ backend = "glx";
 
 # Enable/disable VSync.
 # vsync = false
-vsync = true
+vsync = false
 
 # Enable remote control via D-Bus. See the *D-BUS API* section below for more details.
 # dbus = false
@@ -2676,7 +2698,7 @@ detect-client-opacity = true;
 # try detecting this with X RandR extension.
 #
 # refresh-rate = 60
-refresh-rate = 144
+refresh-rate = 0
 
 # Limit picom to repaint at most once every 1 / 'refresh_rate' second to
 # boost performance. This should not be used with

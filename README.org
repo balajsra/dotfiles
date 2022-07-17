@@ -2969,6 +2969,21 @@ main $@
 
 *** Redshift
 
+**** Geoclue Agent Service
+
+#+BEGIN_SRC systemd :tangle .config/systemd/user/geoclue-agent.service
+[Unit]
+Description=redshift needs to get a (geo)clue
+
+[Service]
+ExecStart=/usr/lib/geoclue-2.0/demos/agent
+
+[Install]
+WantedBy=default.target
+#+END_SRC
+
+**** Configuration
+
 #+BEGIN_SRC conf :tangle .config/redshift/redshift.conf
 ; Global settings for redshift
 [redshift]
@@ -2999,7 +3014,7 @@ transition=1
 ; Set the location-provider: 'geoclue', 'geoclue2', 'manual'
 ; type 'redshift -l list' to see possible values.
 ; The location provider settings are in a different section.
-location-provider=manual
+location-provider=geoclue2
 
 ; Set the adjustment-method: 'randr', 'vidmode'
 ; type 'redshift -m list' to see all possible values.
@@ -3013,14 +3028,9 @@ adjustment-method=randr
 ; ex: 'redshift -l manual:help'
 ; Keep in mind that longitudes west of Greenwich (e.g. the Americas)
 ; are negative numbers.
-[manual]
-; ; Farmington Hills, MI
-; lat=42.4990
-; lon=-83.3677
-
-; Merrifield, VA
-lat=38.8743
-lon=-77.2269
+; [manual]
+; lat=xxxx
+; lon=xxx
 
 ; Configuration of the adjustment-method
 ; type 'redshift -m METHOD:help' to see the settings.

@@ -16,6 +16,7 @@ declare -a source_dirs=(
     "$home_path/.config/dolphin-emu/"
     "$home_path/.config/retroarch/"
     "$home_path/.config/rpcs3/"
+    "$home_path/.config/PCSX2/"
     "$home_path/.cache/lutris/"
 )
 declare -a target_dirs=(
@@ -29,6 +30,7 @@ declare -a target_dirs=(
     "$backup_path/.config/dolphin-emu/"
     "$backup_path/.config/retroarch/"
     "$backup_path/.config/rpcs3/"
+    "$backup_path/.config/PCSX2/"
     "$backup_path/.cache/lutris/"
 )
 

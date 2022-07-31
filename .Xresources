@@ -51,7 +51,7 @@
 #define BORDER_SIZE 2
 #define INNER_GAPS 20
 #define OUTER_GAPS 10
-#define MAXLEN 50
+#define MAXLEN 40
 #define CURSOR_SIZE 16
 
 ! DWM

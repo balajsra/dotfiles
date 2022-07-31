@@ -29,7 +29,6 @@ declare -a delay_array=(\
     "/usr/bin/kdeconnect-indicator" \        # KDE Connect Indicator
     "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
     "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
-    "/usr/bin/volctl" \                      # PulseAudio Volume Control
     "/usr/bin/udiskie -a -n -s" \            # Udiskie
     "/usr/bin/openrgb" \                     # OpenRGB
     # System Restore Processes
@@ -45,7 +44,6 @@ declare -a kill_delay_array=(\
     "killall kdeconnect-indicator" \  # KDE Connect Indicator
     "killall flameshot" \             # Flameshot Screenshot Tool
     "killall xfce4-power-manager" \   # XFCE4 Power Manager
-    "killall volctl" \                # PulseAudio Volume Control
     "killall udiskie" \               # Udiskie
     "killall openrgb" \               # OpenRGB
 )

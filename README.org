@@ -7485,7 +7485,7 @@ exec dwm
 #define BORDER_SIZE 2
 #define INNER_GAPS 20
 #define OUTER_GAPS 10
-#define MAXLEN 40
+#define MAXLEN 25
 #define CURSOR_SIZE 16
 #+END_SRC
 
@@ -8062,7 +8062,6 @@ declare -a delay_array=(\
     "/usr/bin/kdeconnect-indicator" \        # KDE Connect Indicator
     "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
     "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
-    "/usr/bin/volctl" \                      # PulseAudio Volume Control
     "/usr/bin/udiskie -a -n -s" \            # Udiskie
     "/usr/bin/openrgb" \                     # OpenRGB
     # System Restore Processes
@@ -8078,7 +8077,6 @@ declare -a kill_delay_array=(\
     "killall kdeconnect-indicator" \  # KDE Connect Indicator
     "killall flameshot" \             # Flameshot Screenshot Tool
     "killall xfce4-power-manager" \   # XFCE4 Power Manager
-    "killall volctl" \                # PulseAudio Volume Control
     "killall udiskie" \               # Udiskie
     "killall openrgb" \               # OpenRGB
 )

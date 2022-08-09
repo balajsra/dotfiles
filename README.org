@@ -75,6 +75,10 @@
   - [[#vkbasalt][vkBasalt]]
 - [[#user-programs][User Programs]]
   - [[#mangal][Mangal]]
+  - [[#trackma][Trackma]]
+    - [[#config][Config]]
+    - [[#gtk][Gtk]]
+    - [[#qt][Qt]]
 - [[#ssh][SSH]]
 - [[#system-settings][System Settings]]
   - [[#xinit][Xinit]]
@@ -7413,6 +7417,137 @@ write = false
 # Available options are: (from less to most verbose)
 # panic, fatal, error, warn, info, debug, trace
 level = "info"
+#+END_SRC
+
+** Trackma
+
+*** Config
+
+#+BEGIN_SRC json :tangle .config/trackma/config.json
+{
+    "auto_date_change": true,
+    "auto_status_change": true,
+    "auto_status_change_if_scored": true,
+    "autoretrieve": "always",
+    "autoretrieve_days": 3,
+    "autosend": "off",
+    "autosend_at_exit": true,
+    "autosend_minutes": 60,
+    "autosend_size": 5,
+    "debug_disable_lock": true,
+    "jellyfin_api_key": "",
+    "jellyfin_host": "localhost",
+    "jellyfin_port": "8096",
+    "jellyfin_user": "",
+    "kodi_host": "localhost",
+    "kodi_obey_update_wait_s": false,
+    "kodi_passwd": "",
+    "kodi_port": "8080",
+    "kodi_user": "",
+    "library_autoscan": true,
+    "library_full_path": false,
+    "player": "/bin/vlc",
+    "plex_host": "localhost",
+    "plex_obey_update_wait_s": false,
+    "plex_passwd": "",
+    "plex_port": "32400",
+    "plex_user": "",
+    "plex_uuid": "f420e4d0-05b4-11ed-bf19-18cc189cc368",
+    "redirections_time": 1,
+    "redirections_url": "https://raw.githubusercontent.com/erengy/anime-relations/master/anime-relations.txt",
+    "scan_whole_list": true,
+    "searchdir": [
+        "/home/sravan/Videos/Anime"
+    ],
+    "tracker_enabled": true,
+    "tracker_ignore_not_next": true,
+    "tracker_interval": 10,
+    "tracker_not_found_prompt": true,
+    "tracker_process": "mplayer|mplayer2|mpv|vlc",
+    "tracker_type": "local",
+    "tracker_update_close": true,
+    "tracker_update_prompt": true,
+    "tracker_update_wait_s": 300.0,
+    "use_hooks": true
+}
+#+END_SRC
+
+*** Gtk
+
+#+BEGIN_SRC json :tangle .config/trackma/ui-Gtk.json
+{
+    "close_to_tray": false,
+    "colors": {
+        "is_airing": "#0099cc",
+        "is_playing": "#6c2dc7",
+        "is_queued": "#54c571",
+        "new_episode": "#fbb917",
+        "not_aired": "#999900",
+        "progress_bg": "#e5e5e5",
+        "progress_complete": "#99ccb3",
+        "progress_fg": "#99b3cc",
+        "progress_sub_bg": "#b3b3b3",
+        "progress_sub_fg": "#668099"
+    },
+    "episodebar_style": 1,
+    "last_height": 480,
+    "last_width": 740,
+    "remember_geometry": false,
+    "show_tray": true,
+    "start_in_tray": false,
+    "tray_api_icon": true,
+    "visible_columns": [
+        "Title",
+        "Progress",
+        "Score",
+        "Percent"
+    ]
+}
+#+END_SRC
+
+*** Qt
+
+#+BEGIN_SRC json :tangle .config/trackma/ui-qt.json
+{
+    "close_to_tray": false,
+    "colors": {
+        "is_airing": "#D2FAFA",
+        "is_playing": "#9696FA",
+        "is_queued": "#D2FAD2",
+        "new_episode": "#FAFA82",
+        "not_aired": "#FAFAD2",
+        "progress_bg": "#F5F5F5",
+        "progress_complete": "#00D200",
+        "progress_fg": "#74C0FA",
+        "progress_sub_bg": "#D2D2D2",
+        "progress_sub_fg": "#5187B1"
+    },
+    "columns_per_api": false,
+    "columns_state": null,
+    "episodebar_style": 1,
+    "episodebar_text": false,
+    "filter_bar_position": 2,
+    "filter_global": false,
+    "inline_edit": true,
+    "last_height": 480,
+    "last_width": 740,
+    "last_x": 0,
+    "last_y": 0,
+    "notifications": true,
+    "remember_columns": false,
+    "remember_geometry": false,
+    "show_tray": true,
+    "sort_index": 1,
+    "sort_order": 0,
+    "start_in_tray": false,
+    "tray_api_icon": true,
+    "visible_columns": [
+        "Title",
+        "Progress",
+        "Score",
+        "Percent"
+    ]
+}
 #+END_SRC
 
 * SSH 

@@ -5,9 +5,11 @@ home_path="/home/sravan"
 
 # Define arrays
 declare -a source_dirs=(
+    "$home_path/Manga/"
     "$home_path/Videos/"
 )
 declare -a target_dirs=(
+    "$phone_path/Manga/"
     "$phone_path/Videos/"
 )
 

@@ -73,6 +73,8 @@
     - [[#custom][Custom]]
   - [[#mangohud][MangoHUD]]
   - [[#vkbasalt][vkBasalt]]
+- [[#user-programs][User Programs]]
+  - [[#mangal][Mangal]]
 - [[#ssh][SSH]]
 - [[#system-settings][System Settings]]
   - [[#xinit][Xinit]]
@@ -7348,9 +7350,79 @@ toggleKey = Home
 effects = cas 
 #+END_SRC
 
+* User Programs
+
+** Mangal
+
+#+BEGIN_SRC toml :tangle .config/mangal/mangal.toml
+[downloader]
+# Name template of the downloaded chapters
+# Available variables:
+# {index}        - index of the chapters
+# {padded-index} - same as index but padded with leading zeros
+# {chapter}      - name of the chapter
+chapter_name_template = '{padded-index}_{chapter}'
+
+# Where to download manga
+# Absolute or relative.
+#
+# You can also use home variable
+# Linux/macOS = $HOME or ~
+# Windows = %USERPROFILE%
+path = '/home/sravan/Manga'
+
+[formats]
+# Default format to export chapters
+# Available options are: pdf, zip, cbz, plain
+use = 'pdf'
+
+[history]
+# Save chapters to history when downloaded
+save_on_download = false
+# Save chapters to history on read
+save_on_read = true
+
+[icons]
+# Icons variant.
+# Available options are: emoji, kaomoji, plain, nerd (nerd-font)
+variant = 'nerd'
+
+[mangadex]
+# Preffered language
+language = 'en'
+# Show nsfw manga/chapters
+nsfw = true
+# Show chapters that cannot be read (because they are hosted on a different site)
+show_unavailable_chapters = false
+
+[mini]
+# Show bye message
+bye = true
+# Use vim binds to move
+vim_mode = true
+
+[reader]
+# Name of the app to use as a reader. Will use default OS app if empty
+name = 'zathura'
+# Will open chapter in the browser instead of downloading it
+read_in_browser = false
+
+[logs]
+# write logs?
+write = false
+# Available options are: (from less to most verbose)
+# panic, fatal, error, warn, info, debug, trace
+level = "info"
+#+END_SRC
+
 * SSH 
 
 #+BEGIN_SRC conf :tangle .ssh/config
+# Arch User Repository (AUR)
+Host aur.archlinux.org
+  IdentityFile ~/.ssh/aur
+  User aur
+
 # CAEN On-Campus
 Host caen-oncampus
   HostName oncampus-course.engin.umich.edu
@@ -8253,6 +8325,7 @@ home_path="/home/sravan"
 declare -a source_dirs=(
     "$home_path/Calibre_Library/"
     "$home_path/ISOs/"
+    "$home_path/Manga/"
     "$home_path/Music/"
     "$home_path/Pictures/"
     "$home_path/Videos/"
@@ -8267,6 +8340,7 @@ declare -a source_dirs=(
 declare -a target_dirs=(
     "$backup_path/Calibre_Library/"
     "$backup_path/ISOs/"
+    "$backup_path/Manga/"
     "$backup_path/Music/"
     "$backup_path/Pictures/"
     "$backup_path/Videos/"
@@ -8301,9 +8375,11 @@ home_path="/home/sravan"
 
 # Define arrays
 declare -a source_dirs=(
+    "$home_path/Manga/"
     "$home_path/Videos/"
 )
 declare -a target_dirs=(
+    "$phone_path/Manga/"
     "$phone_path/Videos/"
 )
 

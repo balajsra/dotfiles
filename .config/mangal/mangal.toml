@@ -1,0 +1,58 @@
+[downloader]
+# Name template of the downloaded chapters
+# Available variables:
+# {index}        - index of the chapters
+# {padded-index} - same as index but padded with leading zeros
+# {chapter}      - name of the chapter
+chapter_name_template = '{padded-index}_{chapter}'
+
+# Where to download manga
+# Absolute or relative.
+#
+# You can also use home variable
+# Linux/macOS = $HOME or ~
+# Windows = %USERPROFILE%
+path = '/home/sravan/Manga'
+
+[formats]
+# Default format to export chapters
+# Available options are: pdf, zip, cbz, plain
+use = 'pdf'
+
+[history]
+# Save chapters to history when downloaded
+save_on_download = false
+# Save chapters to history on read
+save_on_read = true
+
+[icons]
+# Icons variant.
+# Available options are: emoji, kaomoji, plain, nerd (nerd-font)
+variant = 'nerd'
+
+[mangadex]
+# Preffered language
+language = 'en'
+# Show nsfw manga/chapters
+nsfw = true
+# Show chapters that cannot be read (because they are hosted on a different site)
+show_unavailable_chapters = false
+
+[mini]
+# Show bye message
+bye = true
+# Use vim binds to move
+vim_mode = true
+
+[reader]
+# Name of the app to use as a reader. Will use default OS app if empty
+name = 'zathura'
+# Will open chapter in the browser instead of downloading it
+read_in_browser = false
+
+[logs]
+# write logs?
+write = false
+# Available options are: (from less to most verbose)
+# panic, fatal, error, warn, info, debug, trace
+level = "info"

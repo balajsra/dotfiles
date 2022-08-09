@@ -8,6 +8,7 @@ home_path="/home/sravan"
 declare -a source_dirs=(
     "$home_path/Calibre_Library/"
     "$home_path/ISOs/"
+    "$home_path/Manga/"
     "$home_path/Music/"
     "$home_path/Pictures/"
     "$home_path/Videos/"
@@ -22,6 +23,7 @@ declare -a source_dirs=(
 declare -a target_dirs=(
     "$backup_path/Calibre_Library/"
     "$backup_path/ISOs/"
+    "$backup_path/Manga/"
     "$backup_path/Music/"
     "$backup_path/Pictures/"
     "$backup_path/Videos/"

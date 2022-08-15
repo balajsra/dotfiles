@@ -7468,7 +7468,7 @@ level = "info"
     "tracker_type": "local",
     "tracker_update_close": true,
     "tracker_update_prompt": true,
-    "tracker_update_wait_s": 300.0,
+    "tracker_update_wait_s": 300,
     "use_hooks": true
 }
 #+END_SRC

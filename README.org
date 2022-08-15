@@ -79,6 +79,7 @@
     - [[#config][Config]]
     - [[#gtk][Gtk]]
     - [[#qt][Qt]]
+  - [[#syncthing][Syncthing]]
 - [[#ssh][SSH]]
 - [[#system-settings][System Settings]]
   - [[#xinit][Xinit]]
@@ -7550,6 +7551,23 @@ level = "info"
 }
 #+END_SRC
 
+** Syncthing
+
+#+BEGIN_SRC systemd :tangle .config/systemd/user/syncthing.service
+[Unit]
+Description=Syncthing
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/syncthing
+Restart=on-failure
+RestartSec=1
+SuccessExitStatus=3 4
+
+[Install]
+WantedBy=default.target
+#+END_SRC
+
 * SSH 
 
 #+BEGIN_SRC conf :tangle .ssh/config
@@ -8271,6 +8289,7 @@ declare -a delay_array=(\
     "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
     "/usr/bin/udiskie -a -n -s" \            # Udiskie
     "/usr/bin/openrgb" \                     # OpenRGB
+    "/usr/bin/syncthing-gtk" \               # Syncthing GTK
     # System Restore Processes
     "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
     "/usr/bin/numlockx on" \                 # Enable numlock
@@ -8286,6 +8305,7 @@ declare -a kill_delay_array=(\
     "killall xfce4-power-manager" \   # XFCE4 Power Manager
     "killall udiskie" \               # Udiskie
     "killall openrgb" \               # OpenRGB
+    "killall syncthing-gtk" \         # Syncthing GTK
 )
 
 help_menu() {
@@ -8500,6 +8520,7 @@ for i in ${!source_dirs[@]}; do
     # Copy source dirs to target dirs
     rsync -a -v -L --progress --delete \
         --exclude '*/dosdevices/' \
+        --exclude '*/drive_c/users/sravan/' \
         "${source_dirs[$i]}" \
         "${target_dirs[$i]}"
 done

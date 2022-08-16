@@ -1,0 +1,10 @@
+[Unit]
+Description=Run snap-sync daily
+
+[Timer]
+OnCalendar=daily
+AccuracySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target

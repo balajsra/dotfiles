@@ -65,6 +65,9 @@
 - [[#system-monitor][System Monitor]]
   - [[#conky][Conky]]
 - [[#gaming][Gaming]]
+  - [[#scripts][Scripts]]
+    - [[#pre-launch-script][Pre-Launch Script]]
+    - [[#post-exit-script][Post-Exit Script]]
   - [[#gamemode][Gamemode]]
     - [[#general][General]]
     - [[#filter][Filter]]
@@ -73,13 +76,19 @@
     - [[#custom][Custom]]
   - [[#mangohud][MangoHUD]]
   - [[#vkbasalt][vkBasalt]]
+- [[#backups--syncing][Backups & Syncing]]
+  - [[#rsync][Rsync]]
+    - [[#rsync-options][Rsync Options]]
+    - [[#laptop-to-cloud][Laptop to Cloud]]
+    - [[#rofi-menu][Rofi Menu]]
+  - [[#syncthing][Syncthing]]
+  - [[#snap-sync][Snap-Sync]]
 - [[#user-programs][User Programs]]
   - [[#mangal][Mangal]]
   - [[#trackma][Trackma]]
     - [[#config][Config]]
     - [[#gtk][Gtk]]
     - [[#qt][Qt]]
-  - [[#syncthing][Syncthing]]
 - [[#ssh][SSH]]
 - [[#system-settings][System Settings]]
   - [[#xinit][Xinit]]
@@ -91,6 +100,7 @@
     - [[#colors][Colors]]
     - [[#sizes][Sizes]]
     - [[#application-specific-changes][Application Specific Changes]]
+  - [[#startup][Startup]]
 - [[#miscellaneous-scripts][Miscellaneous Scripts]]
   - [[#media-control][Media Control]]
   - [[#volume-control][Volume Control]]
@@ -98,16 +108,6 @@
   - [[#trackpad-control][Trackpad Control]]
   - [[#cpu--gpu-control][CPU & GPU Control]]
   - [[#session-control][Session Control]]
-  - [[#startup][Startup]]
-  - [[#gaming-1][Gaming]]
-    - [[#pre-launch-script][Pre-Launch Script]]
-    - [[#post-exit-script][Post-Exit Script]]
-  - [[#rsync][Rsync]]
-    - [[#rsync-options][Rsync Options]]
-    - [[#laptop-to-cloud][Laptop to Cloud]]
-    - [[#laptop-to-external-hdd][Laptop to External HDD]]
-    - [[#laptop-to-phone][Laptop to Phone]]
-    - [[#rofi-menu][Rofi Menu]]
   - [[#control-center][Control Center]]
 - [[#acknowledgements][Acknowledgements]]
 
@@ -7171,6 +7171,29 @@ ${font Montserrat Light:size=9}${color1}${top_mem name 10} ${color}${font} ${got
 
 * Gaming 
 
+** Scripts
+
+These are scripts that should be run from Lutris when launching or exiting a game.
+
+*** Pre-Launch Script
+
+*Preferences > System options > Pre-launch script*
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
+/home/sravan/.scripts/picom.sh --off
+/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance
+/home/sravan/.scripts/deadd.sh --pause
+#+END_SRC
+
+*** Post-Exit Script
+
+*Preferences > System options > Post-exit script*
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
+/home/sravan/.scripts/deadd.sh --unpause
+/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
+#+END_SRC
+
 ** Gamemode
 
 *** General
@@ -7353,6 +7376,142 @@ media_player_name=spotify
 casSharpness=1.0
 toggleKey = Home
 effects = cas 
+#+END_SRC
+
+* Backups & Syncing
+
+** Rsync
+
+*** Rsync Options
+
+| Option     | Description                                                                   |
+| ------     | -----------                                                                   |
+| -a         | quick way of saying you want recursion and want to perserve almost everything |
+| -v         | increases the amount of information you are given during the transfer         |
+| -L         | transform symlink into referent file/dir                                      |
+| --progress | show progress during transfer                                                 |
+| --delete   | delete extraneous files from dest dirs                                        |
+
+*** Laptop to Cloud
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_cloud.sh
+# Define base paths
+gdrive_path="/mnt/google-drive"
+gdrive_personal_path="$gdrive_path/sr98vn@gmail.com"
+home_path="/home/sravan"
+
+# Define arrays
+declare -a source_dirs=(
+    "$home_path/Calibre_Library/"
+    "$home_path/Pictures/Wallpapers/"
+    "$home_path/Documents/"
+)
+declare -a target_dirs=(
+    "$gdrive_personal_path/Calibre Library/"
+    "$gdrive_personal_path/Customization/Wallpapers/Desktop/"
+    "$gdrive_personal_path/Documents/"
+)
+
+# Loop through arrays
+for i in ${!source_dirs[@]}; do
+    # Create target directories
+    mkdir -p "${target_dirs[$i]}"
+
+    # Copy source dirs to target dirs
+    rsync -a -v -L --progress --delete \
+        "${source_dirs[$i]}" \
+        "${target_dirs[$i]}"
+done
+#+END_SRC
+
+*** Rofi Menu
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync.sh
+help_menu() {
+    echo "Main menu to launch run rsync scripts. Use only one argument at a time."
+}
+
+rofi_menu() {
+    declare -a options=(
+        "   - rsync-laptop-to-cloud"
+        " Back - back"
+        " Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        killall rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && killall rofi
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --rsync-laptop-to-cloud)
+            kitty --hold /home/sravan/.scripts/rsync_laptop_to_cloud.sh
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
+#+END_SRC
+
+** Syncthing
+
+#+BEGIN_SRC systemd :tangle .config/systemd/user/syncthing.service
+[Unit]
+Description=Syncthing
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/syncthing
+Restart=on-failure
+RestartSec=1
+SuccessExitStatus=3 4
+
+[Install]
+WantedBy=default.target
+#+END_SRC
+
+** Snap-Sync
+
+#+BEGIN_SRC systemd :tangle .config/systemd/user/snap-sync.service
+[Unit]
+Description=Run snap-sync backup
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/snap-sync --UUID c651c7af-e795-4eb0-9a13-83c6288880d1 --subvolid 5 --noconfirm
+#+END_SRC
+
+#+BEGIN_SRC systemd :tangle .config/systemd/user/snap-sync.timer
+[Unit]
+Description=Run snap-sync daily
+
+[Timer]
+OnCalendar=daily
+AccuracySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
 #+END_SRC
 
 * User Programs
@@ -7551,24 +7710,7 @@ level = "info"
 }
 #+END_SRC
 
-** Syncthing
-
-#+BEGIN_SRC systemd :tangle .config/systemd/user/syncthing.service
-[Unit]
-Description=Syncthing
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/syncthing
-Restart=on-failure
-RestartSec=1
-SuccessExitStatus=3 4
-
-[Install]
-WantedBy=default.target
-#+END_SRC
-
-* SSH 
+* SSH
 
 #+BEGIN_SRC conf :tangle .ssh/config
 # Arch User Repository (AUR)
@@ -7631,7 +7773,7 @@ xrdb ~/.Xresources
 exec dwm
 #+END_SRC
 
-** Xresources 
+** Xresources
 
 *** Colors
 
@@ -7791,6 +7933,153 @@ dunst.critical-frame:       GREEN1
 ! Display Scaling
 ,*.dpi: DPI
 Xcursor.size: CURSOR_SIZE
+#+END_SRC
+
+** Startup
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/startup.sh
+declare -a startup_array=(\
+    # Background Processes
+    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
+    "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
+    "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
+    "/usr/bin/xss-lock -l -- betterlockscreen --lock" \            # Session Lock Utility
+    "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
+    "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
+)
+
+declare -a kill_startup_array=(\
+    # Background Processes
+    "killall deadd-notificat" \  # Deadd Notification Center
+    "killall picom" \            # Picom Compositor
+    "killall greenclip" \        # Greenclip Clipboard Manager
+    "killall polkit" \           # GNOME Polkit Authentication Agent
+    "killall xss-lock" \         # Session Lock Utility
+    "killall kdeconnectd" \      # KDE Connect Daemon
+    "killall redshift" \         # Redshift Blue Light Filter
+)
+
+declare -a delay_array=(\
+    # System Tray Applications
+    "/usr/bin/redshift-gtk" \                # Redshift Blue Light Filter
+    "/usr/bin/blueman-applet" \              # Blueman Bluetooth Manager
+    "/usr/bin/nm-applet" \                   # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \        # KDE Connect Indicator
+    "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
+    "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
+    "/usr/bin/udiskie -a -n -s" \            # Udiskie
+    "/usr/bin/openrgb" \                     # OpenRGB
+    "/usr/bin/syncthing-gtk" \               # Syncthing GTK
+    # System Restore Processes
+    "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
+    "/usr/bin/numlockx on" \                 # Enable numlock
+)
+
+declare -a kill_delay_array=(\
+    # System Tray Applications
+    "killall redshift" \              # Redshift Blue Light Filter
+    "killall blueman-applet" \        # Blueman Bluetooth Manager
+    "killall nm-applet" \             # Network Manager Applet
+    "killall kdeconnect-indicator" \  # KDE Connect Indicator
+    "killall flameshot" \             # Flameshot Screenshot Tool
+    "killall xfce4-power-manager" \   # XFCE4 Power Manager
+    "killall udiskie" \               # Udiskie
+    "killall openrgb" \               # OpenRGB
+    "killall syncthing-gtk" \         # Syncthing GTK
+)
+
+help_menu() {
+    echo "Main script to launch and kill startup processes. Use only one argument at a time."
+    # echo "  - Play / Pause:  playerctl.sh --play-pause"
+    # echo "  - Next:          playerctl.sh --next"
+    # echo "  - Previous:      playerctl.sh --prev"
+    # echo "  - Change Player: playerctl.sh --change"
+    # echo "  - Rofi Menu:     playerctl.sh --rofi"
+    # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+}
+
+rofi_menu() {
+    declare -a options=(
+        " Launch Startup Processes - startup"
+        "羽 Launch Delayed Processes - delay"
+        " Kill Startup Processes - kill-startup"
+        " Kill Delayed Processes - kill-delay"
+        " Back - back"
+        " Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        killall rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && main "--rofi"
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --startup)
+            for i in "${startup_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --delay)
+            for i in "${delay_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --kill-startup)
+            for i in "${kill_startup_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --kill-delay)
+            for i in "${kill_delay_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
 #+END_SRC
 
 * Miscellaneous Scripts
@@ -8243,367 +8532,6 @@ main() {
         --restart)
             notify-send "Session Control" "Restarting Dwm"
             xdotool key Super+Control_L+Shift_L+q
-            ;;
-        --rofi)
-            rofi_menu
-            ;;
-        esac
-    fi
-}
-
-main $@
-#+END_SRC
-
-** Startup
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/startup.sh
-declare -a startup_array=(\
-    # Background Processes
-    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
-    "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
-    "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-    "/usr/bin/xss-lock -l -- betterlockscreen --lock" \            # Session Lock Utility
-    "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
-    "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
-)
-
-declare -a kill_startup_array=(\
-    # Background Processes
-    "killall deadd-notificat" \  # Deadd Notification Center
-    "killall picom" \            # Picom Compositor
-    "killall greenclip" \        # Greenclip Clipboard Manager
-    "killall polkit" \           # GNOME Polkit Authentication Agent
-    "killall xss-lock" \         # Session Lock Utility
-    "killall kdeconnectd" \      # KDE Connect Daemon
-    "killall redshift" \         # Redshift Blue Light Filter
-)
-
-declare -a delay_array=(\
-    # System Tray Applications
-    "/usr/bin/redshift-gtk" \                # Redshift Blue Light Filter
-    "/usr/bin/blueman-applet" \              # Blueman Bluetooth Manager
-    "/usr/bin/nm-applet" \                   # Network Manager Applet
-    "/usr/bin/kdeconnect-indicator" \        # KDE Connect Indicator
-    "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
-    "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
-    "/usr/bin/udiskie -a -n -s" \            # Udiskie
-    "/usr/bin/openrgb" \                     # OpenRGB
-    "/usr/bin/syncthing-gtk" \               # Syncthing GTK
-    # System Restore Processes
-    "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
-    "/usr/bin/numlockx on" \                 # Enable numlock
-)
-
-declare -a kill_delay_array=(\
-    # System Tray Applications
-    "killall redshift" \              # Redshift Blue Light Filter
-    "killall blueman-applet" \        # Blueman Bluetooth Manager
-    "killall nm-applet" \             # Network Manager Applet
-    "killall kdeconnect-indicator" \  # KDE Connect Indicator
-    "killall flameshot" \             # Flameshot Screenshot Tool
-    "killall xfce4-power-manager" \   # XFCE4 Power Manager
-    "killall udiskie" \               # Udiskie
-    "killall openrgb" \               # OpenRGB
-    "killall syncthing-gtk" \         # Syncthing GTK
-)
-
-help_menu() {
-    echo "Main script to launch and kill startup processes. Use only one argument at a time."
-    # echo "  - Play / Pause:  playerctl.sh --play-pause"
-    # echo "  - Next:          playerctl.sh --next"
-    # echo "  - Previous:      playerctl.sh --prev"
-    # echo "  - Change Player: playerctl.sh --change"
-    # echo "  - Rofi Menu:     playerctl.sh --rofi"
-    # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
-}
-
-rofi_menu() {
-    declare -a options=(
-        " Launch Startup Processes - startup"
-        "羽 Launch Delayed Processes - delay"
-        " Kill Startup Processes - kill-startup"
-        " Kill Delayed Processes - kill-delay"
-        " Back - back"
-        " Quit - quit"
-    )
-
-    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
-    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
-
-    if [[ "$option" == "quit" ]]; then
-        killall rofi
-    elif [[ "$option" != "back" ]]; then
-        main "--$option" && main "--rofi"
-    fi
-}
-
-main() {
-    if [ $# -eq 0 ]; then
-        # No arguments
-        help_menu
-    else
-        case $1 in
-        --help | -h)
-            help_menu
-            ;;
-        --startup)
-            for i in "${startup_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
-        --delay)
-            for i in "${delay_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
-        --kill-startup)
-            for i in "${kill_startup_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
-        --kill-delay)
-            for i in "${kill_delay_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
-        --rofi)
-            rofi_menu
-            ;;
-        esac
-    fi
-}
-
-main $@
-#+END_SRC
-
-** Gaming
-
-These are scripts that should be run from Lutris when launching or exiting a game.
-
-*** Pre-Launch Script
-
-*Preferences > System options > Pre-launch script*
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
-/home/sravan/.scripts/picom.sh --off
-/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance
-/home/sravan/.scripts/deadd.sh --pause
-#+END_SRC
-
-*** Post-Exit Script
-
-*Preferences > System options > Post-exit script*
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
-/home/sravan/.scripts/deadd.sh --unpause
-/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
-#+END_SRC
-
-** Rsync
-
-*** Rsync Options
-
-| Option     | Description                                                                   |
-| ------     | -----------                                                                   |
-| -a         | quick way of saying you want recursion and want to perserve almost everything |
-| -v         | increases the amount of information you are given during the transfer         |
-| -L         | transform symlink into referent file/dir                                      |
-| --progress | show progress during transfer                                                 |
-| --delete   | delete extraneous files from dest dirs                                        |
-
-*** Laptop to Cloud
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_cloud.sh
-# Define base paths
-gdrive_path="/mnt/google-drive"
-gdrive_personal_path="$gdrive_path/sr98vn@gmail.com"
-home_path="/home/sravan"
-
-# Define arrays
-declare -a source_dirs=(
-    "$home_path/Calibre_Library/"
-    "$home_path/Pictures/Wallpapers/"
-    "$home_path/Documents/"
-)
-declare -a target_dirs=(
-    "$gdrive_personal_path/Calibre Library/"
-    "$gdrive_personal_path/Customization/Wallpapers/Desktop/"
-    "$gdrive_personal_path/Documents/"
-)
-
-# Loop through arrays
-for i in ${!source_dirs[@]}; do
-    # Create target directories
-    mkdir -p "${target_dirs[$i]}"
-
-    # Copy source dirs to target dirs
-    rsync -a -v -L --progress --delete \
-        "${source_dirs[$i]}" \
-        "${target_dirs[$i]}"
-done
-#+END_SRC
-
-*** Laptop to External HDD
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_external_hdd.sh
-# Define base paths
-external_hdd_path="/run/media/sravan/5TB_HDD"
-backup_path="$external_hdd_path/Backups"
-home_path="/home/sravan"
-
-# Define arrays
-declare -a source_dirs=(
-    "$home_path/.cache/lutris/"
-    "$home_path/.cache/yuzu/"
-    "$home_path/.config/PCSX2/"
-    "$home_path/.config/dolphin-emu/"
-    "$home_path/.config/lutris/"
-    "$home_path/.config/retroarch/"
-    "$home_path/.config/rpcs3/"
-    "$home_path/.config/yuzu/"
-    "$home_path/Calibre_Library/"
-    "$home_path/Games/"
-    "$home_path/ISOs/"
-    "$home_path/Manga/"
-    "$home_path/Music/"
-    "$home_path/Pictures/"
-    "$home_path/Videos/"
-)
-declare -a target_dirs=(
-    "$backup_path/.cache/lutris/"
-    "$backup_path/.cache/yuzu/"
-    "$backup_path/.config/PCSX2/"
-    "$backup_path/.config/dolphin-emu/"
-    "$backup_path/.config/lutris/"
-    "$backup_path/.config/retroarch/"
-    "$backup_path/.config/rpcs3/"
-    "$backup_path/.config/yuzu/"
-    "$backup_path/Calibre_Library/"
-    "$backup_path/Games/"
-    "$backup_path/ISOs/"
-    "$backup_path/Manga/"
-    "$backup_path/Music/"
-    "$backup_path/Pictures/"
-    "$backup_path/Videos/"
-)
-
-# Loop through arrays
-for i in ${!source_dirs[@]}; do
-    # Create target directories
-    mkdir -p "${target_dirs[$i]}"
-
-    # Copy source dirs to target dirs
-    rsync -a -v -L --progress --delete \
-        --exclude '*/dosdevices/' \
-        --exclude '*/drive_c/users/sravan/' \
-        "${source_dirs[$i]}" \
-        "${target_dirs[$i]}"
-done
-#+END_SRC
-
-*** Laptop to Phone
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_phone.sh
-# Define base paths
-phone_path="/run/user/1000/b2c922a2358570a6"
-home_path="/home/sravan"
-
-# Define arrays
-declare -a source_dirs=(
-    "$home_path/Manga/"
-    "$home_path/Videos/"
-)
-declare -a target_dirs=(
-    "$phone_path/Manga/"
-    "$phone_path/Videos/"
-)
-
-# Loop through arrays
-for i in ${!source_dirs[@]}; do
-    # Create target directories
-    mkdir -p "${target_dirs[$i]}"
-
-    # Copy source dirs to target dirs
-    rsync -a -v -L --progress --delete \
-        "${source_dirs[$i]}" \
-        "${target_dirs[$i]}"
-done
-#+END_SRC
-
-*** Rofi Menu
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync.sh
-help_menu() {
-    echo "Main menu to launch run rsync scripts. Use only one argument at a time."
-    # echo "  - Play / Pause:  playerctl.sh --play-pause"
-    # echo "  - Next:          playerctl.sh --next"
-    # echo "  - Previous:      playerctl.sh --prev"
-    # echo "  - Change Player: playerctl.sh --change"
-    # echo "  - Rofi Menu:     playerctl.sh --rofi"
-    # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
-}
-
-rofi_menu() {
-    declare -a options=(
-        "   - rsync-laptop-to-cloud"
-        "   - rsync-laptop-to-external-hdd"
-        "   - rsync-laptop-to-phone"
-        " Back - back"
-        " Quit - quit"
-    )
-
-    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
-    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
-
-    if [[ "$option" == "quit" ]]; then
-        killall rofi
-    elif [[ "$option" != "back" ]]; then
-        main "--$option" && killall rofi
-    fi
-}
-
-main() {
-    if [ $# -eq 0 ]; then
-        # No arguments
-        help_menu
-    else
-        case $1 in
-        --help | -h)
-            help_menu
-            ;;
-        --rsync-laptop-to-cloud)
-            kitty --hold /home/sravan/.scripts/rsync_laptop_to_cloud.sh
-            ;;
-        --rsync-laptop-to-external-hdd)
-            kitty --hold /home/sravan/.scripts/rsync_laptop_to_external_hdd.sh
-            ;;
-        --rsync-laptop-to-phone)
-            kitty --hold /home/sravan/.scripts/rsync_laptop_to_phone.sh
             ;;
         --rofi)
             rofi_menu

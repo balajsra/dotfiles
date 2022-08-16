@@ -89,10 +89,10 @@ configuration {
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
     kb-mode-next: "Shift+Right,Control+Tab";
-    kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
+    kb-mode-previous: "Shift+Left";
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
-    kb-row-up: "Up,Control+k,Control+p,ISO_Left_Tab";
+    kb-row-up: "Up,Control+k,Control+p";
     kb-row-down: "Down,Control+j,Control+n";
 /*	kb-row-tab: "Tab";*/
 /*	kb-page-prev: "Page_Up";*/

@@ -82,7 +82,6 @@
     - [[#laptop-to-cloud][Laptop to Cloud]]
     - [[#rofi-menu][Rofi Menu]]
   - [[#syncthing][Syncthing]]
-  - [[#snap-sync][Snap-Sync]]
 - [[#user-programs][User Programs]]
   - [[#mangal][Mangal]]
   - [[#trackma][Trackma]]
@@ -7485,33 +7484,6 @@ SuccessExitStatus=3 4
 
 [Install]
 WantedBy=default.target
-#+END_SRC
-
-** Snap-Sync
-
-#+BEGIN_SRC systemd :tangle .config/systemd/user/snap-sync.service
-[Unit]
-Description=Run snap-sync backup
-
-[Install]
-WantedBy=multi-user.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/snap-sync --UUID c651c7af-e795-4eb0-9a13-83c6288880d1 --subvolid 5 --noconfirm
-#+END_SRC
-
-#+BEGIN_SRC systemd :tangle .config/systemd/user/snap-sync.timer
-[Unit]
-Description=Run snap-sync daily
-
-[Timer]
-OnCalendar=daily
-AccuracySec=1h
-Persistent=true
-
-[Install]
-WantedBy=timers.target
 #+END_SRC
 
 * User Programs

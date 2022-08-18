@@ -1,11 +1,12 @@
 #!/bin/bash
 help_menu() {
-    echo "Main menu to launch run rsync scripts. Use only one argument at a time."
+    echo "Main menu to launch backup scripts. Use only one argument at a time."
 }
 
 rofi_menu() {
     declare -a options=(
-        "   - rsync-laptop-to-cloud"
+        " - backup-to-cloud"
+        " - backup-to-hdd"
         " Back - back"
         " Quit - quit"
     )
@@ -29,8 +30,11 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --rsync-laptop-to-cloud)
-            kitty --hold /home/sravan/.scripts/rsync_laptop_to_cloud.sh
+        --backup-to-cloud)
+            kitty --hold /home/sravan/.scripts/backup_to_cloud.sh
+            ;;
+        --backup-to-hdd)
+            kitty --hold /home/sravan/.scripts/backup_to_hdd.sh
             ;;
         --rofi)
             rofi_menu

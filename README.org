@@ -77,9 +77,10 @@
   - [[#mangohud][MangoHUD]]
   - [[#vkbasalt][vkBasalt]]
 - [[#backups--syncing][Backups & Syncing]]
-  - [[#rsync][Rsync]]
+  - [[#backups][Backups]]
     - [[#rsync-options][Rsync Options]]
-    - [[#laptop-to-cloud][Laptop to Cloud]]
+    - [[#cloud][Cloud]]
+    - [[#hdd][HDD]]
     - [[#rofi-menu][Rofi Menu]]
   - [[#syncthing][Syncthing]]
 - [[#user-programs][User Programs]]
@@ -7379,7 +7380,7 @@ effects = cas
 
 * Backups & Syncing
 
-** Rsync
+** Backups
 
 *** Rsync Options
 
@@ -7391,9 +7392,9 @@ effects = cas
 | --progress | show progress during transfer                                                 |
 | --delete   | delete extraneous files from dest dirs                                        |
 
-*** Laptop to Cloud
+*** Cloud
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync_laptop_to_cloud.sh
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_cloud.sh
 # Define base paths
 gdrive_path="/mnt/google-drive"
 gdrive_personal_path="$gdrive_path/sr98vn@gmail.com"
@@ -7423,16 +7424,27 @@ for i in ${!source_dirs[@]}; do
 done
 #+END_SRC
 
+*** HDD
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_hdd.sh
+sudo snap-sync \
+    --UUID c651c7af-e795-4eb0-9a13-83c6288880d1 \
+    --subvolid 5 \
+    --noconfirm \
+    --quiet
+#+END_SRC
+
 *** Rofi Menu
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/rsync.sh
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup.sh
 help_menu() {
-    echo "Main menu to launch run rsync scripts. Use only one argument at a time."
+    echo "Main menu to launch backup scripts. Use only one argument at a time."
 }
 
 rofi_menu() {
     declare -a options=(
-        "   - rsync-laptop-to-cloud"
+        " - backup-to-cloud"
+        " - backup-to-hdd"
         " Back - back"
         " Quit - quit"
     )
@@ -7456,8 +7468,11 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --rsync-laptop-to-cloud)
-            kitty --hold /home/sravan/.scripts/rsync_laptop_to_cloud.sh
+        --backup-to-cloud)
+            kitty --hold /home/sravan/.scripts/backup_to_cloud.sh
+            ;;
+        --backup-to-hdd)
+            kitty --hold /home/sravan/.scripts/backup_to_hdd.sh
             ;;
         --rofi)
             rofi_menu
@@ -8535,7 +8550,7 @@ rofi_menu() {
         " Notifications - deadd"
         " Media - playerctl"
         "墳Volume - pactl"
-        "痢 Rsync - rsync"
+        " Backup - backup"
         " Startup Processes - startup"
         " Hardware - cpu-gpu"
         " Power Menu - session"
@@ -8577,8 +8592,8 @@ main() {
         --pactl)
             /home/sravan/.scripts/pactl.sh --rofi
             ;;
-        --rsync)
-            /home/sravan/.scripts/rsync.sh --rofi
+        --backup)
+            /home/sravan/.scripts/backup.sh --rofi
             ;;
         --startup)
             /home/sravan/.scripts/startup.sh --rofi

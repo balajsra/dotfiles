@@ -16,7 +16,7 @@ rofi_menu() {
         " Notifications - deadd"
         " Media - playerctl"
         "墳Volume - pactl"
-        "痢 Rsync - rsync"
+        " Backup - backup"
         " Startup Processes - startup"
         " Hardware - cpu-gpu"
         " Power Menu - session"
@@ -58,8 +58,8 @@ main() {
         --pactl)
             /home/sravan/.scripts/pactl.sh --rofi
             ;;
-        --rsync)
-            /home/sravan/.scripts/rsync.sh --rofi
+        --backup)
+            /home/sravan/.scripts/backup.sh --rofi
             ;;
         --startup)
             /home/sravan/.scripts/startup.sh --rofi

@@ -1,23 +1,36 @@
 [downloader]
+# Default source to use
+# Will prompt to choose if empty
+# Type `mangal sources` for available sources
+default_source = 'ComicK'
 # Name template of the downloaded chapters
 # Available variables:
 # {index}        - index of the chapters
 # {padded-index} - same as index but padded with leading zeros
 # {chapter}      - name of the chapter
+# {manga}        - name of the manga
 chapter_name_template = '{padded-index}_{chapter}'
-
 # Where to download manga
 # Absolute or relative.
 #
 # You can also use home variable
-# Linux/macOS = $HOME or ~
-# Windows = %USERPROFILE%
-path = '/home/sravan/Manga'
+# path = "~/..." or "$HOME/..."
+path = '$HOME/Manga'
+# Use asynchronous downloader (faster)
+# Do no turn it off unless you have some issues
+async = true
+# Create a subdirectory for each manga
+create_manga_dir = true
+# Stop downloading other chapters on error
+stop_on_error = false
 
 [formats]
 # Default format to export chapters
 # Available options are: pdf, zip, cbz, plain
 use = 'pdf'
+# Will skip images that can't be converted to the specified format
+# Example: if you want to export to pdf, but some images are gifs, they will be skipped
+skip_unsupported_images = true
 
 [history]
 # Save chapters to history when downloaded
@@ -27,11 +40,11 @@ save_on_read = true
 
 [icons]
 # Icons variant.
-# Available options are: emoji, kaomoji, plain, nerd (nerd-font)
+# Available options are: emoji, kaomoji, plain, squares, nerd (nerd-font)
 variant = 'nerd'
 
 [mangadex]
-# Preffered language
+# Preferred language
 language = 'en'
 # Show nsfw manga/chapters
 nsfw = true
@@ -39,16 +52,26 @@ nsfw = true
 show_unavailable_chapters = false
 
 [mini]
-# Show bye message
-bye = true
-# Use vim binds to move
-vim_mode = true
+# Limit number of search page entries
+search_limit = 50
 
 [reader]
-# Name of the app to use as a reader. Will use default OS app if empty
-name = 'zathura'
+# Name of the app to use as a reader for each format.
+# Will use default OS app if empty
+pdf = 'okular' # e.g. pdf = 'zathura'
+cbz = ''
+zip = ''
+plain = ''
 # Will open chapter in the browser instead of downloading it
 read_in_browser = false
+
+[installer]
+# Custom scrapers repository (github only)
+repo = 'mangal-scrapers'
+# Custom scrapers repository owner
+user = 'metafates'
+# Custom scrapers repository branch
+branch = 'main'
 
 [logs]
 # write logs?

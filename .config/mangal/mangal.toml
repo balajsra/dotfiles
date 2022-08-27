@@ -73,6 +73,11 @@ user = 'metafates'
 # Custom scrapers repository branch
 branch = 'main'
 
+[gen]
+# Name of author for gen command.
+# Will use OS username if empty
+author = 'Sravan Balaji'
+
 [logs]
 # write logs?
 write = false

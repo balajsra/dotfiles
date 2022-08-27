@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo snap-sync \
-    --UUID c651c7af-e795-4eb0-9a13-83c6288880d1 \
+    --UUID 8d148185-97f7-446f-8937-3c5c0924039d \
     --subvolid 5 \
     --noconfirm \
     --quiet

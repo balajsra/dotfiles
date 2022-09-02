@@ -230,6 +230,10 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = .themes/matlab-schemes
 	url = git@github.com:scottclowe/matlab-schemes.git
 	branch = master
+[submodule ".themes/dracula-gimp"]
+	path = .themes/dracula-gimp
+	url = git@github.com:dracula/gimp.git
+	branch = master
 #+END_SRC
 
 ** Ignoring files and directories

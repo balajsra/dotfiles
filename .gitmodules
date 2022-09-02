@@ -94,3 +94,7 @@
 	path = .themes/matlab-schemes
 	url = git@github.com:scottclowe/matlab-schemes.git
 	branch = master
+[submodule ".themes/dracula-gimp"]
+	path = .themes/dracula-gimp
+	url = git@github.com:dracula/gimp.git
+	branch = master

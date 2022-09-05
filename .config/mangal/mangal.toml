@@ -2,7 +2,7 @@
 # Default source to use
 # Will prompt to choose if empty
 # Type `mangal sources` for available sources
-default_source = 'ComicK'
+default_source = ''
 # Name template of the downloaded chapters
 # Available variables:
 # {index}        - index of the chapters
@@ -21,6 +21,8 @@ path = '$HOME/Manga'
 async = true
 # Create a subdirectory for each manga
 create_manga_dir = true
+# Create a subdirectory for each volume (if available)
+create_volume_dir = true
 # Stop downloading other chapters on error
 stop_on_error = false
 
@@ -84,3 +86,5 @@ write = false
 # Available options are: (from less to most verbose)
 # panic, fatal, error, warn, info, debug, trace
 level = "info"
+# Use json format for logs
+json = false

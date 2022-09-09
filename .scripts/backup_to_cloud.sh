@@ -6,12 +6,10 @@ home_path="/home/sravan"
 
 # Define arrays
 declare -a source_dirs=(
-    "$home_path/Calibre_Library/"
     "$home_path/Pictures/Wallpapers/"
     "$home_path/Documents/"
 )
 declare -a target_dirs=(
-    "$gdrive_personal_path/Calibre Library/"
     "$gdrive_personal_path/Customization/Wallpapers/Desktop/"
     "$gdrive_personal_path/Documents/"
 )

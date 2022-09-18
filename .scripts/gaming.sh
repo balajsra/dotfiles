@@ -1,6 +1,6 @@
 #!/bin/bash
 help_menu() {
-    echo "Script to control brightness. Use only one argument at a time."
+    echo "Script to control gaming related things. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
     # echo "  - Next:          playerctl.sh --next"
     # echo "  - Previous:      playerctl.sh --prev"
@@ -11,8 +11,9 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Raise Brightness - raise"
-        " Lower Brightness - lower"
+        "調 DualSense to Xbox 360 Mapping - dualsense-to-xbox-360"
+        " Game Launch Settings - game-launch"
+        " Game Exit Settings - game-exit"
         " Back - back"
         " Quit - quit"
     )
@@ -23,7 +24,7 @@ rofi_menu() {
     if [[ "$option" == "quit" ]]; then
         killall rofi
     elif [[ "$option" != "back" ]]; then
-        main "--$option" && main "--rofi"
+        main "--$option" && killall rofi
     fi
 }
 
@@ -36,11 +37,14 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --raise)
-            xdotool key XF86MonBrightnessUp
+        --dualsense-to-xbox-360)
+            kitty --hold /home/sravan/.scripts/dualsense_to_xbox_360_controller.sh
             ;;
-        --lower)
-            xdotool key XF86MonBrightnessDown
+        --game-launch)
+            /home/sravan/.scripts/game_launch.sh
+            ;;
+        --game-exit)
+            /home/sravan/.scripts/game_exit.sh
             ;;
         --rofi)
             rofi_menu

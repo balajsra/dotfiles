@@ -19,6 +19,7 @@ rofi_menu() {
         " Backup - backup"
         " Startup Processes - startup"
         " Hardware - cpu-gpu"
+        " Gaming - gaming"
         " Power Menu - session"
         " Back - back"
         " Quit - quit"
@@ -66,6 +67,9 @@ main() {
             ;;
         --cpu-gpu)
             /home/sravan/.scripts/cpu-gpu.sh --rofi
+            ;;
+        --gaming)
+            /home/sravan/.scripts/gaming.sh --rofi
             ;;
         --session)
             /home/sravan/.scripts/session.sh --rofi

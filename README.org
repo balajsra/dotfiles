@@ -68,6 +68,7 @@
   - [[#scripts][Scripts]]
     - [[#pre-launch-script][Pre-Launch Script]]
     - [[#post-exit-script][Post-Exit Script]]
+    - [[#playstation-5-dualsense-to-xbox-360-controller-button-mapping][PlayStation 5 (DualSense) to Xbox 360 Controller Button Mapping]]
   - [[#gamemode][Gamemode]]
     - [[#general][General]]
     - [[#filter][Filter]]
@@ -107,6 +108,7 @@
   - [[#brightness-control][Brightness Control]]
   - [[#trackpad-control][Trackpad Control]]
   - [[#cpu--gpu-control][CPU & GPU Control]]
+  - [[#gaming-control][Gaming Control]]
   - [[#session-control][Session Control]]
   - [[#control-center][Control Center]]
 - [[#acknowledgements][Acknowledgements]]
@@ -7198,6 +7200,21 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
 #+END_SRC
 
+*** PlayStation 5 (DualSense) to Xbox 360 Controller Button Mapping
+
+Emulate DualSense controller as an Xbox 360 controller.
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/dualsense_to_xbox_360_controller.sh
+xboxdrv \
+  --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-if03-event-joystick \
+  --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y,ABS_X=X1,ABS_Y=Y1,ABS_RX=X2,ABS_RY=Y2,ABS_Z=LT,ABS_RZ=RT \
+  --evdev-keymap BTN_SOUTH=A,BTN_EAST=B,BTN_NORTH=Y,BTN_WEST=X,BTN_START=start,BTN_MODE=guide,BTN_SELECT=back \
+  --evdev-keymap BTN_TL=LB,BTN_TR=RB,BTN_TL2=LT,BTN_TR2=RT,BTN_THUMBL=TL,BTN_THUMBR=TR \
+  --axismap -y1=y1,-y2=y2 \
+  --mimic-xpad \
+  --silent
+#+END_SRC
+
 ** Gamemode
 
 *** General
@@ -8237,7 +8254,7 @@ main $@
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/brightness.sh
 help_menu() {
-    echo "Script to interact with pactl. Use only one argument at a time."
+    echo "Script to control brightness. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
     # echo "  - Next:          playerctl.sh --next"
     # echo "  - Previous:      playerctl.sh --prev"
@@ -8481,6 +8498,66 @@ main() {
 main $@
 #+END_SRC
 
+** Gaming Control
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/gaming.sh
+help_menu() {
+    echo "Script to control gaming related things. Use only one argument at a time."
+    # echo "  - Play / Pause:  playerctl.sh --play-pause"
+    # echo "  - Next:          playerctl.sh --next"
+    # echo "  - Previous:      playerctl.sh --prev"
+    # echo "  - Change Player: playerctl.sh --change"
+    # echo "  - Rofi Menu:     playerctl.sh --rofi"
+    # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+}
+
+rofi_menu() {
+    declare -a options=(
+        "調 DualSense to Xbox 360 Mapping - dualsense-to-xbox-360"
+        " Game Launch Settings - game-launch"
+        " Game Exit Settings - game-exit"
+        " Back - back"
+        " Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        killall rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && killall rofi
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --dualsense-to-xbox-360)
+            kitty --hold /home/sravan/.scripts/dualsense_to_xbox_360_controller.sh
+            ;;
+        --game-launch)
+            /home/sravan/.scripts/game_launch.sh
+            ;;
+        --game-exit)
+            /home/sravan/.scripts/game_exit.sh
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
+#+END_SRC
+
 ** Session Control
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/session.sh
@@ -8587,6 +8664,7 @@ rofi_menu() {
         " Backup - backup"
         " Startup Processes - startup"
         " Hardware - cpu-gpu"
+        " Gaming - gaming"
         " Power Menu - session"
         " Back - back"
         " Quit - quit"
@@ -8634,6 +8712,9 @@ main() {
             ;;
         --cpu-gpu)
             /home/sravan/.scripts/cpu-gpu.sh --rofi
+            ;;
+        --gaming)
+            /home/sravan/.scripts/gaming.sh --rofi
             ;;
         --session)
             /home/sravan/.scripts/session.sh --rofi

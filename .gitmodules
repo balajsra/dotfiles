@@ -98,3 +98,7 @@
 	path = .themes/dracula-gimp
 	url = git@github.com:dracula/gimp.git
 	branch = master
+[submodule ".themes/dracula-polymc"]
+	path = .themes/dracula-polymc
+	url = git@github.com:dracula/polymc.git
+	branch = main

@@ -1,90 +1,187 @@
+[anilist]
+# Anilist code to use for authentication (string)
+code = ""
+
+# Enable Anilist integration (bool)
+enable = false
+
+# Anilist ID to use for authentication (string)
+id = ""
+
+# Show link to Anilist on manga select (bool)
+link_on_manga_select = true
+
+# Anilist secret to use for authentication (string)
+secret = ""
+
 [downloader]
-# Default source to use
-# Will prompt to choose if empty
-# Type `mangal sources` for available sources
-default_source = ''
-# Name template of the downloaded chapters
-# Available variables:
-# {index}        - index of the chapters
-# {padded-index} - same as index but padded with leading zeros
-# {chapter}      - name of the chapter
-# {manga}        - name of the manga
-chapter_name_template = '{padded-index}_{chapter}'
-# Where to download manga
-# Absolute or relative.
-#
-# You can also use home variable
-# path = "~/..." or "$HOME/..."
-path = '$HOME/Manga'
 # Use asynchronous downloader (faster)
-# Do no turn it off unless you have some issues
+# Do no turn it off unless you have some issues (bool)
 async = true
-# Create a subdirectory for each manga
+
+# Key template of the downloaded chapters (string)
+# Path forbidden symbols will be replaced with "_"
+# Available variables:
+# {index}          - index of the chapters
+# {padded-index}   - same as index but padded with leading zeros
+# {chapters-count} - total number of chapters
+# {chapter}        - name of the chapter
+# {manga}          - name of the manga
+# {volume}         - volume of the chapter
+# {source}         - name of the source
+chapter_name_template = "{padded-index}_{manga}_{chapter}"
+
+# Create a subdirectory for each manga (bool)
 create_manga_dir = true
-# Create a subdirectory for each volume (if available)
-create_volume_dir = true
-# Stop downloading other chapters on error
-stop_on_error = false
+
+# Create a subdirectory for each volume (bool)
+create_volume_dir = false
+
+# Default sources to use. (string array)
+# Will prompt if not set.
+# Type "mangal sources list" to show available sources
+default_sources = [ "ComicK", "Mangadex", "Manganelo", "Manganato", "Mangapill", "AsuraScans", "LuminousScans" ]
+
+# Whether to download manga cover or not (bool)
+download_cover = true
+
+# Where to download manga (string)
+# Absolute or relative.
+# You can also use tilde (~) to refer to your home directory or use env variables.
+# Examples: ~/... or $HOME/... or ${MANGA_PATH}-mangal
+path = "/home/sravan/Manga"
+
+# If chapter is already downloaded, read it instead of downloading it to temp (bool)
+read_downloaded = false
+
+# Redownload chapters that already exist (bool)
+redownload_existing = false
+
+# Stop downloading other chapters on error (bool)
+stop_on_error = true
 
 [formats]
-# Default format to export chapters
-# Available options are: pdf, zip, cbz, plain
-use = 'pdf'
-# Will skip images that can't be converted to the specified format
+# Will skip images that can't be converted to the specified format (bool)
 # Example: if you want to export to pdf, but some images are gifs, they will be skipped
 skip_unsupported_images = true
 
+# Default format to export chapters (string)
+# Available options are: pdf, zip, cbz, plain
+use = "pdf"
+
+[gen]
+# Key to use in generated scrapers as author (string)
+gen.author = "Sravan Balaji"
+
 [history]
-# Save chapters to history when downloaded
+# Save history on chapter download (bool)
 save_on_download = false
-# Save chapters to history on read
+
+# Save history on chapter read (bool)
 save_on_read = true
 
 [icons]
-# Icons variant.
-# Available options are: emoji, kaomoji, plain, squares, nerd (nerd-font)
-variant = 'nerd'
+# Icons variant. (string)
+# Available options are: emoji, kaomoji, plain, squares, nerd (nerd-font required)
+variant = "nerd"
+
+[installer]
+# Custom scrapers repository branch (string)
+branch = "main"
+
+# Custom scrapers repository name (string)
+repo = "mangal-scrapers"
+
+# Custom scrapers repository owner (string)
+user = "metafates"
+
+[logs]
+# Use json format for logs (bool)
+json = true
+
+# Available options are: (from less to most verbose) (string)
+# panic, fatal, error, warn, info, debug, trace
+level = "info"
+
+# Write logs (bool)
+write = false
 
 [mangadex]
-# Preferred language
-language = 'en'
-# Show nsfw manga/chapters
+# Preferred language for mangadex (string)
+# Use "any" to show all languages
+language = "en"
+
+# Show NSFW content (bool)
 nsfw = true
-# Show chapters that cannot be read (because they are hosted on a different site)
+
+# Show chapters that cannot be downloaded (bool)
 show_unavailable_chapters = false
 
+[metadata]
+# Generate ComicInfo.xml file for each chapter (bool)
+comic_info_xml = false
+
+# Add series release date to each chapter in ComicInfo.xml file (bool)
+comic_info_xml_add_date = true
+
+# Use download date instead of series release date in ComicInfo.xml file (bool)
+comic_info_xml_alternative_date = false
+
+# Minimum relevance of a tag to be added to ComicInfo.xml file. From 0 to 100 (int)
+comic_info_xml_tag_relevance_threshold = 60
+
+# Fetch metadata from Anilist (bool)
+# It will also cache the results to not spam the API
+fetch_anilist = true
+
+# Generate series.json file for each manga (bool)
+series_json = true
+
 [mini]
-# Limit number of search page entries
+# Limit of search results to show (int)
 search_limit = 50
 
 [reader]
-# Name of the app to use as a reader for each format.
-# Will use default OS app if empty
-pdf = 'okular' # e.g. pdf = 'zathura'
-cbz = ''
-zip = ''
-plain = ''
-# Will open chapter in the browser instead of downloading it
+# What browser to use to open webpages (string)
+browser = ""
+
+# What app to use to open cbz files (string)
+cbz = ""
+
+# What app to use to open folders (string)
+folder = ""
+
+# What app to use to open pdf files (string)
+pdf = "okular"
+
+# What app to use to open folders (string)
+plain = ""
+
+# Open chapter url in browser instead of downloading it (bool)
 read_in_browser = false
 
-[installer]
-# Custom scrapers repository (github only)
-repo = 'mangal-scrapers'
-# Custom scrapers repository owner
-user = 'metafates'
-# Custom scrapers repository branch
-branch = 'main'
+# What app to use to open zip files (string)
+zip = ""
 
-[gen]
-# Name of author for gen command.
-# Will use OS username if empty
-author = 'Sravan Balaji'
+[search]
+# Show query suggestions in when searching (bool)
+show_query_suggestions = true
 
-[logs]
-# write logs?
-write = false
-# Available options are: (from less to most verbose)
-# panic, fatal, error, warn, info, debug, trace
-level = "info"
-# Use json format for logs
-json = false
+[tui]
+# Spacing between items in the TUI (int)
+item_spacing = 1
+
+# Read chapter on enter if other chapters aren't selected (bool)
+read_on_enter = false
+
+# Reverse chapters order (bool)
+reverse_chapters = false
+
+# Search prompt string to use (string)
+search_prompt = "> "
+
+# Show path where chapters were downloaded (bool)
+show_downloaded_path = true
+
+# Show URLs under list items (bool)
+show_urls = true

@@ -2356,11 +2356,13 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 *** Post Switch
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .config/autorandr/postswitch
-/usr/bin/nitrogen --restore                 # Restore wallpaper
-/home/sravan/.scripts/session.sh --restart  # Restart dwm
+/home/sravan/.scripts/session.sh --restart &                                     # Restart dwm
+/usr/bin/nitrogen --restore &                                                    # Restore wallpaper
+/usr/bin/betterlockscreen -u /home/sravan/Pictures/Wallpapers/Solar_System.png & # Update lock screen wallpaper
 #+END_SRC
 
 ** Compositor
+
 *** Picom Jonaburg
 
 **** Animations

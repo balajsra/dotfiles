@@ -23,18 +23,19 @@ declare -a kill_startup_array=(\
 
 declare -a delay_array=(\
     # System Tray Applications
-    "/usr/bin/redshift-gtk" \                # Redshift Blue Light Filter
-    "/usr/bin/blueman-applet" \              # Blueman Bluetooth Manager
-    "/usr/bin/nm-applet" \                   # Network Manager Applet
-    "/usr/bin/kdeconnect-indicator" \        # KDE Connect Indicator
-    "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
-    "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
-    "/usr/bin/udiskie -a -n -s" \            # Udiskie
-    "/usr/bin/openrgb" \                     # OpenRGB
-    "/usr/bin/syncthing-gtk" \               # Syncthing GTK
+    "/usr/bin/redshift-gtk" \                  # Redshift Blue Light Filter
+    "/usr/bin/blueman-applet" \                # Blueman Bluetooth Manager
+    "/usr/bin/nm-applet" \                     # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \          # KDE Connect Indicator
+    "/usr/bin/flameshot" \                     # Flameshot Screenshot Tool
+    "/usr/bin/xfce4-power-manager" \           # XFCE4 Power Manager
+    "/usr/bin/udiskie -a -n -s" \              # Udiskie
+    "/usr/bin/openrgb" \                       # OpenRGB
+    "/usr/bin/syncthing-gtk" \                 # Syncthing GTK
     # System Restore Processes
-    "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
-    "/usr/bin/numlockx on" \                 # Enable numlock
+    "/usr/bin/autorandr --change --force" \    # Auto restore screen layout
+    "/usr/bin/numlockx on" \                   # Enable numlock
+    "/usr/bin/udisksctl mount -b /dev/sda1" \  # Mount internal SSD
 )
 
 declare -a kill_delay_array=(\

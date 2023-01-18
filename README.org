@@ -978,207 +978,242 @@ main $@
 
 *** Configuration
 
+**** General
+
+#+BEGIN_SRC yaml :tangle .config/deadd/deadd.yml
+### Margins for notification-center/notifications
+margin-top: 35
+margin-right: 10
+
+### Margins for notification-center
+margin-bottom: 10
+
+### Width of the notification center/notifications in pixels.
+width: 700
+
+### Command to run at startup. This can be used to setup
+### button states.
+# startup-command: deadd-notification-center-startup
+
+### Monitor on which the notification center/notifications will be
+### printed. If "follow-mouse" is set true, this does nothing.
+monitor: 0
+
+### If true, the notification center/notifications will open on the
+### screen, on which the mouse is. Overrides the "monitor" setting.
+follow-mouse: true
+#+END_SRC
+
 **** Notification Center
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-[notification-center]
+#+BEGIN_SRC yaml :tangle .config/deadd/deadd.yml
+notification-center:
+  ### Margin at the top/right/bottom of the notification center in
+  ### pixels. This can be used to avoid overlap between the notification
+  ### center and bars such as polybar or i3blocks.
+  # margin-top: 0
+  # margin-right: 0
+  # margin-bottom: 0
+
+  ### Width of the notification center in pixels.
+  # width: 500
+
+  ### Monitor on which the notification center will be printed. If
+  ### "follow-mouse" is set true, this does nothing.
+  # monitor: 0
+
+  ### If true, the notification center will open on the screen, on which
+  ### the mouse is. Overrides the "monitor" setting.
+  # follow-mouse: false
+
+  ### Notification center closes when the mouse leaves it
+  hide-on-mouse-leave: false
+
+  ### If newFirst is set to true, newest notifications appear on the top
+  ### of the notification center. Else, notifications stack, from top to
+  ### bottom.
+  new-first: true
+
+  ### If true, the transient field in notifications will be ignored,
+  ### thus the notification will be persisted in the notification
+  ### center anyways
+  ignore-transient: false
+
+  ### Custom buttons in notification center
+  buttons:
+    ### Numbers of buttons that can be drawn on a row of the notification
+    ### center.
+    buttons-per-row: 3
+
+    ### Height of buttons in the notification center (in pixels).
+    button-height: 60
+
+    ### Horizontal and vertical margin between each button in the
+    ### notification center (in pixels).
+    button-margin: 2
+
+    ### Button actions and labels. For each button you must specify a
+    ### label and a command.
+    actions:
+      # - label: VPN
+      #   command: "sudo vpnToggle"
+      # - label: Bluetooth
+      #   command: bluetoothToggle
+      # - label: Wifi
+      #   command: wifiToggle
+      # - label: Screensaver
+      #   command: screensaverToggle
+      # - label: Keyboard
+      #   command: keyboardToggle
+      - label: "Pause Notifications"
+        command: "/home/sravan/.scripts/deadd.sh --pause"
+      - label: "Unpause Notifications"
+        command: "/home/sravan/.scripts/deadd.sh --unpause"
+      - label: "Close Notification Center"
+        command: "/home/sravan/.scripts/deadd.sh --toggle-center"
 #+END_SRC
 
-Hide the notification center when the mouse leaves the window
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-hideOnMouseLeave = false
-#+END_SRC
+**** Notification
 
-Margin at the top of the notification center in pixels. This can be used to avoid overlap between the notification center and bars such as polybar or i3blocks.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-marginTop = 35
-#+END_SRC
+#+BEGIN_SRC yaml :tangle .config/deadd/deadd.yml
+notification:
 
-Margin at the bottom of the notification center in pixels.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-marginBottom = 10
-#+END_SRC
+  ### If true, markup (<u>, <i>, <b>, <a>) will be displayed properly
+  use-markup: true
 
-Margin to the right of the notification center in pixels.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-marginRight = 10
-#+END_SRC
+  ### If true, html entities (&#38; for &, &#37; for %, etc) will be
+  ### parsed properly. This is useful for chromium-based apps, which
+  ### tend to send these in notifications.
+  parse-html-entities: true
 
-Width of the notification center in pixels. 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-width = 700
-#+END_SRC
+  dbus:
+    ### If noti-closed messages are enabled, the sending application
+    ### will know that a notification was closed/timed out. This can
+    ### be an issue for certain applications, that overwrite
+    ### notifications on status updates (e.g. Spotify on each
+    ### song). When one of these applications thinks, the notification
+    ### has been closed/timed out, they will not overwrite existing
+    ### notifications but send new ones. This can lead to redundant
+    ### notifications in the notification center, as the close-message
+    ### is send regardless of the notification being persisted.
+    send-noti-closed: false
 
-Monitor on which the notification center will be printed.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-monitor = 0
-#+END_SRC
+  app-icon:
+    ### If set to true: If no icon is passed by the app_icon parameter
+    ### and no application "desktop-entry"-hint is present, deadd will
+    ### try to guess the icon from the application name (if present).
+    guess-icon-from-name: true
 
-If true, the notification center will open on the screen, on which the mouse is
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-followMouse = true
-#+END_SRC
+    ### The display size of the application icons in the notification
+    ### pop-ups and in the notification center
+    icon-size: 25
 
-(Optional) Command to run at startup.  This can be used to setup button states.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-# startupCommand = "deadd-notification-center-startup"
-#+END_SRC
+  image:
+    ### The maximal display size of images that are part of
+    ### notifications for notification pop-ups and in the notification
+    ### center
+    size: 100
 
-If newFirst is set to true, newest notifications appear on the top of the notification center. Else, notifications stack, from top to bottom.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-newFirst = true
-#+END_SRC
+    ### The margin around the top, bottom, left, and right of
+    ### notification images.
+    margin-top: 10
+    margin-bottom: 10
+    margin-left: 10
+    margin-right: 0
 
-If useActionIcons is set to true, Action Buttons can show Icon
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-useActionIcons = true
-#+END_SRC
+  ### Apply modifications to certain notifications:
+  ### Each modification rule needs a "match" and either a "modify" or
+  ### a "script" entry.
+  modifications:
+  ### Match:
+  ### Matches the notifications against these rules. If all of the
+  ### values (of one modification rule) match, the "modify"/"script"
+  ### part is applied.
+  # - match:
+      ### Possible match criteria:
+      # title: "Notification title"
+      # body: "Notification body"
+      # time: "12:44"
+      # app-name: "App name"
 
-If true, the transient field in notifications will be ignored and the notification will be persisted in the notification center anyways
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-ignoreTransient = false
-#+END_SRC
+    # modify:
+      ### Possible modifications
+      # title: "abc"
+      # body: "abc"
+      # app-name: "abc"
+      # app-icon: "file:///abc.png"
+      ### The timeout has three special values:
+      ### timeout: 0 -> don't time out at all
+      ### timeout: -1 -> use default timeout
+      ### timeout: 1 -> don't show as pop-up
+      ### timeout: >1 -> milliseconds until timeout
+      # timeout: 1
+      # margin-right: 10
+      # margin-top: 10
+      # image: "file:///abc.png"
+      # image-size: 10
+      # transient: true
+      # send-noti-closed: false
+      ### Remove action buttons from notifications
+      # remove-actions: true
+      ### Add a class-name to the notification container, that can be
+      ### used for specific styling of notifications using the
+      ### deadd.css file
+      # class-name: "abc"
 
-If true, markup (<u>, <i>, <b>, <a>) will be displayed properly
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-useMarkup = true
-#+END_SRC
+  # - match:
+      # app-name: "Chromium"
 
-If true, html entities (&#38; for &, &#37; for %, etc) will be parsed  properly. This is useful for chromium-based apps, which tend to send  these in notifications. 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-parseHtmlEntities = true
-#+END_SRC
+    ### Instead of modifying a notification directly, a script can be
+    ### run, which will receive the notification as JSON on STDIN. It
+    ### is expected to return JSON/YAML configuration that defines the
+    ### modifications that should be applied. Minimum complete return
+    ### value must be '{"modify": {}, "match": {}}'. Always leave the "match"
+    ### object empty (technical reasons, i.e. I am lazy).
+    # script: "linux-notification-center-parse-chromium"
+  # - match:
+  #     app-name: "Spotify"
+  #   modify:
+  #     image-size: 80
+  #     timeout: 1
+  #     send-noti-closed: true
+  #     class-name: "Spotify"
+  # - match:
+  #     title: Bildschirmhelligkeit
+  #   modify:
+  #     image-size: 60
 
-If set to true, the parameter noClosedMsg can be set on notifications. If noClosedMsg is set to true on a notification, DBUS NotificationClosed messages will not be send for this notification.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-configSendNotiClosedDbusMessage = false
-#+END_SRC
+  popup:
 
-If set to true: If no icon is passed by the app_icon parameter  and no application "desktop-entry"-hint is present, the notification center will try to guess the icon from the application name (if present). Default is true.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-guessIconFromAppname = true
-#+END_SRC
+    ### Default timeout used for notifications in milli-seconds.  This can
+    ### be overwritten with the "-t" option (or "--expire-time") of the
+    ### notify-send command.
+    default-timeout: 10000
 
-See section [[https://github.com/phuhl/linux_notification_center#notification-based-scripting][Notification based scripting]] for an explanation
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-#match = "title=Abc;body=abc":"app=notify-send"
-#modify = "transient=false"
-#run = "":"killall notify-send"
-#+END_SRC
+    # Margin above/right/between notifications (in pixels). This can
+    # be used to avoid overlap between notifications and a bar such as
+    # polybar or i3blocks.
+    margin-top: 35
+    margin-right: 10
+    margin-between: 10
 
-**** Notification Popup
+    ### Monitor on which the notifications will be
+    ### printed. If "follow-mouse" is set true, this does nothing.
+    # monitor: 0
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-[notification-center-notification-popup]
-#+END_SRC
+    ### If true, the notifications will open on the
+    ### screen, on which the mouse is. Overrides the "monitor" setting.
+    # follow-mouse: false
 
-Default timeout used for notifications in milli-seconds.  This can be overwritten with the "-t" option (or "--expire-time") of the notify-send command.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-notiDefaultTimeout = 10000
-#+END_SRC
+    click-behavior:
 
-Margin above notifications (in pixels). This can be used to avoid overlap between notifications and a bar such as polybar or i3blocks.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-distanceTop = 35
-#+END_SRC
+      ### The mouse button for dismissing a popup. Must be either "mouse1",
+      ### "mouse2", "mouse3", "mouse4", or "mouse5"
+      dismiss: mouse1
 
-Margin on the right of the notification (in pixels).
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-distanceRight = 10
-#+END_SRC
-
-Vertical distance between 2 notifications (in pixels).
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-distanceBetween = 5
-#+END_SRC
-
-Width of the notifications.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-width = 400
-#+END_SRC
-
-Monitor on which the notification will be printed.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-monitor = 0
-#+END_SRC
-
-If true, the notifications will open on the screen, on which the mouse is
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-followMouse = true
-#+END_SRC
-
-The display size of the application icons in the notification  pop-ups and in the notification center
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-iconSize = 25
-#+END_SRC
-
-The maximal display size of images that are part of notifications for notification pop-ups and in the notification center
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-maxImageSize = 100
-#+END_SRC
-
-The margin around the top, bottom, left, and right of notification images. Applies to popup notifications and in-center notifications.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-imageMarginTop = 10
-imageMarginBottom = 10
-imageMarginLeft = 0
-imageMarginRight = 0
-#+END_SRC
-
-Truncates notification bodies with '...' at the specified number of  lines. If -1 is specified, the body text will not be truncated. Applies only to popup notifications
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-shortenBody = 5
-#+END_SRC
-
-The mouse button for closing a popup. Must be either "mouse1",  "mouse2", "mouse3", "mouse4", or "mouse5"
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-dismissButton = mouse1
-#+END_SRC
-
-The mouse button for opening a popup with the default action. Must be either "mouse1", "mouse2", "mouse3", "mouse4", or "mouse5"
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-defaultActionButton = mouse3
-#+END_SRC
-
-**** Buttons
-
-This section describes the configurable buttons within the notification center and NOT the buttons that appear in the notifications
-
-Note: If you want your buttons in the notification center to be
-      squares you should verify that the following equality holds:
-      [notification-center]::width
-         == [buttons]::buttonsPerRow * [buttons]::buttonHeight
-            + ([buttons]::buttonsPerRow + 1) * [buttons]::buttonMargin
-
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-[buttons]
-#+END_SRC
-
-Numbers of buttons that can be drawn on a row of the notification center.
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-buttonsPerRow = 3
-#+END_SRC
-
-Height of buttons in the notification center (in pixels).
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-buttonHeight = 60
-#+END_SRC
-
-Horizontal and vertical margin between each button in the  notification center (in pixels).
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-buttonMargin = 2
-#+END_SRC
-
-Labels written on the buttons in the notification center. Labels should be written between quotes and separated by a colon. For example:
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-# labels = "VPN":"Bluetooth":"Wifi":"Screensaver"
-labels = "Pause Notifications":"Unpause Notifications":"Close Notification Center"
-#+END_SRC
-
-Each label is represented as a clickable button in the notification center. The commands variable below define the commands that should be launched when the user clicks on the associated button.  There should be the same number of entries in `commands` and in `labels`
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.conf
-# commands = "sudo vpnToggle":"bluetoothToggle":"wifiToggle":"screensaverToggle"
-commands = "/home/sravan/.scripts/deadd.sh --pause":"/home/sravan/.scripts/deadd.sh --unpause":"/home/sravan/.scripts/deadd.sh --toggle-center"
+      ### The mouse button for opening a popup with the default action.
+      ### Must be either "mouse1", "mouse2", "mouse3", "mouse4", or "mouse5"
+      default-action: mouse3
 #+END_SRC
 
 *** Styling

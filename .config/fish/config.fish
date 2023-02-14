@@ -1,3 +1,5 @@
+fish_config theme choose "Dracula_Official"
+
 function fish_greeting
     clear
     pokemon-colorscripts -r

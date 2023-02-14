@@ -4515,6 +4515,12 @@ echo "zsh shell"
 
 *** Fish
 
+**** Theme Selection
+
+#+BEGIN_SRC fish :tangle .config/fish/config.fish
+fish_config theme choose "Dracula_Official"
+#+END_SRC
+
 **** Greeting
 
 #+BEGIN_SRC fish :tangle .config/fish/config.fish
@@ -4600,40 +4606,62 @@ starship init fish | source
 
 **** Dracula Theme
 
-#+BEGIN_SRC fish :tangle .config/fish/conf.d/dracula.fish
+#+BEGIN_SRC fish :tangle .config/fish/themes/Dracula_Official.theme
 # Dracula Color Palette
-set -l foreground f8f8f2
-set -l selection 44475a
-set -l comment 6272a4
-set -l red ff5555
-set -l orange ffb86c
-set -l yellow f1fa8c
-set -l green 50fa7b
-set -l purple bd93f9
-set -l cyan 8be9fd
-set -l pink ff79c6
+#
+# Foreground: f8f8f2
+# Selection: 44475a
+# Comment: 6272a4
+# Red: ff5555
+# Orange: ffb86c
+# Yellow: f1fa8c
+# Green: 50fa7b
+# Purple: bd93f9
+# Cyan: 8be9fd
+# Pink: ff79c6
 
 # Syntax Highlighting Colors
-set -g fish_color_normal $foreground
-set -g fish_color_command $cyan
-set -g fish_color_keyword $pink
-set -g fish_color_quote $yellow
-set -g fish_color_redirection $foreground
-set -g fish_color_end $orange
-set -g fish_color_error $red
-set -g fish_color_param $purple
-set -g fish_color_comment $comment
-set -g fish_color_selection --background=$selection
-set -g fish_color_search_match --background=$selection
-set -g fish_color_operator $green
-set -g fish_color_escape $pink
-set -g fish_color_autosuggestion $comment
+fish_color_normal f8f8f2
+fish_color_command 8be9fd
+fish_color_keyword ff79c6
+fish_color_quote f1fa8c
+fish_color_redirection f8f8f2
+fish_color_end ffb86c
+fish_color_error ff5555
+fish_color_param bd93f9
+fish_color_comment 6272a4
+fish_color_selection --background=44475a
+fish_color_search_match --background=44475a
+fish_color_operator 50fa7b
+fish_color_escape ff79c6
+fish_color_autosuggestion 6272a4
+fish_color_cancel ff5555 --reverse
+fish_color_option ffb86c
+fish_color_history_current --bold
+fish_color_status ff5555
+fish_color_valid_path --underline
+
+# Default Prompt Colors
+fish_color_cwd 50fa7b
+fish_color_cwd_root red
+fish_color_host bd93f9
+fish_color_host_remote bd93f9
+fish_color_user 8be9fd
 
 # Completion Pager Colors
-set -g fish_pager_color_progress $comment
-set -g fish_pager_color_prefix $cyan
-set -g fish_pager_color_completion $foreground
-set -g fish_pager_color_description $comment
+fish_pager_color_progress 6272a4
+fish_pager_color_background
+fish_pager_color_prefix 8be9fd
+fish_pager_color_completion f8f8f2
+fish_pager_color_description 6272a4
+fish_pager_color_selected_background --background=44475a
+fish_pager_color_selected_prefix 8be9fd
+fish_pager_color_selected_completion f8f8f2
+fish_pager_color_selected_description 6272a4
+fish_pager_color_secondary_background
+fish_pager_color_secondary_prefix 8be9fd
+fish_pager_color_secondary_completion f8f8f2
+fish_pager_color_secondary_description 6272a4
 #+END_SRC
 
 ** Terminal

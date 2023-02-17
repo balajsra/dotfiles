@@ -75,8 +75,6 @@
     - [[#gpu][GPU]]
     - [[#supervisor][Supervisor]]
     - [[#custom][Custom]]
-  - [[#mangohud][MangoHUD]]
-  - [[#vkbasalt][vkBasalt]]
 - [[#backups--syncing][Backups & Syncing]]
   - [[#backups][Backups]]
     - [[#rsync-options][Rsync Options]]
@@ -7402,61 +7400,6 @@ inhibit_screensaver=1
 
 ; Timeout for scripts (seconds). Scripts will be killed if they do not complete within this time.
 ;script_timeout=10
-#+END_SRC
-
-** MangoHUD 
-
-#+BEGIN_SRC conf :tangle .config/MangoHud/MangoHud.conf
-toggle_fps_limit=F1
-
-
-legacy_layout=false
-gpu_stats
-gpu_temp
-gpu_load_change
-gpu_load_value=50,90
-gpu_load_color=FFFFFF,FFAA7F,CC0000
-gpu_text=GPU
-cpu_stats
-cpu_temp
-cpu_load_change
-core_load_change
-cpu_load_value=50,90
-cpu_load_color=FFFFFF,FFAA7F,CC0000
-cpu_color=2E97CB
-cpu_text=CPU
-io_color=A491D3
-vram
-vram_color=AD64C1
-ram
-ram_color=C26693
-fps
-engine_color=EB5B5B
-gpu_color=2E9762
-wine_color=EB5B5B
-frame_timing=1
-frametime_color=00FF00
-media_player_color=FFFFFF
-background_alpha=0.4
-font_size=24
-
-background_color=020202
-position=top-left
-text_color=FFFFFF
-round_corners=0
-toggle_hud=Shift_R+F12
-toggle_logging=Shift_L+F2
-upload_log=F5
-output_folder=/home/sravan
-media_player_name=spotify
-#+END_SRC
-
-** vkBasalt
-
-#+BEGIN_SRC conf :tangle .config/vkBasalt/vkBasalt.conf
-casSharpness=1.0
-toggleKey = Home
-effects = cas 
 #+END_SRC
 
 * Backups & Syncing

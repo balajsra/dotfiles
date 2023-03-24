@@ -61,7 +61,7 @@
   - [[#vim][Vim]]
   - [[#emacs][Emacs]]
     - [[#chemacs2][Chemacs2]]
-    - [[#doom-emacs-update-script][DOOM Emacs Update Script]]
+    - [[#doom-emacs-scripts][DOOM Emacs Scripts]]
 - [[#system-monitor][System Monitor]]
   - [[#conky][Conky]]
 - [[#gaming][Gaming]]
@@ -89,6 +89,7 @@
     - [[#gtk][Gtk]]
     - [[#qt][Qt]]
 - [[#ssh][SSH]]
+  - [[#config-1][Config]]
 - [[#system-settings][System Settings]]
   - [[#xinit][Xinit]]
     - [[#environment-variables][Environment Variables]]
@@ -7059,9 +7060,11 @@ Select the emacs configuration to use by default.
 doom
 #+END_SRC
 
-*** DOOM Emacs Update Script
+*** DOOM Emacs Scripts
 
-Script to synchronize and update Doom Emacs configuration.
+**** Update
+
+Script to update Doom Emacs configuration.
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/doom_emacs_update.sh
 # Define some local variables
@@ -7076,6 +7079,32 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN upgrade
 
 # Delete orphaned packages & repos, and compacts them
 DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN purge
+#+END_SRC
+
+**** Sync
+
+Script to synchronize Doom Emacs configuration
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/doom_emacs_sync.sh
+# Define some local variables
+DOOM_BIN=~/.config/doom-emacs/bin/doom
+DOOM_DIR_PATH=~/.config/doom-emacs-config
+
+# Sync Doom with personal configuration
+DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN sync
+#+END_SRC
+
+**** Doctor
+
+Script to check for errors with Doom Emacs install
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/doom_emacs_doctor.sh
+# Define some local variables
+DOOM_BIN=~/.config/doom-emacs/bin/doom
+DOOM_DIR_PATH=~/.config/doom-emacs-config
+
+# Check for errors with installation
+DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
 #+END_SRC
 
 * System Monitor 
@@ -7850,23 +7879,13 @@ show_urls = true
 
 * SSH
 
+** Config
+
 #+BEGIN_SRC conf :tangle .ssh/config
 # Arch User Repository (AUR)
 Host aur.archlinux.org
   IdentityFile ~/.ssh/aur
   User aur
-
-# CAEN On-Campus
-Host caen-oncampus
-  HostName oncampus-course.engin.umich.edu
-  User balajsra
-  Compression yes
-
-# CAEN Off-Campus
-Host caen-offcampus
-  HostName login-course.engin.umich.edu
-  User balajsra
-  Compression yes
 #+END_SRC
 
 * System Settings

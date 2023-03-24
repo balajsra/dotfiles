@@ -239,6 +239,10 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = .themes/dracula-polymc
 	url = git@github.com:dracula/polymc.git
 	branch = main
+[submodule ".config/awesome"]
+	path = .config/awesome
+	url = git@github.com:balajsra/awesome.git
+	branch = main
 #+END_SRC
 
 ** Ignoring files and directories
@@ -7927,7 +7931,7 @@ xrdb ~/.Xresources
 *** Launch Environment
 
 #+BEGIN_SRC shell :shebang #!/bin/sh :tangle .xinitrc
-exec dwm
+exec awesome
 #+END_SRC
 
 ** Xresources

@@ -102,3 +102,7 @@
 	path = .themes/dracula-polymc
 	url = git@github.com:dracula/polymc.git
 	branch = main
+[submodule ".config/awesome"]
+	path = .config/awesome
+	url = git@github.com:balajsra/awesome.git
+	branch = main

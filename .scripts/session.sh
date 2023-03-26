@@ -26,9 +26,9 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
-        main "--$option" && killall rofi
+        main "--$option" && pkill rofi
     fi
 }
 

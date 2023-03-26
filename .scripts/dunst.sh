@@ -37,7 +37,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -80,7 +80,7 @@ main() {
             cfr=$(xgetres dunst.critical-frame)
 
             if [ $(is_running) -eq '1' ]; then
-                killall dunst
+                pkill dunst
             fi
 
             # Start Dunst
@@ -107,7 +107,7 @@ main() {
             notify-send "Turning Dunst OFF"
 
             if [ $(is_running) -eq '1' ]; then
-                killall dunst
+                pkill dunst
             fi
             ;;
         --context)

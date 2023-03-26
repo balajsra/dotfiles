@@ -882,7 +882,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -925,7 +925,7 @@ main() {
             cfr=$(xgetres dunst.critical-frame)
 
             if [ $(is_running) -eq '1' ]; then
-                killall dunst
+                pkill dunst
             fi
 
             # Start Dunst
@@ -952,7 +952,7 @@ main() {
             notify-send "Turning Dunst OFF"
 
             if [ $(is_running) -eq '1' ]; then
-                killall dunst
+                pkill dunst
             fi
             ;;
         --context)
@@ -1417,7 +1417,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -1441,7 +1441,7 @@ main() {
             ;;
         --on)
             if [ $(is_running) -eq '1' ]; then
-                killall deadd-notificat
+                pkill deadd-notificat
             fi
 
             /usr/bin/notify-send.py a --hint \
@@ -1454,7 +1454,7 @@ main() {
             notify-send "Turning Deadd OFF"
 
             if [ $(is_running) -eq '1' ]; then
-                killall deadd-notificat
+                pkill deadd-notificat
             fi
             ;;
         --toggle-center)
@@ -2975,7 +2975,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -2999,7 +2999,7 @@ main() {
             ;;
         --on)
             if [ $(is_running) -eq '1' ]; then
-                killall picom
+                pkill picom
             fi
 
             picom --config /home/sravan/.config/picom/picom.conf -b
@@ -3008,7 +3008,7 @@ main() {
             ;;
         --off)
             if [ $(is_running) -eq '1' ]; then
-                killall picom
+                pkill picom
             fi
 
             notify-send "Turning Picom OFF"
@@ -3150,7 +3150,7 @@ bgcolor=282a36ff
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreenrc
 prelock() {
-    /home/sravan/.scripts/deadd.sh --pause
+    # /home/sravan/.scripts/deadd.sh --pause
 }
 #+END_SRC
 
@@ -3159,7 +3159,7 @@ prelock() {
 #+BEGIN_SRC conf :tangle .config/betterlockscreenrc
 # custom postlock
 postlock() {
-    /home/sravan/.scripts/deadd.sh --unpause
+    # /home/sravan/.scripts/deadd.sh --unpause
 }
 #+END_SRC
 
@@ -7289,7 +7289,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
 /home/sravan/.scripts/picom.sh --off
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance
-/home/sravan/.scripts/deadd.sh --pause
+# /home/sravan/.scripts/deadd.sh --pause
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true
 #+END_SRC
 
@@ -7298,7 +7298,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Post-exit script*
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
-/home/sravan/.scripts/deadd.sh --unpause
+# /home/sravan/.scripts/deadd.sh --unpause
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false
 #+END_SRC
@@ -7511,9 +7511,9 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
-        main "--$option" && killall rofi
+        main "--$option" && pkill rofi
     fi
 }
 
@@ -8104,7 +8104,7 @@ Xcursor.size: CURSOR_SIZE
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
+    # "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -8115,13 +8115,13 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    "killall deadd-notificat" \  # Deadd Notification Center
-    "killall picom" \            # Picom Compositor
-    "killall greenclip" \        # Greenclip Clipboard Manager
-    "killall polkit" \           # GNOME Polkit Authentication Agent
-    "killall xss-lock" \         # Session Lock Utility
-    "killall kdeconnectd" \      # KDE Connect Daemon
-    "killall redshift" \         # Redshift Blue Light Filter
+    # "pkill deadd-notificat" \  # Deadd Notification Center
+    "pkill picom" \            # Picom Compositor
+    "pkill greenclip" \        # Greenclip Clipboard Manager
+    "pkill polkit" \           # GNOME Polkit Authentication Agent
+    "pkill xss-lock" \         # Session Lock Utility
+    "pkill kdeconnectd" \      # KDE Connect Daemon
+    "pkill redshift" \         # Redshift Blue Light Filter
 )
 
 declare -a delay_array=(\
@@ -8143,15 +8143,15 @@ declare -a delay_array=(\
 
 declare -a kill_delay_array=(\
     # System Tray Applications
-    "killall redshift" \              # Redshift Blue Light Filter
-    "killall blueman-applet" \        # Blueman Bluetooth Manager
-    "killall nm-applet" \             # Network Manager Applet
-    "killall kdeconnect-indicator" \  # KDE Connect Indicator
-    "killall flameshot" \             # Flameshot Screenshot Tool
-    "killall xfce4-power-manager" \   # XFCE4 Power Manager
-    "killall udiskie" \               # Udiskie
-    "killall openrgb" \               # OpenRGB
-    "killall syncthing-gtk" \         # Syncthing GTK
+    "pkill redshift" \              # Redshift Blue Light Filter
+    "pkill blueman-applet" \        # Blueman Bluetooth Manager
+    "pkill nm-applet" \             # Network Manager Applet
+    "pkill kdeconnect-indicator" \  # KDE Connect Indicator
+    "pkill flameshot" \             # Flameshot Screenshot Tool
+    "pkill xfce4-power-manager" \   # XFCE4 Power Manager
+    "pkill udiskie" \               # Udiskie
+    "pkill openrgb" \               # OpenRGB
+    "pkill syncthing-gtk" \         # Syncthing GTK
 )
 
 help_menu() {
@@ -8178,7 +8178,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -8276,7 +8276,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -8340,7 +8340,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -8402,7 +8402,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -8474,7 +8474,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -8494,7 +8494,7 @@ rofi_cpu_profile_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-cpu-profile"
     fi
@@ -8515,7 +8515,7 @@ rofi_graphics_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-graphics"
     fi
@@ -8535,7 +8535,7 @@ rofi_gpu_profile_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-gpu-profile"
     fi
@@ -8651,9 +8651,9 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
-        main "--$option" && killall rofi
+        main "--$option" && pkill rofi
     fi
 }
 
@@ -8715,9 +8715,9 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
-        main "--$option" && killall rofi
+        main "--$option" && pkill rofi
     fi
 }
 
@@ -8801,7 +8801,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi

@@ -28,7 +28,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -52,7 +52,7 @@ main() {
             ;;
         --on)
             if [ $(is_running) -eq '1' ]; then
-                killall picom
+                pkill picom
             fi
 
             picom --config /home/sravan/.config/picom/picom.conf -b
@@ -61,7 +61,7 @@ main() {
             ;;
         --off)
             if [ $(is_running) -eq '1' ]; then
-                killall picom
+                pkill picom
             fi
 
             notify-send "Turning Picom OFF"

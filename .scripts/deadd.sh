@@ -35,7 +35,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -59,7 +59,7 @@ main() {
             ;;
         --on)
             if [ $(is_running) -eq '1' ]; then
-                killall deadd-notificat
+                pkill deadd-notificat
             fi
 
             /usr/bin/notify-send.py a --hint \
@@ -72,7 +72,7 @@ main() {
             notify-send "Turning Deadd OFF"
 
             if [ $(is_running) -eq '1' ]; then
-                killall deadd-notificat
+                pkill deadd-notificat
             fi
             ;;
         --toggle-center)

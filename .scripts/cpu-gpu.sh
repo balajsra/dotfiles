@@ -22,7 +22,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi
@@ -42,7 +42,7 @@ rofi_cpu_profile_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-cpu-profile"
     fi
@@ -63,7 +63,7 @@ rofi_graphics_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-graphics"
     fi
@@ -83,7 +83,7 @@ rofi_gpu_profile_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi-gpu-profile"
     fi

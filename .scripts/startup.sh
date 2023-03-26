@@ -1,7 +1,7 @@
 #!/bin/bash
 declare -a startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
+    # "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -12,13 +12,13 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    "killall deadd-notificat" \  # Deadd Notification Center
-    "killall picom" \            # Picom Compositor
-    "killall greenclip" \        # Greenclip Clipboard Manager
-    "killall polkit" \           # GNOME Polkit Authentication Agent
-    "killall xss-lock" \         # Session Lock Utility
-    "killall kdeconnectd" \      # KDE Connect Daemon
-    "killall redshift" \         # Redshift Blue Light Filter
+    # "pkill deadd-notificat" \  # Deadd Notification Center
+    "pkill picom" \            # Picom Compositor
+    "pkill greenclip" \        # Greenclip Clipboard Manager
+    "pkill polkit" \           # GNOME Polkit Authentication Agent
+    "pkill xss-lock" \         # Session Lock Utility
+    "pkill kdeconnectd" \      # KDE Connect Daemon
+    "pkill redshift" \         # Redshift Blue Light Filter
 )
 
 declare -a delay_array=(\
@@ -40,15 +40,15 @@ declare -a delay_array=(\
 
 declare -a kill_delay_array=(\
     # System Tray Applications
-    "killall redshift" \              # Redshift Blue Light Filter
-    "killall blueman-applet" \        # Blueman Bluetooth Manager
-    "killall nm-applet" \             # Network Manager Applet
-    "killall kdeconnect-indicator" \  # KDE Connect Indicator
-    "killall flameshot" \             # Flameshot Screenshot Tool
-    "killall xfce4-power-manager" \   # XFCE4 Power Manager
-    "killall udiskie" \               # Udiskie
-    "killall openrgb" \               # OpenRGB
-    "killall syncthing-gtk" \         # Syncthing GTK
+    "pkill redshift" \              # Redshift Blue Light Filter
+    "pkill blueman-applet" \        # Blueman Bluetooth Manager
+    "pkill nm-applet" \             # Network Manager Applet
+    "pkill kdeconnect-indicator" \  # KDE Connect Indicator
+    "pkill flameshot" \             # Flameshot Screenshot Tool
+    "pkill xfce4-power-manager" \   # XFCE4 Power Manager
+    "pkill udiskie" \               # Udiskie
+    "pkill openrgb" \               # OpenRGB
+    "pkill syncthing-gtk" \         # Syncthing GTK
 )
 
 help_menu() {
@@ -75,7 +75,7 @@ rofi_menu() {
     option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
 
     if [[ "$option" == "quit" ]]; then
-        killall rofi
+        pkill rofi
     elif [[ "$option" != "back" ]]; then
         main "--$option" && main "--rofi"
     fi

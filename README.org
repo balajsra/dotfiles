@@ -27,6 +27,7 @@
     - [[#configuration][Configuration]]
     - [[#styling][Styling]]
     - [[#control-script-1][Control Script]]
+  - [[#awesomewm-naughty][AwesomeWM Naughty]]
 - [[#application-launcher][Application Launcher]]
   - [[#rofi][Rofi]]
     - [[#configuration-1][Configuration]]
@@ -1471,6 +1472,78 @@ main() {
             /usr/bin/notify-send.py a --hint \
                 boolean:deadd-notification-center:true \
                 string:type:unpausePopups > /dev/null 2>&1
+
+            notify-send "Unpausing Notifications"
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
+#+END_SRC
+
+** AwesomeWM Naughty
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/naughty.sh
+help_menu() {
+    echo "Script to interact with AwesomeWM's naughty. Use only one argument at a time."
+    echo "  - Toggle Pause/Unpause:        naughty.sh OR naughty.sh --toggle OR naughty.sh -t"
+    echo "  - Pause Popup Notifications:   naughty.sh --pause"
+    echo "  - Unpause Popup Notifications: naughty.sh --unpause"
+    echo "  - Rofi Menu:                   naughty.sh --rofi"
+    echo "  - Help:                        naughty.sh --help OR naughty.sh -h"
+}
+
+rofi_menu() {
+    declare -a options=(
+        "⏼ Toggle - toggle"
+        " Pause Popup Notifications - pause"
+        " Unpause Popup Notifications - unpause"
+        " Back - back"
+        " Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        pkill rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && main "--rofi"
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --toggle)
+            /usr/bin/awesome-client '
+            local naughty = require("naughty")
+            naughty.toggle()
+            '
+            ;;
+        --pause)
+            notify-send "Pausing Notifications"
+
+            /usr/bin/awesome-client '
+            local naughty = require("naughty")
+            naughty.suspend()
+            '
+            ;;
+        --unpause)
+            /usr/bin/awesome-client '
+            local naughty = require("naughty")
+            naughty.resume()
+            '
 
             notify-send "Unpausing Notifications"
             ;;
@@ -3150,7 +3223,7 @@ bgcolor=282a36ff
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreenrc
 prelock() {
-    # /home/sravan/.scripts/deadd.sh --pause
+    /home/sravan/.scripts/naughty.sh --pause
 }
 #+END_SRC
 
@@ -3159,7 +3232,7 @@ prelock() {
 #+BEGIN_SRC conf :tangle .config/betterlockscreenrc
 # custom postlock
 postlock() {
-    # /home/sravan/.scripts/deadd.sh --unpause
+    /home/sravan/.scripts/naughty.sh --unpause
 }
 #+END_SRC
 
@@ -7289,7 +7362,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
 /home/sravan/.scripts/picom.sh --off
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance
-# /home/sravan/.scripts/deadd.sh --pause
+/home/sravan/.scripts/naughty.sh --pause
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true
 #+END_SRC
 
@@ -7298,7 +7371,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Post-exit script*
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
-# /home/sravan/.scripts/deadd.sh --unpause
+/home/sravan/.scripts/naughty.sh --unpause
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false
 #+END_SRC
@@ -8104,7 +8177,6 @@ Xcursor.size: CURSOR_SIZE
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
-    # "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -8115,7 +8187,6 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    # "pkill deadd-notificat" \  # Deadd Notification Center
     "pkill picom" \            # Picom Compositor
     "pkill greenclip" \        # Greenclip Clipboard Manager
     "pkill polkit" \           # GNOME Polkit Authentication Agent
@@ -8785,7 +8856,7 @@ rofi_menu() {
     declare -a options=(
         " Compositor - picom"
         " Display - brightness"
-        " Notifications - deadd"
+        " Notifications - naughty"
         " Media - playerctl"
         "墳Volume - pactl"
         " Backup - backup"
@@ -8822,8 +8893,8 @@ main() {
         --brightness)
             /home/sravan/.scripts/brightness.sh --rofi
             ;;
-        --deadd)
-            /home/sravan/.scripts/deadd.sh --rofi
+        --naughty)
+            /home/sravan/.scripts/naughty.sh --rofi
             ;;
         --playerctl)
             /home/sravan/.scripts/playerctl.sh --rofi

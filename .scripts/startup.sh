@@ -7,6 +7,7 @@ declare -a startup_array=(\
     "/usr/bin/xss-lock -l -- betterlockscreen --lock" \            # Session Lock Utility
     "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
     "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
+    "/usr/bin/unclutter" \                                         # Hide Mouse Cursor
 )
 
 declare -a kill_startup_array=(\
@@ -17,6 +18,7 @@ declare -a kill_startup_array=(\
     "pkill xss-lock" \         # Session Lock Utility
     "pkill kdeconnectd" \      # KDE Connect Daemon
     "pkill redshift" \         # Redshift Blue Light Filter
+    "pkill unclutter" \        # Hide Mouse Cursor
 )
 
 declare -a delay_array=(\

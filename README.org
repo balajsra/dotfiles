@@ -7966,6 +7966,14 @@ show_urls = true
 Host aur.archlinux.org
   IdentityFile ~/.ssh/aur
   User aur
+
+# Home Server
+Host casaos
+  HostName casaos
+  User casaos
+  IdentityFile ~/.ssh/id_ed25519
+  ForwardAgent yes
+  ForwardX11 yes
 #+END_SRC
 
 * System Settings

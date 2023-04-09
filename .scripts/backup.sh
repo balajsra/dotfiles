@@ -5,7 +5,6 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " - backup-to-cloud"
         " - backup-to-hdd"
         " Back - back"
         " Quit - quit"
@@ -29,9 +28,6 @@ main() {
         case $1 in
         --help | -h)
             help_menu
-            ;;
-        --backup-to-cloud)
-            kitty --hold /home/sravan/.scripts/backup_to_cloud.sh
             ;;
         --backup-to-hdd)
             kitty --hold /home/sravan/.scripts/backup_to_hdd.sh

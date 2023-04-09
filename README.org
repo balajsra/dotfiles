@@ -79,7 +79,6 @@
 - [[#backups--syncing][Backups & Syncing]]
   - [[#backups][Backups]]
     - [[#rsync-options][Rsync Options]]
-    - [[#cloud][Cloud]]
     - [[#hdd][HDD]]
     - [[#rofi-menu][Rofi Menu]]
   - [[#syncthing][Syncthing]]
@@ -7525,36 +7524,6 @@ inhibit_screensaver=1
 | --progress | show progress during transfer                                                 |
 | --delete   | delete extraneous files from dest dirs                                        |
 
-*** Cloud
-
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_cloud.sh
-# Define base paths
-gdrive_path="/mnt/google-drive"
-gdrive_personal_path="$gdrive_path/sr98vn@gmail.com"
-home_path="/home/sravan"
-
-# Define arrays
-declare -a source_dirs=(
-    "$home_path/Pictures/Wallpapers/"
-    "$home_path/Documents/"
-)
-declare -a target_dirs=(
-    "$gdrive_personal_path/Customization/Wallpapers/Desktop/"
-    "$gdrive_personal_path/Documents/"
-)
-
-# Loop through arrays
-for i in ${!source_dirs[@]}; do
-    # Create target directories
-    mkdir -p "${target_dirs[$i]}"
-
-    # Copy source dirs to target dirs
-    rsync -a -v -L --progress --delete \
-        "${source_dirs[$i]}" \
-        "${target_dirs[$i]}"
-done
-#+END_SRC
-
 *** HDD
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_hdd.sh
@@ -7574,7 +7543,6 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " - backup-to-cloud"
         " - backup-to-hdd"
         " Back - back"
         " Quit - quit"
@@ -7598,9 +7566,6 @@ main() {
         case $1 in
         --help | -h)
             help_menu
-            ;;
-        --backup-to-cloud)
-            kitty --hold /home/sravan/.scripts/backup_to_cloud.sh
             ;;
         --backup-to-hdd)
             kitty --hold /home/sravan/.scripts/backup_to_hdd.sh
@@ -7971,6 +7936,13 @@ Host aur.archlinux.org
 Host casaos
   HostName casaos
   User casaos
+  IdentityFile ~/.ssh/id_ed25519
+  ForwardAgent yes
+  ForwardX11 yes
+
+Host casaos-root
+  HostName casaos
+  User root
   IdentityFile ~/.ssh/id_ed25519
   ForwardAgent yes
   ForwardX11 yes

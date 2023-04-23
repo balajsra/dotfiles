@@ -21,11 +21,11 @@ configs:
     # define retention settings for borg independently from snapper
     retention:
       keep_last: 1
-      keep_hourly: 5
-      keep_daily: 7
-      keep_weekly: 0
-      keep_monthly: 0
-      keep_yearly: 0
+      keep_hourly: 1
+      keep_daily: 1
+      keep_weekly: 1
+      keep_monthly: 1
+      keep_yearly: 1
     # exclude patterns (see borg help patterns)
     exclude_patterns: []
 
@@ -51,10 +51,10 @@ configs:
     # define retention settings for borg independently from snapper
     retention:
       keep_last: 1
-      keep_hourly: 5
-      keep_daily: 7
-      keep_weekly: 0
-      keep_monthly: 0
-      keep_yearly: 0
+      keep_hourly: 1
+      keep_daily: 1
+      keep_weekly: 1
+      keep_monthly: 1
+      keep_yearly: 1
     # exclude patterns (see borg help patterns)
     exclude_patterns: []

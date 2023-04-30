@@ -43,7 +43,7 @@ main() {
             ;;
         --logout)
             notify-send "Session Control" "Logging Out of dwm"
-            xdotool key Super+Shift_L+q
+            dwm-msg run_command quit 0
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"
@@ -67,7 +67,7 @@ main() {
             ;;
         --restart)
             notify-send "Session Control" "Restarting dwm"
-            xdotool key Super+Control_L+Shift_L+q
+            dwm-msg run_command quit 1
             ;;
         --rofi)
             rofi_menu

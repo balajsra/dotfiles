@@ -8205,7 +8205,7 @@ exec dwm
 #define MODULE_MARGIN 0
 #define MODULE_PADDING 0
 #define MODULE_DWM_PADDING 2
-#define TRAY_MAXSIZE 20
+#define TRAY_MAXSIZE 25
 #define TRAY_SCALE 1
 #define BORDER_SIZE 2
 #define INNER_GAPS 20

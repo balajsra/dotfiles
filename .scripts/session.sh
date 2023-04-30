@@ -11,7 +11,7 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "勒 Restart AwesomeWM - restart"
+        "勒 Restart dwm - restart"
         " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
@@ -42,8 +42,8 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of AwesomeWM"
-            /usr/bin/awesome-client "awesome.quit()"
+            notify-send "Session Control" "Logging Out of dwm"
+            xdotool key Super+Shift_L+q
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"
@@ -66,8 +66,8 @@ main() {
             systemctl hibernate
             ;;
         --restart)
-            notify-send "Session Control" "Restarting AwesomeWM"
-            /usr/bin/awesome-client "awesome.restart()"
+            notify-send "Session Control" "Restarting dwm"
+            xdotool key Super+Control_L+Shift_L+q
             ;;
         --rofi)
             rofi_menu

@@ -3223,7 +3223,7 @@ bgcolor=282a36ff
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreenrc
 prelock() {
-    /home/sravan/.scripts/naughty.sh --pause
+    /home/sravan/.scripts/deadd.sh --pause
 }
 #+END_SRC
 
@@ -3232,7 +3232,7 @@ prelock() {
 #+BEGIN_SRC conf :tangle .config/betterlockscreenrc
 # custom postlock
 postlock() {
-    /home/sravan/.scripts/naughty.sh --unpause
+    /home/sravan/.scripts/deadd.sh --unpause
 }
 #+END_SRC
 
@@ -7362,7 +7362,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
 /home/sravan/.scripts/picom.sh --off
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance
-/home/sravan/.scripts/naughty.sh --pause
+/home/sravan/.scripts/deadd.sh --pause
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true
 #+END_SRC
 
@@ -7371,7 +7371,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Post-exit script*
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
-/home/sravan/.scripts/naughty.sh --unpause
+/home/sravan/.scripts/deadd.sh --unpause
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false
 #+END_SRC
@@ -8128,7 +8128,7 @@ xrdb ~/.Xresources
 *** Launch Environment
 
 #+BEGIN_SRC shell :shebang #!/bin/sh :tangle .xinitrc
-exec awesome
+exec dwm
 #+END_SRC
 
 ** Xresources
@@ -8298,6 +8298,7 @@ Xcursor.size: CURSOR_SIZE
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
+    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -8309,6 +8310,7 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
+    "pkill deadd-notificat" \  # Deadd Notification Center
     "pkill picom" \            # Picom Compositor
     "pkill greenclip" \        # Greenclip Clipboard Manager
     "pkill polkit" \           # GNOME Polkit Authentication Agent
@@ -8894,7 +8896,7 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "勒 Restart AwesomeWM - restart"
+        "勒 Restart dwm - restart"
         " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
@@ -8925,8 +8927,8 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of AwesomeWM"
-            /usr/bin/awesome-client "awesome.quit()"
+            notify-send "Session Control" "Logging Out of dwm"
+            xdotool key Super+Shift_L+q
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"
@@ -8949,8 +8951,8 @@ main() {
             systemctl hibernate
             ;;
         --restart)
-            notify-send "Session Control" "Restarting AwesomeWM"
-            /usr/bin/awesome-client "awesome.restart()"
+            notify-send "Session Control" "Restarting dwm"
+            xdotool key Super+Control_L+Shift_L+q
             ;;
         --rofi)
             rofi_menu
@@ -8979,7 +8981,7 @@ rofi_menu() {
     declare -a options=(
         " Compositor - picom"
         " Display - brightness"
-        " Notifications - naughty"
+        " Notifications - deadd"
         " Media - playerctl"
         "墳Volume - pactl"
         " Backup - backup"
@@ -9016,8 +9018,8 @@ main() {
         --brightness)
             /home/sravan/.scripts/brightness.sh --rofi
             ;;
-        --naughty)
-            /home/sravan/.scripts/naughty.sh --rofi
+        --deadd)
+            /home/sravan/.scripts/deadd.sh --rofi
             ;;
         --playerctl)
             /home/sravan/.scripts/playerctl.sh --rofi

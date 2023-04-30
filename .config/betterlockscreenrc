@@ -32,10 +32,10 @@ modifcolor=ff5555ff
 bgcolor=282a36ff
 
 prelock() {
-    /home/sravan/.scripts/naughty.sh --pause
+    /home/sravan/.scripts/deadd.sh --pause
 }
 
 # custom postlock
 postlock() {
-    /home/sravan/.scripts/naughty.sh --unpause
+    /home/sravan/.scripts/deadd.sh --unpause
 }

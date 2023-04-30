@@ -19,4 +19,4 @@ xrdb ~/.Xresources
     /home/sravan/.scripts/startup.sh --kill-delay &&
     /home/sravan/.scripts/startup.sh --delay) &
 
-exec awesome
+exec dwm

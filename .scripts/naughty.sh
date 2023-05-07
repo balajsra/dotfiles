@@ -13,8 +13,8 @@ rofi_menu() {
         "⏼ Toggle - toggle"
         " Pause Popup Notifications - pause"
         " Unpause Popup Notifications - unpause"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

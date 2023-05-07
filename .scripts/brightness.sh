@@ -11,10 +11,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Raise Brightness - raise"
-        " Lower Brightness - lower"
-        " Back - back"
-        " Quit - quit"
+        "󰃠 Raise Brightness - raise"
+        "󰃞 Lower Brightness - lower"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

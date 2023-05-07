@@ -66,11 +66,11 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         " Launch Startup Processes - startup"
-        "羽 Launch Delayed Processes - delay"
+        "󰔟 Launch Delayed Processes - delay"
         " Kill Startup Processes - kill-startup"
         " Kill Delayed Processes - kill-delay"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

@@ -11,11 +11,11 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "調 DualSense to Xbox 360 Mapping - dualsense-to-xbox-360"
+        "󰊴 DualSense to Xbox 360 Mapping - dualsense-to-xbox-360"
         " Game Launch Settings - game-launch"
         " Game Exit Settings - game-exit"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

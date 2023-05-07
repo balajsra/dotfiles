@@ -14,9 +14,9 @@ rofi_menu() {
         " Raise Volume - raise"
         " Lower Volume - lower"
         " Mute - mute"
-        "﴾ Mixer - mixer"
-        " Back - back"
-        " Quit - quit"
+        "󰺢 Mixer - mixer"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

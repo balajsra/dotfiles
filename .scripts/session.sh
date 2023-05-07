@@ -11,15 +11,15 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "勒 Restart dwm - restart"
+        " Restart dwm - restart"
         " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
         " Reboot - reboot"
         " Shutdown - shutdown"
-        "鈴 Hibernate - hibernate"
-        " Back - back"
-        " Quit - quit"
+        "󰒲 Hibernate - hibernate"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -68,6 +68,9 @@ main() {
         --restart)
             notify-send "Session Control" "Restarting dwm"
             dwm-msg run_command quit 1
+            pkill polybar
+            sleep 5
+            /home/sravan/.config/dwm-flexipatch/polybar/launch.sh
             ;;
         --rofi)
             rofi_menu

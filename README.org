@@ -869,14 +869,14 @@ is_running() {
 rofi_menu() {
     declare -a options=(
         "⏼ Toggle - toggle"
-        " Turn On - on"
-        " Turn Off - off"
-        " Open Actions - context"
+        "󰂞 Turn On - on"
+        "󰂛 Turn Off - off"
+        "󱨩 Open Actions - context"
         " Close Notification - close"
         " View History - history"
-        " Toggle Do Not Disturb - dnd"
-        " Back - back"
-        " Quit - quit"
+        "󰂠 Toggle Do Not Disturb - dnd"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -1405,13 +1405,13 @@ is_running() {
 rofi_menu() {
     declare -a options=(
         "⏼ Toggle - toggle"
-        " Turn On - on"
-        " Turn Off - off"
-        " Toggle Notification Center - toggle-center"
+        "󰂞 Turn On - on"
+        "󰂛 Turn Off - off"
+        "󱨩 Toggle Notification Center - toggle-center"
         " Pause Popup Notifications - pause"
         " Unpause Popup Notifications - unpause"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -1502,8 +1502,8 @@ rofi_menu() {
         "⏼ Toggle - toggle"
         " Pause Popup Notifications - pause"
         " Unpause Popup Notifications - unpause"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -2078,7 +2078,7 @@ element selected.active {
 /*Dracula theme based on the Purple official rofi theme*/
 
 ,* {
-    font: "Jetbrains Mono 12";
+    font: "JetBrainsMono Nerd Font 12";
     foreground: #f8f8f2;
     background-color: #282a36;
     active-background: #6272a4;
@@ -3038,10 +3038,10 @@ is_running() {
 rofi_menu() {
     declare -a options=(
         "⏼ Toggle - toggle"
-        " Turn On - on"
-        " Turn Off - off"
-        " Back - back"
-        " Quit - quit"
+        "󱄄 Turn On - on"
+        "󰶐 Turn Off - off"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -3273,8 +3273,8 @@ add_newline = false
 
 [character]
 format = "$symbol"
-success_symbol = "[  ﬌ ❯❯❯](bold green)  "
-error_symbol = "[  ﬌ ❯❯❯](bold red)  "
+success_symbol = "[  󱞪 ❯❯❯](bold green)  "
+error_symbol = "[  󱞪 ❯❯❯](bold red)  "
 
 # You can also replace your username with a neat symbol like  to save some space
 [username]
@@ -3298,16 +3298,16 @@ read_only = ""
 ".config" = "  "
 "config" = "  "
 "Config" = "  "
-"Calibre_Library" = "  "
-"Calibre Library" = "  "
+"Calibre_Library" = "  "
+"Calibre Library" = "  "
 "Desktop" = "  "
-"Documents" = "  "
-"Finances" = " ﴝ "
+"Documents" = " 󰈙 "
+"Finances" = "  "
 "Downloads" = "  "
 "Games" = "  "
-"PolyMC" = "  "
+"PrismLauncher" = " 󰍳 "
 "Steam" = "  "
-"ISOs" = " 﫭 "
+"ISOs" = " 󰗮 "
 "Music" = "  "
 "Spotify" = "  "
 "Pictures" = "  "
@@ -3317,8 +3317,8 @@ read_only = ""
 "Videos" = "  "
 "dropbox" = "  "
 "google-drive" = "  "
-"onedrive" = "  "
-"Attachments" = "  "
+"onedrive" = "  "
+"Attachments" = " 󰁦 "
 # Keep in mind that the order matters. For example:
 # "Important Documents" = "  "
 # will not be replaced, because "Documents" was already substituted before.
@@ -3333,7 +3333,7 @@ format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 [cmd_duration]
 min_time = 0
 style = "bg:#FF5555"
-format = '[[ 祥 $duration ](bg:#FF5555)]($style)'
+format = '[[ 󱎫 $duration ](bg:#FF5555)]($style)'
 show_notifications = true
 min_time_to_notify = 5_000
 
@@ -4754,10 +4754,10 @@ fish_pager_color_secondary_description 6272a4
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      Fira Code Regular Nerd Font Complete
-bold_font        Fira Code Bold Nerd Font Complete
-italic_font      Fira Code Regular Nerd Font Complete
-bold_italic_font Fira Code Bold Nerd Font Complete
+font_family      FiraCode Nerd Font
+bold_font        FiraCode Nerd Font Bold
+italic_font      FiraCode Nerd Font
+bold_italic_font FiraCode Nerd Font Bold
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -6327,7 +6327,7 @@ font:
         #   - (macOS) Menlo
         #   - (Linux/BSD) monospace
         #   - (Windows) Consolas
-        family: Fira Code Nerd Font
+        family: FiraCode Nerd Font
 
         # The `style` can be specified to pick a specific face.
         style: Regular
@@ -6338,7 +6338,7 @@ font:
         #
         # If the bold family is not specified, it will fall back to the
         # value specified for the normal font.
-        family: Fira Code Nerd Font
+        family: FiraCode Nerd Font
 
         # The `style` can be specified to pick a specific face.
         style: Bold
@@ -7680,10 +7680,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " - backup-to-hdd"
-        " - backup-to-casaos"
-        " Back - back"
-        " Quit - quit"
+        "󰋊 - backup-to-hdd"
+        "󰒍 - backup-to-casaos"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8363,11 +8363,11 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         " Launch Startup Processes - startup"
-        "羽 Launch Delayed Processes - delay"
+        "󰔟 Launch Delayed Processes - delay"
         " Kill Startup Processes - kill-startup"
         " Kill Delayed Processes - kill-delay"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8460,12 +8460,12 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "懶 Play / Pause - play-pause"
-        "怜 Next - next"
-        "玲 Previous - prev"
-        "﴾ Change Source - change"
-        " Back - back"
-        " Quit - quit"
+        "󰐎 Play / Pause - play-pause"
+        "󰒭 Next - next"
+        "󰒮 Previous - prev"
+        "󰡀 Change Source - change"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8527,9 +8527,9 @@ rofi_menu() {
         " Raise Volume - raise"
         " Lower Volume - lower"
         " Mute - mute"
-        "﴾ Mixer - mixer"
-        " Back - back"
-        " Quit - quit"
+        "󰺢 Mixer - mixer"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8588,10 +8588,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Raise Brightness - raise"
-        " Lower Brightness - lower"
-        " Back - back"
-        " Quit - quit"
+        "󰃠 Raise Brightness - raise"
+        "󰃞 Lower Brightness - lower"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8662,8 +8662,8 @@ rofi_menu() {
         " CPU Performance Profile - rofi-cpu-profile"
         " GPU Switching - rofi-graphics"
         " NVIDIA GPU Performance Profile - rofi-gpu-profile"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8678,12 +8678,12 @@ rofi_menu() {
 
 rofi_cpu_profile_menu() {
     declare -a options=(
-        "Query Current Profile - cpu-profile-query"
-        "Switch to Battery Mode - cpu-profile-battery"
-        "Switch to Balanced Mode - cpu-profile-balanced"
-        "Switch to Performance Mode - cpu-profile-performance"
-        " Back - back"
-        " Quit - quit"
+        " Query Current Profile - cpu-profile-query"
+        "󰂃 Switch to Battery Mode - cpu-profile-battery"
+        "󰗑 Switch to Balanced Mode - cpu-profile-balanced"
+        "󰓅 Switch to Performance Mode - cpu-profile-performance"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8698,13 +8698,13 @@ rofi_cpu_profile_menu() {
 
 rofi_graphics_menu() {
     declare -a options=(
-        "Query Current Graphics - graphics-query"
+        " Query Current Graphics - graphics-query"
         "Switch to Compute Mode - graphics-compute"
         "Switch to Hybrid Mode - graphics-hybrid"
         "Switch to Integrated Mode - graphics-integrated"
         "Switch to Nvidia Mode - graphics-nvidia"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8719,12 +8719,12 @@ rofi_graphics_menu() {
 
 rofi_gpu_profile_menu() {
     declare -a options=(
-        "Query Current Profile - gpu-profile-query"
-        "Switch to Adaptive Mode - gpu-profile-adaptive"
-        "Switch to Performance Mode - gpu-profile-performance"
-        "Switch to Auto Mode - gpu-profile-auto"
-        " Back - back"
-        " Quit - quit"
+        " Query Current Profile - gpu-profile-query"
+        "󱤎 Switch to Adaptive Mode - gpu-profile-adaptive"
+        "󰓅 Switch to Performance Mode - gpu-profile-performance"
+        "󱣲 Switch to Auto Mode - gpu-profile-auto"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8756,22 +8756,22 @@ main() {
         --graphics-compute)
             notify-send "System76-Power Graphics" "Switching to Compute Graphics..."
             pkexec system76-power graphics compute
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-hybrid)
             notify-send "System76-Power Graphics" "Switching to Hybrid Graphics..."
             pkexec system76-power graphics hybrid
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-integrated)
             notify-send "System76-Power Graphics" "Switching to Integrated Graphics..."
             pkexec system76-power graphics integrated
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-nvidia)
             notify-send "System76-Power Graphics" "Switching to Nvidia Graphics..."
             pkexec system76-power graphics nvidia
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --rofi-cpu-profile)
             rofi_cpu_profile_menu
@@ -8836,11 +8836,11 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "調 DualSense to Xbox 360 Mapping - dualsense-to-xbox-360"
+        "󰊴 DualSense to Xbox 360 Mapping - dualsense-to-xbox-360"
         " Game Launch Settings - game-launch"
         " Game Exit Settings - game-exit"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8896,15 +8896,15 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "勒 Restart dwm - restart"
+        " Restart dwm - restart"
         " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
         " Reboot - reboot"
         " Shutdown - shutdown"
-        "鈴 Hibernate - hibernate"
-        " Back - back"
-        " Quit - quit"
+        "󰒲 Hibernate - hibernate"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -8953,6 +8953,9 @@ main() {
         --restart)
             notify-send "Session Control" "Restarting dwm"
             dwm-msg run_command quit 1
+            pkill polybar
+            sleep 5
+            /home/sravan/.config/dwm-flexipatch/polybar/launch.sh
             ;;
         --rofi)
             rofi_menu
@@ -8979,18 +8982,18 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Compositor - picom"
-        " Display - brightness"
-        " Notifications - deadd"
+        "󱕅 Compositor - picom"
+        "󰍹 Display - brightness"
+        "󰂚 Notifications - deadd"
         " Media - playerctl"
-        "墳Volume - pactl"
-        " Backup - backup"
+        "󰕾 Volume - pactl"
+        "󰁯 Backup - backup"
         " Startup Processes - startup"
         " Hardware - cpu-gpu"
-        " Gaming - gaming"
+        " Gaming - gaming"
         " Power Menu - session"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

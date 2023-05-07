@@ -5,10 +5,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " - backup-to-hdd"
-        " - backup-to-casaos"
-        " Back - back"
-        " Quit - quit"
+        "󰋊 - backup-to-hdd"
+        "󰒍 - backup-to-casaos"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

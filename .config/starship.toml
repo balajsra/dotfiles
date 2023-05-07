@@ -28,8 +28,8 @@ add_newline = false
 
 [character]
 format = "$symbol"
-success_symbol = "[  ﬌ ❯❯❯](bold green)  "
-error_symbol = "[  ﬌ ❯❯❯](bold red)  "
+success_symbol = "[  󱞪 ❯❯❯](bold green)  "
+error_symbol = "[  󱞪 ❯❯❯](bold red)  "
 
 # You can also replace your username with a neat symbol like  to save some space
 [username]
@@ -53,16 +53,16 @@ read_only = ""
 ".config" = "  "
 "config" = "  "
 "Config" = "  "
-"Calibre_Library" = "  "
-"Calibre Library" = "  "
+"Calibre_Library" = "  "
+"Calibre Library" = "  "
 "Desktop" = "  "
-"Documents" = "  "
-"Finances" = " ﴝ "
+"Documents" = " 󰈙 "
+"Finances" = "  "
 "Downloads" = "  "
 "Games" = "  "
-"PolyMC" = "  "
+"PrismLauncher" = " 󰍳 "
 "Steam" = "  "
-"ISOs" = " 﫭 "
+"ISOs" = " 󰗮 "
 "Music" = "  "
 "Spotify" = "  "
 "Pictures" = "  "
@@ -72,8 +72,8 @@ read_only = ""
 "Videos" = "  "
 "dropbox" = "  "
 "google-drive" = "  "
-"onedrive" = "  "
-"Attachments" = "  "
+"onedrive" = "  "
+"Attachments" = " 󰁦 "
 # Keep in mind that the order matters. For example:
 # "Important Documents" = "  "
 # will not be replaced, because "Documents" was already substituted before.
@@ -88,7 +88,7 @@ format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
 [cmd_duration]
 min_time = 0
 style = "bg:#FF5555"
-format = '[[ 祥 $duration ](bg:#FF5555)]($style)'
+format = '[[ 󱎫 $duration ](bg:#FF5555)]($style)'
 show_notifications = true
 min_time_to_notify = 5_000
 

@@ -23,14 +23,14 @@ is_running() {
 rofi_menu() {
     declare -a options=(
         "⏼ Toggle - toggle"
-        " Turn On - on"
-        " Turn Off - off"
-        " Open Actions - context"
+        "󰂞 Turn On - on"
+        "󰂛 Turn Off - off"
+        "󱨩 Open Actions - context"
         " Close Notification - close"
         " View History - history"
-        " Toggle Do Not Disturb - dnd"
-        " Back - back"
-        " Quit - quit"
+        "󰂠 Toggle Do Not Disturb - dnd"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

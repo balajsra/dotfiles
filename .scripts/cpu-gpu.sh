@@ -14,8 +14,8 @@ rofi_menu() {
         " CPU Performance Profile - rofi-cpu-profile"
         " GPU Switching - rofi-graphics"
         " NVIDIA GPU Performance Profile - rofi-gpu-profile"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -30,12 +30,12 @@ rofi_menu() {
 
 rofi_cpu_profile_menu() {
     declare -a options=(
-        "Query Current Profile - cpu-profile-query"
-        "Switch to Battery Mode - cpu-profile-battery"
-        "Switch to Balanced Mode - cpu-profile-balanced"
-        "Switch to Performance Mode - cpu-profile-performance"
-        " Back - back"
-        " Quit - quit"
+        " Query Current Profile - cpu-profile-query"
+        "󰂃 Switch to Battery Mode - cpu-profile-battery"
+        "󰗑 Switch to Balanced Mode - cpu-profile-balanced"
+        "󰓅 Switch to Performance Mode - cpu-profile-performance"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -50,13 +50,13 @@ rofi_cpu_profile_menu() {
 
 rofi_graphics_menu() {
     declare -a options=(
-        "Query Current Graphics - graphics-query"
+        " Query Current Graphics - graphics-query"
         "Switch to Compute Mode - graphics-compute"
         "Switch to Hybrid Mode - graphics-hybrid"
         "Switch to Integrated Mode - graphics-integrated"
         "Switch to Nvidia Mode - graphics-nvidia"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -71,12 +71,12 @@ rofi_graphics_menu() {
 
 rofi_gpu_profile_menu() {
     declare -a options=(
-        "Query Current Profile - gpu-profile-query"
-        "Switch to Adaptive Mode - gpu-profile-adaptive"
-        "Switch to Performance Mode - gpu-profile-performance"
-        "Switch to Auto Mode - gpu-profile-auto"
-        " Back - back"
-        " Quit - quit"
+        " Query Current Profile - gpu-profile-query"
+        "󱤎 Switch to Adaptive Mode - gpu-profile-adaptive"
+        "󰓅 Switch to Performance Mode - gpu-profile-performance"
+        "󱣲 Switch to Auto Mode - gpu-profile-auto"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
@@ -108,22 +108,22 @@ main() {
         --graphics-compute)
             notify-send "System76-Power Graphics" "Switching to Compute Graphics..."
             pkexec system76-power graphics compute
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-hybrid)
             notify-send "System76-Power Graphics" "Switching to Hybrid Graphics..."
             pkexec system76-power graphics hybrid
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-integrated)
             notify-send "System76-Power Graphics" "Switching to Integrated Graphics..."
             pkexec system76-power graphics integrated
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-nvidia)
             notify-send "System76-Power Graphics" "Switching to Nvidia Graphics..."
             pkexec system76-power graphics nvidia
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please restart computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --rofi-cpu-profile)
             rofi_cpu_profile_menu

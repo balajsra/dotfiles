@@ -11,12 +11,12 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "懶 Play / Pause - play-pause"
-        "怜 Next - next"
-        "玲 Previous - prev"
-        "﴾ Change Source - change"
-        " Back - back"
-        " Quit - quit"
+        "󰐎 Play / Pause - play-pause"
+        "󰒭 Next - next"
+        "󰒮 Previous - prev"
+        "󰡀 Change Source - change"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

@@ -11,18 +11,18 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Compositor - picom"
-        " Display - brightness"
-        " Notifications - deadd"
+        "󱕅 Compositor - picom"
+        "󰍹 Display - brightness"
+        "󰂚 Notifications - deadd"
         " Media - playerctl"
-        "墳Volume - pactl"
-        " Backup - backup"
+        "󰕾 Volume - pactl"
+        "󰁯 Backup - backup"
         " Startup Processes - startup"
         " Hardware - cpu-gpu"
-        " Gaming - gaming"
+        " Gaming - gaming"
         " Power Menu - session"
-        " Back - back"
-        " Quit - quit"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
     )
 
     choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)

@@ -1,4 +1,5 @@
 #!/bin/bash
-/home/sravan/.scripts/session.sh --restart & # Restart dwm
-/usr/bin/nvidia-force-comp-pipeline &        # NVIDIA Force Composition Pipeline
-/usr/bin/nitrogen --restore &                # Restore wallpaper
+/home/sravan/.scripts/session.sh --restart &                                     # Restart dwm
+/usr/bin/nvidia-force-comp-pipeline &                                            # NVIDIA Force Composition Pipeline
+/usr/bin/nitrogen --restore &                                                    # Restore wallpaper
+/usr/bin/betterlockscreen -u /home/sravan/Pictures/Wallpapers/Solar_System.png & # Update lock screen wallpaper

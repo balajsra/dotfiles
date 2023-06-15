@@ -7786,7 +7786,7 @@ create_volume_dir = false
 # Default sources to use. (string array)
 # Will prompt if not set.
 # Type "mangal sources list" to show available sources
-default_sources = [ "ComicK", "Mangadex", "Manganelo", "Manganato", "Mangapill", "AsuraScans", "LuminousScans" ]
+default_sources = [ "Mangadex", "Manganelo", "Manganato", "Mangapill", "AsuraScans", "FlameScans", "LuminousScans", "Mangasee", "Readmanga" ]
 
 # Whether to download manga cover or not (bool)
 download_cover = true

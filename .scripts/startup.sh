@@ -34,6 +34,7 @@ declare -a delay_array=(\
     "/usr/bin/udiskie -a -n -s" \              # Udiskie
     "/usr/bin/openrgb" \                       # OpenRGB
     "/usr/bin/syncthing-gtk" \                 # Syncthing GTK
+    "/usr/bin/nyrna" \                         # Nyrna
     # System Restore Processes
     "/usr/bin/autorandr --change --force" \    # Auto restore screen layout
     "/usr/bin/numlockx on" \                   # Enable numlock
@@ -51,6 +52,7 @@ declare -a kill_delay_array=(\
     "pkill udiskie" \               # Udiskie
     "pkill openrgb" \               # OpenRGB
     "pkill syncthing-gtk" \         # Syncthing GTK
+    "pkill nyrna" \                 # Nyrna
 )
 
 help_menu() {

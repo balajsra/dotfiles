@@ -8076,14 +8076,14 @@ Host aur.archlinux.org
 
 # Home Server
 Host casaos
-  HostName casaos
+  HostName casaos.home
   User casaos
   IdentityFile ~/.ssh/id_ed25519
   ForwardAgent yes
   ForwardX11 yes
 
 Host casaos-root
-  HostName casaos
+  HostName casaos.home
   User root
   IdentityFile ~/.ssh/id_ed25519
   ForwardAgent yes

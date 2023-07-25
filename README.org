@@ -8080,21 +8080,14 @@ Host proxmox
   User root
   IdentityFile ~/.ssh/id_ed25519
   ForwardAgent yes
-  ForwardX11 yes
+  ForwardX11 no
 
-Host pihole
-  HostName pihole.sbalaji.home
-  User sravan
+Host wirehole
+  HostName wirehole.sbalaji.home
+  User root
   IdentityFile ~/.ssh/id_ed25519
   ForwardAgent yes
-  ForwardX11 yes
-
-Host wireguard
-  HostName wireguard.sbalaji.home
-  User sravan
-  IdentityFile ~/.ssh/id_ed25519
-  ForwardAgent yes
-  ForwardX11 yes
+  ForwardX11 no
 #+END_SRC
 
 * System Settings

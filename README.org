@@ -8075,16 +8075,30 @@ Host aur.archlinux.org
   User aur
 
 # Home Server
-Host proxmox
+Host proxmox-root
   HostName proxmox.sbalaji.home
   User root
   IdentityFile ~/.ssh/id_ed25519
   ForwardAgent yes
   ForwardX11 no
 
-Host wirehole
+Host wirehole-root
   HostName wirehole.sbalaji.home
   User root
+  IdentityFile ~/.ssh/id_ed25519
+  ForwardAgent yes
+  ForwardX11 no
+
+Host portainer-root
+  HostName portainer.sbalaji.home
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+  ForwardAgent yes
+  ForwardX11 no
+
+Host portainer-sravan
+  HostName portainer.sbalaji.home
+  User sravan
   IdentityFile ~/.ssh/id_ed25519
   ForwardAgent yes
   ForwardX11 no

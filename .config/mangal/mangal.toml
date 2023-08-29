@@ -49,7 +49,7 @@ download_cover = true
 # Absolute or relative.
 # You can also use tilde (~) to refer to your home directory or use env variables.
 # Examples: ~/... or $HOME/... or ${MANGA_PATH}-mangal
-path = "/home/sravan/Manga"
+path = "/home/sravan/Downloads"
 
 # If chapter is already downloaded, read it instead of downloading it to temp (bool)
 read_downloaded = false

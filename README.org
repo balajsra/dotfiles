@@ -2467,10 +2467,10 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 *** Post Switch
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .config/autorandr/postswitch
-/home/sravan/.scripts/session.sh --restart &                                             # Restart dwm
-/usr/bin/nvidia-force-comp-pipeline &                                                    # NVIDIA Force Composition Pipeline
-/usr/bin/nitrogen --restore &                                                            # Restore wallpaper
-/usr/bin/betterlockscreen -u /home/sravan/Pictures/Wallpapers/Desktop/Solar_System.png & # Update lock screen wallpaper
+/home/sravan/.scripts/session.sh --restart &                                              # Restart dwm
+/usr/bin/nvidia-force-comp-pipeline &                                                     # NVIDIA Force Composition Pipeline
+/usr/bin/nitrogen --restore &                                                             # Restore wallpaper
+/usr/bin/betterlockscreen -u /home/sravan/Documents/Wallpapers/Desktop/Solar_System.png & # Update lock screen wallpaper
 #+END_SRC
 
 ** Compositor
@@ -3181,7 +3181,7 @@ adjustment-method=randr
 
 *** Default Options
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreenrc
+#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 display_on=0
 span_image=false
 lock_timeout=300
@@ -3196,7 +3196,7 @@ wallpaper_cmd="feh --bg-fill"
 
 *** Theme Options
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreenrc
+#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 loginbox=282a36ff
 loginshadow=282a36ff
 locktext="Enter password to unlock..."
@@ -3222,7 +3222,7 @@ bgcolor=282a36ff
 
 *** Pre-Lock
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreenrc
+#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 prelock() {
     /home/sravan/.scripts/deadd.sh --pause
 }
@@ -3230,7 +3230,7 @@ prelock() {
 
 *** Post-Lock
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreenrc
+#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 # custom postlock
 postlock() {
     /home/sravan/.scripts/deadd.sh --unpause
@@ -7795,7 +7795,7 @@ download_cover = true
 # Absolute or relative.
 # You can also use tilde (~) to refer to your home directory or use env variables.
 # Examples: ~/... or $HOME/... or ${MANGA_PATH}-mangal
-path = "/home/sravan/Manga"
+path = "/home/sravan/Downloads"
 
 # If chapter is already downloaded, read it instead of downloading it to temp (bool)
 read_downloaded = false
@@ -7971,7 +7971,6 @@ show_urls = true
     "redirections_url": "https://raw.githubusercontent.com/erengy/anime-relations/master/anime-relations.txt",
     "scan_whole_list": true,
     "searchdir": [
-        "/home/sravan/Videos/Anime"
     ],
     "tracker_enabled": true,
     "tracker_ignore_not_next": true,
@@ -8073,35 +8072,6 @@ show_urls = true
 Host aur.archlinux.org
   IdentityFile ~/.ssh/aur
   User aur
-
-# Home Server
-Host proxmox-root
-  HostName proxmox.sbalaji.home
-  User root
-  IdentityFile ~/.ssh/id_ed25519
-  ForwardAgent yes
-  ForwardX11 no
-
-Host wirehole-root
-  HostName wirehole.sbalaji.home
-  User root
-  IdentityFile ~/.ssh/id_ed25519
-  ForwardAgent yes
-  ForwardX11 no
-
-Host portainer-root
-  HostName portainer.sbalaji.home
-  User root
-  IdentityFile ~/.ssh/id_ed25519
-  ForwardAgent yes
-  ForwardX11 no
-
-Host portainer-sravan
-  HostName portainer.sbalaji.home
-  User sravan
-  IdentityFile ~/.ssh/id_ed25519
-  ForwardAgent yes
-  ForwardX11 no
 #+END_SRC
 
 * System Settings

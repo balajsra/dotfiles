@@ -194,7 +194,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = master
 [submodule ".xmonad"]
 	path = .xmonad
-	url = git@github.com:balajsra/xmonad.git
+	url = https://gitea.sravanbalaji.com/sravan/xmonad.git
 	branch = master
 [submodule ".themes/dracula-qbittorrent"]
 	path = .themes/dracula-qbittorrent
@@ -206,7 +206,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = main
 [submodule ".config/dwm-flexipatch"]
 	path = .config/dwm-flexipatch
-	url = git@github.com:balajsra/dwm-flexipatch.git
+	url = https://gitea.sravanbalaji.com/sravan/dwm-flexipatch.git
 	branch = master
 [submodule ".config/emacs"]
 	path = .config/emacs
@@ -214,7 +214,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = main
 [submodule ".config/personal-emacs"]
 	path = .config/personal-emacs
-	url = git@github.com:balajsra/emacs.git
+	url = https://gitea.sravanbalaji.com/sravan/emacs.git
 	branch = main
 [submodule ".config/doom-emacs"]
 	path = .config/doom-emacs
@@ -222,7 +222,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = master
 [submodule ".config/doom-emacs-config"]
 	path = .config/doom-emacs-config
-	url = git@github.com:balajsra/doom-emacs-config.git
+	url = https://gitea.sravanbalaji.com/sravan/doom-emacs-config.git
 	branch = master
 [submodule ".config/zathura"]
 	path = .config/zathura
@@ -242,7 +242,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = main
 [submodule ".config/awesome"]
 	path = .config/awesome
-	url = git@github.com:balajsra/awesome.git
+	url = https://gitea.sravanbalaji.com/sravan/awesome.git
 	branch = main
 #+END_SRC
 
@@ -304,8 +304,10 @@ stow -v -D .
 [color]
     # Enable colors in color-supporting terminals
     ui = auto
+[init]
+	defaultBranch = main
 [pull]
-        rebase = true
+    rebase = true
 [alias]
     # List available aliases
     aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
@@ -3306,6 +3308,7 @@ read_only = ""
 "Finances" = "  "
 "Downloads" = "  "
 "Games" = "  "
+"Git" = " 󰊢"
 "PrismLauncher" = " 󰍳 "
 "Steam" = "  "
 "ISOs" = " 󰗮 "
@@ -7786,7 +7789,7 @@ create_volume_dir = false
 # Default sources to use. (string array)
 # Will prompt if not set.
 # Type "mangal sources list" to show available sources
-default_sources = [ "Mangadex", "Manganelo", "Manganato", "Mangapill", "AsuraScans", "FlameScans", "LuminousScans", "Mangasee", "Readmanga" ]
+default_sources = [ "Mangadex", "Manganelo", "Manganato", "Mangapill", "AsuraScans", "FlameScans", "LuminousScans", "Manganelo", "Mangasee", "Readmanga" ]
 
 # Whether to download manga cover or not (bool)
 download_cover = true

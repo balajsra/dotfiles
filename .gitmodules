@@ -56,7 +56,7 @@
 	branch = master
 [submodule ".xmonad"]
 	path = .xmonad
-	url = git@github.com:balajsra/xmonad.git
+	url = https://gitea.sravanbalaji.com/sravan/xmonad.git
 	branch = master
 [submodule ".themes/dracula-qbittorrent"]
 	path = .themes/dracula-qbittorrent
@@ -68,7 +68,7 @@
 	branch = main
 [submodule ".config/dwm-flexipatch"]
 	path = .config/dwm-flexipatch
-	url = git@github.com:balajsra/dwm-flexipatch.git
+	url = https://gitea.sravanbalaji.com/sravan/dwm-flexipatch.git
 	branch = master
 [submodule ".config/emacs"]
 	path = .config/emacs
@@ -76,7 +76,7 @@
 	branch = main
 [submodule ".config/personal-emacs"]
 	path = .config/personal-emacs
-	url = git@github.com:balajsra/emacs.git
+	url = https://gitea.sravanbalaji.com/sravan/emacs.git
 	branch = main
 [submodule ".config/doom-emacs"]
 	path = .config/doom-emacs
@@ -84,7 +84,7 @@
 	branch = master
 [submodule ".config/doom-emacs-config"]
 	path = .config/doom-emacs-config
-	url = git@github.com:balajsra/doom-emacs-config.git
+	url = https://gitea.sravanbalaji.com/sravan/doom-emacs-config.git
 	branch = master
 [submodule ".config/zathura"]
 	path = .config/zathura
@@ -104,5 +104,5 @@
 	branch = main
 [submodule ".config/awesome"]
 	path = .config/awesome
-	url = git@github.com:balajsra/awesome.git
+	url = https://gitea.sravanbalaji.com/sravan/awesome.git
 	branch = main

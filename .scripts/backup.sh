@@ -5,8 +5,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "󰋊 - backup-to-hdd"
-        "󰒍 - backup-to-fileserver"
+        "󰋊 - backup-root-to-hdd"
+        "󰋊 - backup-home-to-hdd"
+        "󰒍 - backup-root-to-fileserver"
+        "󰒍 - backup-home-to-fileserver"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -30,11 +32,17 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --backup-to-hdd)
-            kitty --hold /home/sravan/.scripts/backup_to_hdd.sh
+        --backup-root-to-hdd)
+            kitty --hold /home/sravan/.scripts/backup_root_to_hdd.sh
             ;;
-        --backup-to-fileserver)
-            kitty --hold /home/sravan/.scripts/backup_to_fileserver.sh
+        --backup-home-to-hdd)
+            kitty --hold /home/sravan/.scripts/backup_home_to_hdd.sh
+            ;;
+        --backup-root-to-fileserver)
+            kitty --hold /home/sravan/.scripts/backup_root_to_fileserver.sh
+            ;;
+        --backup-home-to-fileserver)
+            kitty --hold /home/sravan/.scripts/backup_home_to_fileserver.sh
             ;;
         --rofi)
             rofi_menu

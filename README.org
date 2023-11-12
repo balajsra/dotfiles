@@ -7531,15 +7531,17 @@ inhibit_screensaver=1
 
 *** HDD
 
-**** Script
+**** Root
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_hdd.sh
-sudo snapborg --cfg /home/sravan/.config/snapborg/hdd_config.yaml backup
+***** Script
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_root_to_hdd.sh
+sudo snapborg --cfg /home/sravan/.config/snapborg/root_hdd_config.yaml backup
 #+END_SRC
 
-**** Configuration
+***** Configuration
 
-#+BEGIN_SRC yaml :tangle .config/snapborg/hdd_config.yaml
+#+BEGIN_SRC yaml :tangle .config/snapborg/root_hdd_config.yaml
 configs:
   # MANDATORY: name of the snapper config
   - name: root
@@ -7559,8 +7561,6 @@ configs:
       encryption_passphrase: ~
       # compression configuration, see borg manual
       compression: auto,zstd,4
-
-    # define retention settings for borg independently from snapper
     retention:
       keep_last: 1
       keep_hourly: 1
@@ -7570,8 +7570,20 @@ configs:
       keep_yearly: 1
     # exclude patterns (see borg help patterns)
     exclude_patterns: []
+#+END_SRC
 
-    # MANDATORY: name of the snapper config
+**** Home
+
+***** Script
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_home_to_hdd.sh
+sudo snapborg --cfg /home/sravan/.config/snapborg/home_hdd_config.yaml backup
+#+END_SRC
+
+***** Configuration
+
+#+BEGIN_SRC yaml :tangle .config/snapborg/home_hdd_config.yaml
+configs:
   - name: home
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
     repo: /run/media/sravan/5TB_HDD/Backups/oryp7/home
@@ -7604,15 +7616,17 @@ configs:
 
 *** Fileserver
 
-**** Script
+**** Root
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_fileserver.sh
-sudo snapborg --cfg /home/sravan/.config/snapborg/fileserver_config.yaml backup
+***** Script
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_root_to_fileserver.sh
+sudo snapborg --cfg /home/sravan/.config/snapborg/root_fileserver_config.yaml backup
 #+END_SRC
 
-**** Configuration
+***** Configuration
 
-#+BEGIN_SRC yaml :tangle .config/snapborg/fileserver_config.yaml
+#+BEGIN_SRC yaml :tangle .config/snapborg/root_fileserver_config.yaml
 configs:
   # MANDATORY: name of the snapper config
   - name: root
@@ -7643,8 +7657,20 @@ configs:
       keep_yearly: 1
     # exclude patterns (see borg help patterns)
     exclude_patterns: []
+#+END_SRC
 
-    # MANDATORY: name of the snapper config
+**** Home
+
+***** Script
+
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_home_to_fileserver.sh
+sudo snapborg --cfg /home/sravan/.config/snapborg/home_fileserver_config.yaml backup
+#+END_SRC
+
+***** Configuration
+
+#+BEGIN_SRC yaml :tangle .config/snapborg/home_fileserver_config.yaml
+configs:
   - name: home
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
     repo: /mnt/fileserver/Backups/oryp7/home
@@ -7684,8 +7710,10 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "󰋊 - backup-to-hdd"
-        "󰒍 - backup-to-fileserver"
+        "󰋊 - backup-root-to-hdd"
+        "󰋊 - backup-home-to-hdd"
+        "󰒍 - backup-root-to-fileserver"
+        "󰒍 - backup-home-to-fileserver"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -7709,11 +7737,17 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --backup-to-hdd)
-            kitty --hold /home/sravan/.scripts/backup_to_hdd.sh
+        --backup-root-to-hdd)
+            kitty --hold /home/sravan/.scripts/backup_root_to_hdd.sh
             ;;
-        --backup-to-fileserver)
-            kitty --hold /home/sravan/.scripts/backup_to_fileserver.sh
+        --backup-home-to-hdd)
+            kitty --hold /home/sravan/.scripts/backup_home_to_hdd.sh
+            ;;
+        --backup-root-to-fileserver)
+            kitty --hold /home/sravan/.scripts/backup_root_to_fileserver.sh
+            ;;
+        --backup-home-to-fileserver)
+            kitty --hold /home/sravan/.scripts/backup_home_to_fileserver.sh
             ;;
         --rofi)
             rofi_menu

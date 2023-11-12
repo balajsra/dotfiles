@@ -80,7 +80,7 @@
   - [[#backups][Backups]]
     - [[#rsync-options][Rsync Options]]
     - [[#hdd][HDD]]
-    - [[#casaos][CasaOS]]
+    - [[#fileserver][Fileserver]]
     - [[#rofi-menu][Rofi Menu]]
   - [[#syncthing][Syncthing]]
 - [[#user-programs][User Programs]]
@@ -7602,22 +7602,22 @@ configs:
     exclude_patterns: []
 #+END_SRC
 
-*** CasaOS
+*** Fileserver
 
 **** Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_casaos.sh
-sudo snapborg --cfg /home/sravan/.config/snapborg/casaos_config.yaml backup
+#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_to_fileserver.sh
+sudo snapborg --cfg /home/sravan/.config/snapborg/fileserver_config.yaml backup
 #+END_SRC
 
 **** Configuration
 
-#+BEGIN_SRC yaml :tangle .config/snapborg/casaos_config.yaml
+#+BEGIN_SRC yaml :tangle .config/snapborg/fileserver_config.yaml
 configs:
   # MANDATORY: name of the snapper config
   - name: root
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
-    repo: root@casaos:/media/casaos/12TB_HDD/Backups/oryp7/root
+    repo: /mnt/fileserver/Backups/oryp7/root
     # if this is set to true, borg does not neccessarily fail when a backup fails
     fault_tolerant_mode: true
     # snapborg fails when the most recent snapshot transferred successfully is
@@ -7647,7 +7647,7 @@ configs:
     # MANDATORY: name of the snapper config
   - name: home
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
-    repo: root@casaos:/media/casaos/12TB_HDD/Backups/oryp7/home
+    repo: /mnt/fileserver/Backups/oryp7/home
     # if this is set to true, borg does not neccessarily fail when a backup fails
     fault_tolerant_mode: true
     # snapborg fails when the most recent snapshot transferred successfully is
@@ -7685,7 +7685,7 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         "󰋊 - backup-to-hdd"
-        "󰒍 - backup-to-casaos"
+        "󰒍 - backup-to-fileserver"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -7712,8 +7712,8 @@ main() {
         --backup-to-hdd)
             kitty --hold /home/sravan/.scripts/backup_to_hdd.sh
             ;;
-        --backup-to-casaos)
-            kitty --hold /home/sravan/.scripts/backup_to_casaos.sh
+        --backup-to-fileserver)
+            kitty --hold /home/sravan/.scripts/backup_to_fileserver.sh
             ;;
         --rofi)
             rofi_menu

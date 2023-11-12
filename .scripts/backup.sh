@@ -6,7 +6,7 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         "󰋊 - backup-to-hdd"
-        "󰒍 - backup-to-casaos"
+        "󰒍 - backup-to-fileserver"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -33,8 +33,8 @@ main() {
         --backup-to-hdd)
             kitty --hold /home/sravan/.scripts/backup_to_hdd.sh
             ;;
-        --backup-to-casaos)
-            kitty --hold /home/sravan/.scripts/backup_to_casaos.sh
+        --backup-to-fileserver)
+            kitty --hold /home/sravan/.scripts/backup_to_fileserver.sh
             ;;
         --rofi)
             rofi_menu

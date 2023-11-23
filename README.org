@@ -13,6 +13,7 @@
   - [[#create-symbolic-links-with-gnu-stow][Create Symbolic Links with GNU Stow]]
   - [[#remove-symbolic-links-with-gnu-stow][Remove Symbolic Links with GNU Stow]]
 - [[#git][Git]]
+  - [[#gitconfig][Gitconfig]]
 - [[#notifications][Notifications]]
   - [[#dunst-notification-daemon][Dunst Notification Daemon]]
     - [[#global][Global]]
@@ -41,12 +42,8 @@
     - [[#picom-jonaburg][Picom Jonaburg]]
   - [[#night-mode][Night Mode]]
     - [[#redshift][Redshift]]
-- [[#lock-screen][Lock Screen]]
-  - [[#betterlockscreen][Betterlockscreen]]
-    - [[#default-options][Default Options]]
-    - [[#theme-options][Theme Options]]
-    - [[#pre-lock][Pre-Lock]]
-    - [[#post-lock][Post-Lock]]
+  - [[#lock-screen][Lock Screen]]
+    - [[#betterlockscreen][Betterlockscreen]]
 - [[#terminal--shell][Terminal & Shell]]
   - [[#prompt][Prompt]]
     - [[#starship][Starship]]
@@ -63,6 +60,9 @@
   - [[#emacs][Emacs]]
     - [[#chemacs2][Chemacs2]]
     - [[#doom-emacs-scripts][DOOM Emacs Scripts]]
+  - [[#vs-code][VS Code]]
+    - [[#settings][Settings]]
+    - [[#keybindings][Keybindings]]
 - [[#system-monitor][System Monitor]]
   - [[#conky][Conky]]
 - [[#gaming][Gaming]]
@@ -294,6 +294,8 @@ stow -v -D .
 #+END_SRC
 
 * Git 
+
+** Gitconfig
 
 #+BEGIN_SRC gitconfig :tangle .gitconfig
 # Sravan Balaji's Git Configuration
@@ -3177,11 +3179,11 @@ adjustment-method=randr
 ; screen=1
 #+END_SRC
 
-* Lock Screen
+** Lock Screen
 
-** Betterlockscreen
+*** Betterlockscreen
 
-*** Default Options
+**** Default Options
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 display_on=0
@@ -3196,7 +3198,7 @@ wallpaper_cmd="feh --bg-fill"
 # i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
 #+END_SRC
 
-*** Theme Options
+**** Theme Options
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 loginbox=282a36ff
@@ -3222,7 +3224,7 @@ modifcolor=ff5555ff
 bgcolor=282a36ff
 #+END_SRC
 
-*** Pre-Lock
+**** Pre-Lock
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 prelock() {
@@ -3230,7 +3232,7 @@ prelock() {
 }
 #+END_SRC
 
-*** Post-Lock
+**** Post-Lock
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 # custom postlock
@@ -7187,6 +7189,466 @@ DOOM_DIR_PATH=~/.config/doom-emacs-config
 
 # Check for errors with installation
 DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
+#+END_SRC
+
+** VS Code
+
+*** Settings
+
+**** Open Braces
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+{
+#+END_SRC
+
+**** Workbench
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "workbench.colorTheme": "Dracula Pro",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.productIconTheme": "fluent-icons",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "workbench.sideBar.location": "left",
+    "workbench.panel.defaultLocation": "bottom",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+#+END_SRC
+
+**** Editor
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "editor.fontFamily": "'FiraCode Nerd Font'",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnPaste": true,
+    "editor.linkedEditing": true,
+    "editor.lineNumbers": "on",
+    "editor.cursorBlinking": "phase",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.quickSuggestionsDelay": 0,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.suggestSelection": "first",
+    "editor.rulers": [
+        110
+    ],
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
+    "editor.smoothScrolling": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.renderWhitespace": "all",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.tokenColorCustomizations": {
+    "textMateRules": [
+        {
+        "scope": [
+            //following will be in italic (=FlottFlott)
+            "comment",
+            "entity.name.type.class", //class names
+            "keyword", //import, export, return…
+            "constant", //String, Number, Boolean…, this, super
+            "storage.modifier", //static keyword
+            "storage.type.class.js", //class keyword
+        ],
+        "settings": {
+            "fontStyle": "italic"
+        }
+        },
+        {
+        "scope": [
+            //following will be excluded from italics (VSCode has some defaults for italics)
+            "invalid",
+            "keyword.operator",
+            "constant.numeric.css",
+            "keyword.other.unit.px.css",
+            "constant.numeric.decimal.js",
+            "constant.numeric.json"
+        ],
+        "settings": {
+            "fontStyle": ""
+        }
+        }
+    ]
+    },
+#+END_SRC
+
+**** Explorer
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "explorer.autoReveal": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+#+END_SRC
+
+**** Files
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.rasi": "css"
+    },
+#+END_SRC
+
+**** Vim
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "vim.insertModeKeyBindings": [
+        {
+            // easier insert mode exit
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        },
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            // go to definition
+            "before": ["g", "D"],
+            "commands": ["editor.action.revealDefintionsAside"],
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            // open sidebar
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.toggleSidebarVisibility"],
+        },
+        {
+            // show current file in explorer
+            "before": ["<leader>", "f"],
+            "commands": ["revealInExplorer"],
+        },
+        {
+            // toggle comment on current line
+            "before": ["<leader>", "c"],
+            "commands": [
+                "editor.action.commentLine",
+                "extension.vim_escape"
+            ],
+        },
+        {
+            // rename symbol
+            "before": ["<leader>", "r", "e"],
+            "commands": ["editor.action.rename"],
+        },
+        {
+            // show all symbols
+            "before": ["<leader>", "o", "g"],
+            "commands": ["workbench.action.showAllSymbols"],
+        },
+        {
+            // show editors in active group
+            "before": ["<leader>", "o", "o"],
+            "commands": ["workbench.action.showEditorsInActiveGroup"],
+        },
+        {
+            // quick open a file
+            "before": ["<leader>", "o", "p"],
+            "commands": ["workbench.action.quickOpen"],
+        },
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": ["<leader>", "c"],
+            "commands": ["editor.action.commentLine"],
+            "when": "editorTextFocus && !editorReadonly"
+        }
+    ],
+    "vim.hlsearch": true,
+    "vim.leader": "\\",
+    "vim.easymotion": true,
+    "vim.surround": true,
+    "vim.useSystemClipboard": true,
+#+END_SRC
+
+**** Terminal
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.fontFamily": "'FiraCode Nerd Font'",
+#+END_SRC
+
+**** Language Specific
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.languageServer": "Pylance",
+#+END_SRC
+
+**** Todo Tree
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "todo-tree.tree.showScanModeButton": false,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "DONE",
+        "[ ]",
+        "[x]"
+    ],
+#+END_SRC
+
+**** Prettier
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "prettier.endOfLine": "auto",
+    "prettier.proseWrap": "always",
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true,
+#+END_SRC
+
+**** Live Server
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+#+END_SRC
+
+**** Latex Workshop
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "latex-workshop.view.pdf.viewer": "tab",
+#+END_SRC
+
+**** Jupyter
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "jupyter.sendSelectionToInteractiveWindow": false,
+    "jupyter.alwaysTrustNotebooks": true,
+#+END_SRC
+
+**** Git
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "git.autofetch": true,
+#+END_SRC
+
+**** CMake
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "cmake.configureOnOpen": false,
+#+END_SRC
+
+**** Diff Editor
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "diffEditor.ignoreTrimWhitespace": false,
+#+END_SRC
+
+**** Project Manager
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "projectManager.git.baseFolders": [
+        "/home/sravan/Projects",
+        "/home/sravan/.config"
+    ],
+#+END_SRC
+
+**** VS Icons
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "vsicons.dontShowNewVersionMessage": true,
+#+END_SRC
+
+**** Telemetry
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+#+END_SRC
+
+**** Peacock
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "peacock.favoriteColors": [
+        {
+            "name": "Dark",
+            "value": "#44475a"
+        },
+        {
+            "name": "Light",
+            "value": "#f8f8f2"
+        },
+        {
+            "name": "Purple",
+            "value": "#6272a4"
+        },
+        {
+            "name": "Cyan",
+            "value": "#8be9fd"
+        },
+        {
+            "name": "Green",
+            "value": "#50fa7b"
+        },
+        {
+            "name": "Orange",
+            "value": "#ffb86c"
+        },
+        {
+            "name": "Pink",
+            "value": "#ff79c6"
+        },
+        {
+            "name": "Purple",
+            "value": "#bd93f9"
+        },
+        {
+            "name": "Red",
+            "value": "#ff5555"
+        },
+        {
+            "name": "Yellow",
+            "value": "#f1fa8c"
+        },
+        {
+            "name": "Purple",
+            "value": "#6272a4"
+        }
+    ],
+    "peacock.affectTabActiveBorder": true,
+#+END_SRC
+
+**** Auto Build
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "auto-build.defaultEnv.name": "STM32F103RE_creality",
+#+END_SRC
+
+**** Close Braces
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+}
+#+END_SRC
+
+*** Keybindings
+
+#+BEGIN_SRC json :tangle .config/Code/User/keybindings.json
+[
+    {
+        // restore indenting functionality in normal mode
+        "key": "tab",
+        "command": "tab",
+        "when": "editorTextFocus && !editorTabMovesFocus"
+    },
+    {
+        // restore indenting functionality in normal mode
+        "key": "shift+tab",
+        "command": "outdent",
+        "when": "editorTextFocus && !editorTabMovesFocus"
+    },
+    {
+        // switch to left window
+        "key": "ctrl+h",
+        "command": "workbench.action.focusLeftGroup",
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+        // switch to right window
+        "key": "ctrl+l",
+        "command": "workbench.action.focusRightGroup",
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+        // switch to above window
+        "key": "ctrl+k",
+        "command": "workbench.action.focusAboveGroup",
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+        // switch to below window
+        "key": "ctrl+j",
+        "command": "workbench.action.focusBelowGroup",
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+        // toggle sidebar when in sidebar
+        "key": "\\ t",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "!editorTextFocus"
+    },
+    {
+        // collapse list in sidebar
+        "key": "ctrl+h",
+        "command": "list.collapse",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        // expand list in sidebar
+        "key": "ctrl+l",
+        "command": "list.expand",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        // move up list
+        "key": "ctrl+k",
+        "command": "list.focusUp",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        // move down list
+        "key": "ctrl+j",
+        "command": "list.focusDown",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        // next item in suggestion widget
+        "key": "ctrl+j",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetVisible"
+    },
+    {
+        // previous item in suggestion widget
+        "key": "ctrl+k",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetVisible"
+    },
+    {
+        // next item in quick open
+        "key": "ctrl+j",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        // previous item in quick open
+        "key": "ctrl+k",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
+    }
+]
 #+END_SRC
 
 * System Monitor 

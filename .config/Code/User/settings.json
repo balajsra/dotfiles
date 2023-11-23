@@ -1,0 +1,270 @@
+{
+
+    "workbench.colorTheme": "Dracula Pro",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.productIconTheme": "fluent-icons",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "workbench.sideBar.location": "left",
+    "workbench.panel.defaultLocation": "bottom",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+
+    "editor.fontFamily": "'FiraCode Nerd Font'",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnPaste": true,
+    "editor.linkedEditing": true,
+    "editor.lineNumbers": "on",
+    "editor.cursorBlinking": "phase",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.quickSuggestionsDelay": 0,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.suggestSelection": "first",
+    "editor.rulers": [
+        110
+    ],
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
+    "editor.smoothScrolling": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.renderWhitespace": "all",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.tokenColorCustomizations": {
+    "textMateRules": [
+        {
+        "scope": [
+            //following will be in italic (=FlottFlott)
+            "comment",
+            "entity.name.type.class", //class names
+            "keyword", //import, export, return…
+            "constant", //String, Number, Boolean…, this, super
+            "storage.modifier", //static keyword
+            "storage.type.class.js", //class keyword
+        ],
+        "settings": {
+            "fontStyle": "italic"
+        }
+        },
+        {
+        "scope": [
+            //following will be excluded from italics (VSCode has some defaults for italics)
+            "invalid",
+            "keyword.operator",
+            "constant.numeric.css",
+            "keyword.other.unit.px.css",
+            "constant.numeric.decimal.js",
+            "constant.numeric.json"
+        ],
+        "settings": {
+            "fontStyle": ""
+        }
+        }
+    ]
+    },
+
+    "explorer.autoReveal": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.rasi": "css"
+    },
+
+    "vim.insertModeKeyBindings": [
+        {
+            // easier insert mode exit
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        },
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            // go to definition
+            "before": ["g", "D"],
+            "commands": ["editor.action.revealDefintionsAside"],
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            // open sidebar
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.toggleSidebarVisibility"],
+        },
+        {
+            // show current file in explorer
+            "before": ["<leader>", "f"],
+            "commands": ["revealInExplorer"],
+        },
+        {
+            // toggle comment on current line
+            "before": ["<leader>", "c"],
+            "commands": [
+                "editor.action.commentLine",
+                "extension.vim_escape"
+            ],
+        },
+        {
+            // rename symbol
+            "before": ["<leader>", "r", "e"],
+            "commands": ["editor.action.rename"],
+        },
+        {
+            // show all symbols
+            "before": ["<leader>", "o", "g"],
+            "commands": ["workbench.action.showAllSymbols"],
+        },
+        {
+            // show editors in active group
+            "before": ["<leader>", "o", "o"],
+            "commands": ["workbench.action.showEditorsInActiveGroup"],
+        },
+        {
+            // quick open a file
+            "before": ["<leader>", "o", "p"],
+            "commands": ["workbench.action.quickOpen"],
+        },
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": ["<leader>", "c"],
+            "commands": ["editor.action.commentLine"],
+            "when": "editorTextFocus && !editorReadonly"
+        }
+    ],
+    "vim.hlsearch": true,
+    "vim.leader": "\\",
+    "vim.easymotion": true,
+    "vim.surround": true,
+    "vim.useSystemClipboard": true,
+
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.fontFamily": "'FiraCode Nerd Font'",
+
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.languageServer": "Pylance",
+
+    "todo-tree.tree.showScanModeButton": false,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "DONE",
+        "[ ]",
+        "[x]"
+    ],
+
+    "prettier.endOfLine": "auto",
+    "prettier.proseWrap": "always",
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true,
+
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+
+    "latex-workshop.view.pdf.viewer": "tab",
+
+    "jupyter.sendSelectionToInteractiveWindow": false,
+    "jupyter.alwaysTrustNotebooks": true,
+
+    "git.autofetch": true,
+
+    "cmake.configureOnOpen": false,
+
+    "diffEditor.ignoreTrimWhitespace": false,
+
+    "projectManager.git.baseFolders": [
+        "/home/sravan/Projects",
+        "/home/sravan/.config"
+    ],
+
+    "vsicons.dontShowNewVersionMessage": true,
+
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+
+    "peacock.favoriteColors": [
+        {
+            "name": "Dark",
+            "value": "#44475a"
+        },
+        {
+            "name": "Light",
+            "value": "#f8f8f2"
+        },
+        {
+            "name": "Purple",
+            "value": "#6272a4"
+        },
+        {
+            "name": "Cyan",
+            "value": "#8be9fd"
+        },
+        {
+            "name": "Green",
+            "value": "#50fa7b"
+        },
+        {
+            "name": "Orange",
+            "value": "#ffb86c"
+        },
+        {
+            "name": "Pink",
+            "value": "#ff79c6"
+        },
+        {
+            "name": "Purple",
+            "value": "#bd93f9"
+        },
+        {
+            "name": "Red",
+            "value": "#ff5555"
+        },
+        {
+            "name": "Yellow",
+            "value": "#f1fa8c"
+        },
+        {
+            "name": "Purple",
+            "value": "#6272a4"
+        }
+    ],
+    "peacock.affectTabActiveBorder": true,
+
+    "auto-build.defaultEnv.name": "STM32F103RE_creality",
+
+}

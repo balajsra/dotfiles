@@ -4760,10 +4760,10 @@ fish_pager_color_secondary_description 6272a4
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      FiraCode Nerd Font
-bold_font        FiraCode Nerd Font Bold
-italic_font      FiraCode Nerd Font
-bold_italic_font FiraCode Nerd Font Bold
+font_family      MonaspiceNe NF
+bold_font        MonaspiceNe NF:style=Bold
+italic_font      MonaspiceNe NF:style=Italic
+bold_italic_font MonaspiceNe NF:style=Bold Italic
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -6333,7 +6333,7 @@ font:
         #   - (macOS) Menlo
         #   - (Linux/BSD) monospace
         #   - (Windows) Consolas
-        family: FiraCode Nerd Font
+        family: MonaspiceNe NF
 
         # The `style` can be specified to pick a specific face.
         style: Regular
@@ -6344,7 +6344,7 @@ font:
         #
         # If the bold family is not specified, it will fall back to the
         # value specified for the normal font.
-        family: FiraCode Nerd Font
+        family: MonaspiceNe NF
 
         # The `style` can be specified to pick a specific face.
         style: Bold
@@ -7219,9 +7219,9 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
 **** Editor
 
 #+BEGIN_SRC json :tangle .config/Code/User/settings.json
-    "editor.fontFamily": "'FiraCode Nerd Font'",
+    "editor.fontFamily": "'MonaspiceNe NF'",
     "editor.fontSize": 14,
-    "editor.fontLigatures": true,
+    "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "modifications",
     "editor.formatOnPaste": true,
@@ -7376,7 +7376,7 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
 #+BEGIN_SRC json :tangle .config/Code/User/settings.json
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.fontFamily": "'FiraCode Nerd Font'",
+    "terminal.integrated.fontFamily": "'MonaspiceNe NF'",
 #+END_SRC
 
 **** Language Specific

@@ -40,36 +40,36 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": "active",
     "editor.tokenColorCustomizations": {
-    "textMateRules": [
+        "textMateRules": [
         {
-        "scope": [
-            //following will be in italic (=FlottFlott)
-            "comment",
-            "entity.name.type.class", //class names
-            "keyword", //import, export, return…
-            "constant", //String, Number, Boolean…, this, super
-            "storage.modifier", //static keyword
-            "storage.type.class.js", //class keyword
-        ],
-        "settings": {
-            "fontStyle": "italic"
-        }
+            "scope": [
+                //following will be in italic (=FlottFlott)
+                "comment",
+                "entity.name.type.class", //class names
+                "keyword", //import, export, return…
+                "constant", //String, Number, Boolean…, this, super
+                "storage.modifier", //static keyword
+                "storage.type.class.js", //class keyword
+            ],
+            "settings": {
+                "fontStyle": "italic"
+            }
         },
         {
-        "scope": [
-            //following will be excluded from italics (VSCode has some defaults for italics)
-            "invalid",
-            "keyword.operator",
-            "constant.numeric.css",
-            "keyword.other.unit.px.css",
-            "constant.numeric.decimal.js",
-            "constant.numeric.json"
-        ],
-        "settings": {
-            "fontStyle": ""
+            "scope": [
+                //following will be excluded from italics (VSCode has some defaults for italics)
+                "invalid",
+                "keyword.operator",
+                "constant.numeric.css",
+                "keyword.other.unit.px.css",
+                "constant.numeric.decimal.js",
+                "constant.numeric.json"
+            ],
+            "settings": {
+                "fontStyle": ""
+            }
         }
-        }
-    ]
+        ]
     },
 
     "explorer.autoReveal": false,
@@ -153,6 +153,7 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.fontFamily": "'MonaspiceNe NF'",
+    "terminal.integrated.defaultProfile.linux": "bash",
 
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -166,10 +167,14 @@
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.languageServer": "Pylance",
 
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
     "todo-tree.tree.showScanModeButton": false,
     "todo-tree.general.tags": [
         "BUG",
@@ -210,11 +215,7 @@
 
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-    "terminal.integrated.defaultProfile.linux": "bash",
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
-    },
+
     "security.workspace.trust.untrustedFiles": "open",
 
     "peacock.favoriteColors": [

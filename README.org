@@ -7248,36 +7248,36 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": "active",
     "editor.tokenColorCustomizations": {
-    "textMateRules": [
+        "textMateRules": [
         {
-        "scope": [
-            //following will be in italic (=FlottFlott)
-            "comment",
-            "entity.name.type.class", //class names
-            "keyword", //import, export, return…
-            "constant", //String, Number, Boolean…, this, super
-            "storage.modifier", //static keyword
-            "storage.type.class.js", //class keyword
-        ],
-        "settings": {
-            "fontStyle": "italic"
-        }
+            "scope": [
+                //following will be in italic (=FlottFlott)
+                "comment",
+                "entity.name.type.class", //class names
+                "keyword", //import, export, return…
+                "constant", //String, Number, Boolean…, this, super
+                "storage.modifier", //static keyword
+                "storage.type.class.js", //class keyword
+            ],
+            "settings": {
+                "fontStyle": "italic"
+            }
         },
         {
-        "scope": [
-            //following will be excluded from italics (VSCode has some defaults for italics)
-            "invalid",
-            "keyword.operator",
-            "constant.numeric.css",
-            "keyword.other.unit.px.css",
-            "constant.numeric.decimal.js",
-            "constant.numeric.json"
-        ],
-        "settings": {
-            "fontStyle": ""
+            "scope": [
+                //following will be excluded from italics (VSCode has some defaults for italics)
+                "invalid",
+                "keyword.operator",
+                "constant.numeric.css",
+                "keyword.other.unit.px.css",
+                "constant.numeric.decimal.js",
+                "constant.numeric.json"
+            ],
+            "settings": {
+                "fontStyle": ""
+            }
         }
-        }
-    ]
+        ]
     },
 #+END_SRC
 
@@ -7377,6 +7377,7 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.fontFamily": "'MonaspiceNe NF'",
+    "terminal.integrated.defaultProfile.linux": "bash",
 #+END_SRC
 
 **** Language Specific
@@ -7394,6 +7395,9 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.languageServer": "Pylance",
@@ -7402,6 +7406,7 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
 **** Todo Tree
 
 #+BEGIN_SRC json :tangle .config/Code/User/settings.json
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
     "todo-tree.tree.showScanModeButton": false,
     "todo-tree.general.tags": [
         "BUG",
@@ -7482,11 +7487,11 @@ DOOMDIR=$DOOM_DIR_PATH $DOOM_BIN doctor
 #+BEGIN_SRC json :tangle .config/Code/User/settings.json
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-    "terminal.integrated.defaultProfile.linux": "bash",
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
-    },
+#+END_SRC
+
+**** Security
+
+#+BEGIN_SRC json :tangle .config/Code/User/settings.json
     "security.workspace.trust.untrustedFiles": "open",
 #+END_SRC
 

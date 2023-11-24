@@ -4760,10 +4760,10 @@ fish_pager_color_secondary_description 6272a4
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      MonaspiceNe NF
-bold_font        MonaspiceNe NF:style=Bold
-italic_font      MonaspiceNe NF:style=Italic
-bold_italic_font MonaspiceNe NF:style=Bold Italic
+font_family      MonaspiceNe NFM
+bold_font        MonaspiceNe NFM Bold
+italic_font      MonaspiceNe NFM Italic
+bold_italic_font MonaspiceNe NFM Bold Italic
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty

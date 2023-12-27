@@ -102,46 +102,46 @@ main() {
             rofi_graphics_menu
             ;;
         --graphics-query)
-            current_graphics=$(pkexec system76-power graphics)
+            current_graphics=$(system76-power graphics)
             notify-send "System76-Power Graphics" "$current_graphics"
             ;;
         --graphics-compute)
             notify-send "System76-Power Graphics" "Switching to Compute Graphics..."
-            pkexec system76-power graphics compute
+            system76-power graphics compute
             notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-hybrid)
             notify-send "System76-Power Graphics" "Switching to Hybrid Graphics..."
-            pkexec system76-power graphics hybrid
+            system76-power graphics hybrid
             notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-integrated)
             notify-send "System76-Power Graphics" "Switching to Integrated Graphics..."
-            pkexec system76-power graphics integrated
+            system76-power graphics integrated
             notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --graphics-nvidia)
             notify-send "System76-Power Graphics" "Switching to Nvidia Graphics..."
-            pkexec system76-power graphics nvidia
+            system76-power graphics nvidia
             notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
             ;;
         --rofi-cpu-profile)
             rofi_cpu_profile_menu
             ;;
         --cpu-profile-query)
-            current_profile=$(pkexec system76-power profile)
+            current_profile=$(system76-power profile)
             notify-send "System76-Power CPU Profile" "$current_profile"
             ;;
         --cpu-profile-battery)
-            pkexec system76-power profile battery
+            system76-power profile battery
             notify-send "System76-Power CPU Profile" "Switched to Battery Profile"
             ;;
         --cpu-profile-balanced)
-            pkexec system76-power profile balanced
+            system76-power profile balanced
             notify-send "System76-Power CPU Profile" "Switched to Balanced Profile"
             ;;
         --cpu-profile-performance)
-            pkexec system76-power profile performance
+            system76-power profile performance
             notify-send "System76-Power CPU Profile" "Switched to Performance Profile"
             ;;
         --rofi-gpu-profile)

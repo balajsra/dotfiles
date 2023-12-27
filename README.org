@@ -194,7 +194,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = master
 [submodule ".xmonad"]
 	path = .xmonad
-	url = https://gitea.sravanbalaji.com/sravan/xmonad.git
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/xmonad.git
 	branch = master
 [submodule ".themes/dracula-qbittorrent"]
 	path = .themes/dracula-qbittorrent
@@ -206,7 +206,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = main
 [submodule ".config/dwm-flexipatch"]
 	path = .config/dwm-flexipatch
-	url = https://gitea.sravanbalaji.com/sravan/dwm-flexipatch.git
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/dwm-flexipatch.git
 	branch = master
 [submodule ".config/emacs"]
 	path = .config/emacs
@@ -214,7 +214,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = main
 [submodule ".config/personal-emacs"]
 	path = .config/personal-emacs
-	url = https://gitea.sravanbalaji.com/sravan/emacs.git
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/emacs.git
 	branch = main
 [submodule ".config/doom-emacs"]
 	path = .config/doom-emacs
@@ -222,7 +222,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = master
 [submodule ".config/doom-emacs-config"]
 	path = .config/doom-emacs-config
-	url = https://gitea.sravanbalaji.com/sravan/doom-emacs-config.git
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/doom-emacs-config.git
 	branch = master
 [submodule ".config/zathura"]
 	path = .config/zathura
@@ -242,7 +242,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	branch = main
 [submodule ".config/awesome"]
 	path = .config/awesome
-	url = https://gitea.sravanbalaji.com/sravan/awesome.git
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/awesome.git
 	branch = main
 #+END_SRC
 
@@ -8576,6 +8576,12 @@ show_urls = true
 Host aur.archlinux.org
   IdentityFile ~/.ssh/aur
   User aur
+
+# Gitea
+Host gitea.sravanbalaji.com
+  IdentityFile ~/.ssh/id_ed25519
+  User gitea
+  Port 2222
 #+END_SRC
 
 * System Settings

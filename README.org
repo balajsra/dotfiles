@@ -7831,11 +7831,11 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Pre-launch script*
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
-/home/sravan/.scripts/picom.sh --off
-/home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance
-/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance
-/home/sravan/.scripts/deadd.sh --pause
-/usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true
+/home/sravan/.scripts/picom.sh --off &
+/home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance &
+/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance &
+/home/sravan/.scripts/deadd.sh --pause &
+/usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true &
 #+END_SRC
 
 *** Post-Exit Script
@@ -7843,11 +7843,11 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 *Preferences > System options > Post-exit script*
 
 #+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
-/home/sravan/.scripts/picom.sh --on
-/home/sravan/.scripts/deadd.sh --unpause
-/home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced
-/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive
-/usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false
+/home/sravan/.scripts/picom.sh --on &
+/home/sravan/.scripts/deadd.sh --unpause &
+/home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced &
+/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive &
+/usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false &
 #+END_SRC
 
 *** PlayStation 5 (DualSense) to Xbox 360 Controller Button Mapping

@@ -106,3 +106,7 @@
 	path = .config/awesome
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/awesome.git
 	branch = main
+[submodule ".config/hypr"]
+	path = .config/hypr
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/hyprland.git
+	branch = main

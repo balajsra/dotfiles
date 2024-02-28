@@ -1,5 +1,17 @@
 #!/bin/bash
-/home/sravan/.scripts/session.sh --restart &                                              # Restart dwm
-/usr/bin/nvidia-force-comp-pipeline &                                                     # NVIDIA Force Composition Pipeline
-/usr/bin/nitrogen --restore &                                                             # Restore wallpaper
-/usr/bin/betterlockscreen -u /home/sravan/Documents/Wallpapers/Desktop/Solar_System.png & # Update lock screen wallpaper
+# Check if screen is not currently locked
+if ! pgrep -x "i3lock" > /dev/null
+then
+    # Restart session
+    /home/sravan/.scripts/session.sh --restart &
+fi
+
+# NVIDIA Force Composition Pipeline
+/usr/bin/nvidia-force-comp-pipeline &
+
+# Restore wallpaper
+/usr/bin/nitrogen --restore &
+
+# Update lock screen wallpaper
+/usr/bin/betterlockscreen -u \
+    /home/sravan/Documents/Wallpapers/Desktop/Solar_System.png &

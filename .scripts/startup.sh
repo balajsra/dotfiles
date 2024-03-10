@@ -10,6 +10,7 @@ declare -a startup_array=(\
     "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
     "/usr/bin/unclutter" \                                         # Hide Mouse Cursor
     "/usr/bin/easyeffects --gapplication-service" \                # Easy Effects PipeWire Plugins
+    "/usr/bin/emacs --daemon" \                                    # Emacs Daemon
 )
 
 declare -a kill_startup_array=(\
@@ -23,6 +24,7 @@ declare -a kill_startup_array=(\
     "pkill redshift" \         # Redshift Blue Light Filter
     "pkill unclutter" \        # Hide Mouse Cursor
     "pkill easyeffects" \      # Easy Effects PipeWire Plugins
+    "pkill emacs" \            # Emacs Daemon
 )
 
 declare -a delay_array=(\

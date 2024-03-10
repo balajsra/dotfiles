@@ -333,7 +333,7 @@ Things to ignore in dotfiles git repo.
     untrack = rm --cache --
 [core]
     # Emacs
-    editor = "emacs"
+    editor = "emacsclient -c"
     # Don't consider trailing space change as a cause for merge conflicts
     whitespace = -trailing-space
 [diff]
@@ -4999,7 +4999,7 @@ if ! shopt -oq posix; then
 fi
 
 # ENVIRONMENT VARIABLES
-export EDITOR="emacs"
+export EDITOR="emacsclient -c"
 export TERM=xterm-256color
 export QT_STYLE_OVERRIDE=kvantum
 export XDG_CONFIG_HOME=$HOME/.config
@@ -9489,8 +9489,8 @@ Host gitea.sravanbalaji.com
 #+BEGIN_SRC shell :shebang #!/bin/sh :tangle .xinitrc
 export TERM=xterm-256color            # Sets the terminal type
 export SHELL=/usr/bin/fish            # Preferred shell
-export EDITOR="emacs"                 # Default editor
-export GIT_EDITOR="emacs"             # Default git editor
+export EDITOR="emacsclient -c"        # Default editor
+export GIT_EDITOR="emacsclient -c"    # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
 export QT_QPA_PLATFORMTHEME=qt5ct     # QGtkStyle
@@ -9698,6 +9698,7 @@ declare -a startup_array=(\
     "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
     "/usr/bin/unclutter" \                                         # Hide Mouse Cursor
     "/usr/bin/easyeffects --gapplication-service" \                # Easy Effects PipeWire Plugins
+    "/usr/bin/emacs --daemon" \                                    # Emacs Daemon
 )
 
 declare -a kill_startup_array=(\
@@ -9711,6 +9712,7 @@ declare -a kill_startup_array=(\
     "pkill redshift" \         # Redshift Blue Light Filter
     "pkill unclutter" \        # Hide Mouse Cursor
     "pkill easyeffects" \      # Easy Effects PipeWire Plugins
+    "pkill emacs" \            # Emacs Daemon
 )
 
 declare -a delay_array=(\

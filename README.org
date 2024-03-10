@@ -74,6 +74,7 @@
     - [[#general][General]]
     - [[#filter][Filter]]
     - [[#gpu][GPU]]
+    - [[#cpu][CPU]]
     - [[#supervisor][Supervisor]]
     - [[#custom][Custom]]
 - [[#media][Media]]
@@ -8458,6 +8459,8 @@ softrealtime=off
 
 ; GameMode can renice game processes. You can put any value between 0 and 20 here, the value
 ; will be negated and applied as a nice value (0 means no change). Defaults to 0.
+; To use this feature, the user must be added to the gamemode group (and then rebooted):
+; sudo usermod -aG gamemode $(whoami)
 renice=10
 
 ; By default, GameMode adjusts the iopriority of clients to BE/0, you can put any value
@@ -8469,6 +8472,10 @@ ioprio=0
 ; Sets whether gamemode will inhibit the screensaver when active
 ; Defaults to 1
 inhibit_screensaver=1
+
+; Sets whether gamemode will disable split lock mitigation when active
+; Defaults to 1
+disable_splitlock=1
 #+END_SRC
 
 *** Filter
@@ -8519,6 +8526,19 @@ inhibit_screensaver=1
 ;amd_performance_level=high
 #+END_SRC
 
+*** CPU
+
+#+BEGIN_SRC conf :tangle .config/gamemode.ini
+[cpu]
+; Parking or Pinning can be enabled with either "yes", "true" or "1" and disabled with "no", "false" or "0".
+; Either can also be set to a specific list of cores to park or pin, comma separated list where "-" denotes
+; a range. E.g "park_cores=1,8-15" would park cores 1 and 8 to 15.
+; The default is uncommented is to disable parking but enable pinning. If either is enabled the code will
+; currently only properly autodetect Ryzen 7900x3d, 7950x3d and Intel CPU:s with E- and P-cores.
+;park_cores=no
+;pin_cores=yes
+#+END_SRC
+
 *** Supervisor
 
 #+BEGIN_SRC conf :tangle .config/gamemode.ini
@@ -8539,10 +8559,10 @@ inhibit_screensaver=1
 [custom]
 ; Custom scripts (executed using the shell) when gamemode starts and ends
 ;start=notify-send "GameMode started"
-;    /home/me/bin/stop_ethmining.sh
+;    /home/me/bin/stop_foldingathome.sh
 
 ;end=notify-send "GameMode ended"
-;    /home/me/bin/start_ethmining.sh
+;    /home/me/bin/start_foldingathome.sh
 
 ; Timeout for scripts (seconds). Scripts will be killed if they do not complete within this time.
 ;script_timeout=10

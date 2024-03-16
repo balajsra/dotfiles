@@ -31,3 +31,7 @@ stow-delete:
 # Remove and re-create softlinks from .dotfiles to home directory
 stow-recreate:
     stow -v -R .
+
+# Update git submodules from remotes
+submodule-update:
+    git submodule update --init --recursive --remote --progress

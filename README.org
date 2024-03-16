@@ -254,6 +254,10 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = .config/hypr
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/hyprland.git
 	branch = main
+[submodule ".themes/dracula-qt5"]
+	path = .themes/dracula-qt5
+	url = git@github.com:dracula/qt5.git
+	branch = master
 #+END_SRC
 
 ** Ignoring files and directories

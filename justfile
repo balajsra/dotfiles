@@ -10,7 +10,6 @@ default:
 # Update doom emacs and sync config
 doom-emacs-update: && doom-emacs-sync
     DOOMDIR={{DOOM_DIR_PATH}} {{DOOM_BIN}} upgrade
-    DOOMDIR={{DOOM_DIR_PATH}} {{DOOM_BIN}} purge
 
 # Sync doom emacs config
 doom-emacs-sync:

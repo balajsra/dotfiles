@@ -258,6 +258,9 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = .themes/dracula-qt5
 	url = git@github.com:dracula/qt5.git
 	branch = master
+[submodule ".config/eww"]
+	path = .config/eww
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/eww.git
 #+END_SRC
 
 ** Ignoring files and directories
@@ -291,6 +294,9 @@ Things to ignore in dotfiles git repo.
 !.config/autorandr/postswitch
 
 .themes/dracula-pro
+
+.ccls-cache/
+.vim/.netrwhist
 #+END_SRC
 
 * Git 

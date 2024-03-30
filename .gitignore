@@ -8,3 +8,6 @@
 !.config/autorandr/postswitch
 
 .themes/dracula-pro
+
+.ccls-cache/
+.vim/.netrwhist

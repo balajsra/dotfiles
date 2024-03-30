@@ -114,3 +114,6 @@
 	path = .themes/dracula-qt5
 	url = git@github.com:dracula/qt5.git
 	branch = master
+[submodule ".config/eww"]
+	path = .config/eww
+	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/eww.git

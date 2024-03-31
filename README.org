@@ -9816,7 +9816,7 @@ doom-emacs-update: && doom-emacs-sync
 
 # Sync doom emacs config
 doom-emacs-sync:
-    DOOMDIR={{DOOM_DIR_PATH}} {{DOOM_BIN}} sync
+    DOOMDIR={{DOOM_DIR_PATH}} {{DOOM_BIN}} sync -u
 
 # Check doom emacs & config for issues
 doom-emacs-doctor:

@@ -854,7 +854,7 @@ Things to ignore in dotfiles git repo.
 
 *** Control Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/dunst.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/dunst.sh
 help_menu() {
     echo "Script to interact with dunst. Use only one argument at a time."
     echo "  - Toggle On/Off:         dunst.sh OR dunst.sh --toggle OR dunst.sh -t"
@@ -1400,7 +1400,7 @@ image.deadd-noti-center.notification.image {
 
 *** Control Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/deadd.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/deadd.sh
 help_menu() {
     echo "Script to interact with deadd. Use only one argument at a time."
     echo "  - Toggle On/Off:               deadd.sh OR deadd.sh --toggle OR deadd.sh -t"
@@ -1506,7 +1506,7 @@ main $@
 
 ** AwesomeWM Naughty
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/naughty.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/naughty.sh
 help_menu() {
     echo "Script to interact with AwesomeWM's naughty. Use only one argument at a time."
     echo "  - Toggle Pause/Unpause:        naughty.sh OR naughty.sh --toggle OR naughty.sh -t"
@@ -3075,7 +3075,7 @@ Use ~xrandr~ command to see available displays, resolutions, and refresh rates
 | ~--pos~     | Set display position (0x0 is top left, so 5120x1440 is an x-offset of 5120px to the right and a y-offset of 1440px down) |
 | ~--rate~    | Set display refresh rate (get available options from ~xrandr~ command)                                                     |
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/monitor_setup.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/monitor_setup.sh
 xrandr \
     --output DP-2 --primary --mode 2560x1440 --pos 0x0 --rate 164.96 \
     --output DP-0 --mode 2560x1440 --pos 2560x0 --rate 164.96 \
@@ -3088,7 +3088,7 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 
 *** Post Switch
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .config/autorandr/postswitch
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .config/autorandr/postswitch
 # Check if screen is not currently locked
 if ! pgrep -x "i3lock" > /dev/null
 then
@@ -3572,7 +3572,7 @@ wintypes:
 
 **** Control Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/picom.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/picom.sh
 help_menu() {
     echo "Script to interact with picom. Use only one argument at a time."
     echo "  - Toggle On/Off:   picom.sh OR picom.sh --toggle OR picom.sh -t"
@@ -8332,7 +8332,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 *Preferences > System options > Pre-launch script*
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_launch.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/game_launch.sh
 /home/sravan/.scripts/picom.sh --off &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance &
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance &
@@ -8344,7 +8344,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 *Preferences > System options > Post-exit script*
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/game_exit.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/game_exit.sh
 /home/sravan/.scripts/picom.sh --on &
 /home/sravan/.scripts/deadd.sh --unpause &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced &
@@ -8356,7 +8356,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 Emulate DualSense controller as an Xbox 360 controller.
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/dualsense_to_xbox_360_controller.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/dualsense_to_xbox_360_controller.sh
 xboxdrv \
   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-if03-event-joystick \
   --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y,ABS_X=X1,ABS_Y=Y1,ABS_RX=X2,ABS_RY=Y2,ABS_Z=LT,ABS_RZ=RT \
@@ -8856,7 +8856,7 @@ On compilation, this file is baked into the mpv binary, and all lines are uncomm
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_root_to_hdd.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_root_to_hdd.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/root_hdd_config.yaml backup
 #+END_SRC
 
@@ -8897,7 +8897,7 @@ configs:
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_home_to_hdd.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_home_to_hdd.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/home_hdd_config.yaml backup
 #+END_SRC
 
@@ -8941,7 +8941,7 @@ configs:
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_root_to_fileserver.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_root_to_fileserver.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/root_fileserver_config.yaml backup
 #+END_SRC
 
@@ -8984,7 +8984,7 @@ configs:
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup_home_to_fileserver.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_home_to_fileserver.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/home_fileserver_config.yaml backup
 #+END_SRC
 
@@ -9024,7 +9024,7 @@ configs:
 
 *** Rofi Menu
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/backup.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup.sh
 help_menu() {
     echo "Main menu to launch backup scripts. Use only one argument at a time."
 }
@@ -9444,7 +9444,7 @@ Host gitea.sravanbalaji.com
 
 *** Environment Variables
 
-#+BEGIN_SRC shell :shebang #!/bin/sh :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
 export TERM=xterm-256color            # Sets the terminal type
 export SHELL=/usr/bin/fish            # Preferred shell
 export EDITOR="emacsclient -c"        # Default editor
@@ -9457,13 +9457,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 
 *** Load Xresources
 
-#+BEGIN_SRC shell :shebang #!/bin/sh :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
 xrdb ~/.Xresources
 #+END_SRC
 
 *** Startup Applications & Processes
 
-#+BEGIN_SRC shell :shebang #!/bin/sh :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
 # Startup Applications
 /home/sravan/.scripts/startup.sh --kill-startup &&
     /home/sravan/.scripts/startup.sh --startup
@@ -9476,7 +9476,7 @@ xrdb ~/.Xresources
 
 *** Launch Environment
 
-#+BEGIN_SRC shell :shebang #!/bin/sh :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
 exec dwm
 #+END_SRC
 
@@ -9644,7 +9644,7 @@ Xcursor.size: CURSOR_SIZE
 
 ** Startup
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/startup.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
     "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
@@ -9843,7 +9843,7 @@ submodule-update:
 
 ** Media Control
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/playerctl.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/playerctl.sh
 help_menu() {
     echo "Script to interact with playerctl. Use only one argument at a time."
     echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -9907,7 +9907,7 @@ main $@
 
 ** Volume Control
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/pactl.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/pactl.sh
 help_menu() {
     echo "Script to interact with pactl. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -9971,7 +9971,7 @@ main $@
 
 ** Brightness Control
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/brightness.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/brightness.sh
 help_menu() {
     echo "Script to control brightness. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10027,7 +10027,7 @@ main $@
 
 ** Trackpad Control
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/trackpad.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/trackpad.sh
 trackpad_id=13
 
 if xinput list-props $trackpad_id | grep "Device Enabled (.*):.*1" >/dev/null
@@ -10042,7 +10042,7 @@ fi
 
 ** CPU & GPU Control
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/cpu-gpu.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/cpu-gpu.sh
 help_menu() {
     echo "Script to control CPU & GPU modes / performance profiles. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10219,7 +10219,7 @@ main $@
 
 ** Gaming Control
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/gaming.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/gaming.sh
 help_menu() {
     echo "Script to control gaming related things. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10279,7 +10279,7 @@ main $@
 
 ** Session Control
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/session.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/session.sh
 help_menu() {
     echo "Script to interact with desktop session. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10365,7 +10365,7 @@ main $@
 
 ** Control Center
 
-#+BEGIN_SRC shell :shebang #!/bin/bash :tangle .scripts/control-center.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/control-center.sh
 help_menu() {
     echo "Main script to launch sub-menu scripts. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 trackpad_id=13
 
 if xinput list-props $trackpad_id | grep "Device Enabled (.*):.*1" >/dev/null

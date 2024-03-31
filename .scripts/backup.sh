@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 help_menu() {
     echo "Main menu to launch backup scripts. Use only one argument at a time."
 }

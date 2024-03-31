@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 /home/sravan/.scripts/picom.sh --off &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance &
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance &

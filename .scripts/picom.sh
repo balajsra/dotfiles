@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 help_menu() {
     echo "Script to interact with picom. Use only one argument at a time."
     echo "  - Toggle On/Off:   picom.sh OR picom.sh --toggle OR picom.sh -t"

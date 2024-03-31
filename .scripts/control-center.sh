@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 help_menu() {
     echo "Main script to launch sub-menu scripts. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"

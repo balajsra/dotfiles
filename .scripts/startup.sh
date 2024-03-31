@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 declare -a startup_array=(\
     # Background Processes
     "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 help_menu() {
     echo "Script to interact with deadd. Use only one argument at a time."
     echo "  - Toggle On/Off:               deadd.sh OR deadd.sh --toggle OR deadd.sh -t"

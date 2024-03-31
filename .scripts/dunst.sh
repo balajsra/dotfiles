@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 help_menu() {
     echo "Script to interact with dunst. Use only one argument at a time."
     echo "  - Toggle On/Off:         dunst.sh OR dunst.sh --toggle OR dunst.sh -t"

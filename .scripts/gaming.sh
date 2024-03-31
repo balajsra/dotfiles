@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 help_menu() {
     echo "Script to control gaming related things. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"

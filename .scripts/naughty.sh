@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 help_menu() {
     echo "Script to interact with AwesomeWM's naughty. Use only one argument at a time."
     echo "  - Toggle Pause/Unpause:        naughty.sh OR naughty.sh --toggle OR naughty.sh -t"

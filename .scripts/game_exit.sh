@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 /home/sravan/.scripts/picom.sh --on &
 /home/sravan/.scripts/deadd.sh --unpause &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced &

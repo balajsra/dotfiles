@@ -4945,7 +4945,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # Greeting
 clear
-pokemon-colorscripts -r
+krabby random
 echo "bash shell"
 #+END_SRC
 
@@ -5141,7 +5141,7 @@ alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort
 
 # Greeting
 clear
-pokemon-colorscripts -r
+krabby random
 echo "zsh shell"
 #+END_SRC
 
@@ -5158,7 +5158,7 @@ fish_config theme choose "Dracula_Official"
 #+BEGIN_SRC fish :tangle .config/fish/config.fish
 function fish_greeting
     clear
-    pokemon-colorscripts -r
+    krabby random
     echo "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>"
 end
 #+END_SRC

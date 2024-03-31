@@ -124,5 +124,5 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # Greeting
 clear
-pokemon-colorscripts -r
+krabby random
 echo "bash shell"

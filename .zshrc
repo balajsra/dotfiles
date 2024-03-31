@@ -187,5 +187,5 @@ alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort
 
 # Greeting
 clear
-pokemon-colorscripts -r
+krabby random
 echo "zsh shell"

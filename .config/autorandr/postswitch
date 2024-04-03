@@ -6,6 +6,9 @@ then
     /home/sravan/.scripts/session.sh --restart &
 fi
 
+# Disable & Re-Enable Compositor
+/home/sravan/.scripts/picom.sh --on &
+
 # NVIDIA Force Composition Pipeline
 /usr/bin/nvidia-force-comp-pipeline &
 

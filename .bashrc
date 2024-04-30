@@ -117,7 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 # ENVIRONMENT VARIABLES
-export EDITOR="emacsclient -c"
+export EDITOR="emacs"
 export TERM=xterm-256color
 export QT_STYLE_OVERRIDE=kvantum
 export XDG_CONFIG_HOME=$HOME/.config

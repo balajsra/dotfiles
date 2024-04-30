@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 export TERM=xterm-256color            # Sets the terminal type
 export SHELL=/usr/bin/fish            # Preferred shell
-export EDITOR="emacsclient -c"        # Default editor
-export GIT_EDITOR="emacsclient -c"    # Default git editor
+export EDITOR="emacs"                 # Default editor
+export GIT_EDITOR="emacs"             # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
 export QT_QPA_PLATFORMTHEME=qt5ct     # QGtkStyle

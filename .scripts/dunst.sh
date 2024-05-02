@@ -29,6 +29,8 @@ rofi_menu() {
         " Close Notification - close"
         " View History - history"
         "󰂠 Toggle Do Not Disturb - dnd"
+        " Pause Popup Notifications - pause"
+        " Unpause Popup Notifications - unpause"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -121,6 +123,12 @@ main() {
             ;;
         --dnd)
             dunstctl set-paused toggle
+            ;;
+        --pause)
+            dunstctl set-paused true
+            ;;
+        --unpause)
+            dunstctl set-paused false
             ;;
         --rofi)
             rofi_menu

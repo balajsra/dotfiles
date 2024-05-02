@@ -13,7 +13,7 @@ rofi_menu() {
     declare -a options=(
         "󱕅 Compositor - picom"
         "󰍹 Display - brightness"
-        "󰂚 Notifications - xfce4-notifyd"
+        "󰂚 Notifications - dunst"
         " Media - playerctl"
         "󰕾 Volume - pactl"
         "󰁯 Backup - backup"
@@ -50,8 +50,8 @@ main() {
         --brightness)
             /home/sravan/.scripts/brightness.sh --rofi
             ;;
-        --xfce4-notifyd)
-            /home/sravan/.scripts/xfce4-notifyd.sh --rofi
+        --dunst)
+            /home/sravan/.scripts/dunst.sh --rofi
             ;;
         --playerctl)
             /home/sravan/.scripts/playerctl.sh --rofi

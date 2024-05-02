@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 declare -a startup_array=(\
     # Background Processes
-    "/usr/lib64/xfce4/notifyd/xfce4-notifyd" \                     # XFCE Notification Daemon
+    "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -14,15 +14,15 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    "pkill xfce4-notifyd" \    # XFCE Notification Daemon
-    "pkill picom" \            # Picom Compositor
-    "pkill greenclip" \        # Greenclip Clipboard Manager
-    "pkill polkit" \           # GNOME Polkit Authentication Agent
-    "pkill xss-lock" \         # Session Lock Utility
-    "pkill kdeconnectd" \      # KDE Connect Daemon
-    "pkill redshift" \         # Redshift Blue Light Filter
-    "pkill unclutter" \        # Hide Mouse Cursor
-    "pkill easyeffects" \      # Easy Effects PipeWire Plugins
+    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
+    "pkill greenclip" \                            # Greenclip Clipboard Manager
+    "pkill polkit" \                               # GNOME Polkit Authentication Agent
+    "pkill xss-lock" \                             # Session Lock Utility
+    "pkill kdeconnectd" \                          # KDE Connect Daemon
+    "pkill redshift" \                             # Redshift Blue Light Filter
+    "pkill unclutter" \                            # Hide Mouse Cursor
+    "pkill easyeffects" \                          # Easy Effects PipeWire Plugins
 )
 
 declare -a delay_array=(\

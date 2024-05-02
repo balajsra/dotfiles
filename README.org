@@ -887,6 +887,8 @@ rofi_menu() {
         " Close Notification - close"
         " View History - history"
         "󰂠 Toggle Do Not Disturb - dnd"
+        " Pause Popup Notifications - pause"
+        " Unpause Popup Notifications - unpause"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -979,6 +981,12 @@ main() {
             ;;
         --dnd)
             dunstctl set-paused toggle
+            ;;
+        --pause)
+            dunstctl set-paused true
+            ;;
+        --unpause)
+            dunstctl set-paused false
             ;;
         --rofi)
             rofi_menu
@@ -3847,7 +3855,7 @@ bgcolor=282a36ff
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 prelock() {
-    /home/sravan/.scripts/xfce4-notifyd.sh --pause
+    /home/sravan/.scripts/dunst.sh --pause
 }
 #+END_SRC
 
@@ -3856,7 +3864,7 @@ prelock() {
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 # custom postlock
 postlock() {
-    /home/sravan/.scripts/xfce4-notifyd.sh --unpause
+    /home/sravan/.scripts/dunst.sh --unpause
 }
 #+END_SRC
 
@@ -8406,7 +8414,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 /home/sravan/.scripts/picom.sh --off &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance &
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance &
-/home/sravan/.scripts/xfce4-notifyd.sh --pause &
+/home/sravan/.scripts/dunst.sh --pause &
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true &
 #+END_SRC
 
@@ -8416,7 +8424,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/game_exit.sh
 /home/sravan/.scripts/picom.sh --on &
-/home/sravan/.scripts/xfce4-notifyd.sh --unpause &
+/home/sravan/.scripts/dunst.sh --unpause &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced &
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive &
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false &
@@ -9717,7 +9725,7 @@ Xcursor.size: CURSOR_SIZE
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
-    "/usr/lib64/xfce4/notifyd/xfce4-notifyd" \                     # XFCE Notification Daemon
+    "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -9730,15 +9738,15 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    "pkill xfce4-notifyd" \    # XFCE Notification Daemon
-    "pkill picom" \            # Picom Compositor
-    "pkill greenclip" \        # Greenclip Clipboard Manager
-    "pkill polkit" \           # GNOME Polkit Authentication Agent
-    "pkill xss-lock" \         # Session Lock Utility
-    "pkill kdeconnectd" \      # KDE Connect Daemon
-    "pkill redshift" \         # Redshift Blue Light Filter
-    "pkill unclutter" \        # Hide Mouse Cursor
-    "pkill easyeffects" \      # Easy Effects PipeWire Plugins
+    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
+    "pkill greenclip" \                            # Greenclip Clipboard Manager
+    "pkill polkit" \                               # GNOME Polkit Authentication Agent
+    "pkill xss-lock" \                             # Session Lock Utility
+    "pkill kdeconnectd" \                          # KDE Connect Daemon
+    "pkill redshift" \                             # Redshift Blue Light Filter
+    "pkill unclutter" \                            # Hide Mouse Cursor
+    "pkill easyeffects" \                          # Easy Effects PipeWire Plugins
 )
 
 declare -a delay_array=(\
@@ -10448,7 +10456,7 @@ rofi_menu() {
     declare -a options=(
         "󱕅 Compositor - picom"
         "󰍹 Display - brightness"
-        "󰂚 Notifications - xfce4-notifyd"
+        "󰂚 Notifications - dunst"
         " Media - playerctl"
         "󰕾 Volume - pactl"
         "󰁯 Backup - backup"
@@ -10485,8 +10493,8 @@ main() {
         --brightness)
             /home/sravan/.scripts/brightness.sh --rofi
             ;;
-        --xfce4-notifyd)
-            /home/sravan/.scripts/xfce4-notifyd.sh --rofi
+        --dunst)
+            /home/sravan/.scripts/dunst.sh --rofi
             ;;
         --playerctl)
             /home/sravan/.scripts/playerctl.sh --rofi

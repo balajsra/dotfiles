@@ -32,10 +32,10 @@ modifcolor=ff5555ff
 bgcolor=282a36ff
 
 prelock() {
-    /home/sravan/.scripts/xfce4-notifyd.sh --pause
+    /home/sravan/.scripts/dunst.sh --pause
 }
 
 # custom postlock
 postlock() {
-    /home/sravan/.scripts/xfce4-notifyd.sh --unpause
+    /home/sravan/.scripts/dunst.sh --unpause
 }

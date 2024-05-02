@@ -30,6 +30,8 @@
   - [[#swaynotificationcenter][SwayNotificationCenter]]
     - [[#config][Config]]
     - [[#style][Style]]
+  - [[#xfce4-notifyd][xfce4-notifyd]]
+    - [[#control-script-2][Control Script]]
 - [[#application-launcher][Application Launcher]]
   - [[#rofi][Rofi]]
     - [[#configuration-1][Configuration]]
@@ -2179,6 +2181,71 @@ main $@
 }
 #+END_SRC
 
+** xfce4-notifyd
+
+*** Control Script
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/xfce4-notifyd.sh
+help_menu() {
+    echo "Script to interact with xfce4-notifyd. Use only one argument at a time."
+    echo "  - Toggle Notification Center:  xfce4-notifyd.sh --toggle-center"
+    echo "  - Pause Popup Notifications:   xfce4-notifyd.sh --pause"
+    echo "  - Unpause Popup Notifications: xfce4-notifyd.sh --unpause"
+    echo "  - Rofi Menu:                   xfce4-notifyd.sh --rofi"
+    echo "  - Help:                        xfce4-notifyd.sh --help OR xfce4-notifyd.sh -h"
+}
+
+rofi_menu() {
+    declare -a options=(
+        "󱨩 Toggle Notification Center - toggle-center"
+        " Pause Popup Notifications - pause"
+        " Unpause Popup Notifications - unpause"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        pkill rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && main "--rofi"
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --toggle-center)
+            xfce4-notifyd-config
+            ;;
+        --pause)
+            notify-send "Pausing Notifications"
+
+            xfconf-query -c xfce4-notifyd -p /do-not-disturb -s true
+            ;;
+        --unpause)
+            xfconf-query -c xfce4-notifyd -p /do-not-disturb -s false
+
+            notify-send "Unpausing Notifications"
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
+#+END_SRC
+
 * Application Launcher
 
 ** Rofi 
@@ -3780,7 +3847,7 @@ bgcolor=282a36ff
 
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 prelock() {
-    /home/sravan/.scripts/deadd.sh --pause
+    /home/sravan/.scripts/xfce4-notifyd.sh --pause
 }
 #+END_SRC
 
@@ -3789,7 +3856,7 @@ prelock() {
 #+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
 # custom postlock
 postlock() {
-    /home/sravan/.scripts/deadd.sh --unpause
+    /home/sravan/.scripts/xfce4-notifyd.sh --unpause
 }
 #+END_SRC
 
@@ -8339,7 +8406,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 /home/sravan/.scripts/picom.sh --off &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance &
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance &
-/home/sravan/.scripts/deadd.sh --pause &
+/home/sravan/.scripts/xfce4-notifyd.sh --pause &
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true &
 #+END_SRC
 
@@ -8349,7 +8416,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/game_exit.sh
 /home/sravan/.scripts/picom.sh --on &
-/home/sravan/.scripts/deadd.sh --unpause &
+/home/sravan/.scripts/xfce4-notifyd.sh --unpause &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced &
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive &
 /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false &
@@ -9650,7 +9717,7 @@ Xcursor.size: CURSOR_SIZE
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
+    "/usr/lib64/xfce4/notifyd/xfce4-notifyd" \                     # XFCE Notification Daemon
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -9663,7 +9730,7 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    "pkill deadd-notificat" \  # Deadd Notification Center
+    "pkill xfce4-notifyd" \    # XFCE Notification Daemon
     "pkill picom" \            # Picom Compositor
     "pkill greenclip" \        # Greenclip Clipboard Manager
     "pkill polkit" \           # GNOME Polkit Authentication Agent
@@ -10381,7 +10448,7 @@ rofi_menu() {
     declare -a options=(
         "󱕅 Compositor - picom"
         "󰍹 Display - brightness"
-        "󰂚 Notifications - deadd"
+        "󰂚 Notifications - xfce4-notifyd"
         " Media - playerctl"
         "󰕾 Volume - pactl"
         "󰁯 Backup - backup"
@@ -10418,8 +10485,8 @@ main() {
         --brightness)
             /home/sravan/.scripts/brightness.sh --rofi
             ;;
-        --deadd)
-            /home/sravan/.scripts/deadd.sh --rofi
+        --xfce4-notifyd)
+            /home/sravan/.scripts/xfce4-notifyd.sh --rofi
             ;;
         --playerctl)
             /home/sravan/.scripts/playerctl.sh --rofi

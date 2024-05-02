@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 declare -a startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/deadd.sh --on" \                   # Deadd Notification Center
+    "/usr/lib64/xfce4/notifyd/xfce4-notifyd" \                     # XFCE Notification Daemon
     "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
     "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -14,7 +14,7 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    "pkill deadd-notificat" \  # Deadd Notification Center
+    "pkill xfce4-notifyd" \    # XFCE Notification Daemon
     "pkill picom" \            # Picom Compositor
     "pkill greenclip" \        # Greenclip Clipboard Manager
     "pkill polkit" \           # GNOME Polkit Authentication Agent

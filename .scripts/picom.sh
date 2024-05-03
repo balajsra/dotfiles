@@ -55,7 +55,7 @@ main() {
                 pkill picom
             fi
 
-            picom --config /home/sravan/.config/picom/picom.conf -b --no-frame-pacing
+            picom --config /home/sravan/.config/picom/picom.conf -b
 
             notify-send "Turning Picom ON"
             ;;

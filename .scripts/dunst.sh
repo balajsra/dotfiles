@@ -8,6 +8,8 @@ help_menu() {
     echo "  - Close Notification:    dunst.sh --close"
     echo "  - History Pop:           dunst.sh --history"
     echo "  - Toggle Do Not Disturb: dunst.sh --dnd"
+    echo "  - Pause Notifications:   dunst.sh --pause"
+    echo "  - Unpause Notifications: dunst.sh --unpause"
     echo "  - Rofi Menu:             dunst.sh --rofi"
     echo "  - Help:                  dunst.sh --help OR dunst.sh -h"
 }

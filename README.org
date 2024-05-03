@@ -43,8 +43,10 @@
     - [[#post-switch][Post Switch]]
   - [[#compositor][Compositor]]
     - [[#picom][Picom]]
-  - [[#night-mode][Night Mode]]
+  - [[#night-light][Night Light]]
+    - [[#geoclue][Geoclue]]
     - [[#redshift][Redshift]]
+    - [[#gammastep][Gammastep]]
   - [[#lock-screen][Lock Screen]]
     - [[#betterlockscreen][Betterlockscreen]]
 - [[#terminal--shell][Terminal & Shell]]
@@ -3728,22 +3730,24 @@ main() {
 main $@
 #+END_SRC
 
-** Night Mode
+** Night Light
 
-*** Redshift
+*** Geoclue
 
-**** Geoclue Agent Service
+**** Agent Service
 
 #+BEGIN_SRC systemd :tangle .config/systemd/user/geoclue-agent.service
 [Unit]
-Description=redshift needs to get a (geo)clue
+Description=Night light applications need to get a (geo)clue
 
 [Service]
-ExecStart=/usr/lib/geoclue-2.0/demos/agent
+ExecStart=/usr/libexec/geoclue-2.0/demos/agent
 
 [Install]
 WantedBy=default.target
 #+END_SRC
+
+*** Redshift
 
 **** Configuration
 
@@ -3804,6 +3808,81 @@ adjustment-method=randr
 ; to adjust _all_ screens.
 ; [randr]
 ; screen=1
+#+END_SRC
+
+*** Gammastep
+
+**** Configuration
+
+#+BEGIN_SRC conf :tangle .config/gammastep/config.ini
+; Global settings
+[general]
+; Set the day and night screen temperatures
+temp-day=6500
+temp-night=3500
+
+; Disable the smooth fade between temperatures when Redshift starts and stops.
+; 0 will cause an immediate change between screen temperatures.
+; 1 will gradually apply the new screen temperature over a couple of seconds.
+fade=1
+
+; Solar elevation thresholds.
+; By default, Redshift will use the current elevation of the sun to determine
+; whether it is daytime, night or in transition (dawn/dusk). When the sun is
+; above the degrees specified with elevation-high it is considered daytime and
+; below elevation-low it is considered night.
+;elevation-high=3
+;elevation-low=-6
+
+; Custom dawn/dusk intervals.
+; Instead of using the solar elevation, the time intervals of dawn and dusk
+; can be specified manually. The times must be specified as HH:MM in 24-hour
+; format.
+;dawn-time=6:00-7:45
+;dusk-time=18:35-20:15
+
+; Set the screen brightness. Default is 1.0.
+;brightness=0.9
+; It is also possible to use different settings for day and night
+; since version 1.8.
+;brightness-day=0.7
+;brightness-night=0.4
+; Set the screen gamma (for all colors, or each color channel
+; individually)
+;gamma=0.8
+;gamma=0.8:0.7:0.8
+; This can also be set individually for day and night since
+; version 1.10.
+;gamma-day=0.8:0.7:0.8
+;gamma-night=0.6
+
+; Set the location-provider: 'geoclue2', 'manual'.
+; The location provider settings are in a different section.
+location-provider=geoclue2
+
+; Set the adjustment-method: 'randr', 'vidmode', 'drm', 'wayland'.
+; 'randr' is the preferred X11 method, 'vidmode' is an older API
+; that works in some cases when 'randr' does not.
+; The adjustment method settings are in a different section.
+adjustment-method=randr
+
+; Configuration of the location-provider:
+; type 'gammastep -l PROVIDER:help' to see the settings.
+; ex: 'gammastep -l manual:help'
+; Keep in mind that longitudes west of Greenwich (e.g. the Americas)
+; are negative numbers.
+;[manual]
+;lat=48.1
+;lon=11.6
+
+; Configuration of the adjustment-method
+; type 'gammastep -m METHOD:help' to see the settings.
+; ex: 'gammastep -m randr:help'
+; In this example, randr is configured to adjust only screen 0.
+; Note that the numbering starts from 0, so this is actually the first screen.
+; If this option is not specified, Redshift will try to adjust _all_ screens.
+;[randr]
+;screen=0
 #+END_SRC
 
 ** Lock Screen
@@ -9725,15 +9804,15 @@ Xcursor.size: CURSOR_SIZE
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
-    "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-    "/usr/bin/xss-lock -l -- betterlockscreen --lock" \            # Session Lock Utility
-    "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
-    "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
-    "/usr/bin/unclutter" \                                         # Hide Mouse Cursor
-    "/usr/bin/easyeffects --gapplication-service" \                # Easy Effects PipeWire Plugins
+    "bash /home/sravan/.scripts/dunst.sh --on" \          # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --on" \          # Picom Compositor
+    "/usr/bin/greenclip daemon" \                         # Greenclip Clipboard Manager
+    "/usr/libexec/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
+    "/usr/bin/xss-lock -l -- betterlockscreen --lock" \   # Session Lock Utility
+    "/usr/lib/kdeconnectd --replace" \                    # KDE Connect Daemon
+    "/usr/bin/gammastep -x" \                             # Gammastep Night Light
+    "/usr/bin/unclutter" \                                # Hide Mouse Cursor
+    "/usr/bin/easyeffects --gapplication-service" \       # Easy Effects PipeWire Plugins
 )
 
 declare -a kill_startup_array=(\
@@ -9744,14 +9823,14 @@ declare -a kill_startup_array=(\
     "pkill polkit" \                               # GNOME Polkit Authentication Agent
     "pkill xss-lock" \                             # Session Lock Utility
     "pkill kdeconnectd" \                          # KDE Connect Daemon
-    "pkill redshift" \                             # Redshift Blue Light Filter
+    "pkill gammastep" \                            # Gammastep Night Light
     "pkill unclutter" \                            # Hide Mouse Cursor
     "pkill easyeffects" \                          # Easy Effects PipeWire Plugins
 )
 
 declare -a delay_array=(\
     # System Tray Applications
-    "/usr/bin/redshift-gtk" \                  # Redshift Blue Light Filter
+    "/usr/bin/gammastep-indicator" \           # Gammastep Night Light
     "/usr/bin/blueman-applet" \                # Blueman Bluetooth Manager
     "/usr/bin/nm-applet" \                     # Network Manager Applet
     "/usr/bin/kdeconnect-indicator" \          # KDE Connect Indicator
@@ -9769,7 +9848,7 @@ declare -a delay_array=(\
 
 declare -a kill_delay_array=(\
     # System Tray Applications
-    "pkill redshift" \              # Redshift Blue Light Filter
+    "pkill gammastep-indic" \             # Gammastep Night Light
     "pkill blueman-applet" \        # Blueman Bluetooth Manager
     "pkill nm-applet" \             # Network Manager Applet
     "pkill kdeconnect-indicator" \  # KDE Connect Indicator

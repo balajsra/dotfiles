@@ -1,8 +1,8 @@
 [Unit]
-Description=redshift needs to get a (geo)clue
+Description=Night light applications need to get a (geo)clue
 
 [Service]
-ExecStart=/usr/lib/geoclue-2.0/demos/agent
+ExecStart=/usr/libexec/geoclue-2.0/demos/agent
 
 [Install]
 WantedBy=default.target

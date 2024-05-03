@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 declare -a startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/dunst.sh --on" \                   # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --on" \                   # Picom Compositor
-    "/usr/bin/greenclip daemon" \                                  # Greenclip Clipboard Manager
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
-    "/usr/bin/xss-lock -l -- betterlockscreen --lock" \            # Session Lock Utility
-    "/usr/lib/kdeconnectd --replace" \                             # KDE Connect Daemon
-    "/usr/bin/redshift -x" \                                       # Redshift Blue Light Filter
-    "/usr/bin/unclutter" \                                         # Hide Mouse Cursor
-    "/usr/bin/easyeffects --gapplication-service" \                # Easy Effects PipeWire Plugins
+    "bash /home/sravan/.scripts/dunst.sh --on" \          # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --on" \          # Picom Compositor
+    "/usr/bin/greenclip daemon" \                         # Greenclip Clipboard Manager
+    "/usr/libexec/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
+    "/usr/bin/xss-lock -l -- betterlockscreen --lock" \   # Session Lock Utility
+    "/usr/lib/kdeconnectd --replace" \                    # KDE Connect Daemon
+    "/usr/bin/gammastep -x" \                             # Gammastep Night Light
+    "/usr/bin/unclutter" \                                # Hide Mouse Cursor
+    "/usr/bin/easyeffects --gapplication-service" \       # Easy Effects PipeWire Plugins
 )
 
 declare -a kill_startup_array=(\
@@ -20,14 +20,14 @@ declare -a kill_startup_array=(\
     "pkill polkit" \                               # GNOME Polkit Authentication Agent
     "pkill xss-lock" \                             # Session Lock Utility
     "pkill kdeconnectd" \                          # KDE Connect Daemon
-    "pkill redshift" \                             # Redshift Blue Light Filter
+    "pkill gammastep" \                            # Gammastep Night Light
     "pkill unclutter" \                            # Hide Mouse Cursor
     "pkill easyeffects" \                          # Easy Effects PipeWire Plugins
 )
 
 declare -a delay_array=(\
     # System Tray Applications
-    "/usr/bin/redshift-gtk" \                  # Redshift Blue Light Filter
+    "/usr/bin/gammastep-indicator" \           # Gammastep Night Light
     "/usr/bin/blueman-applet" \                # Blueman Bluetooth Manager
     "/usr/bin/nm-applet" \                     # Network Manager Applet
     "/usr/bin/kdeconnect-indicator" \          # KDE Connect Indicator
@@ -45,7 +45,7 @@ declare -a delay_array=(\
 
 declare -a kill_delay_array=(\
     # System Tray Applications
-    "pkill redshift" \              # Redshift Blue Light Filter
+    "pkill gammastep-indic" \             # Gammastep Night Light
     "pkill blueman-applet" \        # Blueman Bluetooth Manager
     "pkill nm-applet" \             # Network Manager Applet
     "pkill kdeconnect-indicator" \  # KDE Connect Indicator

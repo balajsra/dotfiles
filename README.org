@@ -9806,8 +9806,6 @@ Xcursor.size: CURSOR_SIZE
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/startup.sh
 declare -a startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/dunst.sh --on" \          # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --on" \          # Picom Compositor
     "/usr/bin/greenclip daemon" \                         # Greenclip Clipboard Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
     "/usr/bin/xss-lock -l -- betterlockscreen --lock" \   # Session Lock Utility
@@ -9819,47 +9817,51 @@ declare -a startup_array=(\
 
 declare -a kill_startup_array=(\
     # Background Processes
-    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
-    "pkill greenclip" \                            # Greenclip Clipboard Manager
-    "pkill polkit" \                               # GNOME Polkit Authentication Agent
-    "pkill xss-lock" \                             # Session Lock Utility
-    "pkill kdeconnectd" \                          # KDE Connect Daemon
-    "pkill gammastep" \                            # Gammastep Night Light
-    "pkill unclutter" \                            # Hide Mouse Cursor
-    "pkill easyeffects" \                          # Easy Effects PipeWire Plugins
+    "pkill greenclip" \    # Greenclip Clipboard Manager
+    "pkill polkit" \       # GNOME Polkit Authentication Agent
+    "pkill xss-lock" \     # Session Lock Utility
+    "pkill kdeconnectd" \  # KDE Connect Daemon
+    "pkill gammastep" \    # Gammastep Night Light
+    "pkill unclutter" \    # Hide Mouse Cursor
+    "pkill easyeffects" \  # Easy Effects PipeWire Plugins
 )
 
 declare -a delay_array=(\
+    # GUI & Notifications
+    "bash /home/sravan/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --on" \  # Picom Compositor
     # System Tray Applications
-    "/usr/bin/gammastep-indicator" \           # Gammastep Night Light
-    "/usr/bin/blueman-applet" \                # Blueman Bluetooth Manager
-    "/usr/bin/nm-applet" \                     # Network Manager Applet
-    "/usr/bin/kdeconnect-indicator" \          # KDE Connect Indicator
-    "/usr/bin/flameshot" \                     # Flameshot Screenshot Tool
-    "/usr/bin/xfce4-power-manager" \           # XFCE4 Power Manager
-    "/usr/bin/udiskie -a -n -s" \              # Udiskie
-    "/usr/bin/openrgb" \                       # OpenRGB
-    "/usr/bin/syncthing-gtk" \                 # Syncthing GTK
-    "/usr/bin/nyrna" \                         # Nyrna
+    "/usr/bin/gammastep-indicator" \              # Gammastep Night Light
+    "/usr/bin/blueman-applet" \                   # Blueman Bluetooth Manager
+    "/usr/bin/nm-applet" \                        # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \             # KDE Connect Indicator
+    "/usr/bin/flameshot" \                        # Flameshot Screenshot Tool
+    "/usr/bin/xfce4-power-manager" \              # XFCE4 Power Manager
+    "/usr/bin/udiskie -a -n -s" \                 # Udiskie
+    "/usr/bin/openrgb" \                          # OpenRGB
+    "/usr/bin/syncthing-gtk" \                    # Syncthing GTK
+    "/usr/bin/nyrna" \                            # Nyrna
     # System Restore Processes
-    "/usr/bin/autorandr --change --force" \    # Auto restore screen layout
-    "/usr/bin/numlockx on" \                   # Enable numlock
-    "/usr/bin/udisksctl mount -b /dev/sda1" \  # Mount internal SSD
+    "/usr/bin/autorandr --change --force" \       # Auto restore screen layout
+    "/usr/bin/numlockx on" \                      # Enable numlock
+    "/usr/bin/udisksctl mount -b /dev/sda1" \     # Mount internal SSD
 )
 
 declare -a kill_delay_array=(\
+    # GUI & Notifications
+    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
     # System Tray Applications
-    "pkill gammastep-indic" \             # Gammastep Night Light
-    "pkill blueman-applet" \        # Blueman Bluetooth Manager
-    "pkill nm-applet" \             # Network Manager Applet
-    "pkill kdeconnect-indicator" \  # KDE Connect Indicator
-    "pkill flameshot" \             # Flameshot Screenshot Tool
-    "pkill xfce4-power-manager" \   # XFCE4 Power Manager
-    "pkill udiskie" \               # Udiskie
-    "pkill openrgb" \               # OpenRGB
-    "pkill syncthing-gtk" \         # Syncthing GTK
-    "pkill nyrna" \                 # Nyrna
+    "pkill gammastep-indic" \                      # Gammastep Night Light
+    "pkill blueman-applet" \                       # Blueman Bluetooth Manager
+    "pkill nm-applet" \                            # Network Manager Applet
+    "pkill kdeconnect-indicator" \                 # KDE Connect Indicator
+    "pkill flameshot" \                            # Flameshot Screenshot Tool
+    "pkill xfce4-power-manager" \                  # XFCE4 Power Manager
+    "pkill udiskie" \                              # Udiskie
+    "pkill openrgb" \                              # OpenRGB
+    "pkill syncthing-gtk" \                        # Syncthing GTK
+    "pkill nyrna" \                                # Nyrna
 )
 
 help_menu() {

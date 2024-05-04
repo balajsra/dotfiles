@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 declare -a startup_array=(\
-    # Background Processes
     "/usr/bin/greenclip daemon" \                         # Greenclip Clipboard Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
     "/usr/bin/xss-lock -l -- betterlockscreen --lock" \   # Session Lock Utility
@@ -11,7 +10,6 @@ declare -a startup_array=(\
 )
 
 declare -a kill_startup_array=(\
-    # Background Processes
     "pkill greenclip" \    # Greenclip Clipboard Manager
     "pkill polkit" \       # GNOME Polkit Authentication Agent
     "pkill xss-lock" \     # Session Lock Utility
@@ -22,10 +20,6 @@ declare -a kill_startup_array=(\
 )
 
 declare -a delay_array=(\
-    # GUI & Notifications
-    "bash /home/sravan/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --on" \  # Picom Compositor
-    # System Tray Applications
     "/usr/bin/gammastep-indicator" \              # Gammastep Night Light
     "/usr/bin/blueman-applet" \                   # Blueman Bluetooth Manager
     "/usr/bin/nm-applet" \                        # Network Manager Applet
@@ -36,17 +30,13 @@ declare -a delay_array=(\
     "/usr/bin/openrgb" \                          # OpenRGB
     "/usr/bin/syncthing-gtk" \                    # Syncthing GTK
     "/usr/bin/nyrna" \                            # Nyrna
-    # System Restore Processes
+    "bash /home/sravan/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --on" \  # Picom Compositor
     "/usr/bin/autorandr --change --force" \       # Auto restore screen layout
     "/usr/bin/numlockx on" \                      # Enable numlock
-    "/usr/bin/udisksctl mount -b /dev/sda1" \     # Mount internal SSD
 )
 
 declare -a kill_delay_array=(\
-    # GUI & Notifications
-    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
-    # System Tray Applications
     "pkill gammastep-indic" \                      # Gammastep Night Light
     "pkill blueman-applet" \                       # Blueman Bluetooth Manager
     "pkill nm-applet" \                            # Network Manager Applet
@@ -57,6 +47,8 @@ declare -a kill_delay_array=(\
     "pkill openrgb" \                              # OpenRGB
     "pkill syncthing-gtk" \                        # Syncthing GTK
     "pkill nyrna" \                                # Nyrna
+    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
+    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
 )
 
 help_menu() {

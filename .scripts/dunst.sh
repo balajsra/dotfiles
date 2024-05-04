@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 help_menu() {
     echo "Script to interact with dunst. Use only one argument at a time."
-    echo "  - Toggle On/Off:         dunst.sh OR dunst.sh --toggle OR dunst.sh -t"
-    echo "  - Turn On:               dunst.sh --on"
-    echo "  - Turn Off:              dunst.sh --off"
-    echo "  - Context Menu:          dunst.sh --context"
-    echo "  - Close Notification:    dunst.sh --close"
-    echo "  - History Pop:           dunst.sh --history"
-    echo "  - Toggle Do Not Disturb: dunst.sh --dnd"
-    echo "  - Pause Notifications:   dunst.sh --pause"
-    echo "  - Unpause Notifications: dunst.sh --unpause"
-    echo "  - Rofi Menu:             dunst.sh --rofi"
-    echo "  - Help:                  dunst.sh --help OR dunst.sh -h"
+    echo "  - Toggle On/Off:           dunst.sh OR dunst.sh --toggle OR dunst.sh -t"
+    echo "  - Turn On:                 dunst.sh --on"
+    echo "  - Turn Off:                dunst.sh --off"
+    echo "  - Context Menu:            dunst.sh --context"
+    echo "  - Close Notification:      dunst.sh --close"
+    echo "  - Close All Notifications: dunst.sh --close-all"
+    echo "  - History Pop:             dunst.sh --history"
+    echo "  - History Clear:           dunst.sh --history-clear"
+    echo "  - Toggle Do Not Disturb:   dunst.sh --dnd"
+    echo "  - Pause Notifications:     dunst.sh --pause"
+    echo "  - Unpause Notifications:   dunst.sh --unpause"
+    echo "  - Rofi Menu:               dunst.sh --rofi"
+    echo "  - Help:                    dunst.sh --help OR dunst.sh -h"
 }
 
 is_running() {
@@ -29,7 +31,9 @@ rofi_menu() {
         "󰂛 Turn Off - off"
         "󱨩 Open Actions - context"
         " Close Notification - close"
+        " Close All Notifications - close-all"
         " View History - history"
+        "󰎟 Clear History - history-clear"
         "󰂠 Toggle Do Not Disturb - dnd"
         " Pause Popup Notifications - pause"
         " Unpause Popup Notifications - unpause"
@@ -64,46 +68,12 @@ main() {
             fi
             ;;
         --on)
-            # Get values from Xresources
-            config=~/.config/dunst/dunstrc
-            geometry_x=$(xgetres dunst.geometry-x)
-            geometry_y=$(xgetres dunst.geometry-y)
-            separator_height=$(xgetres dunst.sep-height)
-            padding=$(xgetres dunst.padding)
-            horizontal_padding=$(xgetres dunst.horiz-padding)
-            max_icon_size=$(xgetres dunst.max-icon-size)
-            frame_width=$(xgetres dunst.frame-width)
-            lb=$(xgetres dunst.low-background)
-            lf=$(xgetres dunst.low-foreground)
-            lfr=$(xgetres dunst.low-frame)
-            nb=$(xgetres dunst.normal-background)
-            nf=$(xgetres dunst.normal-foreground)
-            nfr=$(xgetres dunst.normal-frame)
-            cb=$(xgetres dunst.critical-background)
-            cf=$(xgetres dunst.critical-foreground)
-            cfr=$(xgetres dunst.critical-frame)
-
             if [ $(is_running) -eq '1' ]; then
                 pkill dunst
             fi
 
             # Start Dunst
-            /usr/bin/dunst -config $config \
-                           -geometry "0x0-$geometry_x+$geometry_y" \
-                           -separator_height "$separator_height" \
-                           -padding "$padding" \
-                           -horizontal_padding "$horizontal_padding" \
-                           -max_icon_size "$max_icon_size" \
-                           -frame_width "$frame_width" \
-                           -lb "$lb" \
-                           -lf "$lf" \
-                           -lfr "$lfr" \
-                           -nb "$nb" \
-                           -nf "$nf" \
-                           -nfr "$nfr" \
-                           -cb "$cb" \
-                           -cf "$cf" \
-                           -cfr "$cfr" &
+            /usr/bin/dunst -config ~/.config/dunst/dunstrc &
 
             notify-send "Turning Dunst ON"
             ;;
@@ -120,8 +90,14 @@ main() {
         --close)
             dunstctl close
             ;;
+        --close-all)
+            dunstctl close-all
+            ;;
         --history)
             dunstctl history-pop
+            ;;
+        --history-clear)
+            dunstctl history-clear
             ;;
         --dnd)
             dunstctl set-paused toggle

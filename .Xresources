@@ -76,24 +76,6 @@ polybar.tray-maxsize:       TRAY_MAXSIZE
 polybar.tray-scale:         TRAY_SCALE
 polybar.maxlen:             MAXLEN
 
-! Dunst
-dunst.geometry-x:           0
-dunst.geometry-y:           BAR_HEIGHT
-dunst.sep-height:           BORDER_SIZE
-dunst.padding:              OUTER_GAPS
-dunst.horiz-padding:        OUTER_GAPS
-dunst.max-icon-size:        DPI
-dunst.frame-width:          BORDER_SIZE
-dunst.low-background:       BACKGROUND
-dunst.low-foreground:       FOREGROUND
-dunst.low-frame:            GREEN1
-dunst.normal-background:    BACKGROUND
-dunst.normal-foreground:    FOREGROUND
-dunst.normal-frame:         GREEN1
-dunst.critical-background:  RED1
-dunst.critical-foreground:  FOREGROUND
-dunst.critical-frame:       GREEN1
-
 ! Display Scaling
 *.dpi: DPI
 Xcursor.size: CURSOR_SIZE

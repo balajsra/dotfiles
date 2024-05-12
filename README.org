@@ -43,7 +43,9 @@
     - [[#gammastep][Gammastep]]
   - [[#lock-screen][Lock Screen]]
     - [[#betterlockscreen][Betterlockscreen]]
-- [[#terminal--shell][Terminal & Shell]]
+- [[#command-line-interface][Command Line Interface]]
+  - [[#multiplexer][Multiplexer]]
+    - [[#tmux][Tmux]]
   - [[#prompt][Prompt]]
     - [[#starship][Starship]]
     - [[#neofetch][Neofetch]]
@@ -259,6 +261,18 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 [submodule ".config/eww"]
 	path = .config/eww
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/eww.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm.git
+	branch = master
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tpm-sensible
+	url = git@github.com:tmux-plugins/tpm-sensible.git
+	branch = master
+[submodule ".tmux/plugins/tmux"]
+	path = .tmux/plugins/tmux
+	url = git@github.com:dracula/tmux.git
+	branch = master
 #+END_SRC
 
 ** Ignoring files and directories
@@ -3693,7 +3707,124 @@ postlock() {
 }
 #+END_SRC
 
-* Terminal & Shell 
+* Command Line Interface
+
+** Multiplexer
+
+*** Tmux
+
+**** Prefix Key
+
+Remap prefix from 'C-b' to 'C-a'
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+#+END_SRC
+
+**** Split Commands
+
+Split panes using '|' and '-'
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+#+END_SRC
+
+**** Configuration Reload
+
+Reload config file
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+bind r source-file ~/.tmux.conf
+#+END_SRC
+
+**** Pane Switching
+
+Switch panes using Alt-arrow or Alt-hjkl without prefix
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+bind -n M-Left select-pane -L
+bind -n M-h select-pane -L
+
+bind -n M-Right select-pane -R
+bind -n M-l select-pane -R
+
+bind -n M-Up select-pane -U
+bind -n M-k select-pane -U
+
+bind -n M-Down select-pane -D
+bind -n M-j select-pane -D
+#+END_SRC
+
+**** Mouse Mode
+
+Enable mouse control (clickable windows, panes, resizable panes)
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g mouse on
+#+END_SRC
+
+**** Setup Tmux Plugin Manager
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'dracula/tmux'
+#+END_SRC
+
+**** Dracula Theme
+
+Install theme plugin. See [[https://draculatheme.com/tmux][Dracula Theme - Tmux]] for all options.
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @plugin 'dracula/tmux'
+#+END_SRC
+
+Configure status bar modules. Available plugins are ~battery~, ~cpu-usage~, ~git~, ~gpu-usage~, ~ram-usage~, ~tmux-ram-usage~, ~network~, ~network-bandwidth~, ~network-ping~, ~ssh-session~, ~attached-clients~, ~network-vpn~, ~weather~, ~time~, ~mpc~, ~spotify-tui~, ~playerctl~, ~kubernetes-context~, ~synchronize-panes~.
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @dracula-plugins "git cpu-usage ram-usage battery time"
+#+END_SRC
+
+Enable powerline symbols.
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @dracula-show-powerline true
+#+END_SRC
+
+Enable window flags.
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @dracula-show-flags true
+#+END_SRC
+
+Adjust the refresh rate of the status bar.
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @dracula-refresh-rate 5
+#+END_SRC
+
+Switch the left smiley icon. It can accept ~hostname~ (full hostname), ~session~, ~shortname~, ~smiley~, ~window~, or any character.
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @dracula-show-left-icon session
+#+END_SRC
+
+Hide empty modules.
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set -g @dracula-show-empty-plugins false
+#+END_SRC
+
+**** Run Tmux Plugin Manager
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+run -b '~/.tmux/plugins/tpm/tpm'
+#+END_SRC
 
 ** Prompt
 

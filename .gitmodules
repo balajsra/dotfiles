@@ -117,3 +117,15 @@
 [submodule ".config/eww"]
 	path = .config/eww
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/eww.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm.git
+	branch = master
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tpm-sensible
+	url = git@github.com:tmux-plugins/tpm-sensible.git
+	branch = master
+[submodule ".tmux/plugins/tmux"]
+	path = .tmux/plugins/tmux
+	url = git@github.com:dracula/tmux.git
+	branch = master

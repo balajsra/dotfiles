@@ -5330,6 +5330,15 @@ fish_pager_color_secondary_completion f8f8f2
 fish_pager_color_secondary_description 6272a4
 #+END_SRC
 
+**** Start Tmux
+
+#+BEGIN_SRC fish :tangle .config/fish/config.fish
+if status is-interactive
+and not set -q TMUX
+    tmux new-session
+end
+#+END_SRC
+
 ** Terminal
 
 *** Kitty
@@ -6136,7 +6145,7 @@ mark3_background #f274bc
 #+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
 #: Advanced {{{
 
-shell tmux
+shell fish
 
 #: The shell program to execute. The default value of . means to use
 #: whatever shell is set as the default shell for the current user.

@@ -266,7 +266,7 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	url = git@github.com:tmux-plugins/tpm.git
 	branch = master
 [submodule ".tmux/plugins/tmux-sensible"]
-	path = .tmux/plugins/tpm-sensible
+	path = .tmux/plugins/tmux-sensible
 	url = git@github.com:tmux-plugins/tpm-sensible.git
 	branch = master
 [submodule ".tmux/plugins/tmux"]
@@ -3766,6 +3766,14 @@ Enable mouse control (clickable windows, panes, resizable panes)
 
 #+BEGIN_SRC conf :tangle .tmux.conf
 set -g mouse on
+#+END_SRC
+
+**** Stop Renaming Windows Automatically
+
+Don't rename windows automatically
+
+#+BEGIN_SRC conf :tangle .tmux.conf
+set-option -g allow-rename off
 #+END_SRC
 
 **** Setup Tmux Plugin Manager

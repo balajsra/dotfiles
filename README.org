@@ -2944,7 +2944,7 @@ fi
 
 # Update lock screen wallpaper
 /usr/bin/betterlockscreen -u \
-    /home/sravan/Documents/Wallpapers/Desktop/Solar_System.png &
+    /home/sravan/Data/Pictures/Wallpapers/Desktop/Solar_System.png &
 #+END_SRC
 
 ** Compositor

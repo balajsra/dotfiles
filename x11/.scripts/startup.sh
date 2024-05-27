@@ -29,7 +29,7 @@ declare -a delay_array=(\
     "/usr/bin/udiskie -a -n -s" \                 # Udiskie
     "/usr/bin/openrgb" \                          # OpenRGB
     "/usr/bin/syncthing-gtk" \                    # Syncthing GTK
-    "/usr/bin/nextcloud --background" \           # NextCloud Client
+    "/usr/bin/nextcloud" \                        # NextCloud Client
     "/usr/bin/nyrna" \                            # Nyrna
     "bash /home/sravan/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
     "bash /home/sravan/.scripts/picom.sh --on" \  # Picom Compositor

@@ -9474,7 +9474,7 @@ main $@
 
 ** Control Center
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/control-center.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.scripts/control-center.sh
 help_menu() {
     echo "Main script to launch sub-menu scripts. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"

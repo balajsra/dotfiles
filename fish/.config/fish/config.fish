@@ -8,19 +8,6 @@ end
 
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin/
 
-# pacman and paru
-alias pacsyu='sudo pacman -Syyu' # update only standard pkgs
-alias parusua='paru -Sua --noconfirm' # update only AUR pkgs
-alias parusyu='paru -Syu --noconfirm' # update standard pkgs and AUR pkgs
-alias unlock='sudo rm /var/lib/pacman/db.lck' # remove pacman lock
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages
-
-# get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -31,11 +18,9 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
-# gpg encryption
-# verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-# receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+# Replace ls and tree with eza
+alias ls="eza"
+alias tree="eza -T"
 
 if [ "$TERM" = "linux" ]
     then

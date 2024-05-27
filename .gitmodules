@@ -1,131 +1,91 @@
-[submodule ".vim/pack/themes/start/dracula"]
-	path = .vim/pack/themes/start/dracula
+[submodule "dracula-vim-theme"]
+	path = vim/.vim/pack/themes/start/dracula
 	url = git@github.com:dracula/vim.git
 	branch = master
-[submodule ".themes/dracula-blender"]
-	path = .themes/dracula-blender
+[submodule "dracula-blender-theme"]
+	path = blender/.themes/dracula-blender
 	url = git@github.com:dracula/blender.git
 	branch = master
-[submodule ".themes/dracula-freecad"]
-	path = .themes/dracula-freecad
+[submodule "dracula-freecad-theme"]
+	path = freecad/.themes/dracula-freecad
 	url = git@github.com:dracula/freecad.git
 	branch = master
-[submodule ".themes/dracula-gnome-terminal"]
-	path = .themes/dracula-gnome-terminal
-	url = git@github.com:dracula/gnome-terminal.git
-	branch = master
-[submodule ".themes/dracula-xournalpp"]
-	path = .themes/dracula-xournalpp
+[submodule "dracula-xournalpp-theme"]
+	path = xournalpp/.themes/dracula-xournalpp
 	url = git@github.com:dracula/xournalpp.git
 	branch = master
-[submodule ".themes/dracula-steam"]
-	path = .themes/dracula-steam
-	url = git@github.com:dracula/steam.git
-	branch = master
-[submodule ".themes/dracula-gtk"]
-	path = .themes/dracula-gtk
+[submodule "dracula-gtk-theme"]
+	path = gtk/.themes/dracula-gtk
 	url = git@github.com:dracula/gtk.git
 	branch = master
-[submodule ".themes/dracula-fish"]
-	path = .themes/dracula-fish
+[submodule "dracula-fish-theme"]
+	path = fish/.themes/dracula-fish
 	url = git@github.com:dracula/fish.git
 	branch = master
-[submodule ".themes/dracula-kitty"]
-	path = .themes/dracula-kitty
+[submodule "dracula-kitty-theme"]
+	path = kitty/.themes/dracula-kitty
 	url = git@github.com:dracula/kitty.git
 	branch = master
-[submodule ".themes/dracula-libreoffice"]
-	path = .themes/dracula-libreoffice
-	url = git@github.com:dracula/libreoffice.git
-	branch = master
-[submodule ".themes/dracula-tty"]
-	path = .themes/dracula-tty
+[submodule "dracula-tty-theme"]
+	path = tty/.themes/dracula-tty
 	url = git@github.com:dracula/tty.git
 	branch = master
-[submodule ".themes/dracula-latex"]
-	path = .themes/dracula-latex
-	url = git@github.com:dracula/latex.git
-	branch = master
-[submodule ".themes/dracula-matplotlib"]
-	path = .themes/dracula-matplotlib
-	url = git@github.com:dracula/matplotlib.git
-	branch = master
-[submodule ".themes/dracula-matlab"]
-	path = .themes/dracula-matlab
-	url = git@github.com:dracula/matlab.git
-	branch = master
-[submodule ".xmonad"]
-	path = .xmonad
+[submodule "xmonad"]
+	path = xmonad/.xmonad
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/xmonad.git
 	branch = master
-[submodule ".themes/dracula-qbittorrent"]
-	path = .themes/dracula-qbittorrent
-	url = git@github.com:dracula/qbittorrent.git
-	branch = master
-[submodule ".themes/dracula-vortex"]
-	path = .themes/dracula-vortex
-	url = git@github.com:dracula/vortex-mod-manager.git
-	branch = main
-[submodule ".config/dwm-flexipatch"]
-	path = .config/dwm-flexipatch
+[submodule "dwm-flexipatch"]
+	path = dwm/.config/dwm-flexipatch
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/dwm-flexipatch.git
 	branch = master
-[submodule ".config/emacs"]
-	path = .config/emacs
+[submodule "chemacs"]
+	path = emacs/.config/emacs
 	url = git@github.com:plexus/chemacs2.git
 	branch = main
-[submodule ".config/personal-emacs"]
-	path = .config/personal-emacs
+[submodule "personal-emacs"]
+	path = emacs/.config/personal-emacs
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/emacs.git
 	branch = main
-[submodule ".config/doom-emacs"]
-	path = .config/doom-emacs
+[submodule "doom-emacs"]
+	path = emacs/.config/doom-emacs
 	url = git@github.com:hlissner/doom-emacs.git
 	branch = master
-[submodule ".config/doom-emacs-config"]
-	path = .config/doom-emacs-config
+[submodule "doom-emacs-config"]
+	path = emacs/.config/doom-emacs-config
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/doom-emacs-config.git
 	branch = master
-[submodule ".config/zathura"]
-	path = .config/zathura
+[submodule "dracula-zathura-theme"]
+	path = zathura/.config/zathura
 	url = git@github.com:dracula/zathura.git
 	branch = master
-[submodule ".themes/matlab-schemes"]
-	path = .themes/matlab-schemes
-	url = git@github.com:scottclowe/matlab-schemes.git
-	branch = master
-[submodule ".themes/dracula-gimp"]
-	path = .themes/dracula-gimp
+[submodule "dracula-gimp-theme"]
+	path = gimp/.themes/dracula-gimp
 	url = git@github.com:dracula/gimp.git
 	branch = master
-[submodule ".themes/dracula-polymc"]
-	path = .themes/dracula-polymc
-	url = git@github.com:dracula/polymc.git
-	branch = main
-[submodule ".config/awesome"]
-	path = .config/awesome
+[submodule "awesome"]
+	path = awesome/.config/awesome
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/awesome.git
 	branch = main
-[submodule ".config/hypr"]
-	path = .config/hypr
+[submodule "hyprland"]
+	path = hyprland/.config/hypr
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/hyprland.git
 	branch = main
-[submodule ".themes/dracula-qt5"]
-	path = .themes/dracula-qt5
+[submodule "dracula-qt5-theme"]
+	path = qt5/.themes/dracula-qt5
 	url = git@github.com:dracula/qt5.git
 	branch = master
-[submodule ".config/eww"]
-	path = .config/eww
+[submodule "eww"]
+	path = eww/.config/eww
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/eww.git
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
+[submodule "tpm"]
+	path = tmux/.tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
 	branch = master
-[submodule ".tmux/plugins/tmux-sensible"]
-	path = .tmux/plugins/tmux-sensible
-	url = git@github.com:tmux-plugins/tpm-sensible.git
+[submodule "tmux-sensible"]
+	path = tmux/.tmux/plugins/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git
 	branch = master
-[submodule ".tmux/plugins/tmux"]
-	path = .tmux/plugins/tmux
+[submodule "dracula-tmux-theme"]
+	path = tmux/.tmux/plugins/tmux
 	url = git@github.com:dracula/tmux.git
 	branch = master

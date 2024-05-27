@@ -48,7 +48,6 @@
     - [[#tmux][Tmux]]
   - [[#prompt][Prompt]]
     - [[#starship][Starship]]
-    - [[#neofetch][Neofetch]]
   - [[#shell][Shell]]
     - [[#bash][Bash]]
     - [[#zsh][Zsh]]
@@ -63,8 +62,6 @@
   - [[#vs-code][VS Code]]
     - [[#settings][Settings]]
     - [[#keybindings][Keybindings]]
-- [[#system-monitor][System Monitor]]
-  - [[#conky][Conky]]
 - [[#gaming][Gaming]]
   - [[#scripts][Scripts]]
     - [[#pre-launch-script][Pre-Launch Script]]
@@ -142,135 +139,95 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 ** Git Submodules
 
 #+BEGIN_SRC gitconfig :tangle .gitmodules
-[submodule ".vim/pack/themes/start/dracula"]
-	path = .vim/pack/themes/start/dracula
+[submodule "dracula-vim-theme"]
+	path = vim/.vim/pack/themes/start/dracula
 	url = git@github.com:dracula/vim.git
 	branch = master
-[submodule ".themes/dracula-blender"]
-	path = .themes/dracula-blender
+[submodule "dracula-blender-theme"]
+	path = blender/.themes/dracula-blender
 	url = git@github.com:dracula/blender.git
 	branch = master
-[submodule ".themes/dracula-freecad"]
-	path = .themes/dracula-freecad
+[submodule "dracula-freecad-theme"]
+	path = freecad/.themes/dracula-freecad
 	url = git@github.com:dracula/freecad.git
 	branch = master
-[submodule ".themes/dracula-gnome-terminal"]
-	path = .themes/dracula-gnome-terminal
-	url = git@github.com:dracula/gnome-terminal.git
-	branch = master
-[submodule ".themes/dracula-xournalpp"]
-	path = .themes/dracula-xournalpp
+[submodule "dracula-xournalpp-theme"]
+	path = xournalpp/.themes/dracula-xournalpp
 	url = git@github.com:dracula/xournalpp.git
 	branch = master
-[submodule ".themes/dracula-steam"]
-	path = .themes/dracula-steam
-	url = git@github.com:dracula/steam.git
-	branch = master
-[submodule ".themes/dracula-gtk"]
-	path = .themes/dracula-gtk
+[submodule "dracula-gtk-theme"]
+	path = gtk/.themes/dracula-gtk
 	url = git@github.com:dracula/gtk.git
 	branch = master
-[submodule ".themes/dracula-fish"]
-	path = .themes/dracula-fish
+[submodule "dracula-fish-theme"]
+	path = fish/.themes/dracula-fish
 	url = git@github.com:dracula/fish.git
 	branch = master
-[submodule ".themes/dracula-kitty"]
-	path = .themes/dracula-kitty
+[submodule "dracula-kitty-theme"]
+	path = kitty/.themes/dracula-kitty
 	url = git@github.com:dracula/kitty.git
 	branch = master
-[submodule ".themes/dracula-libreoffice"]
-	path = .themes/dracula-libreoffice
-	url = git@github.com:dracula/libreoffice.git
-	branch = master
-[submodule ".themes/dracula-tty"]
-	path = .themes/dracula-tty
+[submodule "dracula-tty-theme"]
+	path = tty/.themes/dracula-tty
 	url = git@github.com:dracula/tty.git
 	branch = master
-[submodule ".themes/dracula-latex"]
-	path = .themes/dracula-latex
-	url = git@github.com:dracula/latex.git
-	branch = master
-[submodule ".themes/dracula-matplotlib"]
-	path = .themes/dracula-matplotlib
-	url = git@github.com:dracula/matplotlib.git
-	branch = master
-[submodule ".themes/dracula-matlab"]
-	path = .themes/dracula-matlab
-	url = git@github.com:dracula/matlab.git
-	branch = master
-[submodule ".xmonad"]
-	path = .xmonad
+[submodule "xmonad"]
+	path = xmonad/.xmonad
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/xmonad.git
 	branch = master
-[submodule ".themes/dracula-qbittorrent"]
-	path = .themes/dracula-qbittorrent
-	url = git@github.com:dracula/qbittorrent.git
-	branch = master
-[submodule ".themes/dracula-vortex"]
-	path = .themes/dracula-vortex
-	url = git@github.com:dracula/vortex-mod-manager.git
-	branch = main
-[submodule ".config/dwm-flexipatch"]
-	path = .config/dwm-flexipatch
+[submodule "dwm-flexipatch"]
+	path = dwm/.config/dwm-flexipatch
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/dwm-flexipatch.git
 	branch = master
-[submodule ".config/emacs"]
-	path = .config/emacs
+[submodule "chemacs"]
+	path = emacs/.config/emacs
 	url = git@github.com:plexus/chemacs2.git
 	branch = main
-[submodule ".config/personal-emacs"]
-	path = .config/personal-emacs
+[submodule "personal-emacs"]
+	path = emacs/.config/personal-emacs
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/emacs.git
 	branch = main
-[submodule ".config/doom-emacs"]
-	path = .config/doom-emacs
+[submodule "doom-emacs"]
+	path = emacs/.config/doom-emacs
 	url = git@github.com:hlissner/doom-emacs.git
 	branch = master
-[submodule ".config/doom-emacs-config"]
-	path = .config/doom-emacs-config
+[submodule "doom-emacs-config"]
+	path = emacs/.config/doom-emacs-config
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/doom-emacs-config.git
 	branch = master
-[submodule ".config/zathura"]
-	path = .config/zathura
+[submodule "dracula-zathura-theme"]
+	path = zathura/.config/zathura
 	url = git@github.com:dracula/zathura.git
 	branch = master
-[submodule ".themes/matlab-schemes"]
-	path = .themes/matlab-schemes
-	url = git@github.com:scottclowe/matlab-schemes.git
-	branch = master
-[submodule ".themes/dracula-gimp"]
-	path = .themes/dracula-gimp
+[submodule "dracula-gimp-theme"]
+	path = gimp/.themes/dracula-gimp
 	url = git@github.com:dracula/gimp.git
 	branch = master
-[submodule ".themes/dracula-polymc"]
-	path = .themes/dracula-polymc
-	url = git@github.com:dracula/polymc.git
-	branch = main
-[submodule ".config/awesome"]
-	path = .config/awesome
+[submodule "awesome"]
+	path = awesome/.config/awesome
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/awesome.git
 	branch = main
-[submodule ".config/hypr"]
-	path = .config/hypr
+[submodule "hyprland"]
+	path = hyprland/.config/hypr
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/hyprland.git
 	branch = main
-[submodule ".themes/dracula-qt5"]
-	path = .themes/dracula-qt5
+[submodule "dracula-qt5-theme"]
+	path = qt5/.themes/dracula-qt5
 	url = git@github.com:dracula/qt5.git
 	branch = master
-[submodule ".config/eww"]
-	path = .config/eww
+[submodule "eww"]
+	path = eww/.config/eww
 	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/eww.git
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
+[submodule "tpm"]
+	path = tmux/.tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
 	branch = master
-[submodule ".tmux/plugins/tmux-sensible"]
-	path = .tmux/plugins/tmux-sensible
-	url = git@github.com:tmux-plugins/tpm-sensible.git
+[submodule "tmux-sensible"]
+	path = tmux/.tmux/plugins/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git
 	branch = master
-[submodule ".tmux/plugins/tmux"]
-	path = .tmux/plugins/tmux
+[submodule "dracula-tmux-theme"]
+	path = tmux/.tmux/plugins/tmux
 	url = git@github.com:dracula/tmux.git
 	branch = master
 #+END_SRC
@@ -285,10 +242,9 @@ Things to ignore when stowing dotfiles on system.
 \.git
 \.gitmodules
 \.gitignore
-\.config/fish/fish_variables
-\.config/qt5ct/qt5ct\.conf
 LICENSE
 ^/.*\.org
+justfile
 #+END_SRC
 
 *** Git Ignore
@@ -315,7 +271,7 @@ Things to ignore in dotfiles git repo.
 
 ** Gitconfig
 
-#+BEGIN_SRC gitconfig :tangle .gitconfig
+#+BEGIN_SRC gitconfig :tangle git/.gitconfig
 # Sravan Balaji's Git Configuration
 # Based on: https://gist.github.com/tdd/470582
 [user]
@@ -402,7 +358,7 @@ See ~man dunst.5~ for available options.
 
 **** Global
 
-#+BEGIN_SRC conf :tangle .config/dunst/dunstrc
+#+BEGIN_SRC conf :tangle dunst/.config/dunst/dunstrc
 [global]
     monitor = 0
     follow = keyboard
@@ -452,7 +408,7 @@ See ~man dunst.5~ for available options.
 
 **** Experimental
 
-#+BEGIN_SRC conf :tangle .config/dunst/dunstrc
+#+BEGIN_SRC conf :tangle dunst/.config/dunst/dunstrc
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
 [experimental]
@@ -461,7 +417,7 @@ See ~man dunst.5~ for available options.
 
 **** Shortcuts
 
-#+BEGIN_SRC conf :tangle .config/dunst/dunstrc
+#+BEGIN_SRC conf :tangle dunst/.config/dunst/dunstrc
 [shortcuts]
 
     # Shortcuts are specified as [modifier+][modifier+]...key
@@ -487,7 +443,7 @@ See ~man dunst.5~ for available options.
 
 **** Urgency Low
 
-#+BEGIN_SRC conf :tangle .config/dunst/dunstrc
+#+BEGIN_SRC conf :tangle dunst/.config/dunst/dunstrc
 [urgency_low]
     frame_color = "#5AF78E"
     background = "#282A36"
@@ -497,7 +453,7 @@ See ~man dunst.5~ for available options.
 
 **** Urgency Normal
 
-#+BEGIN_SRC conf :tangle .config/dunst/dunstrc
+#+BEGIN_SRC conf :tangle dunst/.config/dunst/dunstrc
 [urgency_normal]
     frame_color = "#5AF78E"
     background = "#282A36"
@@ -507,7 +463,7 @@ See ~man dunst.5~ for available options.
 
 **** Urgency Critical
 
-#+BEGIN_SRC conf :tangle .config/dunst/dunstrc
+#+BEGIN_SRC conf :tangle dunst/.config/dunst/dunstrc
 [urgency_critical]
     frame_color = "#50FA7B"
     background = "#FF5555"
@@ -517,7 +473,7 @@ See ~man dunst.5~ for available options.
 
 **** Miscellaneous
 
-#+BEGIN_SRC conf :tangle .config/dunst/dunstrc
+#+BEGIN_SRC conf :tangle dunst/.config/dunst/dunstrc
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
 #
@@ -638,7 +594,7 @@ See ~man dunst.5~ for available options.
 
 *** Control Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/dunst.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dunst/.scripts/dunst.sh
 help_menu() {
     echo "Script to interact with dunst. Use only one argument at a time."
     echo "  - Toggle On/Off:           dunst.sh OR dunst.sh --toggle OR dunst.sh -t"
@@ -764,7 +720,7 @@ main $@
 
 **** General
 
-#+BEGIN_SRC yaml :tangle .config/deadd/deadd.yml
+#+BEGIN_SRC yaml :tangle deadd/.config/deadd/deadd.yml
 ### Margins for notification-center/notifications
 margin-top: 35
 margin-right: 10
@@ -790,7 +746,7 @@ follow-mouse: true
 
 **** Notification Center
 
-#+BEGIN_SRC yaml :tangle .config/deadd/deadd.yml
+#+BEGIN_SRC yaml :tangle deadd/.config/deadd/deadd.yml
 notification-center:
   ### Margin at the top/right/bottom of the notification center in
   ### pixels. This can be used to avoid overlap between the notification
@@ -859,7 +815,7 @@ notification-center:
 
 **** Notification
 
-#+BEGIN_SRC yaml :tangle .config/deadd/deadd.yml
+#+BEGIN_SRC yaml :tangle deadd/.config/deadd/deadd.yml
 notification:
 
   ### If true, markup (<u>, <i>, <b>, <a>) will be displayed properly
@@ -1004,7 +960,7 @@ notification:
 
 **** Notification Center
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.css
+#+BEGIN_SRC conf :tangle deadd/.config/deadd/deadd.css
 .blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
     background: rgba(40, 42, 54, 1.0);
     border: 2px #50fa7b solid;
@@ -1020,7 +976,7 @@ notification:
 
 **** Notifications
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.css
+#+BEGIN_SRC conf :tangle deadd/.config/deadd/deadd.css
 .title {
     font-weight: bold;
     font-size: 16px;
@@ -1066,7 +1022,7 @@ notification:
 
 **** Labels
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.css
+#+BEGIN_SRC conf :tangle deadd/.config/deadd/deadd.css
 label {
     color: #f8f8f2;
 }
@@ -1085,7 +1041,7 @@ label.critical {
 
 **** Buttons
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.css
+#+BEGIN_SRC conf :tangle deadd/.config/deadd/deadd.css
 button {
     border-radius: 10px;
     background:  rgba(40, 42, 54, 1.0);
@@ -1104,7 +1060,7 @@ button:hover {
 
 **** Custom Buttons
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.css
+#+BEGIN_SRC conf :tangle deadd/.config/deadd/deadd.css
 .userbutton {
     border-radius: 10px;
     background:  rgba(40, 42, 54, 1.0);
@@ -1162,7 +1118,7 @@ button.buttonState2:hover {
 
 **** Images
 
-#+BEGIN_SRC conf :tangle .config/deadd/deadd.css
+#+BEGIN_SRC conf :tangle deadd/.config/deadd/deadd.css
 image.deadd-noti-center.notification.image {
     margin-left: 10px;
 }
@@ -1170,7 +1126,7 @@ image.deadd-noti-center.notification.image {
 
 *** Control Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/deadd.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle deadd/.scripts/deadd.sh
 help_menu() {
     echo "Script to interact with deadd. Use only one argument at a time."
     echo "  - Toggle On/Off:               deadd.sh OR deadd.sh --toggle OR deadd.sh -t"
@@ -1276,7 +1232,7 @@ main $@
 
 ** AwesomeWM Naughty
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/naughty.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle naughty/.scripts/naughty.sh
 help_menu() {
     echo "Script to interact with AwesomeWM's naughty. Use only one argument at a time."
     echo "  - Toggle Pause/Unpause:        naughty.sh OR naughty.sh --toggle OR naughty.sh -t"
@@ -1350,7 +1306,7 @@ main $@
 
 *** Config
 
-#+BEGIN_SRC json :tangle .config/swaync/config.json
+#+BEGIN_SRC json :tangle swaync/.config/swaync/config.json
 {
   "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "right",
@@ -1445,7 +1401,7 @@ main $@
 
 *** Style
 
-#+BEGIN_SRC css :tangle .config/swaync/style.css
+#+BEGIN_SRC css :tangle swaync/.config/swaync/style.css
 @define-color cc-bg rgba(46, 46, 46, 0.7);
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
 @define-color noti-bg rgba(48, 48, 48, 0.8);
@@ -1953,7 +1909,7 @@ main $@
 
 *** Control Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/xfce4-notifyd.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle xfce4-notifyd/.scripts/xfce4-notifyd.sh
 help_menu() {
     echo "Script to interact with xfce4-notifyd. Use only one argument at a time."
     echo "  - Toggle Notification Center:  xfce4-notifyd.sh --toggle-center"
@@ -2020,7 +1976,7 @@ main $@
 
 *** Configuration
 
-#+BEGIN_SRC css :tangle .config/rofi/config.rasi
+#+BEGIN_SRC css :tangle rofi/.config/rofi/config.rasi
 configuration {
     modi: "window,drun,combi,run,clipboard:greenclip print,ssh";
 /*	width: 50;*/
@@ -2173,7 +2129,7 @@ configuration {
 
 **** Centertab Dracula
 
-#+BEGIN_SRC css :tangle .config/rofi/themes/centertab-dracula.rasi
+#+BEGIN_SRC css :tangle rofi/.config/rofi/themes/centertab-dracula.rasi
 /**
  ,* ROFI Color theme: centertab-dracula
  ,* User: balajsra
@@ -2328,7 +2284,7 @@ element-icon {
 
 **** Dmenu Dracula
 
-#+BEGIN_SRC css :tangle .config/rofi/themes/dmenu-dracula.rasi
+#+BEGIN_SRC css :tangle rofi/.config/rofi/themes/dmenu-dracula.rasi
 /**
  ,* ROFI Color theme: dmenu-dracula
  ,* User: balajsra
@@ -2385,7 +2341,7 @@ element-icon {
 
 **** Blurry Full Dracula
 
-#+BEGIN_SRC css :tangle .config/rofi/themes/dracula-blurry-full.rasi
+#+BEGIN_SRC css :tangle rofi/.config/rofi/themes/dracula-blurry-full.rasi
 /*
  ,*
  ,* Author : Aditya Shakya (adi1090x)
@@ -2531,7 +2487,7 @@ element selected.active {
 
 **** Official Dracula Theme
 
-#+BEGIN_SRC css :tangle .config/rofi/themes/dracula.rasi
+#+BEGIN_SRC css :tangle rofi/.config/rofi/themes/dracula.rasi
 /*Dracula theme based on the Purple official rofi theme*/
 
 ,* {
@@ -2665,7 +2621,7 @@ element selected.active {
 
 **** Sidetab Dracula
 
-#+BEGIN_SRC css :tangle .config/rofi/themes/sidetab-dracula.rasi
+#+BEGIN_SRC css :tangle rofi/.config/rofi/themes/sidetab-dracula.rasi
 /**
  ,* ROFI Color theme: sidetab-dracula
  ,* User: balajsra
@@ -2816,7 +2772,7 @@ element-icon {
 
 **** Slate Dracula
 
-#+BEGIN_SRC css :tangle .config/rofi/themes/slate-dracula.rasi
+#+BEGIN_SRC css :tangle rofi/.config/rofi/themes/slate-dracula.rasi
 /**
  ,* ROFI Color theme: slate-dracula
  ,* User: balajsra
@@ -2881,7 +2837,7 @@ element-icon {
 
 *** Greenclip Clipboard Manager 
 
-#+BEGIN_SRC toml :tangle .config/greenclip.toml
+#+BEGIN_SRC toml :tangle rofi/.config/greenclip.toml
 [greenclip]
   history_file = "~/.cache/greenclip.history"
   max_history_length = 50
@@ -2912,7 +2868,7 @@ Use ~xrandr~ command to see available displays, resolutions, and refresh rates
 | ~--pos~     | Set display position (0x0 is top left, so 5120x1440 is an x-offset of 5120px to the right and a y-offset of 1440px down) |
 | ~--rate~    | Set display refresh rate (get available options from ~xrandr~ command)                                                     |
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/monitor_setup.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle xrandr/.scripts/monitor_setup.sh
 xrandr \
     --output DP-2 --primary --mode 2560x1440 --pos 0x0 --rate 164.96 \
     --output DP-0 --mode 2560x1440 --pos 2560x0 --rate 164.96 \
@@ -2925,7 +2881,7 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 
 *** Post Switch
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .config/autorandr/postswitch
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle autorandr/.config/autorandr/postswitch
 # Check if screen is not currently locked
 if ! pgrep -x "i3lock" > /dev/null
 then
@@ -2953,7 +2909,7 @@ fi
 
 **** Shadows
 
-#+BEGIN_SRC conf :tangle .config/picom/picom.conf
+#+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Enabled client-side shadows on windows. Note desktop windows
 # (windows with '_NET_WM_WINDOW_TYPE_DESKTOP') never get shadow,
 # unless explicitly requested using the wintypes option.
@@ -3035,7 +2991,7 @@ shadow-exclude = [
 
 **** Fading
 
-#+BEGIN_SRC conf :tangle .config/picom/picom.conf
+#+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Fade windows in/out when opening/closing and when opacity changes,
 #  unless no-fading-openclose is used.
 fading = true;
@@ -3064,7 +3020,7 @@ no-fading-openclose = false
 
 **** Transparency / Opacity
 
-#+BEGIN_SRC conf :tangle .config/picom/picom.conf
+#+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Opacity of inactive windows. (0.1 - 1.0, defaults to 1.0)
 inactive-opacity = 1.0
 
@@ -3117,7 +3073,7 @@ opacity-rule = [
 
 **** Corners
 
-#+BEGIN_SRC conf :tangle .config/picom/picom.conf
+#+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Sets the radius of rounded window corners. When > 0, the compositor will
 # round the corners of windows. Does not interact well with
 # `transparent-clipping`.
@@ -3133,7 +3089,7 @@ rounded-corners-exclude = [
 
 **** Background Blurring
 
-#+BEGIN_SRC conf :tangle .config/picom/picom.conf
+#+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Parameters for background blurring, see the *BLUR* section for more information.
 blur-method = "dual_kawase";
 # blur-size = 12
@@ -3182,7 +3138,7 @@ blur-background-exclude = [
 
 **** General Settings
 
-#+BEGIN_SRC conf :tangle .config/picom/picom.conf
+#+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Enable remote control via D-Bus. See the man page for more details.
 # dbus = true
 
@@ -3412,7 +3368,7 @@ wintypes:
 
 **** Control Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/picom.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle picom/.scripts/picom.sh
 help_menu() {
     echo "Script to interact with picom. Use only one argument at a time."
     echo "  - Toggle On/Off:   picom.sh OR picom.sh --toggle OR picom.sh -t"
@@ -3496,7 +3452,7 @@ main $@
 
 **** Agent Service
 
-#+BEGIN_SRC systemd :tangle .config/systemd/user/geoclue-agent.service
+#+BEGIN_SRC systemd :tangle geoclue/.config/systemd/user/geoclue-agent.service
 [Unit]
 Description=Night light applications need to get a (geo)clue
 
@@ -3511,7 +3467,7 @@ WantedBy=default.target
 
 **** Configuration
 
-#+BEGIN_SRC conf :tangle .config/redshift/redshift.conf
+#+BEGIN_SRC conf :tangle redshift/.config/redshift/redshift.conf
 ; Global settings for redshift
 [redshift]
 ; Set the day and night screen temperatures
@@ -3574,7 +3530,7 @@ adjustment-method=randr
 
 **** Configuration
 
-#+BEGIN_SRC conf :tangle .config/gammastep/config.ini
+#+BEGIN_SRC conf :tangle gammastep/.config/gammastep/config.ini
 ; Global settings
 [general]
 ; Set the day and night screen temperatures
@@ -3651,7 +3607,7 @@ adjustment-method=randr
 
 **** Default Options
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
+#+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 display_on=0
 span_image=false
 lock_timeout=300
@@ -3666,7 +3622,7 @@ wallpaper_cmd="feh --bg-fill"
 
 **** Theme Options
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
+#+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 loginbox=282a36ff
 loginshadow=282a36ff
 locktext="Enter password to unlock..."
@@ -3692,7 +3648,7 @@ bgcolor=282a36ff
 
 **** Pre-Lock
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
+#+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 prelock() {
     /home/sravan/.scripts/dunst.sh --pause
 }
@@ -3700,7 +3656,7 @@ prelock() {
 
 **** Post-Lock
 
-#+BEGIN_SRC conf :tangle .config/betterlockscreen/betterlockscreenrc
+#+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 # custom postlock
 postlock() {
     /home/sravan/.scripts/dunst.sh --unpause
@@ -3717,7 +3673,7 @@ postlock() {
 
 Remap prefix from 'C-b' to 'C-a'
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
@@ -3727,7 +3683,7 @@ bind-key C-a send-prefix
 
 Split panes using '|' and '-'
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 bind | split-window -h
 bind - split-window -v
 unbind '"'
@@ -3738,7 +3694,7 @@ unbind %
 
 Reload config file
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 bind r source-file ~/.tmux.conf
 #+END_SRC
 
@@ -3746,7 +3702,7 @@ bind r source-file ~/.tmux.conf
 
 Switch panes using Alt-arrow or Alt-hjkl without prefix
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 bind -n M-Left select-pane -L
 bind -n M-h select-pane -L
 
@@ -3764,7 +3720,7 @@ bind -n M-j select-pane -D
 
 Enable mouse control (clickable windows, panes, resizable panes)
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g mouse on
 #+END_SRC
 
@@ -3772,13 +3728,13 @@ set -g mouse on
 
 Don't rename windows automatically
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set-option -g allow-rename off
 #+END_SRC
 
 **** Setup Tmux Plugin Manager
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'dracula/tmux'
@@ -3788,49 +3744,49 @@ set -g @plugin 'dracula/tmux'
 
 Install theme plugin. See [[https://draculatheme.com/tmux][Dracula Theme - Tmux]] for all options.
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @plugin 'dracula/tmux'
 #+END_SRC
 
 Configure status bar modules. Available plugins are ~battery~, ~cpu-usage~, ~git~, ~gpu-usage~, ~ram-usage~, ~tmux-ram-usage~, ~network~, ~network-bandwidth~, ~network-ping~, ~ssh-session~, ~attached-clients~, ~network-vpn~, ~weather~, ~time~, ~mpc~, ~spotify-tui~, ~playerctl~, ~kubernetes-context~, ~synchronize-panes~.
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @dracula-plugins "git cpu-usage ram-usage battery time"
 #+END_SRC
 
 Enable powerline symbols.
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @dracula-show-powerline true
 #+END_SRC
 
 Enable window flags.
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @dracula-show-flags true
 #+END_SRC
 
 Adjust the refresh rate of the status bar.
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @dracula-refresh-rate 5
 #+END_SRC
 
 Switch the left smiley icon. It can accept ~hostname~ (full hostname), ~session~, ~shortname~, ~smiley~, ~window~, or any character.
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @dracula-show-left-icon session
 #+END_SRC
 
 Hide empty modules.
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 set -g @dracula-show-empty-plugins false
 #+END_SRC
 
 **** Run Tmux Plugin Manager
 
-#+BEGIN_SRC conf :tangle .tmux.conf
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
 run -b '~/.tmux/plugins/tpm/tpm'
 #+END_SRC
 
@@ -3838,7 +3794,7 @@ run -b '~/.tmux/plugins/tpm/tpm'
 
 *** Starship
 
-#+BEGIN_SRC toml :tangle .config/starship.toml
+#+BEGIN_SRC toml :tangle starship/.config/starship.toml
 format = """
 [](#44475A)\
 $directory\
@@ -4000,867 +3956,11 @@ style = "bg:#FFB86C"
 format = '[[  $time ](bg:#FFB86C)]($style)'
 #+END_SRC
 
-*** Neofetch
-
-**** Main Configuration
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# See this wiki page for more info:
-# https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
-print_info() {
-    info title
-    info underline
-
-    info "OS" distro
-    info "Host" model
-    info "Kernel" kernel
-    info "Uptime" uptime
-    info "Packages" packages
-    info "Shell" shell
-    # info "Resolution" resolution
-    info "DE" de
-    info "WM" wm
-    info "WM Theme" wm_theme
-    info "Theme" theme
-    info "Icons" icons
-    info "Terminal" term
-    info "Terminal Font" term_font
-    info "CPU" cpu
-    info "GPU" gpu
-    # info "GPU Driver" gpu_driver  # Linux/macOS only
-    # info "CPU Usage" cpu_usage
-    # info "Memory" memory
-    # info "Disk" disk
-    # info "Battery" battery
-    info "Font" font
-    # info "Song" song
-    # [[ "$player" ]] && prin "Music Player" "$player"
-    # info "Local IP" local_ip
-    # info "Public IP" public_ip
-    # info "Users" users
-    # info "Locale" locale  # This only works on glibc systems.
-    info cols
-}
-#+END_SRC
-
-**** Title
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Hide/Show Fully qualified domain name.
-#
-# Default:  'off'
-# Values:   'on', 'off'
-# Flag:     --title_fqdn
-title_fqdn="off"
-#+END_SRC
-
-**** Kernel
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Shorten the output of the kernel function.
-#
-# Default:  'on'
-# Values:   'on', 'off'
-# Flag:     --kernel_shorthand
-# Supports: Everything except *BSDs (except PacBSD and PC-BSD)
-#
-# Example:
-# on:  '4.8.9-1-ARCH'
-# off: 'Linux 4.8.9-1-ARCH'
-kernel_shorthand="on"
-#+END_SRC
-
-**** Distro
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Shorten the output of the distro function
-#
-# Default:  'off'
-# Values:   'on', 'tiny', 'off'
-# Flag:     --distro_shorthand
-# Supports: Everything except Windows and Haiku
-distro_shorthand="off"
-
-# Show/Hide OS Architecture.
-# Show 'x86_64', 'x86' and etc in 'Distro:' output.
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --os_arch
-#
-# Example:
-# on:  'Arch Linux x86_64'
-# off: 'Arch Linux'
-os_arch="on"
-#+END_SRC
-
-**** Uptime
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Shorten the output of the uptime function
-#
-# Default: 'on'
-# Values:  'on', 'tiny', 'off'
-# Flag:    --uptime_shorthand
-#
-# Example:
-# on:   '2 days, 10 hours, 3 mins'
-# tiny: '2d 10h 3m'
-# off:  '2 days, 10 hours, 3 minutes'
-uptime_shorthand="on"
-#+END_SRC
-
-**** Memory
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Show memory pecentage in output.
-#
-# Default: 'off'
-# Values:  'on', 'off'
-# Flag:    --memory_percent
-#
-# Example:
-# on:   '1801MiB / 7881MiB (22%)'
-# off:  '1801MiB / 7881MiB'
-memory_percent="on"
-#+END_SRC
-
-**** Packages
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Show/Hide Package Manager names.
-#
-# Default: 'tiny'
-# Values:  'on', 'tiny' 'off'
-# Flag:    --package_managers
-#
-# Example:
-# on:   '998 (pacman), 8 (flatpak), 4 (snap)'
-# tiny: '908 (pacman, flatpak, snap)'
-# off:  '908'
-package_managers="on"
-#+END_SRC
-
-**** Shell
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Show the path to $SHELL
-#
-# Default: 'off'
-# Values:  'on', 'off'
-# Flag:    --shell_path
-#
-# Example:
-# on:  '/bin/bash'
-# off: 'bash'
-shell_path="off"
-
-# Show $SHELL version
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --shell_version
-#
-# Example:
-# on:  'bash 4.4.5'
-# off: 'bash'
-shell_version="on"
-#+END_SRC
-
-**** CPU
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# CPU speed type
-#
-# Default: 'bios_limit'
-# Values: 'scaling_cur_freq', 'scaling_min_freq', 'scaling_max_freq', 'bios_limit'.
-# Flag:    --speed_type
-# Supports: Linux with 'cpufreq'
-# NOTE: Any file in '/sys/devices/system/cpu/cpu0/cpufreq' can be used as a value.
-speed_type="bios_limit"
-
-# CPU speed shorthand
-#
-# Default: 'off'
-# Values: 'on', 'off'.
-# Flag:    --speed_shorthand
-# NOTE: This flag is not supported in systems with CPU speed less than 1 GHz
-#
-# Example:
-# on:    'i7-6500U (4) @ 3.1GHz'
-# off:   'i7-6500U (4) @ 3.100GHz'
-speed_shorthand="off"
-
-# Enable/Disable CPU brand in output.
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --cpu_brand
-#
-# Example:
-# on:   'Intel i7-6500U'
-# off:  'i7-6500U (4)'
-cpu_brand="on"
-
-# CPU Speed
-# Hide/Show CPU speed.
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --cpu_speed
-#
-# Example:
-# on:  'Intel i7-6500U (4) @ 3.1GHz'
-# off: 'Intel i7-6500U (4)'
-cpu_speed="on"
-
-# CPU Cores
-# Display CPU cores in output
-#
-# Default: 'logical'
-# Values:  'logical', 'physical', 'off'
-# Flag:    --cpu_cores
-# Support: 'physical' doesn't work on BSD.
-#
-# Example:
-# logical:  'Intel i7-6500U (4) @ 3.1GHz' (All virtual cores)
-# physical: 'Intel i7-6500U (2) @ 3.1GHz' (All physical cores)
-# off:      'Intel i7-6500U @ 3.1GHz'
-cpu_cores="logical"
-
-# CPU Temperature
-# Hide/Show CPU temperature.
-# Note the temperature is added to the regular CPU function.
-#
-# Default: 'off'
-# Values:  'C', 'F', 'off'
-# Flag:    --cpu_temp
-# Supports: Linux, BSD
-# NOTE: For FreeBSD and NetBSD-based systems, you'll need to enable
-#       coretemp kernel module. This only supports newer Intel processors.
-#
-# Example:
-# C:   'Intel i7-6500U (4) @ 3.1GHz [27.2°C]'
-# F:   'Intel i7-6500U (4) @ 3.1GHz [82.0°F]'
-# off: 'Intel i7-6500U (4) @ 3.1GHz'
-cpu_temp="F"
-#+END_SRC
-
-**** GPU
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Enable/Disable GPU Brand
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --gpu_brand
-#
-# Example:
-# on:  'AMD HD 7950'
-# off: 'HD 7950'
-gpu_brand="on"
-
-# Which GPU to display
-#
-# Default: 'all'
-# Values:  'all', 'dedicated', 'integrated'
-# Flag:    --gpu_type
-# Supports: Linux
-#
-# Example:
-# all:
-#   GPU1: AMD HD 7950
-#   GPU2: Intel Integrated Graphics
-#
-# dedicated:
-#   GPU1: AMD HD 7950
-#
-# integrated:
-#   GPU1: Intel Integrated Graphics
-gpu_type="all"
-#+END_SRC
-
-**** Resolution
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Display refresh rate next to each monitor
-# Default: 'off'
-# Values:  'on', 'off'
-# Flag:    --refresh_rate
-# Supports: Doesn't work on Windows.
-#
-# Example:
-# on:  '1920x1080 @ 60Hz'
-# off: '1920x1080'
-refresh_rate="on"
-#+END_SRC
-
-**** Gtk Theme / Icons / Font
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Shorten output of GTK Theme / Icons / Font
-#
-# Default: 'off'
-# Values:  'on', 'off'
-# Flag:    --gtk_shorthand
-#
-# Example:
-# on:  'Numix, Adwaita'
-# off: 'Numix [GTK2], Adwaita [GTK3]'
-gtk_shorthand="off"
-
-
-# Enable/Disable gtk2 Theme / Icons / Font
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --gtk2
-#
-# Example:
-# on:  'Numix [GTK2], Adwaita [GTK3]'
-# off: 'Adwaita [GTK3]'
-gtk2="on"
-
-# Enable/Disable gtk3 Theme / Icons / Font
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --gtk3
-#
-# Example:
-# on:  'Numix [GTK2], Adwaita [GTK3]'
-# off: 'Numix [GTK2]'
-gtk3="on"
-#+END_SRC
-
-**** IP Address
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Website to ping for the public IP
-#
-# Default: 'http://ident.me'
-# Values:  'url'
-# Flag:    --ip_host
-public_ip_host="http://ident.me"
-
-# Public IP timeout.
-#
-# Default: '2'
-# Values:  'int'
-# Flag:    --ip_timeout
-public_ip_timeout=2
-#+END_SRC
-
-**** Desktop Environment
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Show Desktop Environment version
-#
-# Default: 'off'
-# Values:  'on', 'off'
-# Flag:    --de_version
-de_version="on"
-#+END_SRC
-
-**** Disk
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Which disks to display.
-# The values can be any /dev/sdXX, mount point or directory.
-# NOTE: By default we only show the disk info for '/'.
-#
-# Default: '/'
-# Values:  '/', '/dev/sdXX', '/path/to/drive'.
-# Flag:    --disk_show
-#
-# Example:
-# disk_show=('/' '/dev/sdb1'):
-#      'Disk (/): 74G / 118G (66%)'
-#      'Disk (/mnt/Videos): 823G / 893G (93%)'
-#
-# disk_show=('/'):
-#      'Disk (/): 74G / 118G (66%)'
-#
-disk_show=('/')
-
-# Disk subtitle.
-# What to append to the Disk subtitle.
-#
-# Default: 'mount'
-# Values:  'mount', 'name', 'dir', 'none'
-# Flag:    --disk_subtitle
-#
-# Example:
-# name:   'Disk (/dev/sda1): 74G / 118G (66%)'
-#         'Disk (/dev/sdb2): 74G / 118G (66%)'
-#
-# mount:  'Disk (/): 74G / 118G (66%)'
-#         'Disk (/mnt/Local Disk): 74G / 118G (66%)'
-#         'Disk (/mnt/Videos): 74G / 118G (66%)'
-#
-# dir:    'Disk (/): 74G / 118G (66%)'
-#         'Disk (Local Disk): 74G / 118G (66%)'
-#         'Disk (Videos): 74G / 118G (66%)'
-#
-# none:   'Disk: 74G / 118G (66%)'
-#         'Disk: 74G / 118G (66%)'
-#         'Disk: 74G / 118G (66%)'
-disk_subtitle="mount"
-
-# Disk percent.
-# Show/Hide disk percent.
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --disk_percent
-#
-# Example:
-# on:  'Disk (/): 74G / 118G (66%)'
-# off: 'Disk (/): 74G / 118G'
-disk_percent="on"
-#+END_SRC
-
-**** Song
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Manually specify a music player.
-#
-# Default: 'auto'
-# Values:  'auto', 'player-name'
-# Flag:    --music_player
-#
-# Available values for 'player-name':
-#
-# amarok
-# audacious
-# banshee
-# bluemindo
-# clementine
-# cmus
-# deadbeef
-# deepin-music
-# dragon
-# elisa
-# exaile
-# gnome-music
-# gmusicbrowser
-# gogglesmm
-# guayadeque
-# io.elementary.music
-# iTunes
-# juk
-# lollypop
-# mocp
-# mopidy
-# mpd
-# muine
-# netease-cloud-music
-# pogo
-# pragha
-# qmmp
-# quodlibet
-# rhythmbox
-# sayonara
-# smplayer
-# spotify
-# strawberry
-# tomahawk
-# vlc
-# xmms2d
-# xnoise
-# yarock
-music_player="auto"
-
-# Format to display song information.
-#
-# Default: '%artist% - %album% - %title%'
-# Values:  '%artist%', '%album%', '%title%'
-# Flag:    --song_format
-#
-# Example:
-# default: 'Song: Jet - Get Born - Sgt Major'
-song_format="%artist% - %album% - %title%"
-
-# Print the Artist, Album and Title on separate lines
-#
-# Default: 'off'
-# Values:  'on', 'off'
-# Flag:    --song_shorthand
-#
-# Example:
-# on:  'Artist: The Fratellis'
-#      'Album: Costello Music'
-#      'Song: Chelsea Dagger'
-#
-# off: 'Song: The Fratellis - Costello Music - Chelsea Dagger'
-song_shorthand="off"
-
-# 'mpc' arguments (specify a host, password etc).
-#
-# Default:  ''
-# Example: mpc_args=(-h HOST -P PASSWORD)
-mpc_args=()
-#+END_SRC
-
-**** Text Colors
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Text Colors
-#
-# Default:  'distro'
-# Values:   'distro', 'num' 'num' 'num' 'num' 'num' 'num'
-# Flag:     --colors
-#
-# Each number represents a different part of the text in
-# this order: 'title', '@', 'underline', 'subtitle', 'colon', 'info'
-#
-# Example:
-# colors=(distro)      - Text is colored based on Distro colors.
-# colors=(4 6 1 8 8 6) - Text is colored in the order above.
-colors=(distro)
-#+END_SRC
-
-**** Text Options
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Toggle bold text
-#
-# Default:  'on'
-# Values:   'on', 'off'
-# Flag:     --bold
-bold="on"
-
-# Enable/Disable Underline
-#
-# Default:  'on'
-# Values:   'on', 'off'
-# Flag:     --underline
-underline_enabled="on"
-
-# Underline character
-#
-# Default:  '-'
-# Values:   'string'
-# Flag:     --underline_char
-underline_char="-"
-
-
-# Info Separator
-# Replace the default separator with the specified string.
-#
-# Default:  ':'
-# Flag:     --separator
-#
-# Example:
-# separator="->":   'Shell-> bash'
-# separator=" =":   'WM = dwm'
-separator=":"
-#+END_SRC
-
-**** Color Blocks
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Color block range
-# The range of colors to print.
-#
-# Default:  '0', '15'
-# Values:   'num'
-# Flag:     --block_range
-#
-# Example:
-#
-# Display colors 0-7 in the blocks.  (8 colors)
-# neofetch --block_range 0 7
-#
-# Display colors 0-15 in the blocks. (16 colors)
-# neofetch --block_range 0 15
-block_range=(0 15)
-
-# Toggle color blocks
-#
-# Default:  'on'
-# Values:   'on', 'off'
-# Flag:     --color_blocks
-color_blocks="on"
-
-# Color block width in spaces
-#
-# Default:  '3'
-# Values:   'num'
-# Flag:     --block_width
-block_width=3
-
-# Color block height in lines
-#
-# Default:  '1'
-# Values:   'num'
-# Flag:     --block_height
-block_height=1
-
-# Color Alignment
-#
-# Default: 'auto'
-# Values: 'auto', 'num'
-# Flag: --col_offset
-#
-# Number specifies how far from the left side of the terminal (in spaces) to
-# begin printing the columns, in case you want to e.g. center them under your
-# text.
-# Example:
-# col_offset="auto" - Default behavior of neofetch
-# col_offset=7      - Leave 7 spaces then print the colors
-col_offset="auto"
-#+END_SRC
-
-**** Progress Bars
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Bar characters
-#
-# Default:  '-', '='
-# Values:   'string', 'string'
-# Flag:     --bar_char
-#
-# Example:
-# neofetch --bar_char 'elapsed' 'total'
-# neofetch --bar_char '-' '='
-bar_char_elapsed="-"
-bar_char_total="="
-
-# Toggle Bar border
-#
-# Default:  'on'
-# Values:   'on', 'off'
-# Flag:     --bar_border
-bar_border="on"
-
-# Progress bar length in spaces
-# Number of chars long to make the progress bars.
-#
-# Default:  '15'
-# Values:   'num'
-# Flag:     --bar_length
-bar_length=15
-
-# Progress bar colors
-# When set to distro, uses your distro's logo colors.
-#
-# Default:  'distro', 'distro'
-# Values:   'distro', 'num'
-# Flag:     --bar_colors
-#
-# Example:
-# neofetch --bar_colors 3 4
-# neofetch --bar_colors distro 5
-bar_color_elapsed="distro"
-bar_color_total="distro"
-
-# Info display
-# Display a bar with the info.
-#
-# Default: 'off'
-# Values:  'bar', 'infobar', 'barinfo', 'off'
-# Flags:   --cpu_display
-#          --memory_display
-#          --battery_display
-#          --disk_display
-#
-# Example:
-# bar:     '[---=======]'
-# infobar: 'info [---=======]'
-# barinfo: '[---=======] info'
-# off:     'info'
-cpu_display="off"
-memory_display="off"
-battery_display="off"
-disk_display="off"
-#+END_SRC
-
-**** Backend Settings
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Image backend.
-#
-# Default:  'ascii'
-# Values:   'ascii', 'caca', 'chafa', 'jp2a', 'iterm2', 'off',
-#           'termpix', 'pixterm', 'tycat', 'w3m', 'kitty'
-# Flag:     --backend
-image_backend="ascii"
-
-# Image Source
-#
-# Which image or ascii file to display.
-#
-# Default:  'auto'
-# Values:   'auto', 'ascii', 'wallpaper', '/path/to/img', '/path/to/ascii', '/path/to/dir/'
-#           'command output (neofetch --ascii "$(fortune | cowsay -W 30)")'
-# Flag:     --source
-#
-# NOTE: 'auto' will pick the best image source for whatever image backend is used.
-#       In ascii mode, distro ascii art will be used and in an image mode, your
-#       wallpaper will be used.
-image_source="auto"
-#+END_SRC
-
-***** Ascii Options
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Ascii distro
-# Which distro's ascii art to display.
-#
-# Default: 'auto'
-# Values:  'auto', 'distro_name'
-# Flag:    --ascii_distro
-# NOTE: AIX, Alpine, Anarchy, Android, Antergos, antiX, AOSC,
-#       Apricity, ArcoLinux, ArchBox, ARCHlabs, ArchStrike,
-#       XFerience, ArchMerge, Arch, Artix, Arya, Bedrock, Bitrig,
-#       BlackArch, BLAG, BlankOn, BlueLight, bonsai, BSD,
-#       BunsenLabs, Calculate, Carbs, CentOS, Chakra, ChaletOS,
-#       Chapeau, Chrom*, Cleanjaro, ClearOS, Clear_Linux, Clover,
-#       Condres, Container_Linux, CRUX, Cucumber, Debian, Deepin,
-#       DesaOS, Devuan, DracOS, DragonFly, Drauger, Elementary,
-#       EndeavourOS, Endless, EuroLinux, Exherbo, Fedora, Feren, FreeBSD,
-#       FreeMiNT, Frugalware, Funtoo, GalliumOS, Gentoo, Pentoo,
-#       gNewSense, GNU, GoboLinux, Grombyang, Guix, Haiku, Huayra,
-#       Hyperbola, janus, Kali, KaOS, KDE_neon, Kibojoe, Kogaion,
-#       Korora, KSLinux, Kubuntu, LEDE, LFS, Linux_Lite,
-#       LMDE, Lubuntu, Lunar, macos, Mageia, MagpieOS, Mandriva,
-#       Manjaro, Maui, Mer, Minix, LinuxMint, MX_Linux, Namib,
-#       Neptune, NetBSD, Netrunner, Nitrux, NixOS, Nurunner,
-#       NuTyX, OBRevenge, OpenBSD, OpenIndiana, OpenMandriva,
-#       OpenWrt, osmc, Oracle, PacBSD, Parabola, Pardus, Parrot,
-#       Parsix, TrueOS, PCLinuxOS, Peppermint, popos, Porteus,
-#       PostMarketOS, Proxmox, Puppy, PureOS, Qubes, Radix, Raspbian,
-#       Reborn_OS, Redstar, Redcore, Redhat, Refracted_Devuan, Regata,
-#       Rosa, sabotage, Sabayon, Sailfish, SalentOS, Scientific, Septor,
-#       SharkLinux, Siduction, Slackware, SliTaz, SmartOS, Solus,
-#       Source_Mage, Sparky, Star, SteamOS, SunOS, openSUSE_Leap,
-#       openSUSE_Tumbleweed, openSUSE, SwagArch, Tails, Trisquel,
-#       Ubuntu-Budgie, Ubuntu-GNOME, Ubuntu-MATE, Ubuntu-Studio, Ubuntu,
-#       Void, Obarun, windows10, Windows7, Xubuntu, Zorin, and IRIX
-#       have ascii logos
-# NOTE: Arch, Ubuntu, Redhat, and Dragonfly have 'old' logo variants.
-#       Use '{distro name}_old' to use the old logos.
-# NOTE: Ubuntu has flavor variants.
-#       Change this to Lubuntu, Kubuntu, Xubuntu, Ubuntu-GNOME,
-#       Ubuntu-Studio, Ubuntu-Mate  or Ubuntu-Budgie to use the flavors.
-# NOTE: Arcolinux, Dragonfly, Fedora, Alpine, Arch, Ubuntu,
-#       CRUX, Debian, Gentoo, FreeBSD, Mac, NixOS, OpenBSD, android,
-#       Antrix, CentOS, Cleanjaro, ElementaryOS, GUIX, Hyperbola,
-#       Manjaro, MXLinux, NetBSD, Parabola, POP_OS, PureOS,
-#       Slackware, SunOS, LinuxLite, OpenSUSE, Raspbian,
-#       postmarketOS, and Void have a smaller logo variant.
-#       Use '{distro name}_small' to use the small variants.
-ascii_distro="auto"
-
-# Ascii Colors
-#
-# Default:  'distro'
-# Values:   'distro', 'num' 'num' 'num' 'num' 'num' 'num'
-# Flag:     --ascii_colors
-#
-# Example:
-# ascii_colors=(distro)      - Ascii is colored based on Distro colors.
-# ascii_colors=(4 6 1 8 8 6) - Ascii is colored using these colors.
-ascii_colors=(distro)
-
-# Bold ascii logo
-# Whether or not to bold the ascii logo.
-#
-# Default: 'on'
-# Values:  'on', 'off'
-# Flag:    --ascii_bold
-ascii_bold="on"
-#+END_SRC
-
-***** Image Options
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Image loop
-# Setting this to on will make neofetch redraw the image constantly until
-# Ctrl+C is pressed. This fixes display issues in some terminal emulators.
-#
-# Default:  'off'
-# Values:   'on', 'off'
-# Flag:     --loop
-image_loop="off"
-
-# Thumbnail directory
-#
-# Default: '~/.cache/thumbnails/neofetch'
-# Values:  'dir'
-thumbnail_dir="${XDG_CACHE_HOME:-${HOME}/.cache}/thumbnails/neofetch"
-
-# Crop mode
-#
-# Default:  'normal'
-# Values:   'normal', 'fit', 'fill'
-# Flag:     --crop_mode
-#
-# See this wiki page to learn about the fit and fill options.
-# https://github.com/dylanaraps/neofetch/wiki/What-is-Waifu-Crop%3F
-crop_mode="normal"
-
-# Crop offset
-# Note: Only affects 'normal' crop mode.
-#
-# Default:  'center'
-# Values:   'northwest', 'north', 'northeast', 'west', 'center'
-#           'east', 'southwest', 'south', 'southeast'
-# Flag:     --crop_offset
-crop_offset="center"
-
-# Image size
-# The image is half the terminal width by default.
-#
-# Default: 'auto'
-# Values:  'auto', '00px', '00%', 'none'
-# Flags:   --image_size
-#          --size
-image_size="auto"
-
-# Gap between image and text
-#
-# Default: '3'
-# Values:  'num', '-num'
-# Flag:    --gap
-gap=3
-
-# Image offsets
-# Only works with the w3m backend.
-#
-# Default: '0'
-# Values:  'px'
-# Flags:   --xoffset
-#          --yoffset
-yoffset=0
-xoffset=0
-
-# Image background color
-# Only works with the w3m backend.
-#
-# Default: ''
-# Values:  'color', 'blue'
-# Flag:    --bg_color
-background_color=
-#+END_SRC
-
-***** Misc Options
-
-#+BEGIN_SRC conf :tangle .config/neofetch/config.conf
-# Stdout mode
-# Turn off all colors and disables image backend (ASCII/Image).
-# Useful for piping into another command.
-# Default: 'off'
-# Values: 'on', 'off'
-stdout="off"
-#+END_SRC
-
 ** Shell
 
 *** Bash
 
-#+BEGIN_SRC shell :tangle .bashrc
+#+BEGIN_SRC shell :tangle bash/.bashrc
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -4993,7 +4093,7 @@ echo "bash shell"
 
 *** Zsh
 
-#+BEGIN_SRC shell :tangle .zshrc
+#+BEGIN_SRC shell :tangle zsh/.zshrc
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -5191,13 +4291,13 @@ echo "zsh shell"
 
 **** Theme Selection
 
-#+BEGIN_SRC fish :tangle .config/fish/config.fish
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
 fish_config theme choose "Dracula_Official"
 #+END_SRC
 
 **** Greeting
 
-#+BEGIN_SRC fish :tangle .config/fish/config.fish
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
 function fish_greeting
     clear
     krabby random
@@ -5207,13 +4307,13 @@ end
 
 **** Variables
 
-#+BEGIN_SRC fish :tangle .config/fish/config.fish
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin/
 #+END_SRC
 
 **** Aliases
 
-#+BEGIN_SRC fish :tangle .config/fish/config.fish
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
 # pacman and paru
 alias pacsyu='sudo pacman -Syyu' # update only standard pkgs
 alias parusua='paru -Sua --noconfirm' # update only AUR pkgs
@@ -5246,7 +4346,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
 **** TTY
 
-#+BEGIN_SRC fish :tangle .config/fish/config.fish
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
 if [ "$TERM" = "linux" ]
     then
     printf %b '\e[40m' '\e[8]' # set default background to color 0 'dracula-bg'
@@ -5273,14 +4373,14 @@ end
 
 **** Prompt
 
-#+BEGIN_SRC fish :tangle .config/fish/config.fish
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
 # Starship Prompt
 starship init fish | source
 #+END_SRC
 
 **** Dracula Theme
 
-#+BEGIN_SRC fish :tangle .config/fish/themes/Dracula_Official.theme
+#+BEGIN_SRC fish :tangle fish/.config/fish/themes/Dracula_Official.theme
 # Dracula Color Palette
 #
 # Foreground: f8f8f2
@@ -5340,7 +4440,7 @@ fish_pager_color_secondary_description 6272a4
 
 **** Start Tmux
 
-#+BEGIN_SRC fish :tangle .config/fish/config.fish
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
 if status is-interactive
 and not set -q TMUX
     tmux new-session
@@ -5353,7 +4453,7 @@ end
 
 **** Fonts
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Fonts {{{
 
 #: kitty has very powerful font management. You can configure
@@ -5506,7 +4606,7 @@ box_drawing_scale 0.001, 1, 1.5, 2
 
 **** Cursor Customization
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Cursor customization {{{
 
 ; cursor #cccccc
@@ -5548,7 +4648,7 @@ cursor_stop_blinking_after 15.0
 
 **** Scrollback
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Scrollback {{{
 
 scrollback_lines 2000
@@ -5599,7 +4699,7 @@ touch_scroll_multiplier 1.0
 
 **** Mouse
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Mouse {{{
 
 mouse_hide_wait 3.0
@@ -5708,7 +4808,7 @@ pointer_shape_when_dragging beam
 
 **** Performance Tuning
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Performance tuning {{{
 
 repaint_delay 10
@@ -5743,7 +4843,7 @@ sync_to_monitor no
 
 **** Terminal Bell
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Terminal bell {{{
 
 enable_audio_bell yes
@@ -5776,7 +4876,7 @@ command_on_bell none
 
 **** Window Layout
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Window layout {{{
 
 remember_window_size  yes
@@ -5915,7 +5015,7 @@ confirm_os_window_close 0
 
 **** Tab Bar
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Tab bar {{{
 
 tab_bar_edge top
@@ -6007,7 +5107,7 @@ tab_bar_background none
 
 **** Color Scheme
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Color scheme {{{
 
 ; foreground #dddddd
@@ -6150,7 +5250,7 @@ mark3_background #f274bc
 
 **** Advanced
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Advanced {{{
 
 shell fish
@@ -6271,7 +5371,7 @@ term xterm-kitty
 
 **** OS Specific Tweaks
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: OS specific tweaks {{{
 
 macos_titlebar_color system
@@ -6349,7 +5449,7 @@ linux_display_server auto
 
 **** Keyboard Shortcuts
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Keyboard shortcuts {{{
 
 #: For a list of key names, see: the GLFW key macros
@@ -6432,7 +5532,7 @@ clear_all_shortcuts no
 
 **** Clipboard
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Clipboard {{{
 
 map kitty_mod+c copy_to_clipboard
@@ -6466,7 +5566,7 @@ map kitty_mod+o  pass_selection_to_program
 
 **** Scrolling
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Scrolling {{{
 
 map kitty_mod+up        scroll_line_up
@@ -6494,7 +5594,7 @@ map kitty_mod+h         show_scrollback
 
 **** Window Management
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Window management {{{
 
 map kitty_mod+enter new_window
@@ -6552,7 +5652,7 @@ map kitty_mod+0 tenth_window
 
 **** Tab Management
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Tab management {{{
 
 map kitty_mod+right next_tab
@@ -6581,7 +5681,7 @@ map kitty_mod+alt+t set_tab_title
 
 **** Layout Management
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Layout management {{{
 
 map kitty_mod+l next_layout
@@ -6599,7 +5699,7 @@ map kitty_mod+l next_layout
 
 **** Font Sizes
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Font sizes {{{
 
 #: You can change the font size for all top-level kitty OS windows at
@@ -6622,7 +5722,7 @@ map kitty_mod+backspace change_font_size all 0
 
 **** Select and Act on Visible Text
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Select and act on visible text {{{
 
 #: Use the hints kitten to select text and either pass it to an
@@ -6677,7 +5777,7 @@ map kitty_mod+p>y kitten hints --type hyperlink
 
 **** Miscellaneous
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 #: Miscellaneous {{{
 
 map kitty_mod+f11    toggle_fullscreen
@@ -6744,11 +5844,11 @@ map kitty_mod+delete clear_terminal reset active
 
 **** Dracula Theme
 
-#+BEGIN_SRC conf :tangle .config/kitty/kitty.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/kitty.conf
 include dracula.conf
 #+END_SRC
 
-#+BEGIN_SRC conf :tangle .config/kitty/dracula.conf
+#+BEGIN_SRC conf :tangle kitty/.config/kitty/dracula.conf
 # https://draculatheme.com/kitty
 #
 # Installation instructions:
@@ -6823,7 +5923,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 **** Environment Variable
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
@@ -6839,7 +5939,7 @@ Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 **** Window
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 window:
     # Window dimensions (changes require restart)
     #
@@ -6909,7 +6009,7 @@ window:
 
 **** Scrolling
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 #scrolling:
 # Maximum number of lines in the scrollback buffer.
 # Specifying '0' will disable scrolling.
@@ -6922,7 +6022,7 @@ window:
 
 **** Font
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Font configuration
 font:
     # Normal (roman) font face
@@ -7006,7 +6106,7 @@ font:
 
 **** Colors
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 #+END_SRC
@@ -7148,7 +6248,7 @@ colors:
 
 ***** Dracula PRO
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 colors:
     # Default colors
     primary:
@@ -7215,7 +6315,7 @@ colors:
 
 **** Visual Bell
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
@@ -7260,7 +6360,7 @@ colors:
 
 **** Background Opacity
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
@@ -7271,7 +6371,7 @@ background_opacity: 0.8
 
 **** Selection
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
@@ -7281,14 +6381,14 @@ background_opacity: 0.8
 
 **** Window Title
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
 #+END_SRC
 
 **** Cursor
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 cursor:
     # Cursor style
     #
@@ -7305,14 +6405,14 @@ cursor:
 
 **** Live Config Reload
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Live config reload (changes require restart)
 live_config_reload: true
 #+END_SRC
 
 **** Shell
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Shell
 #
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
@@ -7332,7 +6432,7 @@ shell:
 
 **** Startup Directory
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
@@ -7342,7 +6442,7 @@ shell:
 
 **** WinPTY Backend (Windows Only)
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # WinPTY backend (Windows only)
 #
 # Alacritty defaults to using the newer ConPTY backend if it is available,
@@ -7356,14 +6456,14 @@ shell:
 
 **** Alt Send Escape
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 #+END_SRC
 
 **** Mouse
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # mouse:
   # Click settings
   #
@@ -7379,7 +6479,7 @@ shell:
 
 **** Hints
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Regex hints
 #
 # Terminal hints can be used to find text in the visible part of the terminal
@@ -7427,7 +6527,7 @@ shell:
 
 **** Mouse Bindings
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Mouse bindings
 #
 # Mouse bindings are specified as a list of objects, much like the key
@@ -7456,7 +6556,7 @@ shell:
 
 **** Key Bindings
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
@@ -7601,7 +6701,7 @@ shell:
 
 **** Debug & Logging
 
-#+BEGIN_SRC conf :tangle .config/alacritty/alacritty.yml
+#+BEGIN_SRC conf :tangle alacritty/.config/alacritty/alacritty.yml
 #debug:
 # Display the time it takes to redraw each frame.
 #render_timer: false
@@ -7628,7 +6728,7 @@ shell:
 
 ** Vim
 
-#+BEGIN_SRC vimrc :tangle .vimrc
+#+BEGIN_SRC vimrc :tangle vim/.vimrc
 " Don't try to be vi compatible
 set nocompatible
 
@@ -7728,7 +6828,7 @@ colorscheme dracula_pro
 
 Define emacs configurations with chemacs2.
 
-#+BEGIN_SRC emacs-lisp :tangle .emacs-profiles.el
+#+BEGIN_SRC emacs-lisp :tangle emacs/.emacs-profiles.el
 (
   ("personal" . ((user-emacs-directory . "~/.config/personal-emacs")))
   ("doom"     . ((user-emacs-directory . "~/.config/doom-emacs")
@@ -7740,7 +6840,7 @@ Define emacs configurations with chemacs2.
 
 Select the emacs configuration to use by default.
 
-#+BEGIN_SRC text :tangle .emacs-profile
+#+BEGIN_SRC text :tangle emacs/.emacs-profile
 doom
 #+END_SRC
 
@@ -7750,13 +6850,13 @@ doom
 
 **** Open Braces
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
 {
 #+END_SRC
 
 **** Workbench
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "workbench.colorTheme": "Dracula Pro",
     "workbench.iconTheme": "vscode-icons",
     "workbench.productIconTheme": "fluent-icons",
@@ -7771,7 +6871,7 @@ doom
 
 **** Editor
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "editor.fontFamily": "'MonaspiceNe NF'",
     "editor.fontSize": 14,
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
@@ -7836,7 +6936,7 @@ doom
 
 **** Explorer
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "explorer.autoReveal": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -7844,7 +6944,7 @@ doom
 
 **** Files
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -7855,7 +6955,7 @@ doom
 
 **** Vim
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "vim.insertModeKeyBindings": [
         {
             // easier insert mode exit
@@ -7926,7 +7026,7 @@ doom
 
 **** Terminal
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.fontFamily": "'MonaspiceNe NF'",
@@ -7935,7 +7035,7 @@ doom
 
 **** Language Specific
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -7958,7 +7058,7 @@ doom
 
 **** Todo Tree
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
     "todo-tree.tree.showScanModeButton": false,
     "todo-tree.general.tags": [
@@ -7975,7 +7075,7 @@ doom
 
 **** Prettier
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "prettier.endOfLine": "auto",
     "prettier.proseWrap": "always",
     "prettier.tabWidth": 4,
@@ -7984,45 +7084,45 @@ doom
 
 **** Live Server
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "liveServer.settings.donotVerifyTags": true,
     "liveServer.settings.donotShowInfoMsg": true,
 #+END_SRC
 
 **** Latex Workshop
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "latex-workshop.view.pdf.viewer": "tab",
 #+END_SRC
 
 **** Jupyter
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "jupyter.sendSelectionToInteractiveWindow": false,
     "jupyter.alwaysTrustNotebooks": true,
 #+END_SRC
 
 **** Git
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "git.autofetch": true,
 #+END_SRC
 
 **** CMake
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "cmake.configureOnOpen": false,
 #+END_SRC
 
 **** Diff Editor
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "diffEditor.ignoreTrimWhitespace": false,
 #+END_SRC
 
 **** Project Manager
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "projectManager.git.baseFolders": [
         "/home/sravan/Projects",
         "/home/sravan/.config"
@@ -8031,26 +7131,26 @@ doom
 
 **** VS Icons
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "vsicons.dontShowNewVersionMessage": true,
 #+END_SRC
 
 **** Telemetry
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
 #+END_SRC
 
 **** Security
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "security.workspace.trust.untrustedFiles": "open",
 #+END_SRC
 
 **** Peacock
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "peacock.favoriteColors": [
         {
             "name": "Dark",
@@ -8102,19 +7202,19 @@ doom
 
 **** Auto Build
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "auto-build.defaultEnv.name": "STM32F103RE_creality",
 #+END_SRC
 
 **** Close Braces
 
-#+BEGIN_SRC json :tangle .config/Code/User/settings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
 }
 #+END_SRC
 
 *** Keybindings
 
-#+BEGIN_SRC json :tangle .config/Code/User/keybindings.json
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/keybindings.json
 [
     {
         // restore indenting functionality in normal mode
@@ -8209,171 +7309,7 @@ doom
 ]
 #+END_SRC
 
-* System Monitor 
-
-** Conky
-
-#+BEGIN_SRC conf :tangle .config/conky/conky.conf
---[[
-Conky, a system monitor, based on torsmo
-
-Any original torsmo code is licensed under the BSD license
-
-All code written since the fork of torsmo is licensed under the GPL
-
-Please see COPYING for details
-
-Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
-Copyright (c) 2005-2021 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
-All rights reserved.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-]]
-
-conky.config ={
-  -- CONKY SETTINGS
-  background = true,
-  update_interval = 1,
-  update_interval_on_battery = 5,
-  total_run_times = 0,
-
-  cpu_avg_samples = 2,
-  net_avg_samples = 2,
-
-  override_utf8_locale = true,
-
-  double_buffer = true,
-  no_buffers = true,
-
-  text_buffer_size = 32768,
-
-  -- CONKY: WINDOW SPECIFICATIONS
-  own_window = true,
-  own_window_argb_value = 192,
-  own_window_argb_visual = true,
-  own_window_class = 'conky-semi',
-  -- own_window_colour = '#0b0d18',
-  own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
-  own_window_transparent = true,
-  own_window_type = 'dock',
-
-  border_inner_margin = 6,
-  border_width = 5,
-
-  minimum_height = 1020,
-
-  minimum_width = 280,
-  maximum_width = 280,
-
-  alignment = 'bottom_left',
-  gap_x = 10,
-  gap_y = 0,
-
-  -- GRAPHICS SETTINGS
-  draw_outline = true,
-  draw_outline = false,
-  draw_borders = false,
-  draw_graph_borders = true,
-  -- draw_graph_borders = false,
-
-  -- TEXT SETTINGS
-  use_xft = true,
-  font = 'Montserrat Regular:size=10',
-  xftalpha = 0.2,
-
-  uppercase = false,
-
-  -- Pad percentages to this many decimals (0 = no padding)
-  pad_percents = 2,
-
-  -- COLOUR SETTINGS
-  default_color = 'AAAAAA',
-  default_shade_color = '333333',
-  -- default_outline_color = '111111',
-  default_outline_color = '010101',
-  color1 = '999999',
-  color2 = 'CCCCCC',
-  color3 = 'EEEEEE',
-  color4 = '444444',
-  color5 = '555555',
-  color6 = '666666',
-  color7 = '3b71a1',
-};
-
-
-conky.text = [[
-${alignc}${color1}${font Montserrat Bold:size=20}${time %X (%Z)}${font}${color}${alignc}
-${voffset -9}
-${alignc}${font Montserrat Light:size=10}${time %A %d %B %Y}${font}${alignc}
-${color6}${hr 2}${color}
-${voffset -6}
-${font Montserrat Light:size=8}${color1}SYSTEM:${color}${font} ${alignr}$sysname $nodename
-${font Montserrat Light:size=8}${color1}UPTIME:${color}${font} ${alignr}$uptime_short
-${font Montserrat Light:size=8}${color1}KERNEL:${color}${font} ${alignr}$kernel ${voffset 5}
-${font :size=11}${color}CPUs ${color}${hr 2}${color}
-${voffset -15}
-${font Montserrat Light:size=10}${color1}CPU:${color}${font} ${alignr}${color}${execi 300 cat /proc/cpuinfo | grep 'model name' | cut -c 14-40 | uniq}${color}${font}
-${font Montserrat Light:size=9}${color1}Used: ${alignr}${color}${font}${cpu cpu0}%
-${font :size=11}${color}${cpubar cpu0}${color}
-${voffset -15}
-${font Montserrat Light:size=9}${color1}01 - 04:${color}${font} ${goto 100}${cpu cpu1}% ${goto 150}${cpu cpu2 }% ${goto 200}${cpu cpu3 }% ${goto 250}${cpu cpu4 }%
-${font Montserrat Light:size=9}${color1}05 - 08:${color}${font} ${goto 100}${cpu cpu5}% ${goto 150}${cpu cpu6 }% ${goto 200}${cpu cpu7 }% ${goto 250}${cpu cpu8 }%
-${font Montserrat Light:size=9}${color1}09 - 12:${color}${font} ${goto 100}${cpu cpu9}% ${goto 150}${cpu cpu10}% ${goto 200}${cpu cpu11}% ${goto 250}${cpu cpu12}%
-${voffset -8}
-${font Montserrat Light:size=9}${color1}CPU TEMP:${color}${font} ${font :size=10}${alignr}${hwmon 1 temp 1}°${color4}C${color}${voffset 5}
-${font :size=11}${color}Network ${color}${hr 2}${color}
-${voffset -15}
-# ${font Montserrat Light:size=10}${color1}IP ADDRESS:${color}${font} ${alignr}${addr wlp0s20f3}
-${if_match "${addr wlp0s20f3}"!="No Address"}${voffset 5}${font Montserrat Light:size=10}${font}Download ${alignr}${downspeedf wlp0s20f3}k/s (${totaldown wlp0s20f3})
-${color3}${downspeedgraph wlp0s20f3 50,280 ADFF2F 32CD32 -t}
-${font Montserrat Light:size=10}${font}Upload ${alignr}${upspeedf wlp0s20f3}k/s (${totalup wlp0s20f3})
-${color3}${upspeedgraph wlp0s20f3 50,280 FF0000 8B0000 -t}
-${endif}${voffset 5}${font :size=11}${color}HDD ${color}${hr 2}${color}
-${color1}Used: ${color3}${fs_used /}${color1}${goto 190}Free:${goto 230}${color3}${fs_free /}
-${color2}${fs_bar /}
-${font Montserrat Light:size=8}${color1}DISK I/O:${color}${font} ${alignr}$diskio
-${voffset 2}${font Montserrat Light:size=8}${color1}READ: ${color}${font} ${goto 80}${color4}${diskiograph_read  15,210 ADFF2F 32CD32 750}${color}
-${voffset 2}${font Montserrat Light:size=8}${color1}WRITE:${color}${font} ${goto 80}${color4}${diskiograph_write 15,210 FF0000 8B0000 750}${color}
-${font :size=11}${color}Memory ${color}${hr 2}${color}${voffset 2}
-$font${color DimGray}RAM $alignc $mem / $memmax $alignr ${color 188f18}$memperc%
-${color 188f18}$membar${voffset 1}
-${font :size=11}${color}GPU ${color}${hr 2}${color}${voffset 2}
-${font Montserrat Light:size=9}${color1}GPU Freq.: $alignr ${color}${font}${nvidia gpufreq} Mhz${voffset 3}
-${font Montserrat Light:size=9}${color1}Memory Freq.: $alignr ${color}${font}${nvidia memfreq} Mhz${voffset 3}
-${font Montserrat Light:size=9}${color1}Temperature: $alignr ${color}${font}${nvidia temp}°C ${voffset 3}
-${voffset 3}${font :size=11}${color}Processes ${color}${hr 2}${color}
-${voffset -15}
-${font :size=10}${font Montserrat Light:size=8}${color1}TOTAL:${color}${font} ${alignr}${processes}
-${voffset -10}
-${font Montserrat Light:size=9}${color1}APP NAME: ${goto 160}MEMORY: ${goto 245}CPU: ${color}${font}
-${voffset -16}
-${font Montserrat Light:size=9}${color1}${top_mem name 1} ${color}${font} ${goto 160}${top mem 1} % ${goto 235}${top cpu 1} %
-${font Montserrat Light:size=9}${color1}${top_mem name 2} ${color}${font} ${goto 160}${top mem 2} % ${goto 235}${top cpu 2} %
-${font Montserrat Light:size=9}${color1}${top_mem name 3} ${color}${font} ${goto 160}${top mem 3} % ${goto 235}${top cpu 3} %
-${font Montserrat Light:size=9}${color1}${top_mem name 4} ${color}${font} ${goto 160}${top mem 4} % ${goto 235}${top cpu 4} %
-${font Montserrat Light:size=9}${color1}${top_mem name 5} ${color}${font} ${goto 160}${top mem 5} % ${goto 235}${top cpu 5} %
-${font Montserrat Light:size=9}${color1}${top_mem name 6} ${color}${font} ${goto 160}${top mem 6} % ${goto 235}${top cpu 6} %
-${font Montserrat Light:size=9}${color1}${top_mem name 7} ${color}${font} ${goto 160}${top mem 7} % ${goto 235}${top cpu 7} %
-${font Montserrat Light:size=9}${color1}${top_mem name 8} ${color}${font} ${goto 160}${top mem 8} % ${goto 235}${top cpu 8} %
-${font Montserrat Light:size=9}${color1}${top_mem name 9} ${color}${font} ${goto 160}${top mem 9} % ${goto 235}${top cpu 9} %
-${font Montserrat Light:size=9}${color1}${top_mem name 10} ${color}${font} ${goto 160}${top mem 10} % ${goto 235}${top cpu 10} %
-
-# ${font Montserrat Light:size=10}${color1}${alignr}by: Mo Abdrabou${color}${font}
-
-]];
-#+END_SRC
-
-* Gaming 
+* Gaming
 
 ** Scripts
 
@@ -8383,7 +7319,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 *Preferences > System options > Pre-launch script*
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/game_launch.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gaming/.scripts/game_launch.sh
 /home/sravan/.scripts/picom.sh --off &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance &
 /home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance &
@@ -8395,7 +7331,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 *Preferences > System options > Post-exit script*
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/game_exit.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gaming/.scripts/game_exit.sh
 /home/sravan/.scripts/picom.sh --on &
 /home/sravan/.scripts/dunst.sh --unpause &
 /home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced &
@@ -8407,7 +7343,7 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 Emulate DualSense controller as an Xbox 360 controller.
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/dualsense_to_xbox_360_controller.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gaming/.scripts/dualsense_to_xbox_360_controller.sh
 xboxdrv \
   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-if03-event-joystick \
   --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y,ABS_X=X1,ABS_Y=Y1,ABS_RX=X2,ABS_RY=Y2,ABS_Z=LT,ABS_RZ=RT \
@@ -8422,7 +7358,7 @@ xboxdrv \
 
 *** General
 
-#+BEGIN_SRC conf :tangle .config/gamemode.ini
+#+BEGIN_SRC conf :tangle gaming/.config/gamemode.ini
 [general]
 ; The reaper thread will check every 5 seconds for exited clients, for config file changes, and for the CPU/iGPU power balance
 reaper_freq=5
@@ -8469,7 +7405,7 @@ disable_splitlock=1
 
 *** Filter
 
-#+BEGIN_SRC conf :tangle .config/gamemode.ini
+#+BEGIN_SRC conf :tangle gaming/.config/gamemode.ini
 [filter]
 ; If "whitelist" entry has a value(s)
 ; gamemode will reject anything not in the whitelist
@@ -8482,7 +7418,7 @@ disable_splitlock=1
 
 *** GPU
 
-#+BEGIN_SRC conf :tangle .config/gamemode.ini
+#+BEGIN_SRC conf :tangle gaming/.config/gamemode.ini
 [gpu]
 ; Here Be Dragons!
 ; Warning: Use these settings at your own risk
@@ -8517,7 +7453,7 @@ disable_splitlock=1
 
 *** CPU
 
-#+BEGIN_SRC conf :tangle .config/gamemode.ini
+#+BEGIN_SRC conf :tangle gaming/.config/gamemode.ini
 [cpu]
 ; Parking or Pinning can be enabled with either "yes", "true" or "1" and disabled with "no", "false" or "0".
 ; Either can also be set to a specific list of cores to park or pin, comma separated list where "-" denotes
@@ -8530,7 +7466,7 @@ disable_splitlock=1
 
 *** Supervisor
 
-#+BEGIN_SRC conf :tangle .config/gamemode.ini
+#+BEGIN_SRC conf :tangle gaming/.config/gamemode.ini
 [supervisor]
 ; This section controls the new gamemode functions gamemode_request_start_for and gamemode_request_end_for
 ; The whilelist and blacklist control which supervisor programs are allowed to make the above requests
@@ -8544,7 +7480,7 @@ disable_splitlock=1
 
 *** Custom
 
-#+BEGIN_SRC conf :tangle .config/gamemode.ini
+#+BEGIN_SRC conf :tangle gaming/.config/gamemode.ini
 [custom]
 ; Custom scripts (executed using the shell) when gamemode starts and ends
 ;start=notify-send "GameMode started"
@@ -8578,7 +7514,7 @@ Profiles should be placed at the bottom of the configuration file to ensure that
 
 **** Video Settings
 
-#+BEGIN_SRC conf :tangle .config/mpv/mpv.conf
+#+BEGIN_SRC conf :tangle mpv/.config/mpv/mpv.conf
 # Start in fullscreen mode by default.
 #fs=yes
 
@@ -8625,7 +7561,7 @@ hwdec=auto
 
 **** Audio Settings
 
-#+BEGIN_SRC conf :tangle .config/mpv/mpv.conf
+#+BEGIN_SRC conf :tangle mpv/.config/mpv/mpv.conf
 # Specify default audio device. You can list devices with: --audio-device=help
 # The option takes the device string (the stuff between the '...').
 #audio-device=alsa/default
@@ -8643,7 +7579,7 @@ hwdec=auto
 
 **** Other Settings
 
-#+BEGIN_SRC conf :tangle .config/mpv/mpv.conf
+#+BEGIN_SRC conf :tangle mpv/.config/mpv/mpv.conf
 # Pretend to be a web browser. Might fix playback with some streaming sites,
 # but also will break with shoutcast streams.
 #user-agent="Mozilla/5.0"
@@ -8692,7 +7628,7 @@ sub-bold=yes
 
 **** Profiles
 
-#+BEGIN_SRC conf :tangle .config/mpv/mpv.conf
+#+BEGIN_SRC conf :tangle mpv/.config/mpv/mpv.conf
 # The options declared as part of profiles override global default settings,
 # but only take effect when the profile is active.
 
@@ -8730,7 +7666,7 @@ The default keybindings are hardcoded into the mpv binary. You can disable them 
 Developer note:
 On compilation, this file is baked into the mpv binary, and all lines are uncommented (unless '#' is followed by a space) - thus this file defines the default key bindings.
 
-#+BEGIN_SRC conf :tangle .config/mpv/mpv.conf
+#+BEGIN_SRC conf :tangle mpv/.config/mpv/mpv.conf
 # If this is enabled, treat all the following bindings as default.
 #default-bindings start
 
@@ -8907,13 +7843,13 @@ On compilation, this file is baked into the mpv binary, and all lines are uncomm
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_root_to_hdd.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_root_to_hdd.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/root_hdd_config.yaml backup
 #+END_SRC
 
 ***** Configuration
 
-#+BEGIN_SRC yaml :tangle .config/snapborg/root_hdd_config.yaml
+#+BEGIN_SRC yaml :tangle snapborg/.config/snapborg/root_hdd_config.yaml
 configs:
   # MANDATORY: name of the snapper config
   - name: root
@@ -8948,13 +7884,13 @@ configs:
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_home_to_hdd.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_home_to_hdd.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/home_hdd_config.yaml backup
 #+END_SRC
 
 ***** Configuration
 
-#+BEGIN_SRC yaml :tangle .config/snapborg/home_hdd_config.yaml
+#+BEGIN_SRC yaml :tangle snapborg/.config/snapborg/home_hdd_config.yaml
 configs:
   - name: home
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
@@ -8992,13 +7928,13 @@ configs:
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_root_to_fileserver.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_root_to_fileserver.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/root_fileserver_config.yaml backup
 #+END_SRC
 
 ***** Configuration
 
-#+BEGIN_SRC yaml :tangle .config/snapborg/root_fileserver_config.yaml
+#+BEGIN_SRC yaml :tangle snapborg/.config/snapborg/root_fileserver_config.yaml
 configs:
   # MANDATORY: name of the snapper config
   - name: root
@@ -9035,13 +7971,13 @@ configs:
 
 ***** Script
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup_home_to_fileserver.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_home_to_fileserver.sh
 sudo snapborg --cfg /home/sravan/.config/snapborg/home_fileserver_config.yaml backup
 #+END_SRC
 
 ***** Configuration
 
-#+BEGIN_SRC yaml :tangle .config/snapborg/home_fileserver_config.yaml
+#+BEGIN_SRC yaml :tangle snapborg/.config/snapborg/home_fileserver_config.yaml
 configs:
   - name: home
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
@@ -9075,7 +8011,7 @@ configs:
 
 *** Rofi Menu
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/backup.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup.sh
 help_menu() {
     echo "Main menu to launch backup scripts. Use only one argument at a time."
 }
@@ -9133,7 +8069,7 @@ main $@
 
 ** Syncthing
 
-#+BEGIN_SRC systemd :tangle .config/systemd/user/syncthing.service
+#+BEGIN_SRC systemd :tangle syncthing/.config/systemd/user/syncthing.service
 [Unit]
 Description=Syncthing
 
@@ -9152,7 +8088,7 @@ WantedBy=default.target
 
 ** Mangal
 
-#+BEGIN_SRC toml :tangle .config/mangal/mangal.toml
+#+BEGIN_SRC toml :tangle mangal/.config/mangal/mangal.toml
 [anilist]
 # Anilist code to use for authentication (string)
 code = ""
@@ -9346,7 +8282,7 @@ show_urls = true
 
 *** Config
 
-#+BEGIN_SRC json :tangle .config/trackma/config.json
+#+BEGIN_SRC json :tangle trackma/.config/trackma/config.json
 {
     "auto_date_change": true,
     "auto_status_change": true,
@@ -9396,7 +8332,7 @@ show_urls = true
 
 *** Gtk
 
-#+BEGIN_SRC json :tangle .config/trackma/ui-Gtk.json
+#+BEGIN_SRC json :tangle trackma/.config/trackma/ui-Gtk.json
 {
     "close_to_tray": false,
     "colors": {
@@ -9429,7 +8365,7 @@ show_urls = true
 
 *** Qt
 
-#+BEGIN_SRC json :tangle .config/trackma/ui-qt.json
+#+BEGIN_SRC json :tangle trackma/.config/trackma/ui-qt.json
 {
     "close_to_tray": false,
     "colors": {
@@ -9476,7 +8412,7 @@ show_urls = true
 
 ** Config
 
-#+BEGIN_SRC conf :tangle .ssh/config
+#+BEGIN_SRC conf :tangle ssh/.ssh/config
 # Arch User Repository (AUR)
 Host aur.archlinux.org
   IdentityFile ~/.ssh/aur
@@ -9495,7 +8431,7 @@ Host gitea.sravanbalaji.com
 
 *** Environment Variables
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
 export TERM=xterm-256color            # Sets the terminal type
 export SHELL=/usr/bin/fish            # Preferred shell
 export EDITOR="emacs"                 # Default editor
@@ -9508,13 +8444,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 
 *** Load Xresources
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
 xrdb ~/.Xresources
 #+END_SRC
 
 *** Startup Applications & Processes
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
 # Startup Applications
 /home/sravan/.scripts/startup.sh --kill-startup &&
     /home/sravan/.scripts/startup.sh --startup
@@ -9527,7 +8463,7 @@ xrdb ~/.Xresources
 
 *** Launch Environment
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
 exec dwm
 #+END_SRC
 
@@ -9535,7 +8471,7 @@ exec dwm
 
 *** Colors
 
-#+BEGIN_SRC conf :tangle .Xresources
+#+BEGIN_SRC conf :tangle x11/.Xresources
 ! Colors
 #define FOREGROUND #F8F8F2
 #define BACKGROUND #282A36
@@ -9598,7 +8534,7 @@ exec dwm
 #define CURSOR_SIZE 16
 #+END_SRC
 
-#+BEGIN_SRC conf :tangle .Xresources
+#+BEGIN_SRC conf :tangle x11/.Xresources
 ! System76 Oryx Pro 7 DPI Parameters
 #define DPI 96
 #define BAR_HEIGHT 25
@@ -9635,7 +8571,7 @@ exec dwm
 
 **** dwm
 
-#+BEGIN_SRC conf :tangle .Xresources
+#+BEGIN_SRC conf :tangle x11/.Xresources
 ! DWM
 dwm.normbordercolor: BLACK2
 dwm.normbgcolor:     BACKGROUND
@@ -9652,7 +8588,7 @@ dwm.gappov:          OUTER_GAPS
 
 **** Polybar
 
-#+BEGIN_SRC conf :tangle .Xresources
+#+BEGIN_SRC conf :tangle x11/.Xresources
 ! Polybar
 polybar.bar-height:         BAR_HEIGHT
 polybar.module-margin:      MODULE_MARGIN
@@ -9665,7 +8601,7 @@ polybar.maxlen:             MAXLEN
 
 **** Display Scaling
 
-#+BEGIN_SRC conf :tangle .Xresources
+#+BEGIN_SRC conf :tangle x11/.Xresources
 ! Display Scaling
 ,*.dpi: DPI
 Xcursor.size: CURSOR_SIZE
@@ -9673,7 +8609,7 @@ Xcursor.size: CURSOR_SIZE
 
 ** Startup
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/startup.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.scripts/startup.sh
 declare -a startup_array=(\
     "/usr/bin/greenclip daemon" \                         # Greenclip Clipboard Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -9847,15 +8783,165 @@ doom-emacs-doctor:
 
 # Create softlinks from .dotfiles to home directory
 stow-create:
-    stow -v -S .
+    stow -v \
+        -S alacritty \
+        -S autorandr \
+        -S awesome \
+        -S bash \
+        -S betterlockscreen \
+        -S blender \
+        -S brightness \
+        -S deadd \
+        -S dunst \
+        -S dwm \
+        -S emacs \
+        -S eww \
+        -S fish \
+        -S freecad \
+        -S gaming \
+        -S gammastep \
+        -S geoclue \
+        -S gimp \
+        -S git \
+        -S gtk \
+        -S hyprland \
+        -S kitty \
+        -S mangal \
+        -S mpv \
+        -S naughty \
+        -S pactl \
+        -S picom \
+        -S playerctl \
+        -S qt5 \
+        -S redshift \
+        -S rofi \
+        -S snapborg \
+        -S ssh \
+        -S starship \
+        -S swaync \
+        -S syncthing \
+        -S system76 \
+        -S tmux \
+        -S trackma \
+        -S trackpad \
+        -S tty \
+        -S vim \
+        -S vscode \
+        -S x11 \
+        -S xfce4-notifyd \
+        -S xmonad \
+        -S xournalpp \
+        -S xrandr \
+        -S zathura \
+        -S zsh
 
 # Remove softlinks from .dotfiles to home directory
 stow-delete:
-    stow -v -D .
+    stow -v \
+        -D alacritty \
+        -D autorandr \
+        -D awesome \
+        -D bash \
+        -D betterlockscreen \
+        -D blender \
+        -D brightness \
+        -D deadd \
+        -D dunst \
+        -D dwm \
+        -D emacs \
+        -D eww \
+        -D fish \
+        -D freecad \
+        -D gaming \
+        -D gammastep \
+        -D geoclue \
+        -D gimp \
+        -D git \
+        -D gtk \
+        -D hyprland \
+        -D kitty \
+        -D mangal \
+        -D mpv \
+        -D naughty \
+        -D pactl \
+        -D picom \
+        -D playerctl \
+        -D qt5 \
+        -D redshift \
+        -D rofi \
+        -D snapborg \
+        -D ssh \
+        -D starship \
+        -D swaync \
+        -D syncthing \
+        -D system76 \
+        -D tmux \
+        -D trackma \
+        -D trackpad \
+        -D tty \
+        -D vim \
+        -D vscode \
+        -D x11 \
+        -D xfce4-notifyd \
+        -D xmonad \
+        -D xournalpp \
+        -D xrandr \
+        -D zathura \
+        -D zsh
 
 # Remove and re-create softlinks from .dotfiles to home directory
 stow-recreate:
-    stow -v -R .
+    stow -v \
+        -R alacritty \
+        -R autorandr \
+        -R awesome \
+        -R bash \
+        -R betterlockscreen \
+        -R blender \
+        -R brightness \
+        -R deadd \
+        -R dunst \
+        -R dwm \
+        -R emacs \
+        -R eww \
+        -R fish \
+        -R freecad \
+        -R gaming \
+        -R gammastep \
+        -R geoclue \
+        -R gimp \
+        -R git \
+        -R gtk \
+        -R hyprland \
+        -R kitty \
+        -R mangal \
+        -R mpv \
+        -R naughty \
+        -R pactl \
+        -R picom \
+        -R playerctl \
+        -R qt5 \
+        -R redshift \
+        -R rofi \
+        -R snapborg \
+        -R ssh \
+        -R starship \
+        -R swaync \
+        -R syncthing \
+        -R system76 \
+        -R tmux \
+        -R trackma \
+        -R trackpad \
+        -R tty \
+        -R vim \
+        -R vscode \
+        -R x11 \
+        -R xfce4-notifyd \
+        -R xmonad \
+        -R xournalpp \
+        -R xrandr \
+        -R zathura \
+        -R zsh
 
 # Update git submodules from remotes
 submodule-update:
@@ -9866,7 +8952,7 @@ submodule-update:
 
 ** Media Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/playerctl.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle playerctl/.scripts/playerctl.sh
 help_menu() {
     echo "Script to interact with playerctl. Use only one argument at a time."
     echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -9930,7 +9016,7 @@ main $@
 
 ** Volume Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/pactl.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle pactl/.scripts/pactl.sh
 help_menu() {
     echo "Script to interact with pactl. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -9994,7 +9080,7 @@ main $@
 
 ** Brightness Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/brightness.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle brightness/.scripts/brightness.sh
 help_menu() {
     echo "Script to control brightness. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10050,7 +9136,7 @@ main $@
 
 ** Trackpad Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/trackpad.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle trackpad/.scripts/trackpad.sh
 trackpad_id=13
 
 if xinput list-props $trackpad_id | grep "Device Enabled (.*):.*1" >/dev/null
@@ -10065,7 +9151,7 @@ fi
 
 ** CPU & GPU Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/cpu-gpu.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle system76/.scripts/cpu-gpu.sh
 help_menu() {
     echo "Script to control CPU & GPU modes / performance profiles. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10242,7 +9328,7 @@ main $@
 
 ** Gaming Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/gaming.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gaming/.scripts/gaming.sh
 help_menu() {
     echo "Script to control gaming related things. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10302,7 +9388,7 @@ main $@
 
 ** Session Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle .scripts/session.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.scripts/session.sh
 help_menu() {
     echo "Script to interact with desktop session. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"

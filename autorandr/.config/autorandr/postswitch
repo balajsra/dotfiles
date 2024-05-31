@@ -17,4 +17,4 @@ fi
 
 # Update lock screen wallpaper
 /usr/bin/betterlockscreen -u \
-    /home/sravan/Data/Pictures/Wallpapers/Desktop/Solar_System.png &
+    /home/sravan/Data/NextCloud/Wallpapers/Desktop/Solar_System.png &

@@ -7789,7 +7789,7 @@ On compilation, this file is baked into the mpv binary, and all lines are uncomm
 ***** Script
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_root_to_hdd.sh
-sudo snapborg --cfg /home/sravan/.config/snapborg/root_hdd_config.yaml backup
+sudo snapborg --cfg /home/sravan/.config/snapborg/root_hdd_config.yaml --bind-mount backup
 #+END_SRC
 
 ***** Configuration
@@ -7830,7 +7830,7 @@ configs:
 ***** Script
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_home_to_hdd.sh
-sudo snapborg --cfg /home/sravan/.config/snapborg/home_hdd_config.yaml backup
+sudo snapborg --cfg /home/sravan/.config/snapborg/home_hdd_config.yaml --bind-mount backup
 #+END_SRC
 
 ***** Configuration
@@ -7874,7 +7874,7 @@ configs:
 ***** Script
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_root_to_fileserver.sh
-sudo snapborg --cfg /home/sravan/.config/snapborg/root_fileserver_config.yaml backup
+sudo snapborg --cfg /home/sravan/.config/snapborg/root_fileserver_config.yaml --bind-mount backup
 #+END_SRC
 
 ***** Configuration
@@ -7917,7 +7917,7 @@ configs:
 ***** Script
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle snapborg/.scripts/backup_home_to_fileserver.sh
-sudo snapborg --cfg /home/sravan/.config/snapborg/home_fileserver_config.yaml backup
+sudo snapborg --cfg /home/sravan/.config/snapborg/home_fileserver_config.yaml --bind-mount backup
 #+END_SRC
 
 ***** Configuration

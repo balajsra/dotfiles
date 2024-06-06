@@ -33,16 +33,16 @@ main() {
             help_menu
             ;;
         --backup-root-to-hdd)
-            kitty --hold /home/sravan/.scripts/backup_root_to_hdd.sh
+            kitty --hold bash -c "sudo systemctl start snapborg-backup@root_hdd.service && journalctl -f -u snapborg-backup@root_hdd.service"
             ;;
         --backup-home-to-hdd)
-            kitty --hold /home/sravan/.scripts/backup_home_to_hdd.sh
+            kitty --hold bash -c "sudo systemctl start snapborg-backup@home_hdd.service && journalctl -f -u snapborg-backup@home_hdd.service"
             ;;
         --backup-root-to-fileserver)
-            kitty --hold /home/sravan/.scripts/backup_root_to_fileserver.sh
+            kitty --hold bash -c "sudo systemctl start snapborg-backup@root_fileserver.service && journalctl -f -u snapborg-backup@root_fileserver.service"
             ;;
         --backup-home-to-fileserver)
-            kitty --hold /home/sravan/.scripts/backup_home_to_fileserver.sh
+            kitty --hold bash -c "sudo systemctl start snapborg-backup@home_fileserver.service && journalctl -f -u snapborg-backup@home_fileserver.service"
             ;;
         --rofi)
             rofi_menu

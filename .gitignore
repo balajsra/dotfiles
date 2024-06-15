@@ -1,13 +1,10 @@
-.config/fish/fish_variables
-.config/qt5ct/qt5ct.conf
+fish/.config/fish/fish_variables
+qt5/.config/qt5ct/qt5ct.conf
 
-.config/xournalpp/
-!.config/xournalpp/toolbar.ini
+xournalpp/.config/xournalpp/
+!xournalpp/.config/xournalpp/toolbar.ini
 
-.config/autorandr/
-!.config/autorandr/postswitch
+autorandr/.config/autorandr/
+!autorandr/.config/autorandr/postswitch
 
-.themes/dracula-pro
-
-.ccls-cache/
-.vim/.netrwhist
+vim/.vim/.netrwhist

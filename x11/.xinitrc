@@ -5,7 +5,7 @@ export EDITOR="emacs"                 # Default editor
 export GIT_EDITOR="emacs"             # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
-export QT_QPA_PLATFORMTHEME=qt5ct     # QGtkStyle
+export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
 export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 
 xrdb ~/.Xresources

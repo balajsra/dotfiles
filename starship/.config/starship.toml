@@ -26,6 +26,9 @@ $cmd_duration\
 # Enable/disable the blank line at the start of the prompt
 add_newline = false
 
+# Set timeout for commands
+command_timeout = 1000
+
 [character]
 format = "$symbol"
 success_symbol = "[  󱞪 ❯❯❯](bold green)  "
@@ -53,8 +56,8 @@ read_only = ""
 ".config" = "  "
 "config" = "  "
 "Config" = "  "
-"Calibre_Library" = "  "
-"Calibre Library" = "  "
+"Books" = " 󱉟 "
+"Data" = "  "
 "Desktop" = "  "
 "Documents" = " 󰈙 "
 "Finances" = "  "
@@ -67,7 +70,6 @@ read_only = ""
 "Music" = "  "
 "Spotify" = "  "
 "Pictures" = "  "
-"Projects" = "  "
 "Personal" = "  "
 "System" = "  "
 "Videos" = "  "

@@ -207,7 +207,7 @@
     "diffEditor.ignoreTrimWhitespace": false,
 
     "projectManager.git.baseFolders": [
-        "/home/sravan/Projects",
+        "/home/sravan/Git",
         "/home/sravan/.config"
     ],
 
@@ -267,5 +267,8 @@
     "peacock.affectTabActiveBorder": true,
 
     "auto-build.defaultEnv.name": "STM32F103RE_creality",
+    "auto-build.build.reveal": false,
+    "auto-build.build.silent": false,
+    "platformio-ide.autoOpenPlatformIOIniFile": false,
 
 }

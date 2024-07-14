@@ -262,6 +262,10 @@ autorandr/.config/autorandr/
 !autorandr/.config/autorandr/postswitch
 
 vim/.vim/.netrwhist
+
+vscode/.config/Code
+!vscode/.config/Code/User/settings.json
+!vscode/.config/Code/User/keybindings.json
 #+END_SRC
 
 * Git 
@@ -7068,7 +7072,7 @@ doom
 
 #+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "projectManager.git.baseFolders": [
-        "/home/sravan/Projects",
+        "/home/sravan/Git",
         "/home/sravan/.config"
     ],
 #+END_SRC
@@ -7144,10 +7148,13 @@ doom
     "peacock.affectTabActiveBorder": true,
 #+END_SRC
 
-**** Auto Build
+**** Auto Build Marlin
 
 #+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "auto-build.defaultEnv.name": "STM32F103RE_creality",
+    "auto-build.build.reveal": false,
+    "auto-build.build.silent": false,
+    "platformio-ide.autoOpenPlatformIOIniFile": false,
 #+END_SRC
 
 **** Close Braces

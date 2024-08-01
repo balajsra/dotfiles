@@ -2,7 +2,7 @@ configs:
   # MANDATORY: name of the snapper config
   - name: root
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
-    repo: /mnt/fileserver/Backups/oryp7-gentoo/root
+    repo: /mnt/fileserver/Backups/oryp7/root
     # if this is set to true, borg does not neccessarily fail when a backup fails
     fault_tolerant_mode: true
     # snapborg fails when the most recent snapshot transferred successfully is

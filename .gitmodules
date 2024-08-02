@@ -32,11 +32,11 @@
 	branch = master
 [submodule "xmonad"]
 	path = xmonad/.xmonad
-	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/xmonad.git
+	url = ../xmonad.git
 	branch = master
 [submodule "dwm-flexipatch"]
 	path = dwm/.config/dwm-flexipatch
-	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/dwm-flexipatch.git
+	url = ../dwm-flexipatch.git
 	branch = master
 [submodule "chemacs"]
 	path = emacs/.config/emacs
@@ -44,7 +44,7 @@
 	branch = main
 [submodule "personal-emacs"]
 	path = emacs/.config/personal-emacs
-	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/emacs.git
+	url = ../emacs.git
 	branch = main
 [submodule "doom-emacs"]
 	path = emacs/.config/doom-emacs
@@ -52,7 +52,7 @@
 	branch = master
 [submodule "doom-emacs-config"]
 	path = emacs/.config/doom-emacs-config
-	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/doom-emacs-config.git
+	url = ../doom-emacs-config.git
 	branch = master
 [submodule "dracula-zathura-theme"]
 	path = zathura/.config/zathura
@@ -64,11 +64,11 @@
 	branch = master
 [submodule "awesome"]
 	path = awesome/.config/awesome
-	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/awesome.git
+	url = ../awesome.git
 	branch = main
 [submodule "hyprland"]
 	path = hyprland/.config/hypr
-	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/hyprland.git
+	url = ../hyprland.git
 	branch = main
 [submodule "dracula-qt5-theme"]
 	path = qt5/.themes/dracula-qt5
@@ -76,7 +76,7 @@
 	branch = master
 [submodule "eww"]
 	path = eww/.config/eww
-	url = ssh://gitea@gitea.sravanbalaji.com:2222/sravan/eww.git
+	url = ../eww.git
 [submodule "tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git

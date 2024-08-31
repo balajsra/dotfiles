@@ -230,6 +230,10 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = tmux/.tmux/plugins/tmux
 	url = git@github.com:dracula/tmux.git
 	branch = master
+[submodule "dwl"]
+	path = dwl/.config/dwl
+	url = ../dwl.git
+	branch = main
 #+END_SRC
 
 ** Ignoring files and directories

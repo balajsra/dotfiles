@@ -31,6 +31,7 @@ stow-create:
         -S brightness \
         -S deadd \
         -S dunst \
+        -S dwl \
         -S dwm \
         -S emacs \
         -S eww \
@@ -85,6 +86,7 @@ stow-delete:
         -D brightness \
         -D deadd \
         -D dunst \
+        -D dwl \
         -D dwm \
         -D emacs \
         -D eww \
@@ -139,6 +141,7 @@ stow-recreate:
         -R brightness \
         -R deadd \
         -R dunst \
+        -R dwl \
         -R dwm \
         -R emacs \
         -R eww \

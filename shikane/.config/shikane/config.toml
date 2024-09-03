@@ -1,0 +1,34 @@
+[[profile]]
+name = "docked"
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+
+[[profile.output]]
+enable = true
+search = ["m=LG ULTRAGEAR", "s=111NTUWM4574", "v=LG Electronics"]
+mode = "2560x1440@164.956Hz"
+position = "5120,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = true
+
+[[profile.output]]
+enable = false
+search = ["m=0x0625", "s=", "v=LG Display"]
+
+[[profile.output]]
+enable = true
+search = ["m=LG ULTRAGEAR", "s=305MXUN80518", "v=LG Electronics"]
+mode = "2560x1440@143.933Hz"
+position = "0,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = true
+
+[[profile.output]]
+enable = true
+search = ["m=LG ULTRAGEAR", "s=112NTTQC0153", "v=LG Electronics"]
+mode = "2560x1440@164.956Hz"
+position = "2560,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = true

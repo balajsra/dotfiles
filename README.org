@@ -32,17 +32,14 @@
     - [[#themes][Themes]]
     - [[#greenclip-clipboard-manager][Greenclip Clipboard Manager]]
 - [[#display-configuration--effects][Display Configuration & Effects]]
-  - [[#monitor-setup][Monitor Setup]]
-  - [[#autorandr][Autorandr]]
-    - [[#post-switch][Post Switch]]
-  - [[#compositor][Compositor]]
-    - [[#picom][Picom]]
-  - [[#night-light][Night Light]]
-    - [[#geoclue][Geoclue]]
-    - [[#redshift][Redshift]]
-    - [[#gammastep][Gammastep]]
-  - [[#lock-screen][Lock Screen]]
-    - [[#betterlockscreen][Betterlockscreen]]
+  - [[#x11-monitor-setup][X11 Monitor Setup]]
+    - [[#xrandr][Xrandr]]
+    - [[#autorandr][Autorandr]]
+    - [[#compositor][Compositor]]
+    - [[#night-light][Night Light]]
+    - [[#lock-screen][Lock Screen]]
+  - [[#wayland-monitor-setup][Wayland Monitor Setup]]
+    - [[#shikane][Shikane]]
 - [[#command-line-interface][Command Line Interface]]
   - [[#multiplexer][Multiplexer]]
     - [[#tmux][Tmux]]
@@ -2859,7 +2856,9 @@ element-icon {
 
 * Display Configuration & Effects 
 
-** Monitor Setup
+** X11 Monitor Setup
+
+*** Xrandr
 
 Below is an example script for setting up displays using ~xrandr~ with desired resolution, position, and refresh rate.
 
@@ -2880,11 +2879,11 @@ xrandr \
     --output eDP-1-1 --mode 1920x1080 --pos 5120x1440 --rate 144.00
 #+END_SRC
 
-** Autorandr
+*** Autorandr
 
 See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook scripts]] for more information.
 
-*** Post Switch
+**** Post Switch
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle autorandr/.config/autorandr/postswitch
 # Check if screen is not currently locked
@@ -2908,11 +2907,11 @@ fi
     /home/sravan/Data/NextCloud/Wallpapers/Desktop/Solar_System.png &
 #+END_SRC
 
-** Compositor
+*** Compositor
 
-*** Picom
+**** Picom
 
-**** Shadows
+***** Shadows
 
 #+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Enabled client-side shadows on windows. Note desktop windows
@@ -2994,7 +2993,7 @@ shadow-exclude = [
 # xinerama-shadow-crop = false
 #+END_SRC
 
-**** Fading
+***** Fading
 
 #+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Fade windows in/out when opening/closing and when opacity changes,
@@ -3023,7 +3022,7 @@ no-fading-openclose = false
 # no-fading-destroyed-argb = false
 #+END_SRC
 
-**** Transparency / Opacity
+***** Transparency / Opacity
 
 #+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Opacity of inactive windows. (0.1 - 1.0, defaults to 1.0)
@@ -3076,7 +3075,7 @@ opacity-rule = [
 ];
 #+END_SRC
 
-**** Corners
+***** Corners
 
 #+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Sets the radius of rounded window corners. When > 0, the compositor will
@@ -3092,7 +3091,7 @@ rounded-corners-exclude = [
 ];
 #+END_SRC
 
-**** Background Blurring
+***** Background Blurring
 
 #+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Parameters for background blurring, see the *BLUR* section for more information.
@@ -3141,7 +3140,7 @@ blur-background-exclude = [
 ];
 #+END_SRC
 
-**** General Settings
+***** General Settings
 
 #+BEGIN_SRC conf :tangle picom/.config/picom/picom.conf
 # Enable remote control via D-Bus. See the man page for more details.
@@ -3371,7 +3370,7 @@ wintypes:
 };
 #+END_SRC
 
-**** Control Script
+***** Control Script
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle picom/.scripts/picom.sh
 help_menu() {
@@ -3451,11 +3450,11 @@ main() {
 main $@
 #+END_SRC
 
-** Night Light
+*** Night Light
 
-*** Geoclue
+**** Geoclue
 
-**** Agent Service
+***** Agent Service
 
 #+BEGIN_SRC systemd :tangle geoclue/.config/systemd/user/geoclue-agent.service
 [Unit]
@@ -3468,9 +3467,9 @@ ExecStart=/usr/libexec/geoclue-2.0/demos/agent
 WantedBy=default.target
 #+END_SRC
 
-*** Redshift
+**** Redshift
 
-**** Configuration
+***** Configuration
 
 #+BEGIN_SRC conf :tangle redshift/.config/redshift/redshift.conf
 ; Global settings for redshift
@@ -3531,9 +3530,9 @@ adjustment-method=randr
 ; screen=1
 #+END_SRC
 
-*** Gammastep
+**** Gammastep
 
-**** Configuration
+***** Configuration
 
 #+BEGIN_SRC conf :tangle gammastep/.config/gammastep/config.ini
 ; Global settings
@@ -3606,11 +3605,11 @@ adjustment-method=randr
 ;screen=0
 #+END_SRC
 
-** Lock Screen
+*** Lock Screen
 
-*** Betterlockscreen
+**** Betterlockscreen
 
-**** Default Options
+***** Default Options
 
 #+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 display_on=0
@@ -3625,7 +3624,7 @@ wallpaper_cmd="feh --bg-fill"
 # i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
 #+END_SRC
 
-**** Theme Options
+***** Theme Options
 
 #+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 loginbox=282a36ff
@@ -3651,7 +3650,7 @@ modifcolor=ff5555ff
 bgcolor=282a36ff
 #+END_SRC
 
-**** Pre-Lock
+***** Pre-Lock
 
 #+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 prelock() {
@@ -3659,13 +3658,56 @@ prelock() {
 }
 #+END_SRC
 
-**** Post-Lock
+***** Post-Lock
 
 #+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 # custom postlock
 postlock() {
     /home/sravan/.scripts/dunst.sh --unpause
 }
+#+END_SRC
+
+** Wayland Monitor Setup
+
+*** Shikane
+
+**** Docked
+
+#+BEGIN_SRC toml :tangle shikane/.config/shikane/config.toml
+[[profile]]
+name = "docked"
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+
+[[profile.output]]
+enable = true
+search = ["m=LG ULTRAGEAR", "s=111NTUWM4574", "v=LG Electronics"]
+mode = "2560x1440@164.956Hz"
+position = "5120,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = true
+
+[[profile.output]]
+enable = false
+search = ["m=0x0625", "s=", "v=LG Display"]
+
+[[profile.output]]
+enable = true
+search = ["m=LG ULTRAGEAR", "s=305MXUN80518", "v=LG Electronics"]
+mode = "2560x1440@143.933Hz"
+position = "0,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = true
+
+[[profile.output]]
+enable = true
+search = ["m=LG ULTRAGEAR", "s=112NTTQC0153", "v=LG Electronics"]
+mode = "2560x1440@164.956Hz"
+position = "2560,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = true
 #+END_SRC
 
 * Command Line Interface
@@ -8747,6 +8789,7 @@ stow-create:
         -S qt5 \
         -S redshift \
         -S rofi \
+        -S shikane \
         -S snapborg \
         -S ssh \
         -S starship \
@@ -8802,6 +8845,7 @@ stow-delete:
         -D qt5 \
         -D redshift \
         -D rofi \
+        -D shikane \
         -D snapborg \
         -D ssh \
         -D starship \
@@ -8857,6 +8901,7 @@ stow-recreate:
         -R qt5 \
         -R redshift \
         -R rofi \
+        -R shikane \
         -R snapborg \
         -R ssh \
         -R starship \

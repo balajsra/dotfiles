@@ -54,6 +54,7 @@ stow-create:
         -S qt5 \
         -S redshift \
         -S rofi \
+        -S shikane \
         -S snapborg \
         -S ssh \
         -S starship \
@@ -109,6 +110,7 @@ stow-delete:
         -D qt5 \
         -D redshift \
         -D rofi \
+        -D shikane \
         -D snapborg \
         -D ssh \
         -D starship \
@@ -164,6 +166,7 @@ stow-recreate:
         -R qt5 \
         -R redshift \
         -R rofi \
+        -R shikane \
         -R snapborg \
         -R ssh \
         -R starship \

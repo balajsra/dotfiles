@@ -3674,6 +3674,14 @@ postlock() {
 
 *** Tmux
 
+**** Default Shell
+
+Change default shell for tmux to use
+
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
+set -g default-shell /bin/fish
+#+END_SRC
+
 **** Prefix Key
 
 Remap prefix from 'C-b' to 'C-a'

@@ -37,6 +37,7 @@ stow-create:
         -S eww \
         -S fish \
         -S freecad \
+        -S fuzzel \
         -S gaming \
         -S gammastep \
         -S geoclue \
@@ -93,6 +94,7 @@ stow-delete:
         -D eww \
         -D fish \
         -D freecad \
+        -D fuzzel \
         -D gaming \
         -D gammastep \
         -D geoclue \
@@ -149,6 +151,7 @@ stow-recreate:
         -R eww \
         -R fish \
         -R freecad \
+        -R fuzzel \
         -R gaming \
         -R gammastep \
         -R geoclue \

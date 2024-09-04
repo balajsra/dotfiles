@@ -31,6 +31,12 @@
     - [[#configuration-2][Configuration]]
     - [[#themes][Themes]]
     - [[#greenclip-clipboard-manager][Greenclip Clipboard Manager]]
+  - [[#fuzzel][Fuzzel]]
+    - [[#main][Main]]
+    - [[#colors][Colors]]
+    - [[#border][Border]]
+    - [[#dmenu][dmenu]]
+    - [[#key-bindings][Key Bindings]]
 - [[#display-configuration--effects][Display Configuration & Effects]]
   - [[#x11-monitor-setup][X11 Monitor Setup]]
     - [[#xrandr][Xrandr]]
@@ -74,7 +80,7 @@
 - [[#media][Media]]
   - [[#mpv][mpv]]
     - [[#general-settings][General Settings]]
-    - [[#key-bindings][Key Bindings]]
+    - [[#key-bindings-1][Key Bindings]]
 - [[#backups--syncing][Backups & Syncing]]
   - [[#backups][Backups]]
     - [[#rsync-options][Rsync Options]]
@@ -97,7 +103,7 @@
     - [[#startup-applications--processes][Startup Applications & Processes]]
     - [[#launch-environment][Launch Environment]]
   - [[#xresources][Xresources]]
-    - [[#colors][Colors]]
+    - [[#colors-1][Colors]]
     - [[#sizes][Sizes]]
     - [[#application-specific-changes][Application Specific Changes]]
   - [[#startup][Startup]]
@@ -2852,6 +2858,125 @@ element-icon {
   static_history = [
     '''¯\_(ツ)_/¯''',
   ]
+#+END_SRC
+
+** Fuzzel
+
+*** Main
+
+#+BEGIN_SRC conf :tangle fuzzel/.config/fuzzel/fuzzel.ini
+[main]
+# output=<not set>
+font=NotoSans Nerd Font:size=14
+dpi-aware=auto
+prompt="> "
+icon-theme=Papirus-Dark
+icons-enabled=yes
+fields=filename,name,generic,exec,categories,keywords,comment
+password-character=*
+filter-desktop=no
+fuzzy=yes
+show-actions=yes
+terminal=kitty
+# launch-prefix=<not set>
+list-executables-in-path=no
+
+anchor=left
+lines=50
+width=50
+tabs=4
+horizontal-pad=10
+vertical-pad=10
+inner-pad=10
+
+image-size-ratio=0.25
+
+# line-height=<use font metrics>
+# letter-spacing=0
+
+layer = overlay
+exit-on-keyboard-focus-loss = yes
+#+END_SRC
+
+*** Colors
+
+#+BEGIN_SRC conf :tangle fuzzel/.config/fuzzel/fuzzel.ini
+[colors]
+background=282a36ff
+text=f8f8f2ff
+match=8be9fdff
+selection=44475aff
+selection-text=f8f8f2ff
+selection-match=8be9fdff
+border=8be9fdff
+#+END_SRC
+
+*** Border
+
+#+BEGIN_SRC conf :tangle fuzzel/.config/fuzzel/fuzzel.ini
+[border]
+width=2
+radius=0
+#+END_SRC
+
+*** dmenu
+
+#+BEGIN_SRC conf :tangle fuzzel/.config/fuzzel/fuzzel.ini
+[dmenu]
+mode=text  # text|index
+exit-immediately-if-empty=no
+#+END_SRC
+
+*** Key Bindings
+
+#+BEGIN_SRC conf :tangle fuzzel/.config/fuzzel/fuzzel.ini
+[key-bindings]
+cancel=Escape
+execute=Return KP_Enter
+execute-or-next=none
+execute-input=Shift+Return Shift+KP_Enter
+cursor-left=Left Control+h
+cursor-left-word=none
+cursor-right=Right Control+f
+cursor-right-word=none
+cursor-home=none
+cursor-end=none
+delete-prev=BackSpace
+delete-prev-word=none
+delete-line-backward=none
+delete-next=Delete KP_Delete
+delete-next-word=none
+delete-line-forward=none
+prev=none
+prev-with-wrap=Up Control+k
+prev-page=Page_Up KP_Page_Up Control+u
+next=none
+next-with-wrap=Down Control+j
+next-page=Page_Down KP_Page_Down Control+d
+
+# custom-N: *dmenu mode only*. Like execute, but with a non-zero
+# exit-code; custom-1 exits with code 10, custom-2 with 11, custom-3
+# with 12, and so on.
+
+# custom-1=Mod1+1
+# custom-2=Mod1+2
+# custom-3=Mod1+3
+# custom-4=Mod1+4
+# custom-5=Mod1+5
+# custom-6=Mod1+6
+# custom-7=Mod1+7
+# custom-8=Mod1+8
+# custom-9=Mod1+9
+# custom-10=Mod1+0
+# custom-11=Mod1+exclam
+# custom-12=Mod1+at
+# custom-13=Mod1+numbersign
+# custom-14=Mod1+dollar
+# custom-15=Mod1+percent
+# custom-16=Mod1+dead_circumflex
+# custom-17=Mod1+ampersand
+# custom-18=Mod1+asterix
+# custom-19=Mod1+parentleft
 #+END_SRC
 
 * Display Configuration & Effects 
@@ -8789,6 +8914,7 @@ stow-create:
         -S eww \
         -S fish \
         -S freecad \
+        -S fuzzel \
         -S gaming \
         -S gammastep \
         -S geoclue \
@@ -8845,6 +8971,7 @@ stow-delete:
         -D eww \
         -D fish \
         -D freecad \
+        -D fuzzel \
         -D gaming \
         -D gammastep \
         -D geoclue \
@@ -8901,6 +9028,7 @@ stow-recreate:
         -R eww \
         -R fish \
         -R freecad \
+        -R fuzzel \
         -R gaming \
         -R gammastep \
         -R geoclue \

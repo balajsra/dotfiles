@@ -148,20 +148,36 @@ main() {
             rofi_gpu_profile_menu
             ;;
         --gpu-profile-query)
-            current_profile=$(nvidia-settings -q GpuPowerMizerMode)
-            notify-send "NVIDIA GPU Profile" "$current_profile"
+            if [ $XDG_SESSION_TYPE == "x11" ]; then
+                current_profile=$(nvidia-settings -q GpuPowerMizerMode)
+                notify-send "NVIDIA GPU Profile" "$current_profile"
+            elif [ $XDG_SESSION_TYPE == "wayland" ]; then
+                notify-send "NVIDIA GPU Profile not supported on Wayland"
+            fi
             ;;
         --gpu-profile-adaptive)
-            nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=0"
-            notify-send "NVIDIA GPU Profile" "Switched to Adaptive Profile"
+            if [ $XDG_SESSION_TYPE == "x11" ]; then
+                nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=0"
+                notify-send "NVIDIA GPU Profile" "Switched to Adaptive Profile"
+            elif [ $XDG_SESSION_TYPE == "wayland" ]; then
+                notify-send "NVIDIA GPU Profile not supported on Wayland"
+            fi
             ;;
         --gpu-profile-performance)
-            nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=1"
-            notify-send "NVIDIA GPU Profile" "Switched to Performance Profile"
+            if [ $XDG_SESSION_TYPE == "x11" ]; then
+                nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=1"
+                notify-send "NVIDIA GPU Profile" "Switched to Performance Profile"
+            elif [ $XDG_SESSION_TYPE == "wayland" ]; then
+                notify-send "NVIDIA GPU Profile not supported on Wayland"
+            fi
             ;;
         --gpu-profile-auto)
-            nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=2"
-            notify-send "NVIDIA GPU Profile" "Switched to Auto Profile"
+            if [ $XDG_SESSION_TYPE == "x11" ]; then
+                nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=2"
+                notify-send "NVIDIA GPU Profile" "Switched to Auto Profile"
+            elif [ $XDG_SESSION_TYPE == "wayland" ]; then
+                notify-send "NVIDIA GPU Profile not supported on Wayland"
+            fi
             ;;
         --rofi)
             rofi_menu

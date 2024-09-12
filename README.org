@@ -237,6 +237,10 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = dwl/.config/dwl
 	url = ../dwl.git
 	branch = main
+[submodule "dracula-calibre-theme"]
+	path = calibre/.themes/dracula-calibre
+	url = git@github.com:dracula/calibre.git
+	branch = main
 #+END_SRC
 
 ** Ignoring files and directories
@@ -8912,6 +8916,7 @@ stow-create:
         -S betterlockscreen \
         -S blender \
         -S brightness \
+        -S calibre \
         -S deadd \
         -S dunst \
         -S dwl \
@@ -8969,6 +8974,7 @@ stow-delete:
         -D betterlockscreen \
         -D blender \
         -D brightness \
+        -D calibre \
         -D deadd \
         -D dunst \
         -D dwl \
@@ -9026,6 +9032,7 @@ stow-recreate:
         -R betterlockscreen \
         -R blender \
         -R brightness \
+        -R calibre \
         -R deadd \
         -R dunst \
         -R dwl \

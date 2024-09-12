@@ -29,6 +29,7 @@ stow-create:
         -S betterlockscreen \
         -S blender \
         -S brightness \
+        -S calibre \
         -S deadd \
         -S dunst \
         -S dwl \
@@ -86,6 +87,7 @@ stow-delete:
         -D betterlockscreen \
         -D blender \
         -D brightness \
+        -D calibre \
         -D deadd \
         -D dunst \
         -D dwl \
@@ -143,6 +145,7 @@ stow-recreate:
         -R betterlockscreen \
         -R blender \
         -R brightness \
+        -R calibre \
         -R deadd \
         -R dunst \
         -R dwl \

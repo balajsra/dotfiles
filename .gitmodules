@@ -93,3 +93,7 @@
 	path = dwl/.config/dwl
 	url = ../dwl.git
 	branch = main
+[submodule "dracula-calibre-theme"]
+	path = calibre/.themes/dracula-calibre
+	url = git@github.com:dracula/calibre.git
+	branch = main

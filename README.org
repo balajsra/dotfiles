@@ -2879,7 +2879,7 @@ icons-enabled=yes
 fields=filename,name,generic,exec,categories,keywords,comment
 password-character=*
 filter-desktop=no
-fuzzy=yes
+match-mode=fzf
 show-actions=yes
 terminal=kitty
 # launch-prefix=<not set>
@@ -2908,6 +2908,8 @@ exit-on-keyboard-focus-loss = yes
 [colors]
 background=282a36ff
 text=f8f8f2ff
+prompt=8be9fdff
+input=f8f8f2ff
 match=8be9fdff
 selection=44475aff
 selection-text=f8f8f2ff
@@ -2941,22 +2943,22 @@ execute-or-next=none
 execute-input=Shift+Return Shift+KP_Enter
 cursor-left=Left Control+h
 cursor-left-word=none
-cursor-right=Right Control+f
+cursor-right=Right Control+l
 cursor-right-word=none
 cursor-home=none
 cursor-end=none
 delete-prev=BackSpace
 delete-prev-word=none
-delete-line-backward=none
+delete-line-backward=Control+u
 delete-next=Delete KP_Delete
 delete-next-word=none
-delete-line-forward=none
+delete-line-forward=Control+k
 prev=none
-prev-with-wrap=Up Control+k
-prev-page=Page_Up KP_Page_Up Control+u
+prev-with-wrap=Up Control+p
+prev-page=Page_Up KP_Page_Up
 next=none
-next-with-wrap=Down Control+j
-next-page=Page_Down KP_Page_Down Control+d
+next-with-wrap=Down Control+n
+next-page=Page_Down KP_Page_Down
 
 # custom-N: *dmenu mode only*. Like execute, but with a non-zero
 # exit-code; custom-1 exits with code 10, custom-2 with 11, custom-3

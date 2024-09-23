@@ -1,5 +1,5 @@
 configuration {
-    modi: "window,drun,combi,run,clipboard:greenclip print,ssh";
+    modi: "combi";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/

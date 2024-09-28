@@ -61,6 +61,7 @@ stow-create:
         -S ssh \
         -S starship \
         -S swaync \
+        -S swhkd \
         -S syncthing \
         -S system76 \
         -S tmux \
@@ -119,6 +120,7 @@ stow-delete:
         -D ssh \
         -D starship \
         -D swaync \
+        -D swhkd \
         -D syncthing \
         -D system76 \
         -D tmux \
@@ -177,6 +179,7 @@ stow-recreate:
         -R ssh \
         -R starship \
         -R swaync \
+        -R swhkd \
         -R syncthing \
         -R system76 \
         -R tmux \

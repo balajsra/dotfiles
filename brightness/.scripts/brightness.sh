@@ -37,10 +37,10 @@ main() {
             help_menu
             ;;
         --raise)
-            xdotool key XF86MonBrightnessUp
+            brightnessctl -c backlight s 10%+
             ;;
         --lower)
-            xdotool key XF86MonBrightnessDown
+            brightnessctl -c backlight s 10%-
             ;;
         --rofi)
             rofi_menu

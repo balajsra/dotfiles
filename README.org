@@ -88,6 +88,8 @@
     - [[#fileserver][Fileserver]]
     - [[#rofi-menu][Rofi Menu]]
   - [[#syncthing][Syncthing]]
+- [[#hotkey-daemon][Hotkey Daemon]]
+  - [[#swhkd][swhkd]]
 - [[#user-programs][User Programs]]
   - [[#mangal][Mangal]]
   - [[#trackma][Trackma]]
@@ -8211,6 +8213,37 @@ SuccessExitStatus=3 4
 WantedBy=default.target
 #+END_SRC
 
+* Hotkey Daemon
+
+** swhkd
+
+#+BEGIN_SRC sxhkd :tangle swhkd/.config/swhkd/swhkdrc
+# Terminal
+super + shift + return
+    kitty
+
+# Menu
+super + p
+    rofi -show combi
+
+# Volume Controls
+xf86audioraisevolume
+    ~/.scripts/pactl.sh --raise
+
+xf86audiolowervolume
+    ~/.scripts/pactl.sh --lower
+
+xf86audiomute
+    ~/.scripts/pactl.sh --mute
+
+# Brightness Controls
+xf86monbrightnessup
+    ~/.scripts/brightness.sh --raise
+
+xf86monbrightnessdown
+    ~/.scripts/brightness.sh --lower
+#+END_SRC
+
 * User Programs
 
 ** Mangal
@@ -8950,6 +8983,7 @@ stow-create:
         -S ssh \
         -S starship \
         -S swaync \
+        -S swhkd \
         -S syncthing \
         -S system76 \
         -S tmux \
@@ -9008,6 +9042,7 @@ stow-delete:
         -D ssh \
         -D starship \
         -D swaync \
+        -D swhkd \
         -D syncthing \
         -D system76 \
         -D tmux \
@@ -9066,6 +9101,7 @@ stow-recreate:
         -R ssh \
         -R starship \
         -R swaync \
+        -R swhkd \
         -R syncthing \
         -R system76 \
         -R tmux \
@@ -9258,10 +9294,10 @@ main() {
             help_menu
             ;;
         --raise)
-            xdotool key XF86MonBrightnessUp
+            brightnessctl -c backlight s 10%+
             ;;
         --lower)
-            xdotool key XF86MonBrightnessDown
+            brightnessctl -c backlight s 10%-
             ;;
         --rofi)
             rofi_menu

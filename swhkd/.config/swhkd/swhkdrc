@@ -1,0 +1,24 @@
+# Terminal
+super + shift + return
+    kitty
+
+# Menu
+super + p
+    rofi -show combi
+
+# Volume Controls
+xf86audioraisevolume
+    ~/.scripts/pactl.sh --raise
+
+xf86audiolowervolume
+    ~/.scripts/pactl.sh --lower
+
+xf86audiomute
+    ~/.scripts/pactl.sh --mute
+
+# Brightness Controls
+xf86monbrightnessup
+    ~/.scripts/brightness.sh --raise
+
+xf86monbrightnessdown
+    ~/.scripts/brightness.sh --lower

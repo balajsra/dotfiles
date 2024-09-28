@@ -8218,41 +8218,45 @@ WantedBy=default.target
 ** swhkd
 
 #+BEGIN_SRC sxhkd :tangle swhkd/.config/swhkd/swhkdrc
-# Terminal
-super + shift + return
-  kitty
-
-# Menu
-super + p
-  rofi -show combi
+# Rofi Menus
 super + ctrl + p
   ~/.scripts/control-center.sh --rofi
+
 super + ctrl + c
   cliphist list | rofi -dmenu | cliphist decode | wl-copy
+
 super + ctrl + d
   ~/.scripts/brightness.sh --rofi
+
 super + ctrl + v
   ~/.scripts/pactl.sh --rofi
+
 super + ctrl + m
   ~/.scripts/playerctl.sh --rofi
+
 super + ctrl + n
   ~/.scripts/dunst.sh --rofi
+
 super + ctrl + q
   ~/.scripts/session.sh --rofi
 
 # Volume Controls
 xf86audioraisevolume
   ~/.scripts/pactl.sh --raise
+
 xf86audiolowervolume
   ~/.scripts/pactl.sh --lower
+
 xf86audiomute
   ~/.scripts/pactl.sh --mute
 
 # Media Controls
 xf86audioplay
   ~/.scripts/playerctl.sh --play-pause
+
 xf86audioprev
   ~/.scripts/playerctl.sh --prev
+
 xf86audionext
   ~/.scripts/playerctl.sh --next
 
@@ -8263,6 +8267,7 @@ print
 # Brightness Controls
 xf86monbrightnessup
   ~/.scripts/brightness.sh --raise
+
 xf86monbrightnessdown
   ~/.scripts/brightness.sh --lower
 #+END_SRC

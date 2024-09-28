@@ -11,7 +11,6 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Restart dwm - restart"
         " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
@@ -42,8 +41,8 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of dwm"
-            dwm-msg run_command quit 0
+            notify-send "Session Control" "Logging Out of dwl"
+            wtype -M win -M shift -P q
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"
@@ -64,13 +63,6 @@ main() {
         --hibernate)
             notify-send "Session Control" "Hibernating System"
             systemctl hibernate
-            ;;
-        --restart)
-            notify-send "Session Control" "Restarting dwm"
-            dwm-msg run_command quit 1
-            pkill polybar
-            sleep 5
-            /home/sravan/.config/dwm-flexipatch/polybar/launch.sh
             ;;
         --rofi)
             rofi_menu

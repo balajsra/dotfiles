@@ -1,24 +1,47 @@
 # Terminal
 super + shift + return
-    kitty
+  kitty
 
 # Menu
 super + p
-    rofi -show combi
+  rofi -show combi
+super + ctrl + p
+  ~/.scripts/control-center.sh --rofi
+super + ctrl + c
+  cliphist list | rofi -dmenu | cliphist decode | wl-copy
+super + ctrl + d
+  ~/.scripts/brightness.sh --rofi
+super + ctrl + v
+  ~/.scripts/pactl.sh --rofi
+super + ctrl + m
+  ~/.scripts/playerctl.sh --rofi
+super + ctrl + n
+  ~/.scripts/dunst.sh --rofi
+super + ctrl + q
+  ~/.scripts/session.sh --rofi
 
 # Volume Controls
 xf86audioraisevolume
-    ~/.scripts/pactl.sh --raise
-
+  ~/.scripts/pactl.sh --raise
 xf86audiolowervolume
-    ~/.scripts/pactl.sh --lower
-
+  ~/.scripts/pactl.sh --lower
 xf86audiomute
-    ~/.scripts/pactl.sh --mute
+  ~/.scripts/pactl.sh --mute
+
+# Media Controls
+xf86audioplay
+  ~/.scripts/playerctl.sh --play-pause
+xf86audioprev
+  ~/.scripts/playerctl.sh --prev
+xf86audionext
+  ~/.scripts/playerctl.sh --next
+
+# Screenshot
+print
+  flameshot gui
 
 # Brightness Controls
 xf86monbrightnessup
-    ~/.scripts/brightness.sh --raise
-
+  ~/.scripts/brightness.sh --raise
 xf86monbrightnessdown
-    ~/.scripts/brightness.sh --lower
+  ~/.scripts/brightness.sh --lower

@@ -8220,28 +8220,51 @@ WantedBy=default.target
 #+BEGIN_SRC sxhkd :tangle swhkd/.config/swhkd/swhkdrc
 # Terminal
 super + shift + return
-    kitty
+  kitty
 
 # Menu
 super + p
-    rofi -show combi
+  rofi -show combi
+super + ctrl + p
+  ~/.scripts/control-center.sh --rofi
+super + ctrl + c
+  cliphist list | rofi -dmenu | cliphist decode | wl-copy
+super + ctrl + d
+  ~/.scripts/brightness.sh --rofi
+super + ctrl + v
+  ~/.scripts/pactl.sh --rofi
+super + ctrl + m
+  ~/.scripts/playerctl.sh --rofi
+super + ctrl + n
+  ~/.scripts/dunst.sh --rofi
+super + ctrl + q
+  ~/.scripts/session.sh --rofi
 
 # Volume Controls
 xf86audioraisevolume
-    ~/.scripts/pactl.sh --raise
-
+  ~/.scripts/pactl.sh --raise
 xf86audiolowervolume
-    ~/.scripts/pactl.sh --lower
-
+  ~/.scripts/pactl.sh --lower
 xf86audiomute
-    ~/.scripts/pactl.sh --mute
+  ~/.scripts/pactl.sh --mute
+
+# Media Controls
+xf86audioplay
+  ~/.scripts/playerctl.sh --play-pause
+xf86audioprev
+  ~/.scripts/playerctl.sh --prev
+xf86audionext
+  ~/.scripts/playerctl.sh --next
+
+# Screenshot
+print
+  flameshot gui
 
 # Brightness Controls
 xf86monbrightnessup
-    ~/.scripts/brightness.sh --raise
-
+  ~/.scripts/brightness.sh --raise
 xf86monbrightnessdown
-    ~/.scripts/brightness.sh --lower
+  ~/.scripts/brightness.sh --lower
 #+END_SRC
 
 * User Programs
@@ -9579,7 +9602,7 @@ main $@
 
 ** Session Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.scripts/session.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.scripts/session.sh
 help_menu() {
     echo "Script to interact with desktop session. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -9592,7 +9615,6 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Restart dwm - restart"
         " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
@@ -9623,8 +9645,8 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of dwm"
-            dwm-msg run_command quit 0
+            notify-send "Session Control" "Logging Out of dwl"
+            wtype -M win -M shift -P q
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"
@@ -9646,13 +9668,6 @@ main() {
             notify-send "Session Control" "Hibernating System"
             systemctl hibernate
             ;;
-        --restart)
-            notify-send "Session Control" "Restarting dwm"
-            dwm-msg run_command quit 1
-            pkill polybar
-            sleep 5
-            /home/sravan/.config/dwm-flexipatch/polybar/launch.sh
-            ;;
         --rofi)
             rofi_menu
             ;;
@@ -9665,7 +9680,7 @@ main $@
 
 ** Control Center
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.scripts/control-center.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.scripts/control-center.sh
 help_menu() {
     echo "Main script to launch sub-menu scripts. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -9678,13 +9693,11 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "󱕅 Compositor - picom"
         "󰍹 Display - brightness"
         "󰂚 Notifications - dunst"
         " Media - playerctl"
         "󰕾 Volume - pactl"
         "󰁯 Backup - backup"
-        " Startup Processes - startup"
         " Hardware - cpu-gpu"
         " Gaming - gaming"
         " Power Menu - session"
@@ -9711,9 +9724,6 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --picom)
-            /home/sravan/.scripts/picom.sh --rofi
-            ;;
         --brightness)
             /home/sravan/.scripts/brightness.sh --rofi
             ;;
@@ -9728,9 +9738,6 @@ main() {
             ;;
         --backup)
             /home/sravan/.scripts/backup.sh --rofi
-            ;;
-        --startup)
-            /home/sravan/.scripts/startup.sh --rofi
             ;;
         --cpu-gpu)
             /home/sravan/.scripts/cpu-gpu.sh --rofi

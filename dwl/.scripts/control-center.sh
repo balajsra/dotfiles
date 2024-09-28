@@ -11,13 +11,11 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "󱕅 Compositor - picom"
         "󰍹 Display - brightness"
         "󰂚 Notifications - dunst"
         " Media - playerctl"
         "󰕾 Volume - pactl"
         "󰁯 Backup - backup"
-        " Startup Processes - startup"
         " Hardware - cpu-gpu"
         " Gaming - gaming"
         " Power Menu - session"
@@ -44,9 +42,6 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --picom)
-            /home/sravan/.scripts/picom.sh --rofi
-            ;;
         --brightness)
             /home/sravan/.scripts/brightness.sh --rofi
             ;;
@@ -61,9 +56,6 @@ main() {
             ;;
         --backup)
             /home/sravan/.scripts/backup.sh --rofi
-            ;;
-        --startup)
-            /home/sravan/.scripts/startup.sh --rofi
             ;;
         --cpu-gpu)
             /home/sravan/.scripts/cpu-gpu.sh --rofi

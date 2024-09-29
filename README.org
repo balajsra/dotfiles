@@ -96,6 +96,7 @@
     - [[#config-1][Config]]
     - [[#gtk][Gtk]]
     - [[#qt][Qt]]
+  - [[#swappy][Swappy]]
 - [[#ssh][SSH]]
   - [[#config-2][Config]]
 - [[#system-settings][System Settings]]
@@ -8262,7 +8263,7 @@ xf86audionext
 
 # Screenshot
 print
-  flameshot gui
+  grim -g "$(slurp)" - | swappy -f -
 
 # Brightness Controls
 xf86monbrightnessup
@@ -8594,6 +8595,21 @@ show_urls = true
         "Percent"
     ]
 }
+#+END_SRC
+
+** Swappy
+
+#+BEGIN_SRC conf :tangle swappy/.config/swappy/config
+[Default]
+save_dir=$HOME/Downloads
+save_filename_format=swappy-%Y%m%d-%H%M%S.png
+show_panel=false
+line_size=5
+text_size=20
+text_font=sans-serif
+paint_mode=brush
+early_exit=false
+fill_shape=false
 #+END_SRC
 
 * SSH
@@ -9010,6 +9026,7 @@ stow-create:
         -S snapborg \
         -S ssh \
         -S starship \
+        -S swappy \
         -S swaync \
         -S swhkd \
         -S syncthing \
@@ -9069,6 +9086,7 @@ stow-delete:
         -D snapborg \
         -D ssh \
         -D starship \
+        -D swappy \
         -D swaync \
         -D swhkd \
         -D syncthing \
@@ -9128,6 +9146,7 @@ stow-recreate:
         -R snapborg \
         -R ssh \
         -R starship \
+        -R swappy \
         -R swaync \
         -R swhkd \
         -R syncthing \

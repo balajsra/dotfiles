@@ -42,7 +42,7 @@ xf86audionext
 
 # Screenshot
 print
-  flameshot gui
+  grim -g "$(slurp)" - | swappy -f -
 
 # Brightness Controls
 xf86monbrightnessup

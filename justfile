@@ -60,6 +60,7 @@ stow-create:
         -S snapborg \
         -S ssh \
         -S starship \
+        -S swappy \
         -S swaync \
         -S swhkd \
         -S syncthing \
@@ -119,6 +120,7 @@ stow-delete:
         -D snapborg \
         -D ssh \
         -D starship \
+        -D swappy \
         -D swaync \
         -D swhkd \
         -D syncthing \
@@ -178,6 +180,7 @@ stow-recreate:
         -R snapborg \
         -R ssh \
         -R starship \
+        -R swappy \
         -R swaync \
         -R swhkd \
         -R syncthing \

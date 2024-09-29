@@ -38,13 +38,13 @@ main() {
             help_menu
             ;;
         --dualsense-to-xbox-360)
-            kitty --hold /home/sravan/.scripts/dualsense_to_xbox_360_controller.sh
+            kitty --hold $HOME/.scripts/dualsense_to_xbox_360_controller.sh
             ;;
         --game-launch)
-            /home/sravan/.scripts/game_launch.sh
+            $HOME/.scripts/game_launch.sh
             ;;
         --game-exit)
-            /home/sravan/.scripts/game_exit.sh
+            $HOME/.scripts/game_exit.sh
             ;;
         --rofi)
             rofi_menu

@@ -11,12 +11,12 @@ export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 xrdb ~/.Xresources
 
 # Startup Applications
-/home/sravan/.scripts/x11-startup.sh --kill-startup &&
-    /home/sravan/.scripts/x11-startup.sh --startup
+$HOME/.scripts/x11-startup.sh --kill-startup &&
+    $HOME/.scripts/x11-startup.sh --startup
 
 # Delayed Startup Applications
 (sleep 5 &&
-    /home/sravan/.scripts/x11-startup.sh --kill-delay &&
-    /home/sravan/.scripts/x11-startup.sh --delay) &
+    $HOME/.scripts/x11-startup.sh --kill-delay &&
+    $HOME/.scripts/x11-startup.sh --delay) &
 
 exec dwm

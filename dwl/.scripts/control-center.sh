@@ -43,28 +43,28 @@ main() {
             help_menu
             ;;
         --brightness)
-            /home/sravan/.scripts/brightness.sh --rofi
+            $HOME/.scripts/brightness.sh --rofi
             ;;
         --dunst)
-            /home/sravan/.scripts/dunst.sh --rofi
+            $HOME/.scripts/dunst.sh --rofi
             ;;
         --playerctl)
-            /home/sravan/.scripts/playerctl.sh --rofi
+            $HOME/.scripts/playerctl.sh --rofi
             ;;
         --pactl)
-            /home/sravan/.scripts/pactl.sh --rofi
+            $HOME/.scripts/pactl.sh --rofi
             ;;
         --backup)
-            /home/sravan/.scripts/backup.sh --rofi
+            $HOME/.scripts/backup.sh --rofi
             ;;
         --cpu-gpu)
-            /home/sravan/.scripts/cpu-gpu.sh --rofi
+            $HOME/.scripts/cpu-gpu.sh --rofi
             ;;
         --gaming)
-            /home/sravan/.scripts/gaming.sh --rofi
+            $HOME/.scripts/gaming.sh --rofi
             ;;
         --session)
-            /home/sravan/.scripts/session.sh --rofi
+            $HOME/.scripts/session.sh --rofi
             ;;
         --rofi)
             rofi_menu

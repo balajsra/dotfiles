@@ -31,8 +31,8 @@ declare -a delay_array=(\
     "/usr/bin/syncthing-gtk" \                    # Syncthing GTK
     "/usr/bin/nextcloud" \                        # NextCloud Client
     "/usr/bin/nyrna" \                            # Nyrna
-    "bash /home/sravan/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --on" \  # Picom Compositor
+    "bash $HOME/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
+    "bash $HOME/.scripts/picom.sh --on" \  # Picom Compositor
     "/usr/bin/autorandr --change --force" \       # Auto restore screen layout
     "/usr/bin/numlockx on" \                      # Enable numlock
 )
@@ -49,8 +49,8 @@ declare -a kill_delay_array=(\
     "pkill syncthing-gtk" \                        # Syncthing GTK
     "pkill nextcloud" \                            # NextCloud Client
     "pkill nyrna" \                                # Nyrna
-    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
+    "bash $HOME/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
+    "bash $HOME/.scripts/picom.sh --off" \  # Picom Compositor
 )
 
 help_menu() {

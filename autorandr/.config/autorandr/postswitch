@@ -3,11 +3,11 @@
 if ! pgrep -x "i3lock" > /dev/null
 then
     # Restart session
-    /home/sravan/.scripts/session.sh --restart &
+    $HOME/.scripts/session.sh --restart &
 fi
 
 # Disable & Re-Enable Compositor
-/home/sravan/.scripts/picom.sh --on &
+$HOME/.scripts/picom.sh --on &
 
 # NVIDIA Force Composition Pipeline
 /usr/bin/nvidia-force-comp-pipeline &
@@ -17,4 +17,4 @@ fi
 
 # Update lock screen wallpaper
 /usr/bin/betterlockscreen -u \
-    /home/sravan/Data/NextCloud/Wallpapers/Desktop/Solar_System.png &
+    $HOME/Data/NextCloud/Wallpapers/Desktop/Solar_System.png &

@@ -11,5 +11,7 @@ export XDG_CURRENT_DESKTOP=wlroots    # Set XDG current desktop
 
 dwl &
 
-/home/sravan/.scripts/wayland-startup.sh --kill-startup &&
-    /home/sravan/.scripts/wayland-startup.sh --startup
+(sleep 3 &&
+ $HOME/.scripts/wayland-startup.sh --kill-startup &&
+ sleep 2 &&
+ $HOME/.scripts/wayland-startup.sh --startup) &

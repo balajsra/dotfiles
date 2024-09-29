@@ -3022,11 +3022,11 @@ See [[https://github.com/phillipberndt/autorandr#hook-scripts][autorandr hook sc
 if ! pgrep -x "i3lock" > /dev/null
 then
     # Restart session
-    /home/sravan/.scripts/session.sh --restart &
+    $HOME/.scripts/session.sh --restart &
 fi
 
 # Disable & Re-Enable Compositor
-/home/sravan/.scripts/picom.sh --on &
+$HOME/.scripts/picom.sh --on &
 
 # NVIDIA Force Composition Pipeline
 /usr/bin/nvidia-force-comp-pipeline &
@@ -3036,7 +3036,7 @@ fi
 
 # Update lock screen wallpaper
 /usr/bin/betterlockscreen -u \
-    /home/sravan/Data/NextCloud/Wallpapers/Desktop/Solar_System.png &
+    $HOME/Data/NextCloud/Wallpapers/Desktop/Solar_System.png &
 #+END_SRC
 
 *** Compositor
@@ -3561,7 +3561,7 @@ main() {
                 pkill picom
             fi
 
-            picom --config /home/sravan/.config/picom/picom.conf -b
+            picom --config $HOME/.config/picom/picom.conf -b
 
             notify-send "Turning Picom ON"
             ;;
@@ -3786,7 +3786,7 @@ bgcolor=282a36ff
 
 #+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 prelock() {
-    /home/sravan/.scripts/dunst.sh --pause
+    $HOME/.scripts/dunst.sh --pause
 }
 #+END_SRC
 
@@ -3795,7 +3795,7 @@ prelock() {
 #+BEGIN_SRC conf :tangle betterlockscreen/.config/betterlockscreen/betterlockscreenrc
 # custom postlock
 postlock() {
-    /home/sravan/.scripts/dunst.sh --unpause
+    $HOME/.scripts/dunst.sh --unpause
 }
 #+END_SRC
 
@@ -7533,13 +7533,13 @@ These are scripts that should be run from Lutris when launching or exiting a gam
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gaming/.scripts/game_launch.sh
 if [ $XDG_SESSION_DESKTOP == "dwm" ]; then
-    /home/sravan/.scripts/picom.sh --off &
+    $HOME/.scripts/picom.sh --off &
     /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true &
 fi
 
-/home/sravan/.scripts/cpu-gpu.sh --cpu-profile-performance &
-/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-performance &
-/home/sravan/.scripts/dunst.sh --pause &
+$HOME/.scripts/cpu-gpu.sh --cpu-profile-performance &
+$HOME/.scripts/cpu-gpu.sh --gpu-profile-performance &
+$HOME/.scripts/dunst.sh --pause &
 #+END_SRC
 
 *** Post-Exit Script
@@ -7548,13 +7548,13 @@ fi
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gaming/.scripts/game_exit.sh
 if [ $XDG_SESSION_DESKTOP == "dwm" ]; then
-    /home/sravan/.scripts/picom.sh --on &
+    $HOME/.scripts/picom.sh --on &
     /usr/bin/xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false &
 fi
 
-/home/sravan/.scripts/dunst.sh --unpause &
-/home/sravan/.scripts/cpu-gpu.sh --cpu-profile-balanced &
-/home/sravan/.scripts/cpu-gpu.sh --gpu-profile-adaptive &
+$HOME/.scripts/dunst.sh --unpause &
+$HOME/.scripts/cpu-gpu.sh --cpu-profile-balanced &
+$HOME/.scripts/cpu-gpu.sh --gpu-profile-adaptive &
 #+END_SRC
 
 *** PlayStation 5 (DualSense) to Xbox 360 Controller Button Mapping
@@ -8714,13 +8714,13 @@ xrdb ~/.Xresources
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 # Startup Applications
-/home/sravan/.scripts/x11-startup.sh --kill-startup &&
-    /home/sravan/.scripts/x11-startup.sh --startup
+$HOME/.scripts/x11-startup.sh --kill-startup &&
+    $HOME/.scripts/x11-startup.sh --startup
 
 # Delayed Startup Applications
 (sleep 5 &&
-    /home/sravan/.scripts/x11-startup.sh --kill-delay &&
-    /home/sravan/.scripts/x11-startup.sh --delay) &
+    $HOME/.scripts/x11-startup.sh --kill-delay &&
+    $HOME/.scripts/x11-startup.sh --delay) &
 #+END_SRC
 
 **** Launch Environment
@@ -8904,8 +8904,8 @@ declare -a delay_array=(\
     "/usr/bin/syncthing-gtk" \                    # Syncthing GTK
     "/usr/bin/nextcloud" \                        # NextCloud Client
     "/usr/bin/nyrna" \                            # Nyrna
-    "bash /home/sravan/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --on" \  # Picom Compositor
+    "bash $HOME/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
+    "bash $HOME/.scripts/picom.sh --on" \  # Picom Compositor
     "/usr/bin/autorandr --change --force" \       # Auto restore screen layout
     "/usr/bin/numlockx on" \                      # Enable numlock
 )
@@ -8922,8 +8922,8 @@ declare -a kill_delay_array=(\
     "pkill syncthing-gtk" \                        # Syncthing GTK
     "pkill nextcloud" \                            # NextCloud Client
     "pkill nyrna" \                                # Nyrna
-    "bash /home/sravan/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
-    "bash /home/sravan/.scripts/picom.sh --off" \  # Picom Compositor
+    "bash $HOME/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
+    "bash $HOME/.scripts/picom.sh --off" \  # Picom Compositor
 )
 
 help_menu() {
@@ -9046,8 +9046,10 @@ dwl &
 **** Startup Applications & Processes
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
-/home/sravan/.scripts/wayland-startup.sh --kill-startup &&
-    /home/sravan/.scripts/wayland-startup.sh --startup
+(sleep 3 &&
+ $HOME/.scripts/wayland-startup.sh --kill-startup &&
+ sleep 2 &&
+ $HOME/.scripts/wayland-startup.sh --startup) &
 #+END_SRC
 
 *** Wayland Startup
@@ -9783,13 +9785,13 @@ main() {
             help_menu
             ;;
         --dualsense-to-xbox-360)
-            kitty --hold /home/sravan/.scripts/dualsense_to_xbox_360_controller.sh
+            kitty --hold $HOME/.scripts/dualsense_to_xbox_360_controller.sh
             ;;
         --game-launch)
-            /home/sravan/.scripts/game_launch.sh
+            $HOME/.scripts/game_launch.sh
             ;;
         --game-exit)
-            /home/sravan/.scripts/game_exit.sh
+            $HOME/.scripts/game_exit.sh
             ;;
         --rofi)
             rofi_menu
@@ -9926,28 +9928,28 @@ main() {
             help_menu
             ;;
         --brightness)
-            /home/sravan/.scripts/brightness.sh --rofi
+            $HOME/.scripts/brightness.sh --rofi
             ;;
         --dunst)
-            /home/sravan/.scripts/dunst.sh --rofi
+            $HOME/.scripts/dunst.sh --rofi
             ;;
         --playerctl)
-            /home/sravan/.scripts/playerctl.sh --rofi
+            $HOME/.scripts/playerctl.sh --rofi
             ;;
         --pactl)
-            /home/sravan/.scripts/pactl.sh --rofi
+            $HOME/.scripts/pactl.sh --rofi
             ;;
         --backup)
-            /home/sravan/.scripts/backup.sh --rofi
+            $HOME/.scripts/backup.sh --rofi
             ;;
         --cpu-gpu)
-            /home/sravan/.scripts/cpu-gpu.sh --rofi
+            $HOME/.scripts/cpu-gpu.sh --rofi
             ;;
         --gaming)
-            /home/sravan/.scripts/gaming.sh --rofi
+            $HOME/.scripts/gaming.sh --rofi
             ;;
         --session)
-            /home/sravan/.scripts/session.sh --rofi
+            $HOME/.scripts/session.sh --rofi
             ;;
         --rofi)
             rofi_menu

@@ -9,9 +9,12 @@ export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
 export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 export XDG_CURRENT_DESKTOP=wlroots    # Set XDG current desktop
 
+$HOME/.scripts/wayland-startup.sh --kill-startup
+$HOME/.scripts/wayland-startup.sh --kill-delay
+
 dwl &
 
-(sleep 3 &&
- $HOME/.scripts/wayland-startup.sh --kill-startup &&
- sleep 2 &&
- $HOME/.scripts/wayland-startup.sh --startup) &
+sleep 2
+$HOME/.scripts/wayland-startup.sh --startup &
+sleep 3
+$HOME/.scripts/wayland-startup.sh --delay &

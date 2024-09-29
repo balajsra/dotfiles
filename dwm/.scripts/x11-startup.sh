@@ -20,35 +20,35 @@ declare -a kill_startup_array=(\
 )
 
 declare -a delay_array=(\
-    "/usr/bin/gammastep-indicator" \              # Gammastep Night Light
-    "/usr/bin/blueman-applet" \                   # Blueman Bluetooth Manager
-    "/usr/bin/nm-applet" \                        # Network Manager Applet
-    "/usr/bin/kdeconnect-indicator" \             # KDE Connect Indicator
-    "/usr/bin/flameshot" \                        # Flameshot Screenshot Tool
-    "/usr/bin/xfce4-power-manager" \              # XFCE4 Power Manager
-    "/usr/bin/udiskie -a -n -s" \                 # Udiskie
-    "/usr/bin/openrgb" \                          # OpenRGB
-    "/usr/bin/syncthing-gtk" \                    # Syncthing GTK
-    "/usr/bin/nextcloud" \                        # NextCloud Client
-    "/usr/bin/nyrna" \                            # Nyrna
-    "bash $HOME/.scripts/dunst.sh --on" \  # Dunst Notification Daemon
-    "bash $HOME/.scripts/picom.sh --on" \  # Picom Compositor
-    "/usr/bin/autorandr --change --force" \       # Auto restore screen layout
-    "/usr/bin/numlockx on" \                      # Enable numlock
+    "/usr/bin/gammastep-indicator" \         # Gammastep Night Light
+    "/usr/bin/blueman-applet" \              # Blueman Bluetooth Manager
+    "/usr/bin/nm-applet" \                   # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \        # KDE Connect Indicator
+    "/usr/bin/flameshot" \                   # Flameshot Screenshot Tool
+    "/usr/bin/xfce4-power-manager" \         # XFCE4 Power Manager
+    "/usr/bin/udiskie -a -n -s" \            # Udiskie
+    "/usr/bin/openrgb" \                     # OpenRGB
+    "/usr/bin/syncthing-gtk" \               # Syncthing GTK
+    "/usr/bin/nextcloud" \                   # NextCloud Client
+    "/usr/bin/nyrna" \                       # Nyrna
+    "bash $HOME/.scripts/dunst.sh --on" \    # Dunst Notification Daemon
+    "bash $HOME/.scripts/picom.sh --on" \    # Picom Compositor
+    "/usr/bin/autorandr --change --force" \  # Auto restore screen layout
+    "/usr/bin/numlockx on" \                 # Enable numlock
 )
 
 declare -a kill_delay_array=(\
-    "pkill gammastep-indic" \                      # Gammastep Night Light
-    "pkill blueman-applet" \                       # Blueman Bluetooth Manager
-    "pkill nm-applet" \                            # Network Manager Applet
-    "pkill kdeconnect-indicator" \                 # KDE Connect Indicator
-    "pkill flameshot" \                            # Flameshot Screenshot Tool
-    "pkill xfce4-power-manager" \                  # XFCE4 Power Manager
-    "pkill udiskie" \                              # Udiskie
-    "pkill openrgb" \                              # OpenRGB
-    "pkill syncthing-gtk" \                        # Syncthing GTK
-    "pkill nextcloud" \                            # NextCloud Client
-    "pkill nyrna" \                                # Nyrna
+    "pkill gammastep-indic" \               # Gammastep Night Light
+    "pkill blueman-applet" \                # Blueman Bluetooth Manager
+    "pkill nm-applet" \                     # Network Manager Applet
+    "pkill kdeconnect-indicator" \          # KDE Connect Indicator
+    "pkill flameshot" \                     # Flameshot Screenshot Tool
+    "pkill xfce4-power-manager" \           # XFCE4 Power Manager
+    "pkill udiskie" \                       # Udiskie
+    "pkill openrgb" \                       # OpenRGB
+    "pkill syncthing-gtk" \                 # Syncthing GTK
+    "pkill nextcloud" \                     # NextCloud Client
+    "pkill nyrna" \                         # Nyrna
     "bash $HOME/.scripts/dunst.sh --off" \  # Dunst Notification Daemon
     "bash $HOME/.scripts/picom.sh --off" \  # Picom Compositor
 )

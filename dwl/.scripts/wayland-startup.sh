@@ -10,18 +10,6 @@ declare -a startup_array=(\
     "/usr/bin/bash $HOME/.scripts/dunst.sh" \                  # Dunst Notification Daemon
     "/usr/bin/wl-paste --type text --watch cliphist store" \   # Clipboard for Text
     "/usr/bin/wl-paste --type image --watch cliphist store" \  # Clipboard for Images
-    # Tray Applications
-    "/usr/bin/gammastep-indicator" \   # Gamamstep Night Light Indicator
-    "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
-    "/usr/bin/nm-applet" \             # Network Manager Applet
-    "/usr/bin/kdeconnect-indicator" \  # KDE Connect Indicator
-    "/usr/bin/udiskie -a -n -s" \      # Udiskie
-    # Status Bar
-    "/usr/bin/sh -c $HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
-    # GUI Applications
-    "/usr/bin/nextcloud" \      # NextCloud Client
-    "/usr/bin/syncthing-gtk" \  # Syncthing GUI
-    "/usr/bin/openrgb" \        # OpenRGB
 )
 
 declare -a kill_startup_array=(\
@@ -33,14 +21,32 @@ declare -a kill_startup_array=(\
     "pkill kdeconnectd" \
     "pkill dunst" \
     "pkill wl-paste" \
+)
+
+declare -a delay_array=(\
+    # Status Bar
+    "/usr/bin/sh -c $HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
+    # Tray Applications
+    "/usr/bin/gammastep-indicator" \   # Gamamstep Night Light Indicator
+    "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
+    "/usr/bin/nm-applet" \             # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \  # KDE Connect Indicator
+    "/usr/bin/udiskie -a -n -s" \      # Udiskie
+    # GUI Applications
+    "/usr/bin/nextcloud" \      # NextCloud Client
+    "/usr/bin/syncthing-gtk" \  # Syncthing GUI
+    "/usr/bin/openrgb" \        # OpenRGB
+)
+
+declare -a kill_delay_array=(\
+    # Status Bar
+    "pkill waybar" \
     # Tray Applications
     "pkill gammastep-indic" \
     "pkill blueman-applet" \
     "pkill nm-applet" \
     "pkill kdeconnect-indi" \
     "pkill udiskie" \
-    # Status Bar
-    "pkill waybar" \
     # GUI Applications
     "pkill nextcloud" \
     "pkill syncthing-gtk" \
@@ -60,7 +66,9 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         " Launch Startup Processes - startup"
+        "󰔟 Launch Delayed Processes - delay"
         " Kill Startup Processes - kill-startup"
+        " Kill Delayed Processes - kill-delay"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -95,8 +103,30 @@ main() {
                 fi
             done
             ;;
+        --delay)
+            for i in "${delay_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
         --kill-startup)
             for i in "${kill_startup_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --kill-delay)
+            for i in "${kill_delay_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then

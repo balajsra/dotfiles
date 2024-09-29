@@ -7,14 +7,9 @@ export BROWSER=vivaldi-stable         # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
 export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
 export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
+export XDG_CURRENT_DESKTOP=wlroots    # Set XDG current desktop
 
-# Startup Applications
+dwl &
+
 /home/sravan/.scripts/wayland-startup.sh --kill-startup &&
     /home/sravan/.scripts/wayland-startup.sh --startup
-
-# Delayed Startup Applications
-(sleep 5 &&
-    /home/sravan/.scripts/wayland-startup.sh --kill-delay &&
-    /home/sravan/.scripts/wayland-startup.sh --delay) &
-
-exec dwl

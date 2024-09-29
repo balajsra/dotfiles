@@ -101,20 +101,13 @@
 - [[#ssh][SSH]]
   - [[#config-2][Config]]
 - [[#system-settings][System Settings]]
-  - [[#xinit][Xinit]]
-    - [[#environment-variables][Environment Variables]]
-    - [[#load-xresources][Load Xresources]]
-    - [[#startup-applications--processes][Startup Applications & Processes]]
-    - [[#launch-environment][Launch Environment]]
-  - [[#xresources][Xresources]]
-    - [[#colors-1][Colors]]
-    - [[#sizes][Sizes]]
-    - [[#application-specific-changes][Application Specific Changes]]
-  - [[#winit][Winit]]
-    - [[#environment-variables-1][Environment Variables]]
-    - [[#startup-applications--processes-1][Startup Applications & Processes]]
-    - [[#launch-environment-1][Launch Environment]]
-  - [[#x11-startup][X11 Startup]]
+  - [[#x11][X11]]
+    - [[#xinit][Xinit]]
+    - [[#xresources][Xresources]]
+    - [[#x11-startup][X11 Startup]]
+  - [[#wayland][Wayland]]
+    - [[#winit][Winit]]
+    - [[#wayland-startup][Wayland Startup]]
 - [[#justfile][Justfile]]
 - [[#miscellaneous-scripts][Miscellaneous Scripts]]
   - [[#media-control][Media Control]]
@@ -8694,9 +8687,11 @@ Host gitea.sravanbalaji.com
 
 * System Settings
 
-** Xinit
+** X11
 
-*** Environment Variables
+*** Xinit
+
+**** Environment Variables
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 export TERM=xterm-256color            # Sets the terminal type
@@ -8709,13 +8704,13 @@ export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
 export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 #+END_SRC
 
-*** Load Xresources
+**** Load Xresources
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 xrdb ~/.Xresources
 #+END_SRC
 
-*** Startup Applications & Processes
+**** Startup Applications & Processes
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 # Startup Applications
@@ -8728,15 +8723,15 @@ xrdb ~/.Xresources
     /home/sravan/.scripts/x11-startup.sh --delay) &
 #+END_SRC
 
-*** Launch Environment
+**** Launch Environment
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 exec dwm
 #+END_SRC
 
-** Xresources
+*** Xresources
 
-*** Colors
+**** Colors
 
 #+BEGIN_SRC conf :tangle dwm/.Xresources
 ! Colors
@@ -8782,7 +8777,7 @@ exec dwm
 ,*.color16:    ORANGE
 #+END_SRC
 
-*** Sizes
+**** Sizes
 
 *NOT IN USE*
 #+BEGIN_SRC conf :tangle no
@@ -8834,9 +8829,9 @@ exec dwm
 #define CURSOR_SIZE 32
 #+END_SRC
 
-*** Application Specific Changes
+**** Application Specific Changes
 
-**** dwm
+***** dwm
 
 #+BEGIN_SRC conf :tangle dwm/.Xresources
 ! DWM
@@ -8853,7 +8848,7 @@ dwm.gappoh:          OUTER_GAPS
 dwm.gappov:          OUTER_GAPS
 #+END_SRC
 
-**** Polybar
+***** Polybar
 
 #+BEGIN_SRC conf :tangle dwm/.Xresources
 ! Polybar
@@ -8866,7 +8861,7 @@ polybar.tray-scale:         TRAY_SCALE
 polybar.maxlen:             MAXLEN
 #+END_SRC
 
-**** Display Scaling
+***** Display Scaling
 
 #+BEGIN_SRC conf :tangle dwm/.Xresources
 ! Display Scaling
@@ -8874,41 +8869,7 @@ polybar.maxlen:             MAXLEN
 Xcursor.size: CURSOR_SIZE
 #+END_SRC
 
-** Winit
-
-*** Environment Variables
-
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
-export TERM=xterm-256color            # Sets the terminal type
-export SHELL=/bin/fish                # Preferred shell
-export EDITOR="emacs"                 # Default editor
-export GIT_EDITOR="emacs"             # Default git editor
-export BROWSER=vivaldi-stable         # Web Browser
-export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
-export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
-export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
-#+END_SRC
-
-*** Startup Applications & Processes
-
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
-# Startup Applications
-/home/sravan/.scripts/wayland-startup.sh --kill-startup &&
-    /home/sravan/.scripts/wayland-startup.sh --startup
-
-# Delayed Startup Applications
-(sleep 5 &&
-    /home/sravan/.scripts/wayland-startup.sh --kill-delay &&
-    /home/sravan/.scripts/wayland-startup.sh --delay) &
-#+END_SRC
-
-*** Launch Environment
-
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
-exec dwl
-#+END_SRC
-
-** X11 Startup
+*** X11 Startup
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.scripts/x11-startup.sh
 declare -a startup_array=(\
@@ -9039,6 +9000,157 @@ main() {
             ;;
         --kill-delay)
             for i in "${kill_delay_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --rofi)
+            rofi_menu
+            ;;
+        esac
+    fi
+}
+
+main $@
+#+END_SRC
+
+** Wayland
+
+*** Winit
+
+**** Environment Variables
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
+export TERM=xterm-256color            # Sets the terminal type
+export SHELL=/bin/fish                # Preferred shell
+export EDITOR="emacs"                 # Default editor
+export GIT_EDITOR="emacs"             # Default git editor
+export BROWSER=vivaldi-stable         # Web Browser
+export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
+export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
+export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
+export XDG_CURRENT_DESKTOP=wlroots    # Set XDG current desktop
+#+END_SRC
+
+**** Launch Environment
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
+dwl &
+#+END_SRC
+
+**** Startup Applications & Processes
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
+/home/sravan/.scripts/wayland-startup.sh --kill-startup &&
+    /home/sravan/.scripts/wayland-startup.sh --startup
+#+END_SRC
+
+*** Wayland Startup
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.scripts/wayland-startup.sh
+declare -a startup_array=(\
+    # Display / Compositor Setup
+    "/usr/bin/shikane" \              # Display Setup
+    "/usr/bin/bash $HOME/.azotebg" \  # Wallpaper
+    "/usr/bin/gammastep -x" \         # Reset gammastep night light
+    # Background Processes
+    "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent
+    "/usr/bin/kdeconnectd --replace" \                         # KDE Connect Daemon
+    "/usr/bin/bash $HOME/.scripts/dunst.sh" \                  # Dunst Notification Daemon
+    "/usr/bin/wl-paste --type text --watch cliphist store" \   # Clipboard for Text
+    "/usr/bin/wl-paste --type image --watch cliphist store" \  # Clipboard for Images
+    # Tray Applications
+    "/usr/bin/gammastep-indicator" \   # Gamamstep Night Light Indicator
+    "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
+    "/usr/bin/nm-applet" \             # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \  # KDE Connect Indicator
+    "/usr/bin/udiskie -a -n -s" \      # Udiskie
+    # Status Bar
+    "/usr/bin/sh -c $HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
+    # GUI Applications
+    "/usr/bin/nextcloud" \      # NextCloud Client
+    "/usr/bin/syncthing-gtk" \  # Syncthing GUI
+    "/usr/bin/openrgb" \        # OpenRGB
+)
+
+declare -a kill_startup_array=(\
+    # Display / Compositor Setup
+    "pkill shikane" \
+    "pkill gammastep" \
+    # Background Processes
+    "pkill polkit-gnome-au" \
+    "pkill kdeconnectd" \
+    "pkill dunst" \
+    "pkill wl-paste" \
+    # Tray Applications
+    "pkill gammastep-indic" \
+    "pkill blueman-applet" \
+    "pkill nm-applet" \
+    "pkill kdeconnect-indi" \
+    "pkill udiskie" \
+    # Status Bar
+    "pkill waybar" \
+    # GUI Applications
+    "pkill nextcloud" \
+    "pkill syncthing-gtk" \
+    "pkill openrgb" \
+)
+
+help_menu() {
+    echo "Main script to launch and kill startup processes. Use only one argument at a time."
+    # echo "  - Play / Pause:  playerctl.sh --play-pause"
+    # echo "  - Next:          playerctl.sh --next"
+    # echo "  - Previous:      playerctl.sh --prev"
+    # echo "  - Change Player: playerctl.sh --change"
+    # echo "  - Rofi Menu:     playerctl.sh --rofi"
+    # echo "  - Help:          playerctl.sh --help OR playerctl.sh -h"
+}
+
+rofi_menu() {
+    declare -a options=(
+        " Launch Startup Processes - startup"
+        " Kill Startup Processes - kill-startup"
+        "󰌍 Back - back"
+        "󰗼 Quit - quit"
+    )
+
+    choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+    option=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+
+    if [[ "$option" == "quit" ]]; then
+        pkill rofi
+    elif [[ "$option" != "back" ]]; then
+        main "--$option" && main "--rofi"
+    fi
+}
+
+main() {
+    if [ $# -eq 0 ]; then
+        # No arguments
+        help_menu
+    else
+        case $1 in
+        --help | -h)
+            help_menu
+            ;;
+        --startup)
+            for i in "${startup_array[@]}"
+            do
+                if ! command -v $i > /dev/null
+                then
+                    do_nothing() { :; }
+                else
+                    $i &
+                fi
+            done
+            ;;
+        --kill-startup)
+            for i in "${kill_startup_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then

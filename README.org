@@ -46,6 +46,7 @@
     - [[#lock-screen][Lock Screen]]
   - [[#wayland-monitor-setup][Wayland Monitor Setup]]
     - [[#shikane][Shikane]]
+    - [[#lock-screen-1][Lock Screen]]
 - [[#command-line-interface][Command Line Interface]]
   - [[#multiplexer][Multiplexer]]
     - [[#tmux][Tmux]]
@@ -3859,6 +3860,64 @@ position = "0,0"
 scale = 1.0
 transform = "normal"
 adaptive_sync = false
+#+END_SRC
+
+*** Lock Screen
+
+**** Swaylock
+
+#+BEGIN_SRC conf :tangle swaylock/.config/swaylock/config
+ignore-empty-password
+font=Ubuntu
+
+clock
+timestr=%T
+datestr=%a, %x
+
+screenshots
+
+fade-in=0
+
+effect-blur=20x3
+effect-scale=1.0
+
+indicator
+indicator-radius=240
+indicator-thickness=20
+indicator-caps-lock
+
+key-hl-color=bd93f9
+
+separator-color=00000000
+
+inside-color=44475aff
+inside-clear-color=ffd20400
+inside-caps-lock-color=009ddc00
+inside-ver-color=d9d8d800
+inside-wrong-color=ee2e2400
+
+ring-color=282a36ff
+ring-clear-color=231f20D9
+ring-caps-lock-color=231f20D9
+ring-ver-color=50fa7bff
+ring-wrong-color=ff5555ff
+
+line-color=282a36ff
+line-clear-color=ffd204FF
+line-caps-lock-color=009ddcFF
+line-ver-color=50fa7bff
+line-wrong-color=ff5555ff
+
+text-color=8be9fdff
+text-clear-color=ffd20400
+text-ver-color=50fa7bff
+text-wrong-color=ff5555ff
+
+bs-hl-color=ee2e24FF
+caps-lock-key-hl-color=ffd204FF
+caps-lock-bs-hl-color=ee2e24FF
+disable-caps-lock-text
+text-caps-lock-color=009ddc
 #+END_SRC
 
 * Command Line Interface
@@ -9027,6 +9086,7 @@ stow-create:
         -S ssh \
         -S starship \
         -S swappy \
+        -S swaylock \
         -S swaync \
         -S swhkd \
         -S syncthing \
@@ -9087,6 +9147,7 @@ stow-delete:
         -D ssh \
         -D starship \
         -D swappy \
+        -D swaylock \
         -D swaync \
         -D swhkd \
         -D syncthing \
@@ -9147,6 +9208,7 @@ stow-recreate:
         -R ssh \
         -R starship \
         -R swappy \
+        -R swaylock \
         -R swaync \
         -R swhkd \
         -R syncthing \
@@ -9674,7 +9736,7 @@ main() {
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"
-            loginctl lock-session
+            swaylock
             ;;
         --sleep)
             notify-send "Session Control" "Going to Sleep"

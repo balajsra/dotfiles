@@ -110,7 +110,11 @@
     - [[#colors-1][Colors]]
     - [[#sizes][Sizes]]
     - [[#application-specific-changes][Application Specific Changes]]
-  - [[#startup][Startup]]
+  - [[#winit][Winit]]
+    - [[#environment-variables-1][Environment Variables]]
+    - [[#startup-applications--processes-1][Startup Applications & Processes]]
+    - [[#launch-environment-1][Launch Environment]]
+  - [[#x11-startup][X11 Startup]]
 - [[#justfile][Justfile]]
 - [[#miscellaneous-scripts][Miscellaneous Scripts]]
   - [[#media-control][Media Control]]
@@ -8694,7 +8698,7 @@ Host gitea.sravanbalaji.com
 
 *** Environment Variables
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 export TERM=xterm-256color            # Sets the terminal type
 export SHELL=/bin/fish                # Preferred shell
 export EDITOR="emacs"                 # Default editor
@@ -8707,26 +8711,26 @@ export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 
 *** Load Xresources
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 xrdb ~/.Xresources
 #+END_SRC
 
 *** Startup Applications & Processes
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 # Startup Applications
-/home/sravan/.scripts/startup.sh --kill-startup &&
-    /home/sravan/.scripts/startup.sh --startup
+/home/sravan/.scripts/x11-startup.sh --kill-startup &&
+    /home/sravan/.scripts/x11-startup.sh --startup
 
 # Delayed Startup Applications
 (sleep 5 &&
-    /home/sravan/.scripts/startup.sh --kill-delay &&
-    /home/sravan/.scripts/startup.sh --delay) &
+    /home/sravan/.scripts/x11-startup.sh --kill-delay &&
+    /home/sravan/.scripts/x11-startup.sh --delay) &
 #+END_SRC
 
 *** Launch Environment
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.xinitrc
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 exec dwm
 #+END_SRC
 
@@ -8734,7 +8738,7 @@ exec dwm
 
 *** Colors
 
-#+BEGIN_SRC conf :tangle x11/.Xresources
+#+BEGIN_SRC conf :tangle dwm/.Xresources
 ! Colors
 #define FOREGROUND #F8F8F2
 #define BACKGROUND #282A36
@@ -8797,7 +8801,7 @@ exec dwm
 #define CURSOR_SIZE 16
 #+END_SRC
 
-#+BEGIN_SRC conf :tangle x11/.Xresources
+#+BEGIN_SRC conf :tangle dwm/.Xresources
 ! System76 Oryx Pro 7 DPI Parameters
 #define DPI 96
 #define BAR_HEIGHT 25
@@ -8834,7 +8838,7 @@ exec dwm
 
 **** dwm
 
-#+BEGIN_SRC conf :tangle x11/.Xresources
+#+BEGIN_SRC conf :tangle dwm/.Xresources
 ! DWM
 dwm.normbordercolor: BLACK2
 dwm.normbgcolor:     BACKGROUND
@@ -8851,7 +8855,7 @@ dwm.gappov:          OUTER_GAPS
 
 **** Polybar
 
-#+BEGIN_SRC conf :tangle x11/.Xresources
+#+BEGIN_SRC conf :tangle dwm/.Xresources
 ! Polybar
 polybar.bar-height:         BAR_HEIGHT
 polybar.module-margin:      MODULE_MARGIN
@@ -8864,15 +8868,49 @@ polybar.maxlen:             MAXLEN
 
 **** Display Scaling
 
-#+BEGIN_SRC conf :tangle x11/.Xresources
+#+BEGIN_SRC conf :tangle dwm/.Xresources
 ! Display Scaling
 ,*.dpi: DPI
 Xcursor.size: CURSOR_SIZE
 #+END_SRC
 
-** Startup
+** Winit
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle x11/.scripts/startup.sh
+*** Environment Variables
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
+export TERM=xterm-256color            # Sets the terminal type
+export SHELL=/bin/fish                # Preferred shell
+export EDITOR="emacs"                 # Default editor
+export GIT_EDITOR="emacs"             # Default git editor
+export BROWSER=vivaldi-stable         # Web Browser
+export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
+export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
+export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
+#+END_SRC
+
+*** Startup Applications & Processes
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
+# Startup Applications
+/home/sravan/.scripts/wayland-startup.sh --kill-startup &&
+    /home/sravan/.scripts/wayland-startup.sh --startup
+
+# Delayed Startup Applications
+(sleep 5 &&
+    /home/sravan/.scripts/wayland-startup.sh --kill-delay &&
+    /home/sravan/.scripts/wayland-startup.sh --delay) &
+#+END_SRC
+
+*** Launch Environment
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
+exec dwl
+#+END_SRC
+
+** X11 Startup
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.scripts/x11-startup.sh
 declare -a startup_array=(\
     "/usr/bin/greenclip daemon" \                         # Greenclip Clipboard Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \  # GNOME Polkit Authentication Agent
@@ -9048,38 +9086,27 @@ doom-emacs-doctor:
 stow-create:
     stow -v \
         -S alacritty \
-        -S autorandr \
-        -S awesome \
         -S bash \
-        -S betterlockscreen \
         -S blender \
         -S brightness \
         -S calibre \
-        -S deadd \
         -S dunst \
         -S dwl \
-        -S dwm \
         -S emacs \
-        -S eww \
         -S fish \
         -S freecad \
-        -S fuzzel \
         -S gaming \
         -S gammastep \
         -S geoclue \
         -S gimp \
         -S git \
         -S gtk \
-        -S hyprland \
         -S kitty \
         -S mangal \
         -S mpv \
-        -S naughty \
         -S pactl \
-        -S picom \
         -S playerctl \
         -S qt5 \
-        -S redshift \
         -S rofi \
         -S shikane \
         -S snapborg \
@@ -9087,21 +9114,15 @@ stow-create:
         -S starship \
         -S swappy \
         -S swaylock \
-        -S swaync \
         -S swhkd \
         -S syncthing \
         -S system76 \
         -S tmux \
         -S trackma \
-        -S trackpad \
         -S tty \
         -S vim \
         -S vscode \
-        -S x11 \
-        -S xfce4-notifyd \
-        -S xmonad \
         -S xournalpp \
-        -S xrandr \
         -S zathura \
         -S zsh
 
@@ -9158,7 +9179,6 @@ stow-delete:
         -D tty \
         -D vim \
         -D vscode \
-        -D x11 \
         -D xfce4-notifyd \
         -D xmonad \
         -D xournalpp \
@@ -9170,38 +9190,27 @@ stow-delete:
 stow-recreate:
     stow -v \
         -R alacritty \
-        -R autorandr \
-        -R awesome \
         -R bash \
-        -R betterlockscreen \
         -R blender \
         -R brightness \
         -R calibre \
-        -R deadd \
         -R dunst \
         -R dwl \
-        -R dwm \
         -R emacs \
-        -R eww \
         -R fish \
         -R freecad \
-        -R fuzzel \
         -R gaming \
         -R gammastep \
         -R geoclue \
         -R gimp \
         -R git \
         -R gtk \
-        -R hyprland \
         -R kitty \
         -R mangal \
         -R mpv \
-        -R naughty \
         -R pactl \
-        -R picom \
         -R playerctl \
         -R qt5 \
-        -R redshift \
         -R rofi \
         -R shikane \
         -R snapborg \
@@ -9209,21 +9218,15 @@ stow-recreate:
         -R starship \
         -R swappy \
         -R swaylock \
-        -R swaync \
         -R swhkd \
         -R syncthing \
         -R system76 \
         -R tmux \
         -R trackma \
-        -R trackpad \
         -R tty \
         -R vim \
         -R vscode \
-        -R x11 \
-        -R xfce4-notifyd \
-        -R xmonad \
         -R xournalpp \
-        -R xrandr \
         -R zathura \
         -R zsh
 

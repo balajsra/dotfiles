@@ -9670,7 +9670,7 @@ main() {
             ;;
         --logout)
             notify-send "Session Control" "Logging Out of dwl"
-            wtype -M win -M shift -P q
+            pkill dwl
             ;;
         --lock)
             notify-send "Session Control" "Locking Session"

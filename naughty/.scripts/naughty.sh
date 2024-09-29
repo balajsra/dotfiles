@@ -43,7 +43,7 @@ main() {
             '
             ;;
         --pause)
-            notify-send "Pausing Notifications"
+            notify-send "Pausing Notifications" &
 
             /usr/bin/awesome-client '
             local naughty = require("naughty")
@@ -56,7 +56,7 @@ main() {
             naughty.resume()
             '
 
-            notify-send "Unpausing Notifications"
+            notify-send "Unpausing Notifications" &
             ;;
         --rofi)
             rofi_menu

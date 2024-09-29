@@ -57,14 +57,14 @@ main() {
 
             picom --config $HOME/.config/picom/picom.conf -b
 
-            notify-send "Turning Picom ON"
+            notify-send "Turning Picom ON" &
             ;;
         --off)
             if [ $(is_running) -eq '1' ]; then
                 pkill picom
             fi
 
-            notify-send "Turning Picom OFF"
+            notify-send "Turning Picom OFF" &
             ;;
         --rofi)
             rofi_menu

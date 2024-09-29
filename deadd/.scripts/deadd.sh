@@ -66,10 +66,10 @@ main() {
                 boolean:deadd-notification-center:true \
                 string:type:reloadStyle
 
-            notify-send "Turning Deadd ON"
+            notify-send "Turning Deadd ON" &
             ;;
         --off)
-            notify-send "Turning Deadd OFF"
+            notify-send "Turning Deadd OFF" &
 
             if [ $(is_running) -eq '1' ]; then
                 pkill deadd-notificat
@@ -79,7 +79,7 @@ main() {
             kill -s USR1 $(pidof deadd-notification-center)
             ;;
         --pause)
-            notify-send "Pausing Notifications"
+            notify-send "Pausing Notifications" &
 
             /usr/bin/notify-send.py a --hint \
                 boolean:deadd-notification-center:true \
@@ -90,7 +90,7 @@ main() {
                 boolean:deadd-notification-center:true \
                 string:type:unpausePopups > /dev/null 2>&1
 
-            notify-send "Unpausing Notifications"
+            notify-send "Unpausing Notifications" &
             ;;
         --rofi)
             rofi_menu

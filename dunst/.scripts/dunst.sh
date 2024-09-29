@@ -75,10 +75,10 @@ main() {
             # Start Dunst
             /usr/bin/dunst -config ~/.config/dunst/dunstrc &
 
-            notify-send "Turning Dunst ON"
+            notify-send "Turning Dunst ON" &
             ;;
         --off)
-            notify-send "Turning Dunst OFF"
+            notify-send "Turning Dunst OFF" &
 
             if [ $(is_running) -eq '1' ]; then
                 pkill dunst

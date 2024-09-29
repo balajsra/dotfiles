@@ -40,14 +40,14 @@ main() {
             xfce4-notifyd-config
             ;;
         --pause)
-            notify-send "Pausing Notifications"
+            notify-send "Pausing Notifications" &
 
             xfconf-query -c xfce4-notifyd -p /do-not-disturb -s true
             ;;
         --unpause)
             xfconf-query -c xfce4-notifyd -p /do-not-disturb -s false
 
-            notify-send "Unpausing Notifications"
+            notify-send "Unpausing Notifications" &
             ;;
         --rofi)
             rofi_menu

@@ -1,31 +1,17 @@
 #!/usr/bin/env bash
 declare -a startup_array=(\
-    # Display / Compositor Setup
-    "/usr/bin/shikane" \              # Display Setup
-    "/usr/bin/bash $HOME/.azotebg" \  # Wallpaper
-    "/usr/bin/gammastep -x" \         # Reset gammastep night light
     # Background Processes
     "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent
     "/usr/bin/kdeconnectd --replace" \                         # KDE Connect Daemon
-    "/usr/bin/bash $HOME/.scripts/dunst.sh" \                  # Dunst Notification Daemon
+    "$HOME/.scripts/dunst.sh --on" \                           # Dunst Notification Daemon
     "/usr/bin/wl-paste --type text --watch cliphist store" \   # Clipboard for Text
     "/usr/bin/wl-paste --type image --watch cliphist store" \  # Clipboard for Images
-)
-
-declare -a kill_startup_array=(\
     # Display / Compositor Setup
-    "pkill shikane" \
-    "pkill gammastep" \
-    # Background Processes
-    "pkill polkit-gnome-au" \
-    "pkill kdeconnectd" \
-    "pkill dunst" \
-    "pkill wl-paste" \
-)
-
-declare -a delay_array=(\
+    "/usr/bin/shikane" \       # Display Setup
+    "$HOME/.azotebg" \         # Wallpaper
+    "/usr/bin/gammastep -x" \  # Reset gammastep night light
     # Status Bar
-    "/usr/bin/sh -c $HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
+    "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
     # Tray Applications
     "/usr/bin/gammastep-indicator" \   # Gamamstep Night Light Indicator
     "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
@@ -38,7 +24,15 @@ declare -a delay_array=(\
     "/usr/bin/openrgb" \        # OpenRGB
 )
 
-declare -a kill_delay_array=(\
+declare -a kill_startup_array=(\
+    # Background Processes
+    "pkill polkit-gnome-au" \
+    "pkill kdeconnectd" \
+    "$HOME/.scripts/dunst.sh --off" \
+    "pkill wl-paste" \
+    # Display / Compositor Setup
+    "pkill shikane" \
+    "pkill gammastep" \
     # Status Bar
     "pkill waybar" \
     # Tray Applications
@@ -66,9 +60,7 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         " Launch Startup Processes - startup"
-        "󰔟 Launch Delayed Processes - delay"
         " Kill Startup Processes - kill-startup"
-        " Kill Delayed Processes - kill-delay"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -103,30 +95,8 @@ main() {
                 fi
             done
             ;;
-        --delay)
-            for i in "${delay_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
         --kill-startup)
             for i in "${kill_startup_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
-        --kill-delay)
-            for i in "${kill_delay_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then

@@ -684,10 +684,10 @@ main() {
             # Start Dunst
             /usr/bin/dunst -config ~/.config/dunst/dunstrc &
 
-            notify-send "Turning Dunst ON"
+            notify-send "Turning Dunst ON" &
             ;;
         --off)
-            notify-send "Turning Dunst OFF"
+            notify-send "Turning Dunst OFF" &
 
             if [ $(is_running) -eq '1' ]; then
                 pkill dunst
@@ -1207,10 +1207,10 @@ main() {
                 boolean:deadd-notification-center:true \
                 string:type:reloadStyle
 
-            notify-send "Turning Deadd ON"
+            notify-send "Turning Deadd ON" &
             ;;
         --off)
-            notify-send "Turning Deadd OFF"
+            notify-send "Turning Deadd OFF" &
 
             if [ $(is_running) -eq '1' ]; then
                 pkill deadd-notificat
@@ -1220,7 +1220,7 @@ main() {
             kill -s USR1 $(pidof deadd-notification-center)
             ;;
         --pause)
-            notify-send "Pausing Notifications"
+            notify-send "Pausing Notifications" &
 
             /usr/bin/notify-send.py a --hint \
                 boolean:deadd-notification-center:true \
@@ -1231,7 +1231,7 @@ main() {
                 boolean:deadd-notification-center:true \
                 string:type:unpausePopups > /dev/null 2>&1
 
-            notify-send "Unpausing Notifications"
+            notify-send "Unpausing Notifications" &
             ;;
         --rofi)
             rofi_menu
@@ -1290,7 +1290,7 @@ main() {
             '
             ;;
         --pause)
-            notify-send "Pausing Notifications"
+            notify-send "Pausing Notifications" &
 
             /usr/bin/awesome-client '
             local naughty = require("naughty")
@@ -1303,7 +1303,7 @@ main() {
             naughty.resume()
             '
 
-            notify-send "Unpausing Notifications"
+            notify-send "Unpausing Notifications" &
             ;;
         --rofi)
             rofi_menu
@@ -1964,14 +1964,14 @@ main() {
             xfce4-notifyd-config
             ;;
         --pause)
-            notify-send "Pausing Notifications"
+            notify-send "Pausing Notifications" &
 
             xfconf-query -c xfce4-notifyd -p /do-not-disturb -s true
             ;;
         --unpause)
             xfconf-query -c xfce4-notifyd -p /do-not-disturb -s false
 
-            notify-send "Unpausing Notifications"
+            notify-send "Unpausing Notifications" &
             ;;
         --rofi)
             rofi_menu
@@ -3563,14 +3563,14 @@ main() {
 
             picom --config $HOME/.config/picom/picom.conf -b
 
-            notify-send "Turning Picom ON"
+            notify-send "Turning Picom ON" &
             ;;
         --off)
             if [ $(is_running) -eq '1' ]; then
                 pkill picom
             fi
 
-            notify-send "Turning Picom OFF"
+            notify-send "Turning Picom OFF" &
             ;;
         --rofi)
             rofi_menu
@@ -3808,7 +3808,7 @@ postlock() {
 #+BEGIN_SRC toml :tangle shikane/.config/shikane/config.toml
 [[profile]]
 name = "docked"
-exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &"]
 
 [[profile.output]]
 enable = false
@@ -3847,7 +3847,7 @@ adaptive_sync = false
 #+BEGIN_SRC toml :tangle shikane/.config/shikane/config.toml
 [[profile]]
 name = "mobile"
-exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &"]
 
 [[profile.output]]
 enable = true
@@ -9037,58 +9037,30 @@ export _JAVA_AWT_WM_NONREPARENTING=1  # Java fix for Window Managers
 export XDG_CURRENT_DESKTOP=wlroots    # Set XDG current desktop
 #+END_SRC
 
-**** Stop Startup Applications & Processes
-
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
-$HOME/.scripts/wayland-startup.sh --kill-startup
-$HOME/.scripts/wayland-startup.sh --kill-delay
-#+END_SRC
-
 **** Launch Environment
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
-dwl &
-#+END_SRC
+$HOME/.scripts/wayland-startup.sh --kill-startup
 
-**** Startup Applications & Processes
-
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
-sleep 2
-$HOME/.scripts/wayland-startup.sh --startup &
-sleep 3
-$HOME/.scripts/wayland-startup.sh --delay &
+exec dwl -s 'sleep 5 && $HOME/.scripts/wayland-startup.sh --startup'
 #+END_SRC
 
 *** Wayland Startup
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.scripts/wayland-startup.sh
 declare -a startup_array=(\
-    # Display / Compositor Setup
-    "/usr/bin/shikane" \              # Display Setup
-    "/usr/bin/bash $HOME/.azotebg" \  # Wallpaper
-    "/usr/bin/gammastep -x" \         # Reset gammastep night light
     # Background Processes
     "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent
     "/usr/bin/kdeconnectd --replace" \                         # KDE Connect Daemon
-    "/usr/bin/bash $HOME/.scripts/dunst.sh" \                  # Dunst Notification Daemon
+    "$HOME/.scripts/dunst.sh --on" \                           # Dunst Notification Daemon
     "/usr/bin/wl-paste --type text --watch cliphist store" \   # Clipboard for Text
     "/usr/bin/wl-paste --type image --watch cliphist store" \  # Clipboard for Images
-)
-
-declare -a kill_startup_array=(\
     # Display / Compositor Setup
-    "pkill shikane" \
-    "pkill gammastep" \
-    # Background Processes
-    "pkill polkit-gnome-au" \
-    "pkill kdeconnectd" \
-    "pkill dunst" \
-    "pkill wl-paste" \
-)
-
-declare -a delay_array=(\
+    "/usr/bin/shikane" \       # Display Setup
+    "$HOME/.azotebg" \         # Wallpaper
+    "/usr/bin/gammastep -x" \  # Reset gammastep night light
     # Status Bar
-    "/usr/bin/sh -c $HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
+    "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
     # Tray Applications
     "/usr/bin/gammastep-indicator" \   # Gamamstep Night Light Indicator
     "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
@@ -9101,7 +9073,15 @@ declare -a delay_array=(\
     "/usr/bin/openrgb" \        # OpenRGB
 )
 
-declare -a kill_delay_array=(\
+declare -a kill_startup_array=(\
+    # Background Processes
+    "pkill polkit-gnome-au" \
+    "pkill kdeconnectd" \
+    "$HOME/.scripts/dunst.sh --off" \
+    "pkill wl-paste" \
+    # Display / Compositor Setup
+    "pkill shikane" \
+    "pkill gammastep" \
     # Status Bar
     "pkill waybar" \
     # Tray Applications
@@ -9129,9 +9109,7 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         " Launch Startup Processes - startup"
-        "󰔟 Launch Delayed Processes - delay"
         " Kill Startup Processes - kill-startup"
-        " Kill Delayed Processes - kill-delay"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -9166,30 +9144,8 @@ main() {
                 fi
             done
             ;;
-        --delay)
-            for i in "${delay_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
         --kill-startup)
             for i in "${kill_startup_array[@]}"
-            do
-                if ! command -v $i > /dev/null
-                then
-                    do_nothing() { :; }
-                else
-                    $i &
-                fi
-            done
-            ;;
-        --kill-delay)
-            for i in "${kill_delay_array[@]}"
             do
                 if ! command -v $i > /dev/null
                 then
@@ -9580,10 +9536,10 @@ trackpad_id=13
 if xinput list-props $trackpad_id | grep "Device Enabled (.*):.*1" >/dev/null
 then
     xinput disable $trackpad_id
-    notify-send -u low -i mouse "Trackpad disabled"
+    notify-send -u low -i mouse "Trackpad disabled" &
 else
     xinput enable $trackpad_id
-    notify-send -u low -i mouse "Trackpad enabled"
+    notify-send -u low -i mouse "Trackpad enabled" &
 fi
 #+END_SRC
 
@@ -9694,46 +9650,46 @@ main() {
             ;;
         --graphics-query)
             current_graphics=$(sudo system76-power graphics)
-            notify-send "System76-Power Graphics" "$current_graphics"
+            notify-send "System76-Power Graphics" "$current_graphics" &
             ;;
         --graphics-compute)
-            notify-send "System76-Power Graphics" "Switching to Compute Graphics..."
+            notify-send "System76-Power Graphics" "Switching to Compute Graphics..." &
             sudo system76-power graphics compute
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics" &
             ;;
         --graphics-hybrid)
-            notify-send "System76-Power Graphics" "Switching to Hybrid Graphics..."
+            notify-send "System76-Power Graphics" "Switching to Hybrid Graphics..." &
             sudo system76-power graphics hybrid
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics" &
             ;;
         --graphics-integrated)
-            notify-send "System76-Power Graphics" "Switching to Integrated Graphics..."
+            notify-send "System76-Power Graphics" "Switching to Integrated Graphics..." &
             sudo system76-power graphics integrated
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics" &
             ;;
         --graphics-nvidia)
-            notify-send "System76-Power Graphics" "Switching to Nvidia Graphics..."
+            notify-send "System76-Power Graphics" "Switching to Nvidia Graphics..." &
             sudo system76-power graphics nvidia
-            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics"
+            notify-send -u critical -t 0 "System76-Power Graphics" "Please reboot computer to switch graphics" &
             ;;
         --rofi-cpu-profile)
             rofi_cpu_profile_menu
             ;;
         --cpu-profile-query)
             current_profile=$(sudo system76-power profile)
-            notify-send "System76-Power CPU Profile" "$current_profile"
+            notify-send "System76-Power CPU Profile" "$current_profile" &
             ;;
         --cpu-profile-battery)
             sudo system76-power profile battery
-            notify-send "System76-Power CPU Profile" "Switched to Battery Profile"
+            notify-send "System76-Power CPU Profile" "Switched to Battery Profile" &
             ;;
         --cpu-profile-balanced)
             sudo system76-power profile balanced
-            notify-send "System76-Power CPU Profile" "Switched to Balanced Profile"
+            notify-send "System76-Power CPU Profile" "Switched to Balanced Profile" &
             ;;
         --cpu-profile-performance)
             sudo system76-power profile performance
-            notify-send "System76-Power CPU Profile" "Switched to Performance Profile"
+            notify-send "System76-Power CPU Profile" "Switched to Performance Profile" &
             ;;
         --rofi-gpu-profile)
             rofi_gpu_profile_menu
@@ -9741,33 +9697,33 @@ main() {
         --gpu-profile-query)
             if [ $XDG_SESSION_TYPE == "x11" ]; then
                 current_profile=$(nvidia-settings -q GpuPowerMizerMode)
-                notify-send "NVIDIA GPU Profile" "$current_profile"
+                notify-send "NVIDIA GPU Profile" "$current_profile" &
             elif [ $XDG_SESSION_TYPE == "wayland" ]; then
-                notify-send "NVIDIA GPU Profile not supported on Wayland"
+                notify-send "NVIDIA GPU Profile not supported on Wayland" &
             fi
             ;;
         --gpu-profile-adaptive)
             if [ $XDG_SESSION_TYPE == "x11" ]; then
                 nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=0"
-                notify-send "NVIDIA GPU Profile" "Switched to Adaptive Profile"
+                notify-send "NVIDIA GPU Profile" "Switched to Adaptive Profile" &
             elif [ $XDG_SESSION_TYPE == "wayland" ]; then
-                notify-send "NVIDIA GPU Profile not supported on Wayland"
+                notify-send "NVIDIA GPU Profile not supported on Wayland" &
             fi
             ;;
         --gpu-profile-performance)
             if [ $XDG_SESSION_TYPE == "x11" ]; then
                 nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=1"
-                notify-send "NVIDIA GPU Profile" "Switched to Performance Profile"
+                notify-send "NVIDIA GPU Profile" "Switched to Performance Profile" &
             elif [ $XDG_SESSION_TYPE == "wayland" ]; then
-                notify-send "NVIDIA GPU Profile not supported on Wayland"
+                notify-send "NVIDIA GPU Profile not supported on Wayland" &
             fi
             ;;
         --gpu-profile-auto)
             if [ $XDG_SESSION_TYPE == "x11" ]; then
                 nvidia-settings -a "[gpu:0]/GpuPowerMizerMode=2"
-                notify-send "NVIDIA GPU Profile" "Switched to Auto Profile"
+                notify-send "NVIDIA GPU Profile" "Switched to Auto Profile" &
             elif [ $XDG_SESSION_TYPE == "wayland" ]; then
-                notify-send "NVIDIA GPU Profile not supported on Wayland"
+                notify-send "NVIDIA GPU Profile not supported on Wayland" &
             fi
             ;;
         --rofi)
@@ -9885,27 +9841,27 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of dwl"
+            notify-send "Session Control" "Logging Out of dwl" &
             pkill dwl
             ;;
         --lock)
-            notify-send "Session Control" "Locking Session"
+            notify-send "Session Control" "Locking Session" &
             swaylock
             ;;
         --sleep)
-            notify-send "Session Control" "Going to Sleep"
+            notify-send "Session Control" "Going to Sleep" &
             systemctl suspend
             ;;
         --reboot)
-            notify-send "Session Control" "Rebooting System"
+            notify-send "Session Control" "Rebooting System" &
             systemctl reboot
             ;;
         --shutdown)
-            notify-send "Session Control" "Shutting Down System"
+            notify-send "Session Control" "Shutting Down System" &
             systemctl poweroff
             ;;
         --hibernate)
-            notify-send "Session Control" "Hibernating System"
+            notify-send "Session Control" "Hibernating System" &
             systemctl hibernate
             ;;
         --rofi)

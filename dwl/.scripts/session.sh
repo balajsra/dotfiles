@@ -41,27 +41,27 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of dwl"
+            notify-send "Session Control" "Logging Out of dwl" &
             pkill dwl
             ;;
         --lock)
-            notify-send "Session Control" "Locking Session"
+            notify-send "Session Control" "Locking Session" &
             swaylock
             ;;
         --sleep)
-            notify-send "Session Control" "Going to Sleep"
+            notify-send "Session Control" "Going to Sleep" &
             systemctl suspend
             ;;
         --reboot)
-            notify-send "Session Control" "Rebooting System"
+            notify-send "Session Control" "Rebooting System" &
             systemctl reboot
             ;;
         --shutdown)
-            notify-send "Session Control" "Shutting Down System"
+            notify-send "Session Control" "Shutting Down System" &
             systemctl poweroff
             ;;
         --hibernate)
-            notify-send "Session Control" "Hibernating System"
+            notify-send "Session Control" "Hibernating System" &
             systemctl hibernate
             ;;
         --rofi)

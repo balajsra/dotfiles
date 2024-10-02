@@ -11,4 +11,6 @@ export XDG_CURRENT_DESKTOP=wlroots    # Set XDG current desktop
 
 $HOME/.scripts/wayland-startup.sh --kill-startup
 
-exec dwl -s 'sleep 5 && $HOME/.scripts/wayland-startup.sh --startup'
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+dbus-run-session dwl -s '$HOME/.scripts/wayland-startup.sh --startup'

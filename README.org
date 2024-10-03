@@ -9042,9 +9042,8 @@ export XDG_CURRENT_DESKTOP=wlroots    # Set XDG current desktop
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
 $HOME/.scripts/wayland-startup.sh --kill-startup
 
-systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-dbus-run-session dwl -s '$HOME/.scripts/wayland-startup.sh --startup'
+dbus-update-activation-environment --systemd --all
+exec dbus-run-session -- dwl -s '$HOME/.scripts/wayland-startup.sh --startup'
 #+END_SRC
 
 *** Wayland Startup
@@ -9057,6 +9056,8 @@ declare -a startup_array=(\
     "$HOME/.scripts/dunst.sh --on" \                           # Dunst Notification Daemon
     "/usr/bin/wl-paste --type text --watch cliphist store" \   # Clipboard for Text
     "/usr/bin/wl-paste --type image --watch cliphist store" \  # Clipboard for Images
+    "/usr/bin/swhks" \                                         # Simple Wayland HotKey Server
+    "sudo /usr/bin/swhkd" \                                    # Simple Wayland HotKey Daemon
     # Display / Compositor Setup
     "/usr/bin/shikane" \       # Display Setup
     "$HOME/.azotebg" \         # Wallpaper
@@ -9081,6 +9082,8 @@ declare -a kill_startup_array=(\
     "pkill kdeconnectd" \
     "$HOME/.scripts/dunst.sh --off" \
     "pkill wl-paste" \
+    "pkill swhks" \
+    "pkill swhkd" \
     # Display / Compositor Setup
     "pkill shikane" \
     "pkill gammastep" \

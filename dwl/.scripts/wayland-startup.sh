@@ -6,6 +6,8 @@ declare -a startup_array=(\
     "$HOME/.scripts/dunst.sh --on" \                           # Dunst Notification Daemon
     "/usr/bin/wl-paste --type text --watch cliphist store" \   # Clipboard for Text
     "/usr/bin/wl-paste --type image --watch cliphist store" \  # Clipboard for Images
+    "/usr/bin/swhks" \                                         # Simple Wayland HotKey Server
+    "sudo /usr/bin/swhkd" \                                    # Simple Wayland HotKey Daemon
     # Display / Compositor Setup
     "/usr/bin/shikane" \       # Display Setup
     "$HOME/.azotebg" \         # Wallpaper
@@ -30,6 +32,8 @@ declare -a kill_startup_array=(\
     "pkill kdeconnectd" \
     "$HOME/.scripts/dunst.sh --off" \
     "pkill wl-paste" \
+    "pkill swhks" \
+    "pkill swhkd" \
     # Display / Compositor Setup
     "pkill shikane" \
     "pkill gammastep" \

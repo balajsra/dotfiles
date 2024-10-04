@@ -11,12 +11,11 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Logout - logout"
+        " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
         " Reboot - reboot"
         " Shutdown - shutdown"
-        "󰒲 Hibernate - hibernate"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -59,10 +58,6 @@ main() {
         --shutdown)
             notify-send "Session Control" "Shutting Down System" &
             systemctl poweroff
-            ;;
-        --hibernate)
-            notify-send "Session Control" "Hibernating System" &
-            systemctl hibernate
             ;;
         --rofi)
             rofi_menu

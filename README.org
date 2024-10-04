@@ -375,9 +375,9 @@ See ~man dunst.5~ for available options.
 [global]
     monitor = 0
     follow = keyboard
-    width = 700
+    width = 400
     height = 120
-    offset = 10x35
+    offset = 10x10
     origin = top-right
     notification_limit = 50
     indicate_hidden = true
@@ -9816,12 +9816,11 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        " Logout - logout"
+        " Logout - logout"
         " Lock - lock"
         "⏾ Sleep - sleep"
         " Reboot - reboot"
         " Shutdown - shutdown"
-        "󰒲 Hibernate - hibernate"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -9864,10 +9863,6 @@ main() {
         --shutdown)
             notify-send "Session Control" "Shutting Down System" &
             systemctl poweroff
-            ;;
-        --hibernate)
-            notify-send "Session Control" "Hibernating System" &
-            systemctl hibernate
             ;;
         --rofi)
             rofi_menu

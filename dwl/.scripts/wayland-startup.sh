@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 declare -a startup_array=(\
+    # Status Bar
+    "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
     # Background Processes
     "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent
     "/usr/bin/kdeconnectd --replace" \                         # KDE Connect Daemon
@@ -12,8 +14,6 @@ declare -a startup_array=(\
     "/usr/bin/shikane" \       # Display Setup
     "$HOME/.azotebg" \         # Wallpaper
     "/usr/bin/gammastep -x" \  # Reset gammastep night light
-    # Status Bar
-    "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
     # Tray Applications
     "/usr/bin/gammastep-indicator" \   # Gamamstep Night Light Indicator
     "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
@@ -27,6 +27,8 @@ declare -a startup_array=(\
 )
 
 declare -a kill_startup_array=(\
+    # Status Bar
+    "pkill waybar" \
     # Background Processes
     "pkill polkit-gnome-au" \
     "pkill kdeconnectd" \
@@ -37,8 +39,6 @@ declare -a kill_startup_array=(\
     # Display / Compositor Setup
     "pkill shikane" \
     "pkill gammastep" \
-    # Status Bar
-    "pkill waybar" \
     # Tray Applications
     "pkill gammastep-indic" \
     "pkill blueman-applet" \

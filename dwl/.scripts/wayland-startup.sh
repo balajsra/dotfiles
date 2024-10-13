@@ -3,6 +3,7 @@ declare -a startup_array=(\
     # Status Bar
     "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
     # Background Processes
+    "/usr/bin/swayidle" \                                      # Swayidle Idle Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent
     "/usr/bin/kdeconnectd --replace" \                         # KDE Connect Daemon
     "$HOME/.scripts/dunst.sh --on" \                           # Dunst Notification Daemon
@@ -30,6 +31,7 @@ declare -a kill_startup_array=(\
     # Status Bar
     "pkill waybar" \
     # Background Processes
+    "pkill swayidle" \
     "pkill polkit-gnome-au" \
     "pkill kdeconnectd" \
     "$HOME/.scripts/dunst.sh --off" \

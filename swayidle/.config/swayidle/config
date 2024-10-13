@@ -1,0 +1,3 @@
+timeout 600 "~/.scripts/session.sh --lock"
+before-sleep "~/.scripts/session.sh --lock"
+lock "swaylock"

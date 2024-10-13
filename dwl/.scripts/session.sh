@@ -45,7 +45,7 @@ main() {
             ;;
         --lock)
             notify-send "Session Control" "Locking Session" &
-            swaylock
+            loginctl lock-session
             ;;
         --sleep)
             notify-send "Session Control" "Going to Sleep" &

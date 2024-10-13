@@ -3861,6 +3861,14 @@ adaptive_sync = false
 
 *** Lock Screen
 
+**** Swayidle
+
+#+BEGIN_SRC conf :tangle swayidle/.config/swayidle/config
+timeout 600 "~/.scripts/session.sh --lock"
+before-sleep "~/.scripts/session.sh --lock"
+lock "swaylock"
+#+END_SRC
+
 **** Swaylock
 
 #+BEGIN_SRC conf :tangle swaylock/.config/swaylock/config
@@ -9053,6 +9061,7 @@ declare -a startup_array=(\
     # Status Bar
     "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
     # Background Processes
+    "/usr/bin/swayidle" \                                      # Swayidle Idle Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent
     "/usr/bin/kdeconnectd --replace" \                         # KDE Connect Daemon
     "$HOME/.scripts/dunst.sh --on" \                           # Dunst Notification Daemon
@@ -9080,6 +9089,7 @@ declare -a kill_startup_array=(\
     # Status Bar
     "pkill waybar" \
     # Background Processes
+    "pkill swayidle" \
     "pkill polkit-gnome-au" \
     "pkill kdeconnectd" \
     "$HOME/.scripts/dunst.sh --off" \
@@ -9225,6 +9235,7 @@ stow-create:
         -S ssh \
         -S starship \
         -S swappy \
+        -S swayidle \
         -S swaylock \
         -S swhkd \
         -S syncthing \
@@ -9280,6 +9291,7 @@ stow-delete:
         -D ssh \
         -D starship \
         -D swappy \
+        -D swayidle \
         -D swaylock \
         -D swaync \
         -D swhkd \
@@ -9329,6 +9341,7 @@ stow-recreate:
         -R ssh \
         -R starship \
         -R swappy \
+        -R swayidle \
         -R swaylock \
         -R swhkd \
         -R syncthing \
@@ -9850,7 +9863,7 @@ main() {
             ;;
         --lock)
             notify-send "Session Control" "Locking Session" &
-            swaylock
+            loginctl lock-session
             ;;
         --sleep)
             notify-send "Session Control" "Going to Sleep" &

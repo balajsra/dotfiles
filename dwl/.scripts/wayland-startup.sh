@@ -16,11 +16,10 @@ declare -a startup_array=(\
     "/usr/bin/hyprwall --restore" \  # Wallpaper
     "/usr/bin/gammastep -x" \        # Reset gammastep night light
     # Tray Applications
-    "/usr/bin/gammastep-indicator" \   # Gamamstep Night Light Indicator
-    "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
-    "/usr/bin/nm-applet" \             # Network Manager Applet
-    "/usr/bin/kdeconnect-indicator" \  # KDE Connect Indicator
-    "/usr/bin/udiskie -a -n -s" \      # Udiskie
+    "/usr/bin/blueman-applet" \           # Bluetooth Manager Applet
+    "/usr/bin/nm-applet" \                # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \     # KDE Connect Indicator
+    "/usr/bin/udiskie -a -n -s" \         # Udiskie
     # GUI Applications
     "/usr/bin/nextcloud" \      # NextCloud Client
     "/usr/bin/syncthing-gtk" \  # Syncthing GUI
@@ -40,9 +39,7 @@ declare -a kill_startup_array=(\
     "pkill swhkd" \
     # Display / Compositor Setup
     "pkill shikane" \
-    "pkill gammastep" \
     # Tray Applications
-    "pkill gammastep-indic" \
     "pkill blueman-applet" \
     "pkill nm-applet" \
     "pkill kdeconnect-indi" \

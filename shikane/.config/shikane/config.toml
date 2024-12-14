@@ -1,6 +1,9 @@
 [[profile]]
 name = "docked"
-exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &"]
+exec = [
+    "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &",
+    "$HOME/.scripts/gammastep.sh --on"
+]
 
 [[profile.output]]
 enable = false
@@ -35,7 +38,10 @@ adaptive_sync = false
 
 [[profile]]
 name = "mobile"
-exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &"]
+exec = [
+    "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &",
+    "$HOME/.scripts/gammastep.sh --on"
+]
 
 [[profile.output]]
 enable = true

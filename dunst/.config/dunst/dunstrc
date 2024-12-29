@@ -2,8 +2,8 @@
     monitor = 0
     follow = keyboard
     width = 400
-    height = 120
-    offset = 10x10
+    height = (0, 120)
+    offset = (10, 10)
     origin = top-right
     notification_limit = 50
     indicate_hidden = true

@@ -9138,7 +9138,7 @@ exec dbus-run-session -- dwl -s '$HOME/.scripts/wayland-startup.sh --startup'
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.scripts/wayland-startup.sh
 declare -a startup_array=(\
     # Status Bar
-    "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
+    "$HOME/.config/dwl/waybar/launch.sh" \                     # Waybar (dwl configuration)
     # Background Processes
     "/usr/bin/swayidle" \                                      # Swayidle Idle Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent

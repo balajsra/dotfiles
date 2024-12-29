@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 declare -a startup_array=(\
     # Status Bar
-    "$HOME/.config/dwl/waybar/launch.sh" \  # Waybar (dwl configuration)
+    "$HOME/.config/dwl/waybar/launch.sh" \                     # Waybar (dwl configuration)
     # Background Processes
     "/usr/bin/swayidle" \                                      # Swayidle Idle Manager
     "/usr/libexec/polkit-gnome-authentication-agent-1" \       # GNOME Polkit Authentication Agent

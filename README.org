@@ -59,6 +59,7 @@
   - [[#terminal][Terminal]]
     - [[#kitty][Kitty]]
     - [[#alacritty][Alacritty]]
+    - [[#ghostty][Ghostty]]
 - [[#text-editor][Text Editor]]
   - [[#vim][Vim]]
   - [[#emacs][Emacs]]
@@ -2003,7 +2004,7 @@ configuration {
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
     show-icons: true;
-    terminal: "kitty";
+    terminal: "ghostty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
@@ -2882,7 +2883,7 @@ password-character=*
 filter-desktop=no
 match-mode=fzf
 show-actions=yes
-terminal=kitty
+terminal=ghostty
 # launch-prefix=<not set>
 list-executables-in-path=no
 
@@ -7024,6 +7025,63 @@ shell:
 #print_events: false
 #+END_SRC
 
+*** Ghostty
+
+**** Fonts
+
+#+BEGIN_SRC conf :tangle ghostty/.config/ghostty/config
+font-family = "MonaspiceNe NFM"
+font-family-bold = "MonaspiceNe NFM Bold"
+font-family-italic = "MonaspiceNe NFM Italic"
+font-family-bold-italic = "MonaspiceNe NFM Bold Italic"
+font-size = 12.0
+#+END_SRC
+
+**** Cursor Customization
+
+#+BEGIN_SRC conf :tangle ghostty/.config/ghostty/config
+cursor-color = #CCCCCC
+cursor-opacity = 1
+cursor-style = bar
+cursor-style-blink = true
+#+END_SRC
+
+**** Scrollback
+
+#+BEGIN_SRC conf :tangle ghostty/.config/ghostty/config
+mouse-scroll-multiplier = 0.5
+#+END_SRC
+
+**** Color Scheme
+
+#+BEGIN_SRC conf :tangle ghostty/.config/ghostty/config
+theme = Dracula
+background-opacity = 0.8
+#+END_SRC
+
+**** Window
+
+#+BEGIN_SRC conf :tangle ghostty/.config/ghostty/config
+window-decoration = false
+window-padding-x = 5,5
+window-padding-y = 5,0
+#+END_SRC
+
+**** Clipboard
+
+#+BEGIN_SRC conf :tangle ghostty/.config/ghostty/config
+copy-on-select = true
+#+END_SRC
+
+**** Miscellaneous
+
+#+BEGIN_SRC conf :tangle ghostty/.config/ghostty/config
+title = Ghostty
+auto-update = off
+shell-integration = fish
+desktop-notifications = true
+#+END_SRC
+
 * Text Editor 
 
 ** Vim
@@ -8323,16 +8381,16 @@ main() {
             help_menu
             ;;
         --backup-root-to-hdd)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-hdd@root.service && journalctl -f -u snapborg-backup-hdd@root.service"
+            ghostty -e "sudo systemctl start snapborg-backup-hdd@root.service && journalctl -f -u snapborg-backup-hdd@root.service"
             ;;
         --backup-home-to-hdd)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-hdd@home.service && journalctl -f -u snapborg-backup-hdd@home.service"
+            ghostty -e "sudo systemctl start snapborg-backup-hdd@home.service && journalctl -f -u snapborg-backup-hdd@home.service"
             ;;
         --backup-root-to-fileserver)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-fileserver@root.service && journalctl -f -u snapborg-backup-fileserver@root.service"
+            ghostty -e "sudo systemctl start snapborg-backup-fileserver@root.service && journalctl -f -u snapborg-backup-fileserver@root.service"
             ;;
         --backup-home-to-fileserver)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-fileserver@home.service && journalctl -f -u snapborg-backup-fileserver@home.service"
+            ghostty -e "sudo systemctl start snapborg-backup-fileserver@home.service && journalctl -f -u snapborg-backup-fileserver@home.service"
             ;;
         --rofi)
             rofi_menu
@@ -9296,6 +9354,7 @@ stow-create:
         -S gaming \
         -S gammastep \
         -S geoclue \
+        -S ghostty \
         -S gimp \
         -S git \
         -S gtk \
@@ -9348,6 +9407,7 @@ stow-delete:
         -D gaming \
         -D gammastep \
         -D geoclue \
+        -D ghostty \
         -D gimp \
         -D git \
         -D gtk \
@@ -9402,6 +9462,7 @@ stow-recreate:
         -R gaming \
         -R gammastep \
         -R geoclue \
+        -R ghostty \
         -R gimp \
         -R git \
         -R gtk \
@@ -9872,7 +9933,7 @@ main() {
             help_menu
             ;;
         --dualsense-to-xbox-360)
-            kitty --hold $HOME/.scripts/dualsense_to_xbox_360_controller.sh
+            ghostty -e $HOME/.scripts/dualsense_to_xbox_360_controller.sh
             ;;
         --game-launch)
             $HOME/.scripts/game_launch.sh

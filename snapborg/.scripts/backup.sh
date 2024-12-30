@@ -33,16 +33,16 @@ main() {
             help_menu
             ;;
         --backup-root-to-hdd)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-hdd@root.service && journalctl -f -u snapborg-backup-hdd@root.service"
+            ghostty -e "sudo systemctl start snapborg-backup-hdd@root.service && journalctl -f -u snapborg-backup-hdd@root.service"
             ;;
         --backup-home-to-hdd)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-hdd@home.service && journalctl -f -u snapborg-backup-hdd@home.service"
+            ghostty -e "sudo systemctl start snapborg-backup-hdd@home.service && journalctl -f -u snapborg-backup-hdd@home.service"
             ;;
         --backup-root-to-fileserver)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-fileserver@root.service && journalctl -f -u snapborg-backup-fileserver@root.service"
+            ghostty -e "sudo systemctl start snapborg-backup-fileserver@root.service && journalctl -f -u snapborg-backup-fileserver@root.service"
             ;;
         --backup-home-to-fileserver)
-            kitty --hold bash -c "sudo systemctl start snapborg-backup-fileserver@home.service && journalctl -f -u snapborg-backup-fileserver@home.service"
+            ghostty -e "sudo systemctl start snapborg-backup-fileserver@home.service && journalctl -f -u snapborg-backup-fileserver@home.service"
             ;;
         --rofi)
             rofi_menu

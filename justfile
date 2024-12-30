@@ -35,6 +35,7 @@ stow-create:
         -S gaming \
         -S gammastep \
         -S geoclue \
+        -S ghostty \
         -S gimp \
         -S git \
         -S gtk \
@@ -87,6 +88,7 @@ stow-delete:
         -D gaming \
         -D gammastep \
         -D geoclue \
+        -D ghostty \
         -D gimp \
         -D git \
         -D gtk \
@@ -141,6 +143,7 @@ stow-recreate:
         -R gaming \
         -R gammastep \
         -R geoclue \
+        -R ghostty \
         -R gimp \
         -R git \
         -R gtk \

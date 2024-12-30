@@ -38,7 +38,7 @@ main() {
             help_menu
             ;;
         --dualsense-to-xbox-360)
-            kitty --hold $HOME/.scripts/dualsense_to_xbox_360_controller.sh
+            ghostty -e $HOME/.scripts/dualsense_to_xbox_360_controller.sh
             ;;
         --game-launch)
             $HOME/.scripts/game_launch.sh

@@ -1,10 +1,10 @@
 format = """
-[](#44475A)\
+[](#6272A4)\
 $directory\
-[](fg:#44475A bg:#6272a4)\
+[](fg:#6272A4 bg:#FF79C6)\
 $git_branch\
 $git_status\
-[](fg:#6272a4 bg:#BD93F9)\
+[](fg:#FF79C6 bg:#8BE9FD)\
 $c\
 $elixir\
 $elm\
@@ -15,11 +15,11 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-[](fg:#BD93F9 bg:#FF79C6)\
-$docker_context\
-[](fg:#FF79C6 bg:#FF5555)\
+[](fg:#8BE9FD bg:#FFB86C)\
+$direnv\
+[](fg:#FFB86C bg:#50FA7B)\
 $cmd_duration\
-[](fg:#FF5555)\
+[](fg:#50FA7B)\
 \n$character
 """
 
@@ -42,7 +42,7 @@ style_root = "bg:#44475A"
 format = '[ ]($style)'
 
 [directory]
-style = "bg:#44475A"
+style = "bg:#6272A4 fg:#F8F8F2"
 format = "[ $path ]($style)"
 truncation_length = 4
 truncate_to_repo = true
@@ -83,76 +83,82 @@ read_only = ""
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important  " = "  "
 
+[direnv]
+symbol = "  "
+style = "bg:#FFB86C fg:#282A36"
+format = "[ $symbol$loaded/$allowed ]($style)"
+disabled = false
+
 [c]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [cmd_duration]
 min_time = 0
-style = "bg:#FF5555"
-format = '[[ 󱎫 $duration ](bg:#FF5555)]($style)'
+style = "bg:#50FA7B fg:#282A36"
+format = '[ 󱎫 $duration ]($style)'
 show_notifications = true
 min_time_to_notify = 5_000
 
 [docker_context]
 symbol = " "
-style = "bg:#FF79C6"
-format = '[[ $symbol $context ](bg:#FF79C6)]($style) $path'
+style = "bg:#FFB86C fg:#282A36"
+format = '[ $symbol $context ]($style) $path'
 
 [elixir]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#6272a4"
-format = '[[ $symbol $branch ](bg:#6272a4)]($style)'
+style = "bg:#FF79C6 fg:#282A36"
+format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#6272a4"
-format = '[[($all_status$ahead_behind )](bg:#6272a4)]($style)'
+style = "bg:#FF79C6 fg:#282A36"
+format = '[($all_status$ahead_behind )]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = " "
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#BD93F9"
-format = '[[ $symbol ($version) ](bg:#BD93F9)]($style)'
+style = "bg:#8BE9FD fg:#282A36"
+format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false

@@ -52,3 +52,5 @@ if status is-interactive
 and not set -q TMUX
     tmux new-session
 end
+
+direnv hook fish | source

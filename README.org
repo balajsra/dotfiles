@@ -4748,6 +4748,12 @@ and not set -q TMUX
 end
 #+END_SRC
 
+**** Direnv
+
+#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
+direnv hook fish | source
+#+END_SRC
+
 ** Terminal
 
 *** Kitty

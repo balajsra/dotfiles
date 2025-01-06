@@ -1,10 +1,13 @@
+# Use the color palette
+palette = "dracula"
+
 format = """
-[](#6272A4)\
+[](comment)\
 $directory\
-[](fg:#6272A4 bg:#FF79C6)\
+[](fg:comment bg:pink)\
 $git_branch\
 $git_status\
-[](fg:#FF79C6 bg:#8BE9FD)\
+[](fg:pink bg:cyan)\
 $c\
 $elixir\
 $elm\
@@ -15,11 +18,11 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-[](fg:#8BE9FD bg:#FFB86C)\
+[](fg:cyan bg:orange)\
 $direnv\
-[](fg:#FFB86C bg:#50FA7B)\
+[](fg:orange bg:green)\
 $cmd_duration\
-[](fg:#50FA7B)\
+[](fg:green)\
 \n$character
 """
 
@@ -29,6 +32,20 @@ add_newline = false
 # Set timeout for commands
 command_timeout = 1000
 
+# Define Dracula color palette
+[palettes.dracula]
+background = "#282a36"
+current_line = "#44475a"
+foreground = "#f8f8f2"
+comment = "#6272a4"
+cyan = "#8be9fd"
+green = "#50fa7b"
+orange = "#ffb86c"
+pink = "#ff79c6"
+purple = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
+
 [character]
 format = "$symbol"
 success_symbol = "[  󱞪 ❯❯❯](bold green)  "
@@ -37,12 +54,12 @@ error_symbol = "[  󱞪 ❯❯❯](bold red)  "
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#44475A"
-style_root = "bg:#44475A"
+style_user = "bg:current_line"
+style_root = "bg:current_line"
 format = '[ ]($style)'
 
 [directory]
-style = "bg:#6272A4 fg:#F8F8F2"
+style = "bg:comment fg:foreground"
 format = "[ $path ]($style)"
 truncation_length = 4
 truncate_to_repo = true
@@ -85,83 +102,83 @@ read_only = ""
 
 [direnv]
 symbol = "  "
-style = "bg:#FFB86C fg:#282A36"
+style = "bg:orange fg:background"
 format = "[ $symbol$loaded/$allowed ]($style)"
 disabled = false
 
 [c]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [cmd_duration]
 min_time = 0
-style = "bg:#50FA7B fg:#282A36"
+style = "bg:green fg:background"
 format = '[ 󱎫 $duration ]($style)'
 show_notifications = true
 min_time_to_notify = 5_000
 
 [docker_context]
 symbol = " "
-style = "bg:#FFB86C fg:#282A36"
+style = "bg:orange fg:background"
 format = '[ $symbol $context ]($style) $path'
 
 [elixir]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#FF79C6 fg:#282A36"
+style = "bg:pink fg:background"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#FF79C6 fg:#282A36"
+style = "bg:pink fg:background"
 format = '[($all_status$ahead_behind )]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
 time_format = "%X" # Hour:Minute Format
-style = "bg:#FFB86C"
-format = '[[  $time ](bg:#FFB86C)]($style)'
+style = "bg:orange"
+format = '[[  $time ](bg:orange)]($style)'

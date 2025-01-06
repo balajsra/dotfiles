@@ -31,6 +31,7 @@ stow-create:
         -S dwl \
         -S emacs \
         -S fish \
+        -S foot \
         -S freecad \
         -S gaming \
         -S gammastep \
@@ -83,6 +84,7 @@ stow-delete:
         -D emacs \
         -D eww \
         -D fish \
+        -D foot \
         -D freecad \
         -D fuzzel \
         -D gaming \
@@ -139,6 +141,7 @@ stow-recreate:
         -R dwl \
         -R emacs \
         -R fish \
+        -R foot \
         -R freecad \
         -R gaming \
         -R gammastep \

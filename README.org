@@ -60,6 +60,7 @@
     - [[#kitty][Kitty]]
     - [[#alacritty][Alacritty]]
     - [[#ghostty][Ghostty]]
+    - [[#foot][Foot]]
 - [[#text-editor][Text Editor]]
   - [[#vim][Vim]]
   - [[#emacs][Emacs]]
@@ -2004,7 +2005,7 @@ configuration {
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
     show-icons: true;
-    terminal: "ghostty";
+    terminal: "foot";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
@@ -2883,7 +2884,7 @@ password-character=*
 filter-desktop=no
 match-mode=fzf
 show-actions=yes
-terminal=ghostty
+terminal=foot
 # launch-prefix=<not set>
 list-executables-in-path=no
 
@@ -4102,6 +4103,25 @@ Install theme plugin. See [[https://draculatheme.com/tmux][Dracula Theme - Tmux]
 set -g @plugin 'dracula/tmux'
 #+END_SRC
 
+Override color variables
+
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
+set -g @dracula-colors "
+# Dracula Color Pallette
+white='#f8f8f2'
+gray='#44475a'
+dark_gray='#282a36'
+light_purple='#bd93f9'
+dark_purple='#6272a4'
+cyan='#8be9fd'
+green='#50fa7b'
+orange='#ffb86c'
+red='#ff5555'
+pink='#ff79c6'
+yellow='#f1fa8c'
+"
+#+END_SRC
+
 Configure status bar modules. Available plugins are ~battery~, ~cpu-usage~, ~git~, ~gpu-usage~, ~ram-usage~, ~tmux-ram-usage~, ~network~, ~network-bandwidth~, ~network-ping~, ~ssh-session~, ~attached-clients~, ~network-vpn~, ~weather~, ~time~, ~mpc~, ~spotify-tui~, ~playerctl~, ~kubernetes-context~, ~synchronize-panes~.
 
 #+BEGIN_SRC conf :tangle tmux/.tmux.conf
@@ -4149,13 +4169,16 @@ run -b '~/.tmux/plugins/tpm/tpm'
 *** Starship
 
 #+BEGIN_SRC toml :tangle starship/.config/starship.toml
+# Use the color palette
+palette = "dracula"
+
 format = """
-[](#6272A4)\
+[](comment)\
 $directory\
-[](fg:#6272A4 bg:#FF79C6)\
+[](fg:comment bg:pink)\
 $git_branch\
 $git_status\
-[](fg:#FF79C6 bg:#8BE9FD)\
+[](fg:pink bg:cyan)\
 $c\
 $elixir\
 $elm\
@@ -4166,11 +4189,11 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-[](fg:#8BE9FD bg:#FFB86C)\
+[](fg:cyan bg:orange)\
 $direnv\
-[](fg:#FFB86C bg:#50FA7B)\
+[](fg:orange bg:green)\
 $cmd_duration\
-[](fg:#50FA7B)\
+[](fg:green)\
 \n$character
 """
 
@@ -4180,6 +4203,20 @@ add_newline = false
 # Set timeout for commands
 command_timeout = 1000
 
+# Define Dracula color palette
+[palettes.dracula]
+background = "#282a36"
+current_line = "#44475a"
+foreground = "#f8f8f2"
+comment = "#6272a4"
+cyan = "#8be9fd"
+green = "#50fa7b"
+orange = "#ffb86c"
+pink = "#ff79c6"
+purple = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
+
 [character]
 format = "$symbol"
 success_symbol = "[  󱞪 ❯❯❯](bold green)  "
@@ -4188,12 +4225,12 @@ error_symbol = "[  󱞪 ❯❯❯](bold red)  "
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#44475A"
-style_root = "bg:#44475A"
+style_user = "bg:current_line"
+style_root = "bg:current_line"
 format = '[ ]($style)'
 
 [directory]
-style = "bg:#6272A4 fg:#F8F8F2"
+style = "bg:comment fg:foreground"
 format = "[ $path ]($style)"
 truncation_length = 4
 truncate_to_repo = true
@@ -4236,86 +4273,86 @@ read_only = ""
 
 [direnv]
 symbol = "  "
-style = "bg:#FFB86C fg:#282A36"
+style = "bg:orange fg:background"
 format = "[ $symbol$loaded/$allowed ]($style)"
 disabled = false
 
 [c]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [cmd_duration]
 min_time = 0
-style = "bg:#50FA7B fg:#282A36"
+style = "bg:green fg:background"
 format = '[ 󱎫 $duration ]($style)'
 show_notifications = true
 min_time_to_notify = 5_000
 
 [docker_context]
 symbol = " "
-style = "bg:#FFB86C fg:#282A36"
+style = "bg:orange fg:background"
 format = '[ $symbol $context ]($style) $path'
 
 [elixir]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#FF79C6 fg:#282A36"
+style = "bg:pink fg:background"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#FF79C6 fg:#282A36"
+style = "bg:pink fg:background"
 format = '[($all_status$ahead_behind )]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = " "
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#8BE9FD fg:#282A36"
+style = "bg:cyan fg:background"
 format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
 time_format = "%X" # Hour:Minute Format
-style = "bg:#FFB86C"
-format = '[[  $time ](bg:#FFB86C)]($style)'
+style = "bg:orange"
+format = '[[  $time ](bg:orange)]($style)'
 #+END_SRC
 
 ** Shell
@@ -7094,6 +7131,333 @@ shell-integration = fish
 desktop-notifications = true
 #+END_SRC
 
+*** Foot
+
+**** Main
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+# shell=$SHELL
+term=foot-direct
+login-shell=no
+
+# app-id=foot
+title=foot
+locked-title=no
+
+font=MonaspiceNe NFM:size=12
+# font-bold=<bold variant of regular font>
+# font-italic=<italic variant of regular font>
+# font-bold-italic=<bold+italic variant of regular font>
+# font-size-adjustment=0.5
+# line-height=<font metrics>
+# letter-spacing=0
+# horizontal-letter-offset=0
+# vertical-letter-offset=0
+# underline-offset=<font metrics>
+# underline-thickness=<font underline thickness>
+# strikeout-thickness=<font strikeout thickness>
+# box-drawings-uses-font-glyphs=no
+# dpi-aware=no
+
+# initial-window-size-pixels=700x500  # Or,
+# initial-window-size-chars=<COLSxROWS>
+# initial-window-mode=windowed
+pad=0x0 center
+# resize-by-cells=yes
+# resize-keep-grid=yes
+# resize-delay-ms=100
+
+# bold-text-in-bright=no
+# word-delimiters=,│`|:"'()[]{}<>
+selection-target=primary
+# workers=<number of logical CPUs>
+# utmp-helper=/usr/lib/utempter/utempter  # When utmp backend is ‘libutempter’ (Linux)
+# utmp-helper=/usr/libexec/ulog-helper    # When utmp backend is ‘ulog’ (FreeBSD)
+#+END_SRC
+
+**** Environment
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[environment]
+# name=value
+#+END_SRC
+
+**** Security
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[security]
+# osc52=enabled  # disabled|copy-enabled|paste-enabled|enabled
+#+END_SRC
+
+**** Bell
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[bell]
+urgent=yes
+# notify=no
+# visual=no
+# command=
+# command-focused=no
+#+END_SRC
+
+**** Desktop Notifications
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[desktop-notifications]
+# command=notify-send --wait --app-name ${app-id} --icon ${app-id} --category ${category} --urgency ${urgency} --expire-time ${expire-time} --hint STRING:image-path:${icon} --hint BOOLEAN:suppress-sound:${muted} --hint STRING:sound-name:${sound-name} --replace-id ${replace-id} ${action-argument} --print-id -- ${title} ${body}
+# command-action-argument=--action ${action-name}=${action-label}
+# close=""
+# inhibit-when-focused=yes
+#+END_SRC
+
+**** Scrollback
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[scrollback]
+# lines=1000
+# multiplier=3.0
+# indicator-position=relative
+# indicator-format=""
+#+END_SRC
+
+**** URL
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[url]
+# launch=xdg-open ${url}
+# label-letters=sadfjklewcmpgh
+# osc8-underline=url-mode
+# protocols=http, https, ftp, ftps, file, gemini, gopher
+# uri-characters=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.,~:;/?#@!$&%*+="'()[]
+#+END_SRC
+
+**** Cursor
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[cursor]
+style=beam
+# color=<inverse foreground/background>
+blink=yes
+blink-rate=500
+# beam-thickness=1.5
+# underline-thickness=<font underline thickness>
+#+END_SRC
+
+**** Mouse
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[mouse]
+# hide-when-typing=no
+alternate-scroll-mode=yes
+#+END_SRC
+
+**** Touch
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[touch]
+# long-press-delay=400
+#+END_SRC
+
+**** Color
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[colors]
+alpha=0.8
+background=282a36
+foreground=f8f8f2
+# flash=7f7f00
+# flash-alpha=0.5
+
+## Normal/regular colors (color palette 0-7)
+regular0=21222c  # black
+regular1=ff5555  # red
+regular2=50fa7b  # green
+regular3=f1fa8c  # yellow
+regular4=bd93f9  # blue
+regular5=ff79c6  # magenta
+regular6=8be9fd  # cyan
+regular7=f8f8f2  # white
+
+## Bright colors (color palette 8-15)
+bright0=6272a4   # bright black
+bright1=ff6e6e   # bright red
+bright2=69ff94   # bright green
+bright3=ffffa5   # bright yellow
+bright4=d6acff   # bright blue
+bright5=ff92df   # bright magenta
+bright6=a4ffff   # bright cyan
+bright7=ffffff   # bright white
+
+## dimmed colors (see foot.ini(5) man page)
+# dim0=<not set>
+# ...
+# dim7=<not-set>
+
+## The remaining 256-color palette
+# 16 = <256-color palette #16>
+# ...
+# 255 = <256-color palette #255>
+
+## Sixel colors
+# sixel0 =  000000
+# sixel1 =  3333cc
+# sixel2 =  cc2121
+# sixel3 =  33cc33
+# sixel4 =  cc33cc
+# sixel5 =  33cccc
+# sixel6 =  cccc33
+# sixel7 =  878787
+# sixel8 =  424242
+# sixel9 =  545499
+# sixel10 = 994242
+# sixel11 = 549954
+# sixel12 = 995499
+# sixel13 = 549999
+# sixel14 = 999954
+# sixel15 = cccccc
+
+## Misc colors
+selection-foreground=ffffff
+selection-background=44475a
+# jump-labels=<regular0> <regular3>          # black-on-yellow
+# scrollback-indicator=<regular0> <bright4>  # black-on-bright-blue
+# search-box-no-match=<regular0> <regular1>  # black-on-red
+# search-box-match=<regular0> <regular3>     # black-on-yellow
+urls=8be9fd
+#+END_SRC
+
+**** CSD
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[csd]
+# preferred=server
+# size=26
+# font=<primary font>
+# color=<foreground color>
+# hide-when-maximized=no
+# double-click-to-maximize=yes
+# border-width=0
+# border-color=<csd.color>
+# button-width=26
+# button-color=<background color>
+# button-minimize-color=<regular4>
+# button-maximize-color=<regular2>
+# button-close-color=<regular1>
+#+END_SRC
+
+**** Key Bindings
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[key-bindings]
+# scrollback-up-page=Shift+Page_Up
+# scrollback-up-half-page=none
+# scrollback-up-line=none
+# scrollback-down-page=Shift+Page_Down
+# scrollback-down-half-page=none
+# scrollback-down-line=none
+# scrollback-home=none
+# scrollback-end=none
+# clipboard-copy=Control+Shift+c XF86Copy
+# clipboard-paste=Control+Shift+v XF86Paste
+# primary-paste=Shift+Insert
+# search-start=Control+Shift+r
+# font-increase=Control+plus Control+equal Control+KP_Add
+# font-decrease=Control+minus Control+KP_Subtract
+# font-reset=Control+0 Control+KP_0
+# spawn-terminal=Control+Shift+n
+# minimize=none
+# maximize=none
+# fullscreen=none
+# pipe-visible=[sh -c "xurls | fuzzel | xargs -r firefox"] none
+# pipe-scrollback=[sh -c "xurls | fuzzel | xargs -r firefox"] none
+# pipe-selected=[xargs -r firefox] none
+# pipe-command-output=[wl-copy] none # Copy last command's output to the clipboard
+# show-urls-launch=Control+Shift+o
+# show-urls-copy=none
+# show-urls-persistent=none
+# prompt-prev=Control+Shift+z
+# prompt-next=Control+Shift+x
+# unicode-input=Control+Shift+u
+# noop=none
+# quit=none
+#+END_SRC
+
+**** Search Bindings
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[search-bindings]
+# cancel=Control+g Control+c Escape
+# commit=Return
+# find-prev=Control+r
+# find-next=Control+s
+# cursor-left=Left Control+b
+# cursor-left-word=Control+Left Mod1+b
+# cursor-right=Right Control+f
+# cursor-right-word=Control+Right Mod1+f
+# cursor-home=Home Control+a
+# cursor-end=End Control+e
+# delete-prev=BackSpace
+# delete-prev-word=Mod1+BackSpace Control+BackSpace
+# delete-next=Delete
+# delete-next-word=Mod1+d Control+Delete
+# extend-char=Shift+Right
+# extend-to-word-boundary=Control+w Control+Shift+Right
+# extend-to-next-whitespace=Control+Shift+w
+# extend-line-down=Shift+Down
+# extend-backward-char=Shift+Left
+# extend-backward-to-word-boundary=Control+Shift+Left
+# extend-backward-to-next-whitespace=none
+# extend-line-up=Shift+Up
+# clipboard-paste=Control+v Control+Shift+v Control+y XF86Paste
+# primary-paste=Shift+Insert
+# unicode-input=none
+# scrollback-up-page=Shift+Page_Up
+# scrollback-up-half-page=none
+# scrollback-up-line=none
+# scrollback-down-page=Shift+Page_Down
+# scrollback-down-half-page=none
+# scrollback-down-line=none
+# scrollback-home=none
+# scrollback-end=none
+#+END_SRC
+
+**** URL Bindings
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[url-bindings]
+# cancel=Control+g Control+c Control+d Escape
+# toggle-url-visible=t
+#+END_SRC
+
+**** Text Bindings
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[text-bindings]
+# \x03=Mod4+c  # Map Super+c -> Ctrl+c
+#+END_SRC
+
+**** Mouse Bindings
+
+#+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
+[mouse-bindings]
+# scrollback-up-mouse=BTN_WHEEL_BACK
+# scrollback-down-mouse=BTN_WHEEL_FORWARD
+# font-increase=Control+BTN_WHEEL_BACK
+# font-decrease=Control+BTN_WHEEL_FORWARD
+# selection-override-modifiers=Shift
+# primary-paste=BTN_MIDDLE
+# select-begin=BTN_LEFT
+# select-begin-block=Control+BTN_LEFT
+# select-extend=BTN_RIGHT
+# select-extend-character-wise=Control+BTN_RIGHT
+# select-word=BTN_LEFT-2
+# select-word-whitespace=Control+BTN_LEFT-2
+# select-quote = BTN_LEFT-3
+# select-row=BTN_LEFT-4
+
+# vim: ft=dosini
+#+END_SRC
+
 * Text Editor 
 
 ** Vim
@@ -8393,16 +8757,16 @@ main() {
             help_menu
             ;;
         --backup-root-to-hdd)
-            ghostty -e "sudo systemctl start snapborg-backup-hdd@root.service && journalctl -f -u snapborg-backup-hdd@root.service"
+            foot sudo systemctl start snapborg-backup-hdd@root.service && journalctl -f -u snapborg-backup-hdd@root.service
             ;;
         --backup-home-to-hdd)
-            ghostty -e "sudo systemctl start snapborg-backup-hdd@home.service && journalctl -f -u snapborg-backup-hdd@home.service"
+            foot sudo systemctl start snapborg-backup-hdd@home.service && journalctl -f -u snapborg-backup-hdd@home.service
             ;;
         --backup-root-to-fileserver)
-            ghostty -e "sudo systemctl start snapborg-backup-fileserver@root.service && journalctl -f -u snapborg-backup-fileserver@root.service"
+            foot sudo systemctl start snapborg-backup-fileserver@root.service && journalctl -f -u snapborg-backup-fileserver@root.service
             ;;
         --backup-home-to-fileserver)
-            ghostty -e "sudo systemctl start snapborg-backup-fileserver@home.service && journalctl -f -u snapborg-backup-fileserver@home.service"
+            foot sudo systemctl start snapborg-backup-fileserver@home.service && journalctl -f -u snapborg-backup-fileserver@home.service
             ;;
         --rofi)
             rofi_menu
@@ -9362,6 +9726,7 @@ stow-create:
         -S dwl \
         -S emacs \
         -S fish \
+        -S foot \
         -S freecad \
         -S gaming \
         -S gammastep \
@@ -9414,6 +9779,7 @@ stow-delete:
         -D emacs \
         -D eww \
         -D fish \
+        -D foot \
         -D freecad \
         -D fuzzel \
         -D gaming \
@@ -9470,6 +9836,7 @@ stow-recreate:
         -R dwl \
         -R emacs \
         -R fish \
+        -R foot \
         -R freecad \
         -R gaming \
         -R gammastep \
@@ -9945,7 +10312,7 @@ main() {
             help_menu
             ;;
         --dualsense-to-xbox-360)
-            ghostty -e $HOME/.scripts/dualsense_to_xbox_360_controller.sh
+            foot $HOME/.scripts/dualsense_to_xbox_360_controller.sh
             ;;
         --game-launch)
             $HOME/.scripts/game_launch.sh

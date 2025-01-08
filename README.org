@@ -4087,6 +4087,12 @@ Don't rename windows automatically
 set-option -g allow-rename off
 #+END_SRC
 
+**** Display Pane Name
+
+#+BEGIN_SRC conf :tangle tmux/.tmux.conf
+set -g pane-border-status top
+#+END_SRC
+
 **** Setup Tmux Plugin Manager
 
 #+BEGIN_SRC conf :tangle tmux/.tmux.conf

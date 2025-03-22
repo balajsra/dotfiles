@@ -12,14 +12,14 @@ declare -a startup_array=(\
     "/usr/bin/swhks" \                                         # Simple Wayland HotKey Server
     "sudo /usr/bin/swhkd" \                                    # Simple Wayland HotKey Daemon
     # Display / Compositor Setup
-    "/usr/bin/shikane" \             # Display Setup
-    "/usr/bin/hyprwall --restore" \  # Wallpaper
-    "/usr/bin/gammastep -x" \        # Reset gammastep night light
+    "/usr/bin/shikane" \       # Display Setup
+    "$HOME/.azotebg" \         # Restore wallpaper
+    "/usr/bin/gammastep -x" \  # Reset gammastep night light
     # Tray Applications
-    "/usr/bin/blueman-applet" \           # Bluetooth Manager Applet
-    "/usr/bin/nm-applet" \                # Network Manager Applet
-    "/usr/bin/kdeconnect-indicator" \     # KDE Connect Indicator
-    "/usr/bin/udiskie -a -n -s" \         # Udiskie
+    "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
+    "/usr/bin/nm-applet" \             # Network Manager Applet
+    "/usr/bin/kdeconnect-indicator" \  # KDE Connect Indicator
+    "/usr/bin/udiskie -a -n -s" \      # Udiskie
     # GUI Applications
     "/usr/bin/nextcloud" \      # NextCloud Client
     "/usr/bin/syncthing-gtk" \  # Syncthing GUI

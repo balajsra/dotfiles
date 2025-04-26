@@ -40,6 +40,7 @@ stow-create:
         -S gimp \
         -S git \
         -S gtk \
+        -S hyprland \
         -S kitty \
         -S mangal \
         -S mpv \
@@ -150,6 +151,7 @@ stow-recreate:
         -R gimp \
         -R git \
         -R gtk \
+        -R hyprland \
         -R kitty \
         -R mangal \
         -R mpv \

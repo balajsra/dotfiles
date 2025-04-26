@@ -61,6 +61,7 @@ stow-create:
         -S tmux \
         -S trackma \
         -S tty \
+        -S uwsm \
         -S vim \
         -S vscode \
         -S xournalpp \
@@ -121,6 +122,7 @@ stow-delete:
         -D trackma \
         -D trackpad \
         -D tty \
+        -D uwsm \
         -D vim \
         -D vscode \
         -D xfce4-notifyd \
@@ -172,6 +174,7 @@ stow-recreate:
         -R tmux \
         -R trackma \
         -R tty \
+        -R uwsm \
         -R vim \
         -R vscode \
         -R xournalpp \

@@ -10393,7 +10393,7 @@ main $@
 
 ** Session Control
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.scripts/session.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle hyprland/.scripts/session.sh
 help_menu() {
     echo "Script to interact with desktop session. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"
@@ -10435,8 +10435,8 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of dwl" &
-            pkill dwl
+            notify-send "Session Control" "Logging Out of Hyprland" &
+            loginctl terminate-user ""
             ;;
         --lock)
             notify-send "Session Control" "Locking Session" &
@@ -10466,7 +10466,7 @@ main $@
 
 ** Control Center
 
-#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.scripts/control-center.sh
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle hyprland/.scripts/control-center.sh
 help_menu() {
     echo "Main script to launch sub-menu scripts. Use only one argument at a time."
     # echo "  - Play / Pause:  playerctl.sh --play-pause"

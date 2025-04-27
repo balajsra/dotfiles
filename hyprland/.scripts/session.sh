@@ -40,8 +40,8 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of dwl" &
-            pkill dwl
+            notify-send "Session Control" "Logging Out of Hyprland" &
+            loginctl terminate-user ""
             ;;
         --lock)
             notify-send "Session Control" "Locking Session" &

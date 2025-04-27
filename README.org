@@ -110,6 +110,7 @@
   - [[#wayland][Wayland]]
     - [[#winit][Winit]]
     - [[#wayland-startup][Wayland Startup]]
+    - [[#universal-wayland-session-manager][Universal Wayland Session Manager]]
 - [[#justfile][Justfile]]
 - [[#miscellaneous-scripts][Miscellaneous Scripts]]
   - [[#media-control][Media Control]]
@@ -9226,7 +9227,7 @@ Host gitea.sravanbalaji.com
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 export TERM=xterm-256color            # Sets the terminal type
-export SHELL=/bin/fish                # Preferred shell
+export SHELL=/usr/bin/fish            # Preferred shell
 export EDITOR="emacs"                 # Default editor
 export GIT_EDITOR="emacs"             # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
@@ -9554,7 +9555,7 @@ main $@
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
 export TERM=xterm-256color            # Sets the terminal type
-export SHELL=/bin/fish                # Preferred shell
+export SHELL=/usr/bin/fish            # Preferred shell
 export EDITOR=emacs                   # Default editor
 export GIT_EDITOR=emacs               # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
@@ -9703,7 +9704,7 @@ main $@
 #+BEGIN_SRC shell :tangle uwsm/.config/uwsm/env
 # User Settings
 export TERM=xterm-256color               # Sets the terminal type
-export SHELL=/bin/fish                   # Preferred shell
+export SHELL=/usr/bin/fish               # Preferred shell
 export EDITOR=emacs                      # Default editor
 export GIT_EDITOR=emacs                  # Default git editor
 export BROWSER=vivaldi-stable            # Web Browser

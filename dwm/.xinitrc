@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export TERM=xterm-256color            # Sets the terminal type
-export SHELL=/bin/fish                # Preferred shell
+export SHELL=/usr/bin/fish            # Preferred shell
 export EDITOR="emacs"                 # Default editor
 export GIT_EDITOR="emacs"             # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser

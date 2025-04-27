@@ -9555,8 +9555,8 @@ main $@
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
 export TERM=xterm-256color            # Sets the terminal type
 export SHELL=/bin/fish                # Preferred shell
-export EDITOR="emacs"                 # Default editor
-export GIT_EDITOR="emacs"             # Default git editor
+export EDITOR=emacs                   # Default editor
+export GIT_EDITOR=emacs               # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config  # Set Config directory
 export QT_QPA_PLATFORMTHEME=qt6ct     # QGtkStyle
@@ -9698,10 +9698,54 @@ main $@
 
 *** Universal Wayland Session Manager
 
+**** All Sessions
+
 #+BEGIN_SRC shell :tangle uwsm/.config/uwsm/env
+# User Settings
+export TERM=xterm-256color               # Sets the terminal type
+export SHELL=/bin/fish                   # Preferred shell
+export EDITOR=emacs                      # Default editor
+export GIT_EDITOR=emacs                  # Default git editor
+export BROWSER=vivaldi-stable            # Web Browser
+export XDG_CONFIG_HOME=$HOME/.config     # Set Config directory
+
+# Theming
 export XCURSOR_SIZE=24
-export LIBVA_DRIVER_NAME=nvidia
+
+# Java fix for Window Managers
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# NVIDIA
+export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export LIBVA_DRIVER_NAME=nvidia
+export __GL_GSYNC_ALLOWED=1
+export __GL_VRR_ALLOWED=0
+
+# Toolkit Backend
+export GDK_BACKEND=wayland,x11,*
+export QT_QPA_PLATFORM=wayland;xcb
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=0
+export QT_QPA_PLATFORMTHEME=qt6ct
+export SDL_VIDEODRIVER=wayland
+export CLUTTER_BACKEND=wayland
+#+END_SRC
+
+**** Hyprland
+
+#+BEGIN_SRC shell :tangle uwsm/.config/uwsm/env-hyprland
+# Hyprland
+export HYPRLAND_TRACE=0
+export HYPRLAND_NO_RT=0
+export HYPRLAND_NO_SD_NOTIFY=0
+export HYPRLAND_NO_SD_VARS=0
+
+# Aquamarine
+export AQ_TRACE=0
+export AQ_DRM_DEVICES=/dev/dri/card1:/dev/dri/card0
+export AQ_MGPU_NO_EXPLICIT=0
+export AQ_NO_MODIFIERS=0
 #+END_SRC
 
 * Justfile

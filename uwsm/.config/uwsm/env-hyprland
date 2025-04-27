@@ -1,0 +1,11 @@
+# Hyprland
+export HYPRLAND_TRACE=0
+export HYPRLAND_NO_RT=0
+export HYPRLAND_NO_SD_NOTIFY=0
+export HYPRLAND_NO_SD_VARS=0
+
+# Aquamarine
+export AQ_TRACE=0
+export AQ_DRM_DEVICES=/dev/dri/card1:/dev/dri/card0
+export AQ_MGPU_NO_EXPLICIT=0
+export AQ_NO_MODIFIERS=0

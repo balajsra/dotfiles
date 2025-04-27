@@ -7143,7 +7143,7 @@ desktop-notifications = true
 **** Main
 
 #+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
-# shell=$SHELL
+shell=/usr/bin/fish
 term=foot-direct
 login-shell=no
 
@@ -9227,7 +9227,6 @@ Host gitea.sravanbalaji.com
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwm/.xinitrc
 export TERM=xterm-256color            # Sets the terminal type
-export SHELL=/usr/bin/fish            # Preferred shell
 export EDITOR="emacs"                 # Default editor
 export GIT_EDITOR="emacs"             # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
@@ -9555,7 +9554,6 @@ main $@
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle dwl/.winitrc
 export TERM=xterm-256color            # Sets the terminal type
-export SHELL=/usr/bin/fish            # Preferred shell
 export EDITOR=emacs                   # Default editor
 export GIT_EDITOR=emacs               # Default git editor
 export BROWSER=vivaldi-stable         # Web Browser
@@ -9702,14 +9700,6 @@ main $@
 **** All Sessions
 
 #+BEGIN_SRC shell :tangle uwsm/.config/uwsm/env
-# User Settings
-export TERM=xterm-256color               # Sets the terminal type
-export SHELL=/usr/bin/fish               # Preferred shell
-export EDITOR=emacs                      # Default editor
-export GIT_EDITOR=emacs                  # Default git editor
-export BROWSER=vivaldi-stable            # Web Browser
-export XDG_CONFIG_HOME=$HOME/.config     # Set Config directory
-
 # Theming
 export XCURSOR_SIZE=24
 
@@ -9747,6 +9737,13 @@ export AQ_TRACE=0
 export AQ_DRM_DEVICES=/dev/dri/card1:/dev/dri/card0
 export AQ_MGPU_NO_EXPLICIT=0
 export AQ_NO_MODIFIERS=0
+
+# User Settings
+export TERM=xterm-256color               # Sets the terminal type
+export EDITOR=emacs                      # Default editor
+export GIT_EDITOR=emacs                  # Default git editor
+export BROWSER=vivaldi-stable            # Web Browser
+export XDG_CONFIG_HOME=$HOME/.config     # Set Config directory
 #+END_SRC
 
 * Justfile

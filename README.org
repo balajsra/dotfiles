@@ -9736,6 +9736,9 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=0
 export QT_QPA_PLATFORMTHEME=qt6ct
 export SDL_VIDEODRIVER=wayland
 export CLUTTER_BACKEND=wayland
+
+# Native Wayland Support for Most Electron Apps
+export ELECTRON_OZONE_PLATFORM_HINT=auto
 #+END_SRC
 
 **** Hyprland

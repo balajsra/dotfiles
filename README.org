@@ -3883,14 +3883,33 @@ postlock() {
 
 *** Shikane
 
-**** Docked
+**** Post Switch
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle shikane/.scripts/shikane-postswitch.sh
+if [ $XDG_SESSION_DESKTOP == "Hyprland" ]; then
+    hyprctl reload
+fi
+
+systemctl --user restart waybar.service
+$HOME/.scripts/gammastep.sh --on
+#+END_SRC
+
+**** Timeout
+
+#+BEGIN_SRC toml :tangle shikane/.config/shikane/config.toml
+timeout = 0
+#+END_SRC
+
+**** Profiles
+
+***** Docked
 
 #+BEGIN_SRC toml :tangle shikane/.config/shikane/config.toml
 [[profile]]
 name = "docked"
 exec = [
     "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &",
-    "$HOME/.scripts/gammastep.sh --on"
+    "$HOME/.scripts/shikane-postswitch.sh"
 ]
 
 [[profile.output]]
@@ -3925,14 +3944,14 @@ transform = "normal"
 adaptive_sync = false
 #+END_SRC
 
-**** Mobile
+***** Mobile
 
 #+BEGIN_SRC toml :tangle shikane/.config/shikane/config.toml
 [[profile]]
 name = "mobile"
 exec = [
     "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &",
-    "$HOME/.scripts/gammastep.sh --on"
+    "$HOME/.scripts/shikane-postswitch.sh"
 ]
 
 [[profile.output]]

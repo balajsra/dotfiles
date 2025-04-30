@@ -1,8 +1,10 @@
+timeout = 0
+
 [[profile]]
 name = "docked"
 exec = [
     "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &",
-    "$HOME/.scripts/gammastep.sh --on"
+    "$HOME/.scripts/shikane-postswitch.sh"
 ]
 
 [[profile.output]]
@@ -40,7 +42,7 @@ adaptive_sync = false
 name = "mobile"
 exec = [
     "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\" &",
-    "$HOME/.scripts/gammastep.sh --on"
+    "$HOME/.scripts/shikane-postswitch.sh"
 ]
 
 [[profile.output]]

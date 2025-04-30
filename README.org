@@ -100,6 +100,7 @@
     - [[#gtk][Gtk]]
     - [[#qt][Qt]]
   - [[#swappy][Swappy]]
+  - [[#pkgdev][Pkgdev]]
 - [[#ssh][SSH]]
   - [[#config-2][Config]]
 - [[#system-settings][System Settings]]
@@ -9234,6 +9235,17 @@ early_exit=false
 fill_shape=false
 #+END_SRC
 
+** Pkgdev
+
+#+BEGIN_SRC conf :tangle pkgdev/.config/pkgdev/pkgdev.conf
+[sravan-overlay]
+commit.scan = true
+commit.ask = true
+push.ask = true
+commit.signoff = true
+commit.all =
+#+END_SRC
+
 * SSH
 
 ** Config
@@ -9833,6 +9845,7 @@ stow-create:
         -S mangal \
         -S mpv \
         -S pactl \
+        -S pkgdev \
         -S playerctl \
         -S qt5 \
         -S rofi \
@@ -9891,6 +9904,7 @@ stow-delete:
         -D naughty \
         -D pactl \
         -D picom \
+        -D pkgdev \
         -D playerctl \
         -D qt5 \
         -D redshift \
@@ -9946,6 +9960,7 @@ stow-recreate:
         -R mangal \
         -R mpv \
         -R pactl \
+        -R pkgdev \
         -R playerctl \
         -R qt5 \
         -R rofi \

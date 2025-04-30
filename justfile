@@ -45,6 +45,7 @@ stow-create:
         -S mangal \
         -S mpv \
         -S pactl \
+        -S pkgdev \
         -S playerctl \
         -S qt5 \
         -S rofi \
@@ -103,6 +104,7 @@ stow-delete:
         -D naughty \
         -D pactl \
         -D picom \
+        -D pkgdev \
         -D playerctl \
         -D qt5 \
         -D redshift \
@@ -158,6 +160,7 @@ stow-recreate:
         -R mangal \
         -R mpv \
         -R pactl \
+        -R pkgdev \
         -R playerctl \
         -R qt5 \
         -R rofi \

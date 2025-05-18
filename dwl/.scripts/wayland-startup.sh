@@ -12,9 +12,9 @@ declare -a startup_array=(\
     "/usr/bin/swhks" \                                         # Simple Wayland HotKey Server
     "sudo /usr/bin/swhkd" \                                    # Simple Wayland HotKey Daemon
     # Display / Compositor Setup
-    "/usr/bin/shikane" \       # Display Setup
-    "$HOME/.azotebg" \         # Restore wallpaper
-    "/usr/bin/gammastep -x" \  # Reset gammastep night light
+    "/usr/bin/shikane" \            # Display Setup
+    "/usr/bin/waypaper --random" \  # Restore wallpaper
+    "/usr/bin/gammastep -x" \       # Reset gammastep night light
     # Tray Applications
     "/usr/bin/blueman-applet" \        # Bluetooth Manager Applet
     "/usr/bin/nm-applet" \             # Network Manager Applet

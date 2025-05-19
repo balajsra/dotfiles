@@ -5,4 +5,4 @@ fi
 
 systemctl --user restart waybar.service
 $HOME/.scripts/gammastep.sh --on
-waypaper --random
+waypaper --restore

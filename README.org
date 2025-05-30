@@ -2188,12 +2188,12 @@ configuration {
 }
 
 window {
-    location: south west;
-    anchor: south west;
-    height: calc(100% - 45px);
-    width: 700;
-    x-offset: 10;
-    y-offset: -10;
+    location: center;
+    anchor: center;
+    height: 50%;
+    width: 50%;
+    x-offset: 0;
+    y-offset: 0;
     orientation: horizontal;
     children: [mainbox];
     border: 2;

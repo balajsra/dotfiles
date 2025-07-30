@@ -12,6 +12,10 @@ help_menu() {
 rofi_menu() {
     declare -a options=(
         "󰚰 Sync and Update Packages - sync-update"
+        " Remove Obsolete Packages - depclean"
+        " Update Package Configuration Files - conf-update"
+        " Remove Old Kernels - clean-kernel"
+        "󱋆 Update Grub Configuration - grub-update"
         " Spice Up Spotify - spicetify"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
@@ -43,6 +47,22 @@ main() {
             uwsm app -- foot -H sudo emerge @smart-live-rebuild
             notify-send "Gentoo" "Updating Versioned Packages" &
             uwsm app -- foot -H sudo emerge --update --deep --newuse --with-bdeps=y --verbose-conflicts @world
+            ;;
+        --depclean)
+            notify-send "Gentoo" "Removing Obsolete Packages" &
+            uwsm app -- foot -H sudo emerge --depclean
+            ;;
+        --conf-update)
+            notify-send "Gentoo" "Updating Configuration Files" &
+            uwsm app -- foot -H sudo dispatch-conf
+            ;;
+        --clean-kernel)
+            notify-send "Gentoo" "Removing Old Kernels" &
+            uwsm app -- foot -H sudo eclean-kernel -b grub2 -n 2
+            ;;
+        --grub-update)
+            notify-send "Gentoo" "Updating Grub Configuration" &
+            uwsm app -- foot -H sudo grub-mkconfig -o /boot/grub/grub.cfg
             ;;
         --spicetify)
             notify-send "Gentoo" "Spicing Up Spotify" &

@@ -19,6 +19,7 @@ rofi_menu() {
         " Hardware - cpu-gpu"
         " Gaming - gaming"
         " Power Menu - session"
+        " Gentoo - gentoo"
         "󰌍 Back - back"
         "󰗼 Quit - quit"
     )
@@ -65,6 +66,9 @@ main() {
             ;;
         --session)
             $HOME/.scripts/session.sh --rofi
+            ;;
+        --gentoo)
+            $HOME/.scripts/gentoo.sh --rofi
             ;;
         --rofi)
             rofi_menu

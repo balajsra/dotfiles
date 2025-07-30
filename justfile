@@ -35,6 +35,7 @@ stow-create:
         -S freecad \
         -S gaming \
         -S gammastep \
+        -S gentoo \
         -S geoclue \
         -S ghostty \
         -S gimp \
@@ -92,6 +93,7 @@ stow-delete:
         -D fuzzel \
         -D gaming \
         -D gammastep \
+        -D gentoo \
         -D geoclue \
         -D ghostty \
         -D gimp \
@@ -150,6 +152,7 @@ stow-recreate:
         -R freecad \
         -R gaming \
         -R gammastep \
+        -R gentoo \
         -R geoclue \
         -R ghostty \
         -R gimp \

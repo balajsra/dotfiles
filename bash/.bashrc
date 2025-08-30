@@ -122,6 +122,12 @@ export TERM=xterm-256color
 export QT_STYLE_OVERRIDE=kvantum
 export XDG_CONFIG_HOME=$HOME/.config
 
+# Dracula theme for Docker BuildKit - https://draculatheme.com/docker
+export BUILDKIT_COLORS="run=189,147,249:cancel=241,250,140:error=255,85,85:warning=241,250,140"
+
+# Dracula theme for GNU grep - https://draculatheme.com/grep
+export GREP_COLORS="mt=1;38;2;255;85;85:fn=38;2;255;121;198:ln=38;2;80;250;123:bn=38;2;80;250;123:se=38;2;139;233;253"
+
 # Greeting
 clear
 krabby random

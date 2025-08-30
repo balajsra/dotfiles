@@ -50,7 +50,7 @@ setopt pushdminus
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
-zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' rehash true                              # automatically find new executables in path
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select=2
@@ -144,6 +144,12 @@ else
   bindkey -M viins "^[3;5~" delete-char
   bindkey -M vicmd "^[3;5~" delete-char
 fi
+
+# Dracula theme for Docker BuildKit - https://draculatheme.com/docker
+export BUILDKIT_COLORS="run=189,147,249:cancel=241,250,140:error=255,85,85:warning=241,250,140"
+
+# Dracula theme for GNU grep - https://draculatheme.com/grep
+export GREP_COLORS="mt=1;38;2;255;85;85:fn=38;2;255;121;198:ln=38;2;80;250;123:bn=38;2;80;250;123:se=38;2;139;233;253"
 
 # Greeting
 clear

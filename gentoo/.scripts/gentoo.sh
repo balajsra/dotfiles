@@ -11,7 +11,8 @@ help_menu() {
 
 rofi_menu() {
     declare -a options=(
-        "󰚰 Sync and Update Packages - sync-update"
+        " Update Packages and Shutdown - update-shutdown"
+        "󰚰 Update Packages - update"
         " Remove Obsolete Packages - depclean"
         " Update Package Configuration Files - conf-update"
         " Update Kernel Config - update-kernel"
@@ -41,9 +42,14 @@ main() {
         --help | -h)
             help_menu
             ;;
-        --sync-update)
-            notify-send "Gentoo" "Syncing and Updating Packages" &
-            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_sync_and_update_packages.sh
+        --update-shutdown)
+            notify-send "Gentoo" "Updating Packages and Shutting Down" &
+            uwsm app -- foot sudo ${HOME}/.scripts/.gentoo_update_packages.sh
+            poweroff
+            ;;
+        --update)
+            notify-send "Gentoo" "Updating Packages" &
+            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_update_packages.sh
             ;;
         --depclean)
             notify-send "Gentoo" "Removing Obsolete Packages" &

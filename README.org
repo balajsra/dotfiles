@@ -122,6 +122,8 @@
   - [[#gaming-control][Gaming Control]]
   - [[#session-control][Session Control]]
   - [[#gentoo][Gentoo]]
+    - [[#main-control-script][Main Control Script]]
+    - [[#helper-scripts][Helper Scripts]]
   - [[#control-center][Control Center]]
 - [[#acknowledgements][Acknowledgements]]
 
@@ -10545,6 +10547,8 @@ main $@
 
 ** Gentoo
 
+*** Main Control Script
+
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gentoo/.scripts/gentoo.sh
 help_menu() {
     echo "Script to run common gentoo specific actions."
@@ -10561,6 +10565,7 @@ rofi_menu() {
         "󰚰 Sync and Update Packages - sync-update"
         " Remove Obsolete Packages - depclean"
         " Update Package Configuration Files - conf-update"
+        " Update Kernel Config - update-kernel"
         " Remove Old Kernels - clean-kernel"
         "󱋆 Update Grub Configuration - grub-update"
         " Spice Up Spotify - spicetify"
@@ -10588,12 +10593,8 @@ main() {
             help_menu
             ;;
         --sync-update)
-            notify-send "Gentoo" "Syncing repos" &
-            uwsm app -- foot -H sudo eix-sync -a
-            notify-send "Gentoo" "Updating Live Packages" &
-            uwsm app -- foot -H sudo emerge @smart-live-rebuild
-            notify-send "Gentoo" "Updating Versioned Packages" &
-            uwsm app -- foot -H sudo emerge --update --deep --newuse --with-bdeps=y --verbose-conflicts @world
+            notify-send "Gentoo" "Syncing and Updating Packages" &
+            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_sync_and_update_packages.sh
             ;;
         --depclean)
             notify-send "Gentoo" "Removing Obsolete Packages" &
@@ -10602,6 +10603,10 @@ main() {
         --conf-update)
             notify-send "Gentoo" "Updating Configuration Files" &
             uwsm app -- foot -H sudo dispatch-conf
+            ;;
+        --update-kernel)
+            notify-send "Gentoo" "Updating Kernel Configuration" &
+            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_update_kernel_config.sh
             ;;
         --clean-kernel)
             notify-send "Gentoo" "Removing Old Kernels" &
@@ -10613,7 +10618,7 @@ main() {
             ;;
         --spicetify)
             notify-send "Gentoo" "Spicing Up Spotify" &
-            uwsm app -- foot -H sudo emerge media-sound/spotify app-misc/spicetify-cli-bin::sravan-overlay && sudo chmod a+wr -R /opt/spotify && spicetify backup apply
+            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_spice_up_spotify.sh
             ;;
         --rofi)
             rofi_menu
@@ -10623,6 +10628,88 @@ main() {
 }
 
 main $@
+#+END_SRC
+
+*** Helper Scripts
+
+**** Sync and Update Packages
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gentoo/.scripts/.gentoo_sync_and_update_packages.sh
+echo "################################"
+echo "# Syncing Package Repositories #"
+echo "################################"
+eix-sync -a
+
+echo "##########################"
+echo "# Updating Live Packages #"
+echo "##########################"
+emerge @smart-live-rebuild
+
+echo "###############################"
+echo "# Updating Versioned Packages #"
+echo "###############################"
+emerge --update --deep --newuse --with-bdeps=y --verbose-conflicts --backtrack=100 @world
+#+END_SRC
+
+**** Update Kernel Config
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gentoo/.scripts/.gentoo_update_kernel_config.sh
+KERNEL_SAVED_CONFIG_PATH="/etc/portage/savedconfig/sys-kernel"
+KERNEL_EBUILD_PATH="/var/db/repos/gentoo/sys-kernel/gentoo-kernel"
+
+LAST_KERNEL=$(basename $(sudo ls ${KERNEL_SAVED_CONFIG_PATH}/gentoo-kernel-* | sort -V | tail -n 1))
+NEW_KERNEL_EBUILD=$(basename $(sudo ls ${KERNEL_EBUILD_PATH}/gentoo-kernel-*.ebuild | sort -V | tail -n 1))
+NEW_KERNEL="${NEW_KERNEL_EBUILD%.*}"
+
+NEW_KERNEL_BUILD_DIR="/var/tmp/portage/sys-kernel/${NEW_KERNEL}/work/modprep"
+
+echo "###############################"
+echo "# Preparing New Kernel Source #"
+echo "###############################"
+ebuild ${KERNEL_EBUILD_PATH}/${NEW_KERNEL_EBUILD} clean configure
+
+pushd ${NEW_KERNEL_BUILD_DIR} > /dev/null
+
+echo "##############################"
+echo "# Copying Last Kernel Config #"
+echo "##############################"
+cp ${KERNEL_SAVED_CONFIG_PATH}/${LAST_KERNEL} .config
+
+echo "###############################"
+echo "# Updating Last Kernel Config #"
+echo "###############################"
+make oldconfig
+make listnewconfig
+
+echo "############################"
+echo "# Saving New Kernel Config #"
+echo "############################"
+cp .config ${KERNEL_SAVED_CONFIG_PATH}/${NEW_KERNEL}
+
+popd > /dev/null
+
+echo "#######################################################"
+echo "# Done updating kernel configuration, close window... #"
+echo "#######################################################"
+#+END_SRC
+
+**** Spice Up Spotify
+
+#+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gentoo/.scripts/.gentoo_spice_up_spotify.sh
+echo "############################################"
+echo "# (Re)Installing Spotify and Spicetify-CLI #"
+echo "############################################"
+emerge media-sound/spotify app-misc/spicetify-cli-bin::sravan-overlay
+
+echo "#############################################"
+echo "# Changing Permissions on Spotify Directory #"
+echo "#############################################"
+chmod a+wr -R /opt/spotify
+
+echo "####################################"
+echo "# Applying Spicetify Configuration #"
+echo "####################################"
+spicetify backup apply
 #+END_SRC
 
 ** Control Center

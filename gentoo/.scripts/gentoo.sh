@@ -14,6 +14,7 @@ rofi_menu() {
         "󰚰 Sync and Update Packages - sync-update"
         " Remove Obsolete Packages - depclean"
         " Update Package Configuration Files - conf-update"
+        " Update Kernel Config - update-kernel"
         " Remove Old Kernels - clean-kernel"
         "󱋆 Update Grub Configuration - grub-update"
         " Spice Up Spotify - spicetify"
@@ -41,12 +42,8 @@ main() {
             help_menu
             ;;
         --sync-update)
-            notify-send "Gentoo" "Syncing repos" &
-            uwsm app -- foot -H sudo eix-sync -a
-            notify-send "Gentoo" "Updating Live Packages" &
-            uwsm app -- foot -H sudo emerge @smart-live-rebuild
-            notify-send "Gentoo" "Updating Versioned Packages" &
-            uwsm app -- foot -H sudo emerge --update --deep --newuse --with-bdeps=y --verbose-conflicts @world
+            notify-send "Gentoo" "Syncing and Updating Packages" &
+            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_sync_and_update_packages.sh
             ;;
         --depclean)
             notify-send "Gentoo" "Removing Obsolete Packages" &
@@ -55,6 +52,10 @@ main() {
         --conf-update)
             notify-send "Gentoo" "Updating Configuration Files" &
             uwsm app -- foot -H sudo dispatch-conf
+            ;;
+        --update-kernel)
+            notify-send "Gentoo" "Updating Kernel Configuration" &
+            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_update_kernel_config.sh
             ;;
         --clean-kernel)
             notify-send "Gentoo" "Removing Old Kernels" &
@@ -66,7 +67,7 @@ main() {
             ;;
         --spicetify)
             notify-send "Gentoo" "Spicing Up Spotify" &
-            uwsm app -- foot -H sudo emerge media-sound/spotify app-misc/spicetify-cli-bin::sravan-overlay && sudo chmod a+wr -R /opt/spotify && spicetify backup apply
+            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_spice_up_spotify.sh
             ;;
         --rofi)
             rofi_menu

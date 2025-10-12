@@ -33,6 +33,6 @@ cp .config ${KERNEL_SAVED_CONFIG_PATH}/${NEW_KERNEL}
 
 popd > /dev/null
 
-echo "#######################################################"
-echo "# Done updating kernel configuration, close window... #"
-echo "#######################################################"
+echo "####################################"
+echo "# Script Complete, close window... #"
+echo "####################################"

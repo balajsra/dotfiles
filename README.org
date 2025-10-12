@@ -10649,6 +10649,10 @@ echo "###############################"
 echo "# Updating Versioned Packages #"
 echo "###############################"
 emerge --update --deep --newuse --with-bdeps=y --verbose-conflicts --backtrack=100 @world
+
+echo "####################################"
+echo "# Script Complete, close window... #"
+echo "####################################"
 #+END_SRC
 
 **** Update Kernel Config
@@ -10688,9 +10692,9 @@ cp .config ${KERNEL_SAVED_CONFIG_PATH}/${NEW_KERNEL}
 
 popd > /dev/null
 
-echo "#######################################################"
-echo "# Done updating kernel configuration, close window... #"
-echo "#######################################################"
+echo "####################################"
+echo "# Script Complete, close window... #"
+echo "####################################"
 #+END_SRC
 
 **** Spice Up Spotify
@@ -10710,6 +10714,10 @@ echo "####################################"
 echo "# Applying Spicetify Configuration #"
 echo "####################################"
 spicetify backup apply
+
+echo "####################################"
+echo "# Script Complete, close window... #"
+echo "####################################"
 #+END_SRC
 
 ** Control Center

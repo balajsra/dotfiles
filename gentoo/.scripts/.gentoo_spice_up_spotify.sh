@@ -13,3 +13,7 @@ echo "####################################"
 echo "# Applying Spicetify Configuration #"
 echo "####################################"
 spicetify backup apply
+
+echo "####################################"
+echo "# Script Complete, close window... #"
+echo "####################################"

@@ -13,3 +13,7 @@ echo "###############################"
 echo "# Updating Versioned Packages #"
 echo "###############################"
 emerge --update --deep --newuse --with-bdeps=y --verbose-conflicts --backtrack=100 @world
+
+echo "####################################"
+echo "# Script Complete, close window... #"
+echo "####################################"

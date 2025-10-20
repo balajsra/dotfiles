@@ -10624,7 +10624,7 @@ main() {
             ;;
         --spicetify)
             notify-send "Gentoo" "Spicing Up Spotify" &
-            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_spice_up_spotify.sh
+            uwsm app -- foot -H ${HOME}/.scripts/.gentoo_spice_up_spotify.sh
             ;;
         --rofi)
             rofi_menu
@@ -10709,12 +10709,12 @@ echo "####################################"
 echo "############################################"
 echo "# (Re)Installing Spotify and Spicetify-CLI #"
 echo "############################################"
-emerge media-sound/spotify app-misc/spicetify-cli-bin::sravan-overlay
+sudo emerge media-sound/spotify app-misc/spicetify-cli-bin::sravan-overlay
 
 echo "#############################################"
 echo "# Changing Permissions on Spotify Directory #"
 echo "#############################################"
-chmod a+wr -R /opt/spotify
+sudo chmod a+wr -R /opt/spotify
 
 echo "####################################"
 echo "# Applying Spicetify Configuration #"

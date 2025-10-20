@@ -73,7 +73,7 @@ main() {
             ;;
         --spicetify)
             notify-send "Gentoo" "Spicing Up Spotify" &
-            uwsm app -- foot -H sudo ${HOME}/.scripts/.gentoo_spice_up_spotify.sh
+            uwsm app -- foot -H ${HOME}/.scripts/.gentoo_spice_up_spotify.sh
             ;;
         --rofi)
             rofi_menu

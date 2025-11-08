@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -euxo pipefail
+
 echo "############################################"
 echo "# (Re)Installing Spotify and Spicetify-CLI #"
 echo "############################################"

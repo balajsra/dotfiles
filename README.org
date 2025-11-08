@@ -8155,6 +8155,8 @@ $HOME/.scripts/cpu-gpu.sh --gpu-profile-adaptive &
 Emulate DualSense controller as an Xbox 360 controller.
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gaming/.scripts/dualsense_to_xbox_360_controller.sh
+set -euxo pipefail
+
 xboxdrv \
   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-if03-event-joystick \
   --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y,ABS_X=X1,ABS_Y=Y1,ABS_RX=X2,ABS_RY=Y2,ABS_Z=LT,ABS_RZ=RT \
@@ -10641,6 +10643,8 @@ main $@
 **** Sync and Update Packages
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gentoo/.scripts/.gentoo_update_packages.sh
+set -euxo pipefail
+
 echo "################################"
 echo "# Syncing Package Repositories #"
 echo "################################"
@@ -10664,6 +10668,8 @@ echo "####################################"
 **** Update Kernel Config
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gentoo/.scripts/.gentoo_update_kernel_config.sh
+set -euxo pipefail
+
 KERNEL_SAVED_CONFIG_PATH="/etc/portage/savedconfig/sys-kernel"
 KERNEL_EBUILD_PATH="/var/db/repos/gentoo/sys-kernel/gentoo-kernel"
 
@@ -10706,6 +10712,8 @@ echo "####################################"
 **** Spice Up Spotify
 
 #+BEGIN_SRC shell :shebang #!/usr/bin/env bash :tangle gentoo/.scripts/.gentoo_spice_up_spotify.sh
+set -euxo pipefail
+
 echo "############################################"
 echo "# (Re)Installing Spotify and Spicetify-CLI #"
 echo "############################################"

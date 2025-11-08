@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -euxo pipefail
+
 KERNEL_SAVED_CONFIG_PATH="/etc/portage/savedconfig/sys-kernel"
 KERNEL_EBUILD_PATH="/var/db/repos/gentoo/sys-kernel/gentoo-kernel"
 

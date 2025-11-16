@@ -21,6 +21,7 @@ alias rm='rm -i'
 # Replace ls and tree with eza
 alias ls="eza"
 alias tree="eza -T"
+alias cat="bat"
 
 if [ "$TERM" = "linux" ]
     then

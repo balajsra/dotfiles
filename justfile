@@ -67,6 +67,7 @@ stow-create:
         -S uwsm \
         -S vim \
         -S vscode \
+        -S waybar \
         -S xournalpp \
         -S zathura \
         -S zsh
@@ -131,6 +132,7 @@ stow-delete:
         -D uwsm \
         -D vim \
         -D vscode \
+        -D waybar \
         -D xfce4-notifyd \
         -D xmonad \
         -D xournalpp \
@@ -186,6 +188,7 @@ stow-recreate:
         -R uwsm \
         -R vim \
         -R vscode \
+        -R waybar \
         -R xournalpp \
         -R zathura \
         -R zsh

@@ -1,4 +1,5 @@
 #+TITLE: Personal Dotfiles
+#+PROPERTY: header-args :noweb yes
 #+AUTHOR: Sravan Balaji
 #+AUTO_TANGLE: t
 #+STARTUP: showeverything
@@ -113,6 +114,7 @@
     - [[#winit][Winit]]
     - [[#wayland-startup][Wayland Startup]]
     - [[#universal-wayland-session-manager][Universal Wayland Session Manager]]
+    - [[#waybar][Waybar]]
 - [[#justfile][Justfile]]
 - [[#miscellaneous-scripts][Miscellaneous Scripts]]
   - [[#media-control][Media Control]]
@@ -145,6 +147,13 @@ git submodule update --init --recursive --remote
 #+END_SRC
 
 Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
+
+* Variables :noexport:
+
+#+name: compositor-config-name
+#+BEGIN_SRC text
+mango
+#+END_SRC
 
 * Dotfiles Configuration
 
@@ -9868,6 +9877,14 @@ export BROWSER=vivaldi-stable            # Web Browser
 export XDG_CONFIG_HOME=$HOME/.config     # Set Config directory
 #+END_SRC
 
+*** Waybar
+
+#+BEGIN_SRC systemd :tangle waybar/.config/systemd/user/waybar.service.d/override.conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/waybar --config %h/.config/<<compositor-config-name>>/waybar/config.jsonc --style %h/.config/<<compositor-config-name>>/waybar/style.css
+#+END_SRC
+
 * Justfile
 
 #+BEGIN_SRC just :tangle justfile
@@ -9940,6 +9957,7 @@ stow-create:
         -S uwsm \
         -S vim \
         -S vscode \
+        -S waybar \
         -S xournalpp \
         -S zathura \
         -S zsh
@@ -10004,6 +10022,7 @@ stow-delete:
         -D uwsm \
         -D vim \
         -D vscode \
+        -D waybar \
         -D xfce4-notifyd \
         -D xmonad \
         -D xournalpp \
@@ -10059,6 +10078,7 @@ stow-recreate:
         -R uwsm \
         -R vim \
         -R vscode \
+        -R waybar \
         -R xournalpp \
         -R zathura \
         -R zsh

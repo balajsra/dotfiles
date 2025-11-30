@@ -44,6 +44,7 @@ stow-create:
         -S hyprland \
         -S kitty \
         -S mangal \
+        -S mangowc \
         -S mpv \
         -S pactl \
         -S pkgdev \
@@ -102,6 +103,7 @@ stow-delete:
         -D hyprland \
         -D kitty \
         -D mangal \
+        -D mangowc \
         -D mpv \
         -D naughty \
         -D pactl \
@@ -161,6 +163,7 @@ stow-recreate:
         -R hyprland \
         -R kitty \
         -R mangal \
+        -R mangowc \
         -R mpv \
         -R pactl \
         -R pkgdev \

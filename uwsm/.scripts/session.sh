@@ -40,7 +40,7 @@ main() {
             help_menu
             ;;
         --logout)
-            notify-send "Session Control" "Logging Out of Hyprland" &
+            notify-send "Session Control" "Logging Out of Compositor" &
             loginctl terminate-user ""
             ;;
         --lock)

@@ -97,3 +97,7 @@
 	path = calibre/.themes/dracula-calibre
 	url = git@github.com:dracula/calibre.git
 	branch = main
+[submodule "mangowc"]
+	path = mangowc/.config/mango
+	url = ../mangowc.git
+	branch = main

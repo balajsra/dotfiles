@@ -250,6 +250,10 @@ Use [[https://www.gnu.org/software/stow/][GNU Stow]] to create symlinks.
 	path = calibre/.themes/dracula-calibre
 	url = git@github.com:dracula/calibre.git
 	branch = main
+[submodule "mangowc"]
+	path = mangowc/.config/mango
+	url = ../mangowc.git
+	branch = main
 #+END_SRC
 
 ** Ignoring files and directories

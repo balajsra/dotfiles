@@ -24,6 +24,7 @@ stow-create:
     stow -v \
         -S alacritty \
         -S bash \
+        -S beeper \
         -S blender \
         -S brightness \
         -S calibre \
@@ -79,6 +80,7 @@ stow-delete:
         -D autorandr \
         -D awesome \
         -D bash \
+        -D beeper \
         -D betterlockscreen \
         -D blender \
         -D brightness \
@@ -145,6 +147,7 @@ stow-recreate:
     stow -v \
         -R alacritty \
         -R bash \
+        -R beeper \
         -R blender \
         -R brightness \
         -R calibre \

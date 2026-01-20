@@ -263,6 +263,9 @@ mango
 	path = mangowc/.config/mango
 	url = ../mangowc.git
 	branch = main
+[submodule "dracula-beeper"]
+	path = beeper/.themes/dracula-beeper
+	url = git@github.com:dracula/beeper.git
 #+END_SRC
 
 ** Ignoring files and directories
@@ -9914,6 +9917,7 @@ stow-create:
     stow -v \
         -S alacritty \
         -S bash \
+        -S beeper \
         -S blender \
         -S brightness \
         -S calibre \
@@ -9969,6 +9973,7 @@ stow-delete:
         -D autorandr \
         -D awesome \
         -D bash \
+        -D beeper \
         -D betterlockscreen \
         -D blender \
         -D brightness \
@@ -10035,6 +10040,7 @@ stow-recreate:
     stow -v \
         -R alacritty \
         -R bash \
+        -R beeper \
         -R blender \
         -R brightness \
         -R calibre \

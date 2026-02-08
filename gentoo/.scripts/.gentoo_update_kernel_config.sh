@@ -27,6 +27,7 @@ echo "# Updating Last Kernel Config #"
 echo "###############################"
 make oldconfig
 make listnewconfig
+make nconfig
 
 echo "############################"
 echo "# Saving New Kernel Config #"

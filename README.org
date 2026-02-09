@@ -4237,8 +4237,6 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-[](fg:cyan bg:orange)\
-$direnv\
 [](fg:orange bg:green)\
 $cmd_duration\
 [](fg:green)\
@@ -4323,7 +4321,7 @@ read_only = ""
 symbol = "  "
 style = "bg:orange fg:background"
 format = "[ $symbol$loaded/$allowed ]($style)"
-disabled = false
+disabled = true
 
 [c]
 symbol = " "
@@ -4860,12 +4858,6 @@ if status is-interactive
 and not set -q TMUX
     tmux new-session
 end
-#+END_SRC
-
-**** Direnv
-
-#+BEGIN_SRC fish :tangle fish/.config/fish/config.fish
-direnv hook fish | source
 #+END_SRC
 
 ** Terminal

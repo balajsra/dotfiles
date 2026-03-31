@@ -7199,7 +7199,7 @@ desktop-notifications = true
 **** Main
 
 #+BEGIN_SRC conf :tangle foot/.config/foot/foot.ini
-shell=/usr/bin/fish
+shell=fish
 term=foot-direct
 login-shell=no
 

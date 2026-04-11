@@ -8744,7 +8744,7 @@ configs:
   # MANDATORY: name of the snapper config
   - name: root
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
-    repo: /mnt/5TB_HDD/Backups/oryp7/root
+    repo: /mnt/5TB_HDD/Backups/powerspec/root
     # if this is set to true, borg does not neccessarily fail when a backup fails
     fault_tolerant_mode: true
     # snapborg fails when the most recent snapshot transferred successfully is
@@ -8776,7 +8776,7 @@ configs:
 configs:
   - name: home
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
-    repo: /mnt/5TB_HDD/Backups/oryp7/home
+    repo: /mnt/5TB_HDD/Backups/powerspec/home
     # if this is set to true, borg does not neccessarily fail when a backup fails
     fault_tolerant_mode: true
     # snapborg fails when the most recent snapshot transferred successfully is
@@ -8813,7 +8813,7 @@ configs:
   # MANDATORY: name of the snapper config
   - name: root
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
-    repo: /mnt/fileserver/Backups/oryp7/root
+    repo: /mnt/fileserver/Backups/powerspec/root
     # if this is set to true, borg does not neccessarily fail when a backup fails
     fault_tolerant_mode: true
     # snapborg fails when the most recent snapshot transferred successfully is
@@ -8847,7 +8847,7 @@ configs:
 configs:
   - name: home
     # MANDATORY: borg repo target, e. g. backupuser@backuphost:reponame
-    repo: /mnt/fileserver/Backups/oryp7/home
+    repo: /mnt/fileserver/Backups/powerspec/home
     # if this is set to true, borg does not neccessarily fail when a backup fails
     fault_tolerant_mode: true
     # snapborg fails when the most recent snapshot transferred successfully is

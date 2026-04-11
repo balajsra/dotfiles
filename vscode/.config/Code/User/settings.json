@@ -1,5 +1,7 @@
 {
 
+    "window.menuBarVisibility": "compact",
+
     "workbench.colorTheme": "Dracula Pro",
     "workbench.iconTheme": "vscode-icons",
     "workbench.productIconTheme": "fluent-icons",
@@ -11,14 +13,14 @@
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.settings.enableNaturalLanguageSearch": false,
 
-    "editor.fontFamily": "'MonaspiceNe NF'",
+    "editor.fontFamily": "MonaspiceNe Nerd Font",
     "editor.fontSize": 14,
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnSaveMode": "file",
     "editor.formatOnPaste": true,
     "editor.linkedEditing": true,
-    "editor.lineNumbers": "on",
+    "editor.lineNumbers": "relative",
     "editor.cursorBlinking": "phase",
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.quickSuggestionsDelay": 0,
@@ -152,7 +154,7 @@
 
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.fontFamily": "'MonaspiceNe NF'",
+    "terminal.integrated.fontFamily": "MonaspiceNe Nerd Font",
     "terminal.integrated.defaultProfile.linux": "bash",
 
     "[javascript]": {
@@ -270,5 +272,19 @@
     "auto-build.build.reveal": false,
     "auto-build.build.silent": false,
     "platformio-ide.autoOpenPlatformIOIniFile": false,
+
+    "chat.disableAIFeatures": true,
+
+    "nix.enableLanguageServer": false,
+    "nix.serverPath": "nixd",
+    "nix.serverSettings": {
+        "nixd": {
+            "formatting": {
+                "commands": [
+                    "nixfmt"
+                ],
+            },
+        }
+    },
 
 }

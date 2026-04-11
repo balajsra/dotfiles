@@ -7651,6 +7651,12 @@ doom
 {
 #+END_SRC
 
+**** Window
+
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
+    "window.menuBarVisibility": "compact",
+#+END_SRC
+
 **** Workbench
 
 #+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
@@ -7669,14 +7675,14 @@ doom
 **** Editor
 
 #+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
-    "editor.fontFamily": "'MonaspiceNe NF'",
+    "editor.fontFamily": "MonaspiceNe Nerd Font",
     "editor.fontSize": 14,
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnSaveMode": "file",
     "editor.formatOnPaste": true,
     "editor.linkedEditing": true,
-    "editor.lineNumbers": "on",
+    "editor.lineNumbers": "relative",
     "editor.cursorBlinking": "phase",
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.quickSuggestionsDelay": 0,
@@ -7826,7 +7832,7 @@ doom
 #+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.fontFamily": "'MonaspiceNe NF'",
+    "terminal.integrated.fontFamily": "MonaspiceNe Nerd Font",
     "terminal.integrated.defaultProfile.linux": "bash",
 #+END_SRC
 
@@ -8006,6 +8012,28 @@ doom
     "platformio-ide.autoOpenPlatformIOIniFile": false,
 #+END_SRC
 
+**** AI
+
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
+    "chat.disableAIFeatures": true,
+#+END_SRC
+
+**** Nix
+
+#+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
+    "nix.enableLanguageServer": false,
+    "nix.serverPath": "nixd",
+    "nix.serverSettings": {
+        "nixd": {
+            "formatting": {
+                "commands": [
+                    "nixfmt"
+                ],
+            },
+        }
+    },
+#+END_SRC
+
 **** Close Braces
 
 #+BEGIN_SRC json :tangle vscode/.config/Code/User/settings.json
@@ -8105,6 +8133,12 @@ doom
         "key": "ctrl+k",
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
+    },
+    {
+        // Disable command palette keybinding conflict in vim
+        "key": "ctrl+p",
+        "command": "-extension.vim_ctrl+p",
+        "when": "editorTextFocus && vim.active && vim.use<C-p> && !inDebugRepl || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
     }
 ]
 #+END_SRC

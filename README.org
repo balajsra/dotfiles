@@ -9904,13 +9904,6 @@ export XCURSOR_SIZE=24
 # Java fix for Window Managers
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# NVIDIA
-export GBM_BACKEND=nvidia-drm
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export LIBVA_DRIVER_NAME=nvidia
-export __GL_GSYNC_ALLOWED=1
-export __GL_VRR_ALLOWED=0
-
 # Toolkit Backend
 export GDK_BACKEND=wayland,x11,*
 export QT_QPA_PLATFORM=wayland;xcb

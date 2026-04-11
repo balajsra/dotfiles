@@ -288,7 +288,10 @@ justfile
 Things to ignore in dotfiles git repo.
 
 #+BEGIN_SRC gitignore :tangle .gitignore
-fish/.config/fish/fish_variables
+fish/.config/fish/
+!fish/.config/fish/config.fish
+!fish/.config/fish/themes/Dracula_Official.theme
+
 qt5/.config/qt5ct/qt5ct.conf
 
 xournalpp/.config/xournalpp/
@@ -299,7 +302,7 @@ autorandr/.config/autorandr/
 
 vim/.vim/.netrwhist
 
-vscode/.config/Code
+vscode/.config/Code/
 !vscode/.config/Code/User/settings.json
 !vscode/.config/Code/User/keybindings.json
 #+END_SRC

@@ -1,4 +1,7 @@
-fish/.config/fish/fish_variables
+fish/.config/fish/
+!fish/.config/fish/config.fish
+!fish/.config/fish/themes/Dracula_Official.theme
+
 qt5/.config/qt5ct/qt5ct.conf
 
 xournalpp/.config/xournalpp/
